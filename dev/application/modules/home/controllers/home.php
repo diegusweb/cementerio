@@ -8,11 +8,10 @@ class Home extends CI_Controller {
     function __construct() {
          parent::__construct();
         $this->load->helper('url');
-        $this->layout->setLayout('frontend-content');
+        $this->layout->setLayout('template-content');
     }
     
     function index($type = "") {
-        $aData['error'] = '';
-        $this->layout->view('index',$aData);
+        $this->layout->view('index');
     }
 }    

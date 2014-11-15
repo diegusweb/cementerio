@@ -19,7 +19,7 @@
  
         <link href="<?php echo RESOURCES_PATH; ?>assets/fancybox/source/jquery.fancybox.css" rel="stylesheet" />
         <link rel="stylesheet" type="text/css" href="<?php echo RESOURCES_PATH; ?>assets/uniform/css/uniform.default.css" />
-        <!--<script src="<?php echo RESOURCES_PATH; ?>js/jquery-1.8.3.min.js"></script>-->
+        <script src="<?php echo RESOURCES_PATH; ?>js/jquery-1.8.3.min.js"></script>
 
     </head>
     <!-- END HEAD -->
@@ -240,21 +240,12 @@
                         </ul>
                     </li>
                     <li class="has-sub">
-                        <a href="javascript:;" class="">
-                            <span class="icon-box"> <i class="icon-book"></i></span> UI Elements
-                            <span class="arrow"></span>
-                        </a>
-                        <ul class="sub">
-                            <li><a class="" href="ui_elements_general.html">General</a></li>
-                            <li><a class="" href="ui_elements_buttons.html">Buttons</a></li>
-
-                            <li><a class="" href="ui_elements_tabs_accordions.html">Tabs & Accordions</a></li>
-                            <li><a class="" href="ui_elements_typography.html">Typography</a></li>
-                            <li><a class="" href="tree_view.html">Tree View</a></li>
-                            <li><a class="" href="nestable.html">Nestable List</a></li>
-                        </ul>
+                        <a href="<?php echo base_url() . "home"; ?>" class="">
+                            <span class="icon-box"> <i class="icon-book"></i></span> UI Mapa
+                            
+                        </a>                   
                     </li>
-                    <li class="has-sub">
+                   <!-- <li class="has-sub">
                         <a href="javascript:;" class="">
                             <span class="icon-box"><i class="icon-cogs"></i></span> Components
                             <span class="arrow"></span>
@@ -267,7 +258,7 @@
                             <li><a class="" href="messengers.html">Conversations</a></li>
                             <li><a class="" href="gallery.html"> Gallery</a></li>
                         </ul>
-                    </li>
+                    </li>-->
 
                 </ul>
                 <!-- END SIDEBAR MENU -->
@@ -295,7 +286,7 @@
         <!-- Load javascripts at bottom, this will reduce page load time -->
 
         <script src="<?php echo RESOURCES_PATH; ?>assets/bootstrap/js/bootstrap.min.js"></script>   
-        <!--<script src="<?php echo RESOURCES_PATH; ?>js/jquery.blockui.js"></script>-->
+        <script src="<?php echo RESOURCES_PATH; ?>js/jquery.blockui.js"></script>
         <!-- ie8 fixes -->
         <!--[if lt IE 9]>
         <script src="js/excanvas.js"></script>
