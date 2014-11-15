@@ -13,22 +13,21 @@ class Login extends CI_Controller {
 
     function index($type = "") {
         $aData['error'] = '';
-        $this->layout->view('index',$aData);
+        $this->layout->view('login_view',$aData);
     }
     
     function verify()
     {
         $aData['name']="login";
-        //echo $this->input->post('password');
-        $result_ =  $this->authentication->login($this->input->post("ci"), $this->input->post('password'));
-        
+
+        $result_ =  $this->authentication->login($this->input->post("username"), $this->input->post('password'));
         if ($result_) 
         {
-            redirect(base_url()."welcome",'outside');
+            redirect(base_url()."home",'outside');
         }else{
-            $aData['error'] = 'Your login or password are incorrect. Please try again.';
+            $aData['error'] = 'Your login or password are incorrect. <br>Please try again.';
             $aData['action'] = $this->input->post("action");
-            $this->layout->view('index',$aData);
+            $this->layout->view('login_view',$aData);
         }
     }
     

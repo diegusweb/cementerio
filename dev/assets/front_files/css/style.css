@@ -393,6 +393,8 @@ a,a:focus, a:hover, a:active {
     margin-top: 0px;
     margin-left: 215px;
     min-height: 800px;
+     padding-left: 7px;
+    padding-right: 7px;
     background: #f7f7f7 url("../img/body-bg.png");
 }
 

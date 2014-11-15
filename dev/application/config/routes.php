@@ -39,7 +39,8 @@
 */
 
 $route['default_controller'] = "admin";
-$route['404_override'] = '';
+$route['404_override'] = 'errors/error_404';
+$route['500_override'] = 'errors/error_500';
 
 
 /* End of file routes.php */

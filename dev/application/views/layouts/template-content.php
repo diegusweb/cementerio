@@ -226,14 +226,14 @@
                 <!-- END RESPONSIVE QUICK SEARCH FORM -->
                 <!-- BEGIN SIDEBAR MENU -->
                 <ul class="sidebar-menu">
-                    <li class="has-sub">
+                    <li class="has-sub active">
                         <a href="javascript:;" class="">
-                            <span class="icon-box"> <i class="icon-dashboard"></i></span> demo
+                            <span class="icon-box"> <i class="icon-dashboard"></i></span> Registros
                             <span class="arrow"></span>
                         </a>
                         <ul class="sub">
-                            <li><a class="" href="<?php echo base_url() . "admin/test_management"; ?>">Usuario</a></li>
-
+                            <li><a class="" href="<?php echo base_url() . "admin/users_management"; ?>">Usuario</a></li>
+                            <li><a class="" href="<?php echo base_url() . "admin/ubicacion_management"; ?>">ubicaciones</a></li>
 
 
 
@@ -254,7 +254,7 @@
                             <li><a class="" href="nestable.html">Nestable List</a></li>
                         </ul>
                     </li>
-                    <li class="has-sub active">
+                    <li class="has-sub">
                         <a href="javascript:;" class="">
                             <span class="icon-box"><i class="icon-cogs"></i></span> Components
                             <span class="arrow"></span>
