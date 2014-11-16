@@ -3501,3 +3501,29 @@ ul.amounts li {
     background-color: #22c0cc;
     color: #fff;
 }
+
+/*------------------------*/
+.nicho{
+     background-image:url("../img/company-48.png"); 
+     background-repeat: no-repeat;
+     width: 48px;
+     height: 48px;
+     cursor: pointer;
+}
+
+.mausoleo{
+     background-image:url("../img/cemetery-48.png"); 
+     background-repeat: no-repeat;
+     width: 48px;
+     height: 48px;
+     cursor: pointer;
+}
+
+.bajoTierra{
+     background-image:url("../img/Coffin-48.png"); 
+     background-repeat: no-repeat;
+     width: 48px;
+     height: 48px;
+     cursor: pointer;
+}
+

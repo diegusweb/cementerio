@@ -60,16 +60,20 @@ class Admin extends CI_Controller {
         $this->_mostrar_crud($output);
     }
     
-     public function ubicacion_management() {
+     public function bloque_nicho_management() {
         //$this->session->set_userdata('page', 'Proveedores');
 
         $crud = new grocery_CRUD();
 
         //$this->session->set_userdata('page', 'Configuracones');
         $crud->set_theme('datatables');
-        $crud->set_table('ubicacion');
+        $crud->set_table('bloque_nicho');
+        
+         $crud->field_type('numero_piso','dropdown',
+            array('1' => 'Piso 1', '2' => 'Piso 2'));
+         
 
-        $crud->field_type('clase_sitio','dropdown',
+        /*$crud->field_type('clase_sitio','dropdown',
             array('Bloques' => 'Bloques', 'Mausoleos' => 'Mausoleos','Espacios baja tierra' => 'Espacios baja tierra'));
         
         $crud->field_type('estado','dropdown',
@@ -79,9 +83,9 @@ class Admin extends CI_Controller {
             array('Nichos' => 'Nichos', 'Cremado' => 'Cremado'));
         
         $crud->field_type('tipo','dropdown',
-            array('Adulto' => 'Adulto', 'Niño' => 'Niño'));
+            array('Adulto' => 'Adulto', 'Niño' => 'Niño'));*/
         
-        $crud->set_relation('id_precios', 'precios', 'cantidad');
+        //$crud->set_relation('id_precios', 'precios', 'cantidad');
 /*
         $crud->required_fields('nombre', 'apellido', 'rol', 'password');
         $crud->set_rules('ci', 'ci', 'required|numeric');
@@ -89,9 +93,39 @@ class Admin extends CI_Controller {
 
         $crud->unset_fields('create_date');
          $crud->unset_columns('create_date','password');*/
+         
+         $crud->callback_add_field('position', function () {
+            return '<input type="text" maxlength="10" style="width:50px!important" value="" name="CANTIDAD"> <a href="#" class="infoSucursalDiv">Situar en mapa </a>';
+        });
+         
+         $crud->callback_after_insert(array($this, 'log_bloque_after_insert'));
 
         $output = $crud->render();
         $this->_mostrar_crud($output);
+    }
+    
+    function log_bloque_after_insert($post_array, $primary_key)
+    {
+        $nichos_insert = array(
+            "id_bloque" => $primary_key,
+            "estado" => 'Libre'
+        );
+        
+        if($post_array['numero_nichos'] > 0){
+            for($i=0; $i < $post_array['numero_nichos']; $i++){
+                $this->db->insert('nicho',$nichos_insert);
+            }
+        }
+     
+
+        return true;
+    }
+    
+        public function getLinkBoton($value, $row) {
+        if($value > 0)
+            return "<a href='javascript:void(0);' class='demo' onClick='myModalNews()'>Procesado</a>";
+        else
+            return $value;
     }
 
 }

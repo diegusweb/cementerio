@@ -46,77 +46,7 @@
                     <div id="top_menu" class="nav notify-row">
                         <!-- BEGIN NOTIFICATION -->
                         <ul class="nav top-menu">
-                            <!-- BEGIN SETTINGS -->
-                            <li class="dropdown">
-                                <a class="dropdown-toggle element" data-placement="bottom" data-toggle="tooltip" href="#" data-original-title="Settings">
-                                    <i class="icon-cog"></i>
-                                </a>
-                            </li>
-                            <!-- END SETTINGS -->
-                            <!-- BEGIN INBOX DROPDOWN -->
-                            <li class="dropdown" id="header_inbox_bar">
-                                <a href="#" class="dropdown-toggle" data-toggle="dropdown">
-                                    <i class="icon-envelope-alt"></i>
-                                    <span class="badge badge-important">5</span>
-                                </a>
-                                <ul class="dropdown-menu extended inbox">
-                                    <li>
-                                        <p>You have 5 new messages</p>
-                                    </li>
-                                    <li>
-                                        <a href="#">
-                                            <span class="photo"><img src="./img/avatar-mini.png" alt="avatar" /></span>
-                                            <span class="subject">
-                                                <span class="from">Dulal Khan</span>
-                                                <span class="time">Just now</span>
-                                            </span>
-                                            <span class="message">
-                                                Hello, this is an example messages please check
-                                            </span>
-                                        </a>
-                                    </li>
-                                    <li>
-                                        <a href="#">
-                                            <span class="photo"><img src="./img/avatar-mini.png" alt="avatar" /></span>
-                                            <span class="subject">
-                                                <span class="from">Rafiqul Islam</span>
-                                                <span class="time">10 mins</span>
-                                            </span>
-                                            <span class="message">
-                                                Hi, Mosaddek Bhai how are you ?
-                                            </span>
-                                        </a>
-                                    </li>
-                                    <li>
-                                        <a href="#">
-                                            <span class="photo"><img src="./img/avatar-mini.png" alt="avatar" /></span>
-                                            <span class="subject">
-                                                <span class="from">Sumon Ahmed</span>
-                                                <span class="time">3 hrs</span>
-                                            </span>
-                                            <span class="message">
-                                                This is awesome dashboard templates
-                                            </span>
-                                        </a>
-                                    </li>
-                                    <li>
-                                        <a href="#">
-                                            <span class="photo"><img src="./img/avatar-mini.png" alt="avatar" /></span>
-                                            <span class="subject">
-                                                <span class="from">Dulal Khan</span>
-                                                <span class="time">Just now</span>
-                                            </span>
-                                            <span class="message">
-                                                Hello, this is an example messages please check
-                                            </span>
-                                        </a>
-                                    </li>
-                                    <li>
-                                        <a href="#">See all messages</a>
-                                    </li>
-                                </ul>
-                            </li>
-                            <!-- END INBOX DROPDOWN -->
+                                  
                             <!-- BEGIN NOTIFICATION DROPDOWN -->
                             <li class="dropdown" id="header_notification_bar">
                                 <a href="#" class="dropdown-toggle" data-toggle="dropdown">
@@ -175,19 +105,6 @@
                     <!-- END  NOTIFICATION -->
                     <div class="top-nav ">
                         <ul class="nav pull-right top-menu" >
-                            <!-- BEGIN SUPPORT -->
-                            <li class="dropdown mtop5">
-
-                                <a class="dropdown-toggle element" data-placement="bottom" data-toggle="tooltip" href="#" data-original-title="Chat">
-                                    <i class="icon-comments-alt"></i>
-                                </a>
-                            </li>
-                            <li class="dropdown mtop5">
-                                <a class="dropdown-toggle element" data-placement="bottom" data-toggle="tooltip" href="#" data-original-title="Help">
-                                    <i class="icon-headphones"></i>
-                                </a>
-                            </li>
-                            <!-- END SUPPORT -->
                             <!-- BEGIN USER LOGIN DROPDOWN -->
                             <li class="dropdown">
                                 <a href="#" class="dropdown-toggle" data-toggle="dropdown">
@@ -197,8 +114,6 @@
                                 </a>
                                 <ul class="dropdown-menu">
                                     <li><a href="#"><i class="icon-user"></i> My Profile</a></li>
-                                    <li><a href="#"><i class="icon-tasks"></i> My Tasks</a></li>
-                                    <li><a href="#"><i class="icon-calendar"></i> Calendar</a></li>
                                     <li class="divider"></li>
                                     <li><a href="login.html"><i class="icon-key"></i> Log Out</a></li>
                                 </ul>
@@ -226,16 +141,26 @@
                 <!-- END RESPONSIVE QUICK SEARCH FORM -->
                 <!-- BEGIN SIDEBAR MENU -->
                 <ul class="sidebar-menu">
-                    <li class="has-sub active">
+                    <li class="has-sub">
                         <a href="javascript:;" class="">
                             <span class="icon-box"> <i class="icon-dashboard"></i></span> Registros
                             <span class="arrow"></span>
                         </a>
                         <ul class="sub">
                             <li><a class="" href="<?php echo base_url() . "admin/users_management"; ?>">Usuario</a></li>
-                            <li><a class="" href="<?php echo base_url() . "admin/ubicacion_management"; ?>">ubicaciones</a></li>
 
-
+                        </ul>
+                    </li>
+                    <li class="has-sub">
+                        <a href="javascript:;" class="">
+                            <span class="icon-box"> <i class="icon-dashboard"></i></span> Bloques
+                            <span class="arrow"></span>
+                        </a>
+                        <ul class="sub">
+                            <li><a class="" href="<?php echo base_url() . "admin/bloque_nicho_management"; ?>">Bloque Nichos</a></li>
+                            <li><a class="" href="<?php echo base_url() . "admin/bloque_mausoleo_management"; ?>">Bloque Mausoleos</a></li>
+                            <li><a class="" href="<?php echo base_url() . "admin/bloque_cremados_management"; ?>">Bloque Cremados</a></li>
+                            <li><a class="" href="<?php echo base_url() . "admin/bloque_tierra_management"; ?>">Bloque Bajo Tierra</a></li>
 
                         </ul>
                     </li>
@@ -286,7 +211,7 @@
         <!-- Load javascripts at bottom, this will reduce page load time -->
 
         <script src="<?php echo RESOURCES_PATH; ?>assets/bootstrap/js/bootstrap.min.js"></script>   
-        <script src="<?php echo RESOURCES_PATH; ?>js/jquery.blockui.js"></script>
+       
         <!-- ie8 fixes -->
         <!--[if lt IE 9]>
         <script src="js/excanvas.js"></script>
