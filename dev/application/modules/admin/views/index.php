@@ -24,6 +24,12 @@
             {
                 text-decoration: underline;
             }
+            
+            .modal.fade.in {
+                left: 40% !important;
+                top: 1%;
+            }
+            
         </style>
         <script type="text/javascript">
             var demo;
@@ -39,6 +45,30 @@
                      $('#myModalT').modal('show');
                      });*/
                 });
+                
+                $('.nicho').draggable({  
+                    containment: '#myModalNews',
+                    zIndex: 200,
+                    start: function(event, ui) {
+                        xpos = ui.position.left;
+                        ypos = ui.position.top;
+                        
+                        //console.log(xpos+" - "+ypos)
+                      },
+                  // when dragging stops
+                    stop: function(event, ui) {
+                      // calculate the dragged distance, with the current X and Y position and the "xpos" and "ypos"
+                      var xmove =  ui.position.left;
+                      var ymove = ui.position.top;
+                      
+                       console.log(xmove+" - "+ymove);
+                       var pos = Math.round(xmove)+","+Math.round(ymove);
+                       $('.positionSet').attr('value',pos);
+                       
+                       $('#myModalNews').modal('hide');
+
+                    }}).css("position", "absolute"); 
+
             });
         </script>
     </head>
@@ -57,9 +87,8 @@
         </div>
 
 
-        <div id="myModalNews" class="modal hide fade"  title="Empty the recycle bin?">
-            <p><span class="ui-icon ui-icon-alert" style="float:left; margin:0 7px 20px 0;"></span>
-                Se enviara un correo a todos los clientes ?</p>
+        <div id="myModalNews" class="modal hide fade contenidoMapa" style="width: 900px; height: 600px;" title="Empty the recycle bin?">
+           <div id="colu" style="top:0px; left: 0px; position: absolute;" class="nicho">Columna 1</div>
         </div>
 
     </body>

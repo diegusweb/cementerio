@@ -95,7 +95,11 @@ class Admin extends CI_Controller {
          $crud->unset_columns('create_date','password');*/
          
          $crud->callback_add_field('position', function () {
-            return '<input type="text" maxlength="10" style="width:50px!important" value="" name="CANTIDAD"> <a href="#" class="infoSucursalDiv">Situar en mapa </a>';
+            return '<input type="text" maxlength="10" class="positionSet" style="width:50px!important" value="" name="position"> <a href="#" class="infoSucursalDiv">Situar en mapa </a>';
+        });
+        
+        $crud->callback_edit_field('position', function () {
+            return '<input type="text" maxlength="10" class="positionSet" style="width:50px!important" value="" name="position"> <a href="#" class="infoSucursalDiv">Situar en mapa </a>';
         });
          
          $crud->callback_after_insert(array($this, 'log_bloque_after_insert'));
