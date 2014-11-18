@@ -167,7 +167,7 @@ class Admin extends CI_Controller {
         return true;
     }
     
-        public function getLinkBoton($value, $row) {
+    public function getLinkBoton($value, $row) {
         if($value > 0)
             return "<a href='javascript:void(0);' class='demo' onClick='myModalNews()'>Procesado</a>";
         else
