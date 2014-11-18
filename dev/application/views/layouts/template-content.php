@@ -20,7 +20,7 @@
         <link href="<?php echo RESOURCES_PATH; ?>assets/fancybox/source/jquery.fancybox.css" rel="stylesheet" />
         <link rel="stylesheet" type="text/css" href="<?php echo RESOURCES_PATH; ?>assets/uniform/css/uniform.default.css" />
         <script src="<?php echo RESOURCES_PATH; ?>js/jquery-1.8.3.min.js"></script>
-
+<script> var base_url = "<?php echo base_url();?>";</script>
     </head>
     <!-- END HEAD -->
     <!-- BEGIN BODY -->

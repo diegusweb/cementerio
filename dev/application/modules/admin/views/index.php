@@ -33,8 +33,7 @@
         </style>
         <script type="text/javascript">
             var demo;
-
-
+			
             $("document").ready(function () {
 
                 $('.infoSucursalDiv').click(function () {
@@ -61,13 +60,14 @@
                       var xmove =  ui.position.left;
                       var ymove = ui.position.top;
                       
-                       console.log(xmove+" - "+ymove);
                        var pos = Math.round(xmove)+","+Math.round(ymove);
                        $('.positionSet').attr('value',pos);
                        
                        $('#myModalNews').modal('hide');
 
                     }}).css("position", "absolute"); 
+					
+	
 
             });
         </script>

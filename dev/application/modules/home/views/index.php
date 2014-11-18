@@ -22,19 +22,9 @@
 </style>
 
 <script>
+var showFormNicho;
+
     $(document).ready(function () {
-        /* var x = $("#wrapper2").offset().left;
-         var y = $("#wrapper2").offset().top;
-         
-         console.log('x: ' + x + ' y: ' + y);*/
-
-
-        /*$('#example1').click(function(e){
-         var x = e.pageX - this.offsetLeft;
-         var y = e.pageY - this.offsetTop;
-         $('#wrapper2').html("X: " + x + " Y: " + y); 
-         //company-48
-         });*/
 
         $("#example1").click(function (e) {
             var pos = $(this).offset();
@@ -44,22 +34,28 @@
             $("#wrapper2").text("X: " + x + " Y: " + y);
         });
 
-        $(".nicho").click(function (e) {
+        /*$(".nicho").click(function (e) {
             var pos = $(this).offset();
             var x = e.pageX - this.offsetLeft;
             var y = e.pageY - this.offsetTop;
 
             alert($(this).attr('id'));
-        });
-
-        //$('#colu').html('<div class="nicho"></div>').offset({ top: 351  , left: 50})
+        });*/
 
         $(".nicho").tooltip();
+		
     });
 </script>
-<div id="myModalNewss" class="modal hide fade" style="width: 500px; height: 300px;" title="Empty the recycle bin?">
-    sadasdasdsa
+<div id="myModalAddNicho" class="modal hide fade" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+    <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
+        <h3 id="myModalLabel">Nueva Nicho</h3>
+    </div>
+    <div class="modal-body">
+        <p id="contentDemoadd">One fine body…</p>
+    </div>
 </div>
+
 <div id="example1" class="contenidoMapa">
 
     <?php

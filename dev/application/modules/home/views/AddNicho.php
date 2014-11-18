@@ -70,13 +70,8 @@
 
             $.ajax({
                 type: "POST",
-                //cuando presione el boton guardar
-                // se lo manda al controlador home y al metodo addUsuario 
-                url: "<?php echo base_url() . "home/addUsuario"; ?>",
+                url: "<?php echo base_url() . "home/addNicho"; ?>",
                 data: $('#add-form').serialize(),
-//                si el mensaje del metodo de controlador es
-//                true que se refresque el grid
-//                y que se oculte el modal
                 success: function(msg) {
                     if (msg == 'true') {
                         refresh_grid();
@@ -84,8 +79,6 @@
 
                     }
                 },
-//                        si el controlador no existe 
-//                me devuelve error
                 error: function(msg) {
                     alert("Error");
                 }
@@ -119,10 +112,9 @@
 		}
 		else
         {
-            // limpiamos el combo e indicamos que se seleccione un país
             var $comboNichoLibres = $("#nichoLibres");
             $comboNichoLibres.empty();
-            $comboNichoLibres.append("<option>Seleccione un Nicho</option>");
+            $comboNichoLibres.append("<option>Seleccione un lado</option>");
         }
 
 	});
@@ -132,7 +124,7 @@
     <div class="control-group">
         <label class="control-label" for="inputUsuario">Tramite</label>
         <div class="controls">
-            <select class="form-control">
+            <select class="form-control" id="Tramite">
 			  <option value="">Nicho Enterratorio</option>
 			  <option value="">Nicho Perpetuidad</option>
 			  <option value="">Anexión Nicho Perpetuidad</option>

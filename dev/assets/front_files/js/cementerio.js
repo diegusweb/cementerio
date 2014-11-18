@@ -1,13 +1,18 @@
-   var time;
-   $(".nicho").mouseenter(function(){
-       $(this).popover('show');
-       
-       $(".secMenu").click(function(){
-           console.log($(this).attr('data-id'));
-           $('#myModalNewss').modal('show');
-       });
-       
-    });
+var time;
+$(".nicho").mouseenter(function(){
+   $(this).popover('show');
+   
+   $(".secMenu").click(function(){
+	   //console.log($(this).attr('data-id'));
+	   //$('#myModalNewss').modal('show');
+	   
+	   var urlInfo = base_url+"home/showFormAddNicho/" + $(this).attr('data-id');
+		$("#contentDemoadd").load(urlInfo, function () {
+			$('#myModalAddNicho').modal('show');
+		});
+   });
+   
+});
 
 $(document).on('mouseleave', '#insideDiv', function(){
        $(".nicho").popover('hide');
