@@ -22,6 +22,26 @@ class Admin extends CI_Controller {
     public function index() {
         $this->_mostrar_crud((object) array('output' => '', 'js_files' => array(), 'css_files' => array()));
     }
+    
+    public function asd(){
+            
+        $total = 36;    
+        $ulti = 1;
+            for($s=1; $s <= 1; $s++){             
+            
+                for($i=4; $i >= 1; $i--){
+                   
+                    for($j=1; $j <= 5; $j++){                       
+                      
+                        echo("cara :".$s." - fila :".$i."- nicho: ".$ulti."<br />");
+                        $ulti = $ulti + 1;  
+                    }
+
+                    //$this->db->insert('nicho',$nichos_insert);
+                }
+            }
+        
+    }
 
     public function test_management() {
         //$this->session->set_userdata('page', 'Proveedores');
@@ -72,6 +92,9 @@ class Admin extends CI_Controller {
          $crud->field_type('numero_piso','dropdown',
             array('1' => 'Piso 1', '2' => 'Piso 2'));
          
+         $crud->field_type('numero_caras','dropdown',
+            array('1' => '1', '2' => '2','3' => '3','4' => '4'));
+         
 
         /*$crud->field_type('clase_sitio','dropdown',
             array('Bloques' => 'Bloques', 'Mausoleos' => 'Mausoleos','Espacios baja tierra' => 'Espacios baja tierra'));
@@ -97,12 +120,12 @@ class Admin extends CI_Controller {
          $crud->callback_add_field('position', function () {
             return '<input type="text" maxlength="10" class="positionSet" style="width:50px!important" value="" name="position"> <a href="#" class="infoSucursalDiv">Situar en mapa </a>';
         });
-        
+
         $crud->callback_edit_field('position', function () {
             return '<input type="text" maxlength="10" class="positionSet" style="width:50px!important" value="" name="position"> <a href="#" class="infoSucursalDiv">Situar en mapa </a>';
         });
-         
-         $crud->callback_after_insert(array($this, 'log_bloque_after_insert'));
+
+        $crud->callback_after_insert(array($this, 'log_bloque_after_insert'));
 
         $output = $crud->render();
         $this->_mostrar_crud($output);
@@ -115,9 +138,28 @@ class Admin extends CI_Controller {
             "estado" => 'Libre'
         );
         
-        if($post_array['numero_nichos'] > 0){
-            for($i=0; $i < $post_array['numero_nichos']; $i++){
-                $this->db->insert('nicho',$nichos_insert);
+        if($post_array['numero_filas'] > 0){
+            
+            for($s=1; $s <= $post_array['numero_caras']; $s++){             
+                $ulti = 1;
+                for($i=$post_array['numero_filas']; $i >= 1; $i--){
+                    
+                    for($j=1; $j <= $post_array['numero_nichos']; $j++){
+                        
+                        $nichos_insert = array(
+                            "id_bloque" => $primary_key,
+                            "cara" => $s,
+                            "fila" => $i,
+                            "nicho" => $ulti,
+                            "estado" => 'Libre'
+                        );
+                        $ulti = $ulti + 1;  
+                        
+                        $this->db->insert('nicho',$nichos_insert);
+                        
+                    }
+                    //$this->db->insert('nicho',$nichos_insert);
+                }
             }
         }
      

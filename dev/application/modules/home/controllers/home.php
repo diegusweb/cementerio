@@ -8,10 +8,14 @@ class Home extends CI_Controller {
     function __construct() {
          parent::__construct();
         $this->load->helper('url');
+        $this->load->model('home_model');
         $this->layout->setLayout('template-content');
     }
     
-    function index($type = "") {
-        $this->layout->view('index');
+    function index() {
+        
+        $data['bloque_nicho'] = $this->home_model->getBloqueNicho();
+        $this->layout->view('index', $data);
     }
+    
 }    
