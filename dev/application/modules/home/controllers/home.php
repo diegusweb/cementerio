@@ -18,7 +18,7 @@ class Home extends CI_Controller {
         $this->layout->view('index', $data);
     }
     
-	function showFormAddNicho()
+	function showFormAddNichoBloque()
 	{
 		$id = $_POTS['id_bloque'];
 		
@@ -46,15 +46,49 @@ class Home extends CI_Controller {
 	{
 		//$this->load->view('formaddNicho');
 	}
-	
-	function showFormAddMausoleo()
+
+	function showFormAddExhumacionesBloque()
 	{
-		
+		$this->load->view('AddExhumacionesBloque');
 	}
 	
-	function showFormAddLapida()
+	function showFormAddExhumacionesTierra()
 	{
-		
+		$this->load->view('AddExhumacionesTierra');
 	}
 	
+	function showFormAddLapidaBloque()
+	{
+		$this->load->view('AddLapidaBloque');
+	}
+	
+	function showFormRenovacionNicho()
+	{
+		$this->load->view('AddRenovacionNicho');
+	}
+	
+	function showFormAutorizacionContrCripta()
+	{
+		$this->load->view('AddContruccionCripta');
+	}
+	
+	function showFormCremaciones()
+	{
+		$this->load->view('AddCremaciones');
+	}
+	
+	function showFormIngresarSitioTierra()
+	{
+		$this->load->view('AddSitioTierra');
+	}
+	
+	function showFormDifunto()
+	{
+		$this->load->view('AddDifunto');
+	}
+	
+	function showFormbloqueCremados()
+	{
+		$this->load->view('AddBloqueCremados');
+	}
 }    
