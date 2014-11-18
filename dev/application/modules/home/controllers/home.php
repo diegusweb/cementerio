@@ -36,6 +36,17 @@ class Home extends CI_Controller {
 		echo json_encode($data);  
 	}
 	
+	//form solicitante
+	function showFormSolicitante()
+	{
+		$this->load->view('AddSolicitante');
+	}
+	
+	function showFormAddSolicitante()
+	{
+		//$this->load->view('formaddNicho');
+	}
+	
 	function showFormAddMausoleo()
 	{
 		

@@ -1,13 +1,11 @@
 <script type="text/javascript">
     $('#add-form').validate({
         rules: {
-            usser: {
-                minlength: 2,
+            tramite: {
                 required: true
             },
-            password: {
-                minlength: 2,
-                required: true,
+            piso: {
+                required: true
             },
             rol: {
                 required: true,
@@ -124,7 +122,7 @@
     <div class="control-group">
         <label class="control-label" for="inputUsuario">Tramite</label>
         <div class="controls">
-            <select class="form-control" id="Tramite">
+            <select class="form-control" id="tramite" name="tramite">
 			  <option value="">Nicho Enterratorio</option>
 			  <option value="">Nicho Perpetuidad</option>
 			  <option value="">Anexión Nicho Perpetuidad</option>
@@ -134,13 +132,15 @@
     <div class="control-group">
         <label class="control-label" for="inputPassword">Bloque</label>
         <div class="controls">
-            <input type="text" id="Bloque" name="Bloque" value="" >
+			<input type="hidden" id="id_bloque" name="id_bloque" value="" >
+            <input type="hidden" id="bloque" name="bloque" value="" >
+			<?php echo "BLOQUE";?>
         </div>
     </div>
      <div class="control-group">
         <label class="control-label" for="inputRol">Piso</label>
         <div class="controls">
-            <select class="form-control">
+            <select class="form-control" id="piso" name="piso">
 			  <option value="">Piso 1</option>
 			  <option value="">Piso 2</option>
 			</select>
@@ -149,7 +149,7 @@
     <div class="control-group">
         <label class="control-label" for="inputRol">Lado</label>
         <div class="controls">
-            <select class="form-control">
+            <select class="form-control" id="lado" name="lado">
 			  <option value="">Norte</option>
 			  <option value="">Sud</option>
 			  <option value="">Este</option>
@@ -160,31 +160,24 @@
     <div class="control-group">
         <label class="control-label" for="inputRol">Numero de nicho Disponible</label>
         <div class="controls">
-			<select class="form-control" id="nichoLibres">
+			<select class="form-control" id="nichoLibres"  name="numeroNicho">
 			</select>
         </div>
     </div>
 	<div class="control-group">
         <label class="control-label" for="inputRol">Tipo Nicho</label>
         <div class="controls">
-			<select class="form-control">
+			<select class="form-control" id="clase" name="clase">
 			  <option value="">1ra Clase</option>
 			  <option value="">2ra Clase</option>
 			</select>
-        </div>
-    </div>
-
-    <div class="control-group">
-        <div class="controls">
-            <!--aqui se debe mandar al controlador? o a la vista home_view-->
-            <button type="submit" class="btn">Guardar Cambios</button>
         </div>
     </div>
 	
 	<div class="control-group">
         <label class="control-label" for="inputRol">Tiempo</label>
         <div class="controls">
-			<select class="form-control">
+			<select class="form-control" id="tiempo" name="tiempo">
 			  <option value="">Perpetuidad</option>
 			  <option value="">5 años</option>
 			</select>
@@ -194,7 +187,7 @@
 	<div class="control-group">
         <label class="control-label" for="inputRol">Tipo</label>
         <div class="controls">
-			<select class="form-control">
+			<select class="form-control" id="tipo" name="tipo">
 			  <option value="">Mayor</option>
 			  <option value="">Niño</option>
 			  <option value="">Parvulo</option>
@@ -205,14 +198,21 @@
 	<div class="control-group">
         <label class="control-label" for="inputRol">Fecha Tramite</label>
         <div class="controls">
-			<input type="datetime" class="form-control" placeholder="Text input">
+			<input type="datetime" class="form-control" placeholder="Text input" id="fechaTramite" name="fechaTramite">
         </div>
     </div>
 	
 	<div class="control-group">
         <label class="control-label" for="inputRol">Costo</label>
         <div class="controls">
-			<input type="text" class="form-control" placeholder="Text input">
+			<input type="text" class="form-control" placeholder="Text input" id="costo" name="costo">
+        </div>
+    </div>
+	
+	    <div class="control-group">
+        <div class="controls">
+            <!--aqui se debe mandar al controlador? o a la vista home_view-->
+            <button type="submit" class="btn">Guardar Cambios</button>
         </div>
     </div>
 </form>
