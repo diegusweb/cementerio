@@ -15,6 +15,9 @@ class Home extends CI_Controller {
     function index() {
 
         $data['bloque_nicho'] = $this->home_model->getBloqueNicho();
+        $data['bloque_mausoleo'] = $this->home_model->getBloqueMausoleo();
+        $data['bloque_cremado'] = $this->home_model->getBloqueCremado();
+        $data['bloque_bajo_tierra'] = $this->home_model->getBloqueBajoTierra();
         $this->layout->view('index', $data);
     }
 

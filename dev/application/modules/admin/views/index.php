@@ -24,50 +24,119 @@
             {
                 text-decoration: underline;
             }
-            
+
             .modal.fade.in {
                 left: 40% !important;
                 top: 1%;
             }
-            
+
         </style>
         <script type="text/javascript">
             var demo;
-			
+
             $("document").ready(function () {
 
                 $('.infoSucursalDiv').click(function () {
-
                     $('#myModalNews').modal('show');
-                    /*var urlNoti = "<?php echo base_url(); ?>transaccion/getTraspasos?id=" + id + "&suc=" + sucursal;
-                     $("#contentT").load(urlNoti, {id: id, suc: sucursal, nom: nombre}, function() {
-                     $('#myModalT').modal('show');
-                     });*/
                 });
-                
-                $('.nicho').draggable({  
+
+                $('.nicho').draggable({
                     containment: '#myModalNews',
                     zIndex: 200,
-                    start: function(event, ui) {
+                    start: function (event, ui) {
                         xpos = ui.position.left;
                         ypos = ui.position.top;
-                        
-                        //console.log(xpos+" - "+ypos)
-                      },
-                  // when dragging stops
-                    stop: function(event, ui) {
-                      // calculate the dragged distance, with the current X and Y position and the "xpos" and "ypos"
-                      var xmove =  ui.position.left;
-                      var ymove = ui.position.top;
-                      
-                       var pos = Math.round(xmove)+","+Math.round(ymove);
-                       $('.positionSet').attr('value',pos);
-                       
-                       $('#myModalNews').modal('hide');
 
-                    }}).css("position", "absolute"); 
-					
-	
+                        //console.log(xpos+" - "+ypos)
+                    },
+                    // when dragging stops
+                    stop: function (event, ui) {
+                        // calculate the dragged distance, with the current X and Y position and the "xpos" and "ypos"
+                        var xmove = ui.position.left;
+                        var ymove = ui.position.top;
+
+                        var pos = Math.round(xmove) + "," + Math.round(ymove);
+                        $('.positionSet').attr('value', pos);
+
+                        $('#myModalNews').modal('hide');
+
+                    }}).css("position", "absolute");
+
+                //mausoleo
+                $('.infoMausoleoDiv').click(function () {
+                    $('#myModalMausoleo').modal('show');
+                });
+
+                $('.mausoleo').draggable({
+                    containment: '#myModalMausoleo',
+                    zIndex: 200,
+                    start: function (event, ui) {
+                        xpos = ui.position.left;
+                        ypos = ui.position.top;
+                    },
+                    // when dragging stops
+                    stop: function (event, ui) {
+ 
+                        var xmove = ui.position.left;
+                        var ymove = ui.position.top;
+
+                        var pos = Math.round(xmove) + "," + Math.round(ymove);
+                        $('.positionSet').attr('value', pos);
+
+                        $('#myModalMausoleo').modal('hide');
+
+                    }}).css("position", "absolute");
+                
+                
+                //cremados
+                $('.infoCremadoDiv').click(function () {
+                    $('#myModalCremados').modal('show');
+                });
+
+                $('.cremados').draggable({
+                    containment: '#myModalCremados',
+                    zIndex: 200,
+                    start: function (event, ui) {
+                        xpos = ui.position.left;
+                        ypos = ui.position.top;
+                    },
+                    // when dragging stops
+                    stop: function (event, ui) {
+ 
+                        var xmove = ui.position.left;
+                        var ymove = ui.position.top;
+
+                        var pos = Math.round(xmove) + "," + Math.round(ymove);
+                        $('.positionSet').attr('value', pos);
+
+                        $('#myModalCremados').modal('hide');
+
+                    }}).css("position", "absolute");
+                
+                //bajo tierra
+                $('.infoCbajoTierraDiv').click(function () {
+                    $('#myModalCBajoTierra').modal('show');
+                });
+
+                $('.bajoTierra').draggable({
+                    containment: '#myModalCBajoTierra',
+                    zIndex: 200,
+                    start: function (event, ui) {
+                        xpos = ui.position.left;
+                        ypos = ui.position.top;
+                    },
+                    // when dragging stops
+                    stop: function (event, ui) {
+ 
+                        var xmove = ui.position.left;
+                        var ymove = ui.position.top;
+
+                        var pos = Math.round(xmove) + "," + Math.round(ymove);
+                        $('.positionSet').attr('value', pos);
+
+                        $('#myModalCBajoTierra').modal('hide');
+
+                    }}).css("position", "absolute");
 
             });
         </script>
@@ -88,7 +157,19 @@
 
 
         <div id="myModalNews" class="modal hide fade contenidoMapa" style="width: 900px; height: 600px;" title="Empty the recycle bin?">
-           <div id="colu" style="top:0px; left: 0px; position: absolute;" class="nicho"></div>
+            <div id="colu" style="top:0px; left: 0px; position: absolute;" class="nicho"></div>
+        </div>
+        
+        <div id="myModalMausoleo" class="modal hide fade contenidoMapa" style="width: 900px; height: 600px;" title="Empty the recycle bin?">
+            <div id="colu" style="top:0px; left: 0px; position: absolute;" class="mausoleo"></div>
+        </div>
+        
+        <div id="myModalCremados" class="modal hide fade contenidoMapa" style="width: 900px; height: 600px;" title="Empty the recycle bin?">
+            <div id="colu" style="top:0px; left: 0px; position: absolute;" class="cremados"></div>
+        </div>
+        
+        <div id="myModalCBajoTierra" class="modal hide fade contenidoMapa" style="width: 900px; height: 600px;" title="Empty the recycle bin?">
+            <div id="colu" style="top:0px; left: 0px; position: absolute;" class="bajoTierra"></div>
         </div>
 
     </body>

@@ -64,10 +64,44 @@ var showFormNicho;
         $d = explode(",", $valor['position']);
         ?>
         <div id="<?php echo $valor['nombre']; ?>"  data-container="body" data-html="true" data-toggle="popover" data-placement="right" 
-             data-content='<div id="insideDiv"><div><?php echo $valor['nombre'] ?></div><br><div class="secMenu" data-id="<?php echo $valor['id_bloque_nicho']?>">INGRESAR</div><div class="secMenu" data-id="<?php echo $valor['id_bloque_nicho']?>">EXUMAR</div>
+             data-content='<div id="insideDiv"><div><?php echo $valor['nombre'] ?></div><br><div class="secMenu" data-id="<?php echo $valor['id_bloque_nicho']?>">INGRESAR</div>
+             <div class="secMenu" data-id="<?php echo $valor['id_bloque_nicho']?>">EXHUMAR</div>
              <div class="secMenu" data-id="<?php echo $valor['id_bloque_nicho']?>">RENOVAR</div>
              <div class="secMenu" data-id="<?php echo $valor['id_bloque_nicho']?>">AÑADIR LAPIDA</div>
              <div class="secMenu" data-id="<?php echo $valor['id_bloque_nicho']?>">CREMACION</div></div>' style="top:<?php echo $d[1]; ?>px; left: <?php echo $d[0]; ?>px; position: absolute;" class="nicho"></div>
+        <?php
+    }
+    
+    foreach ($bloque_mausoleo as $valorm) {
+        $d = explode(",", $valorm['position']);
+        ?>
+        <div id="<?php echo $valorm['nombre']; ?>"  data-container="body" data-html="true" data-toggle="popover" data-placement="right" 
+             data-content='<div id="insideDiv"><div><?php echo $valorm['nombre'] ?></div><br><div class="secMenu" data-id="<?php echo $valorm['id_bloque_mausoleo']?>">INGRESAR</div>
+             <div class="secMenu" data-id="<?php echo $valorm['id_bloque_mausoleo']?>">EXHUMAR</div>
+             <div class="secMenu" data-id="<?php echo $valorm['id_bloque_mausoleo']?>">AÑADIR LAPIDA</div>
+             </div>' style="top:<?php echo $d[1]; ?>px; left: <?php echo $d[0]; ?>px; position: absolute;" class="mausoleo"></div>
+        <?php
+    }
+    
+    foreach ($bloque_cremado as $valorc) {
+        $d = explode(",", $valorc['position']);
+        ?>
+        <div id="<?php echo $valorc['nombre']; ?>"  data-container="body" data-html="true" data-toggle="popover" data-placement="right" 
+             data-content='<div id="insideDiv"><div><?php echo $valorc['nombre'] ?></div><br><div class="secMenu" data-id="<?php echo $valorc['id_bloque_cremado']?>">INGRESAR</div>
+             <div class="secMenu" data-id="<?php echo $valorc['id_bloque_cremado']?>">EXHUMAR</div>
+             <div class="secMenu" data-id="<?php echo $valorc['id_bloque_cremado']?>">AÑADIR LAPIDA</div>
+             </div>' style="top:<?php echo $d[1]; ?>px; left: <?php echo $d[0]; ?>px; position: absolute;" class="cremados"></div>
+        <?php
+    }
+    
+    foreach ($bloque_bajo_tierra as $valorc) {
+        $d = explode(",", $valorc['position']);
+        ?>
+        <div id="<?php echo $valorc['nombre']; ?>"  data-container="body" data-html="true" data-toggle="popover" data-placement="right" 
+             data-content='<div id="insideDiv"><div><?php echo $valorc['nombre'] ?></div><br><div class="secMenu" data-id="<?php echo $valorc['id_bloque_bajo_tierra']?>">INGRESAR</div>
+             <div class="secMenu" data-id="<?php echo $valorc['id_bloque_bajo_tierra']?>">EXHUMAR</div>
+             <div class="secMenu" data-id="<?php echo $valorc['id_bloque_bajo_tierra']?>">AÑADIR LAPIDA</div>
+             </div>' style="top:<?php echo $d[1]; ?>px; left: <?php echo $d[0]; ?>px; position: absolute;" class="bajoTierra"></div>
         <?php
     }
     ?>

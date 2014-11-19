@@ -22,6 +22,27 @@ class Home_model extends CI_Model {
         $result = $this->db->query($query)->result_array();
         return $result;
     }
+    
+    public function getBloqueMausoleo() {
+        $query = "SELECT * FROM bloque_mausoleo";
+        //$result=$this->db->query($query)->num_rows();
+        $result = $this->db->query($query)->result_array();
+        return $result;
+    }
+    
+    public function getBloqueCremado() {
+        $query = "SELECT * FROM bloque_cremado";
+        //$result=$this->db->query($query)->num_rows();
+        $result = $this->db->query($query)->result_array();
+        return $result;
+    }
+    
+    public function getBloqueBajoTierra() {
+        $query = "SELECT * FROM bloque_bajo_tierra";
+        //$result=$this->db->query($query)->num_rows();
+        $result = $this->db->query($query)->result_array();
+        return $result;
+    }
 
     public function getInfoBloqueNicho($id_bloque) {
         $query = "SELECT * FROM bloque_nicho WHERE id_bloque_nicho=" . $id_bloque;
@@ -29,7 +50,7 @@ class Home_model extends CI_Model {
         $result = $this->db->query($query)->result_array();
         return $result;
     }
-
+    
     public function getBloqueNichoLibres($id, $lado) {
 
         $this->db->select('id_nicho, nicho');
@@ -40,6 +61,7 @@ class Home_model extends CI_Model {
         $consulta = $this->db->get();
         return $consulta->result();
     }
+    
     
     public function addSolicitante($data){
          $consulta = $this->db->insert('solicitante', $data);

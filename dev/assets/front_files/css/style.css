@@ -3521,6 +3521,15 @@ ul.amounts li {
     cursor: pointer;
 }
 
+.cremados{
+    background-image:url("../img/cremado-48.png"); 
+    background-repeat: no-repeat;
+    background-color: #FAFAFA;
+    width: 48px;
+    height: 48px;
+    cursor: pointer;
+}
+
 .bajoTierra{
     background-image:url("../img/Coffin-48.png"); 
     background-repeat: no-repeat;
