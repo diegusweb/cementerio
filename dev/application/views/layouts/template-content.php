@@ -15,7 +15,7 @@
         <link href="<?php echo RESOURCES_PATH; ?>assets/font-awesome/css/font-awesome.css" rel="stylesheet" />
         <link href="<?php echo RESOURCES_PATH; ?>css/style.css" rel="stylesheet" />
         <link href="<?php echo RESOURCES_PATH; ?>css/style_responsive.css" rel="stylesheet" />
-        <link href="<?php echo RESOURCES_PATH; ?>css/style_default.css" rel="stylesheet" id="style_color" />
+        <link href="<?php echo RESOURCES_PATH; ?>css/style_gray.css" rel="stylesheet" id="style_color" />
  
         <link href="<?php echo RESOURCES_PATH; ?>assets/fancybox/source/jquery.fancybox.css" rel="stylesheet" />
         <link rel="stylesheet" type="text/css" href="<?php echo RESOURCES_PATH; ?>assets/uniform/css/uniform.default.css" />

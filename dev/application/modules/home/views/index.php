@@ -20,6 +20,35 @@
     .secMenu{
         cursor: pointer;
     }
+	.titleBorder{
+		border-bottom:solid 1px #222;
+	}
+	
+	#insideDiv ul {
+		list-style-type: none;
+		margin: 0;
+		padding: 0;
+		overflow: hidden;
+		width: 170px;
+	}
+
+	#insideDiv li {
+		float: left;
+	}
+
+	#insideDiv a:link, a:visited {
+		display: block;
+		width: 150px;
+		color: #333;
+		background-color: #ffffff;
+		padding: 4px;
+		text-decoration: none;
+		text-transform: uppercase;
+	}
+
+	#insideDiv a:hover, a:active {
+		background-color: #cccccc;
+	}
 </style>
 
 <script>
@@ -64,11 +93,15 @@ var showFormNicho;
         $d = explode(",", $valor['position']);
         ?>
         <div id="<?php echo $valor['nombre']; ?>"  data-container="body" data-html="true" data-toggle="popover" data-placement="right" 
-             data-content='<div id="insideDiv"><div><?php echo $valor['nombre'] ?></div><br><div class="secMenu" data-id="<?php echo $valor['id_bloque_nicho']?>">INGRESAR</div>
-             <div class="secMenu" data-id="<?php echo $valor['id_bloque_nicho']?>">EXHUMAR</div>
-             <div class="secMenu" data-id="<?php echo $valor['id_bloque_nicho']?>">RENOVAR</div>
-             <div class="secMenu" data-id="<?php echo $valor['id_bloque_nicho']?>">AÑADIR LAPIDA</div>
-             <div class="secMenu" data-id="<?php echo $valor['id_bloque_nicho']?>">CREMACION</div></div>' style="top:<?php echo $d[1]; ?>px; left: <?php echo $d[0]; ?>px; position: absolute;" class="nicho"></div>
+             data-content='<div id="insideDiv"><div class="titleBorder"><b><?php echo $valor['nombre'] ?> - NICHOS</b></div><br>		 
+				 <ul>
+					 <li><a href="#" class="secMenu" data-id="<?php echo $valor['id_bloque_nicho']?>">INGRESAR</a></li>
+					 <li><a href="#" class="secMenu" data-id="<?php echo $valor['id_bloque_nicho']?>">EXHUMAR</a></li>
+					 <li><a href="#" class="secMenu" data-id="<?php echo $valor['id_bloque_nicho']?>">RENOVAR</a></li>
+					 <li><a href="#" class="secMenu" data-id="<?php echo $valor['id_bloque_nicho']?>">AÑADIR LAPIDA</a></li>
+					 <li><a href="#" class="secMenu" data-id="<?php echo $valor['id_bloque_nicho']?>">CREMACION</a></li>
+				 </ul>
+			 </div>' style="top:<?php echo $d[1]; ?>px; left: <?php echo $d[0]; ?>px; position: absolute;" class="nicho"></div>
         <?php
     }
     
@@ -76,9 +109,14 @@ var showFormNicho;
         $d = explode(",", $valorm['position']);
         ?>
         <div id="<?php echo $valorm['nombre']; ?>"  data-container="body" data-html="true" data-toggle="popover" data-placement="right" 
-             data-content='<div id="insideDiv"><div><?php echo $valorm['nombre'] ?></div><br><div class="secMenu" data-id="<?php echo $valorm['id_bloque_mausoleo']?>">INGRESAR</div>
-             <div class="secMenu" data-id="<?php echo $valorm['id_bloque_mausoleo']?>">EXHUMAR</div>
-             <div class="secMenu" data-id="<?php echo $valorm['id_bloque_mausoleo']?>">AÑADIR LAPIDA</div>
+             data-content='<div id="insideDiv"><div class="titleBorder"><b><?php echo $valorm['nombre'] ?> - MAUSOLEO</b></div><br>
+			 <ul>
+					 <li><a href="#" class="secMenu" data-id="<?php echo $valorm['id_bloque_mausoleo']?>">INGRESAR</a></li>
+					 <li><a href="#" class="secMenu" data-id="<?php echo $valorm['id_bloque_mausoleo']?>">EXHUMAR</a></li>
+					 <li><a href="#" class="secMenu" data-id="<?php echo $valorm['id_bloque_mausoleo']?>">AÑADIR LAPIDA</a></li>
+
+				 </ul>
+
              </div>' style="top:<?php echo $d[1]; ?>px; left: <?php echo $d[0]; ?>px; position: absolute;" class="mausoleo"></div>
         <?php
     }
@@ -87,9 +125,11 @@ var showFormNicho;
         $d = explode(",", $valorc['position']);
         ?>
         <div id="<?php echo $valorc['nombre']; ?>"  data-container="body" data-html="true" data-toggle="popover" data-placement="right" 
-             data-content='<div id="insideDiv"><div><?php echo $valorc['nombre'] ?></div><br><div class="secMenu" data-id="<?php echo $valorc['id_bloque_cremado']?>">INGRESAR</div>
-             <div class="secMenu" data-id="<?php echo $valorc['id_bloque_cremado']?>">EXHUMAR</div>
-             <div class="secMenu" data-id="<?php echo $valorc['id_bloque_cremado']?>">AÑADIR LAPIDA</div>
+             data-content='<div id="insideDiv"><div class="titleBorder"><b><?php echo $valorc['nombre'] ?> - CREMADOS</b></div><br>
+			 <ul>
+				 <li><a href="#" class="secMenu" data-id="<?php echo $valorc['id_bloque_cremado']?>">INGRESAR</a></li>
+				 <li><a href="#" class="secMenu" data-id="<?php echo $valorc['id_bloque_cremado']?>">EXHUMAR</a></li>
+			 </ul>
              </div>' style="top:<?php echo $d[1]; ?>px; left: <?php echo $d[0]; ?>px; position: absolute;" class="cremados"></div>
         <?php
     }
@@ -98,9 +138,14 @@ var showFormNicho;
         $d = explode(",", $valorc['position']);
         ?>
         <div id="<?php echo $valorc['nombre']; ?>"  data-container="body" data-html="true" data-toggle="popover" data-placement="right" 
-             data-content='<div id="insideDiv"><div><?php echo $valorc['nombre'] ?></div><br><div class="secMenu" data-id="<?php echo $valorc['id_bloque_bajo_tierra']?>">INGRESAR</div>
-             <div class="secMenu" data-id="<?php echo $valorc['id_bloque_bajo_tierra']?>">EXHUMAR</div>
-             <div class="secMenu" data-id="<?php echo $valorc['id_bloque_bajo_tierra']?>">AÑADIR LAPIDA</div>
+             data-content='<div id="insideDiv"><div class="titleBorder"><b><?php echo $valorc['nombre'] ?> - BAJO TIERRA</b></div><br>
+			 <ul>
+					 <li><a href="#" class="secMenu" data-id="<?php echo $valorc['id_bloque_bajo_tierra']?>">INGRESAR</a></li>
+					 <li><a href="#" class="secMenu" data-id="<?php echo $valorc['id_bloque_bajo_tierra']?>">EXHUMAR</a></li>
+					 <li><a href="#" class="secMenu" data-id="<?php echo $valorc['id_bloque_bajo_tierra']?>">RENOVAR</a></li>
+					 <li><a href="#" class="secMenu" data-id="<?php echo $valorc['id_bloque_bajo_tierra']?>">AUTORIZACION CONST. CRIPTA</a></li>
+				 </ul>
+				 
              </div>' style="top:<?php echo $d[1]; ?>px; left: <?php echo $d[0]; ?>px; position: absolute;" class="bajoTierra"></div>
         <?php
     }

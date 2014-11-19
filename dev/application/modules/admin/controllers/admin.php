@@ -23,39 +23,6 @@ class Admin extends CI_Controller {
         $this->_mostrar_crud((object) array('output' => '', 'js_files' => array(), 'css_files' => array()));
     }
 
-    public function asd() {
-
-        $total = 36;
-        $ulti = 1;
-        for ($s = 1; $s <= 1; $s++) {
-
-            for ($i = 4; $i >= 1; $i--) {
-
-                for ($j = 1; $j <= 5; $j++) {
-
-                    echo("cara :" . $s . " - fila :" . $i . "- nicho: " . $ulti . "<br />");
-                    $ulti = $ulti + 1;
-                }
-
-                //$this->db->insert('nicho',$nichos_insert);
-            }
-        }
-    }
-
-    public function test_management() {
-        //$this->session->set_userdata('page', 'Proveedores');
-
-        $crud = new grocery_CRUD();
-
-        //$this->session->set_userdata('page', 'Configuracones');
-        $crud->set_theme('datatables');
-        $crud->set_table('test');
-        //$crud->unset_texteditor('DESCRIPCION');
-        //$crud->required_fields('CODIGO', 'VALOR', 'DESCRIPCION', 'ESTADO', 'FECHA_INICIO', 'FECHA_FIN');
-        $output = $crud->render();
-        $this->_mostrar_crud($output);
-    }
-
     public function users_management() {
         //$this->session->set_userdata('page', 'Proveedores');
 
@@ -72,7 +39,9 @@ class Admin extends CI_Controller {
         $crud->set_rules('correo', 'Correo', 'trim|required|valid_email|xss_clean');
 
         $crud->unset_fields('create_date');
-        $crud->unset_columns('create_date', 'password');
+        $crud->unset_columns('create_date', 'password');	
+		
+		$crud->unset_delete();
 
         $output = $crud->render();
         $this->_mostrar_crud($output);
@@ -177,6 +146,8 @@ class Admin extends CI_Controller {
         $crud->callback_edit_field('position', function () {
             return '<input type="text" maxlength="10" class="positionSet" style="width:50px!important" value="" name="position"> <a href="#" class="infoSucursalDiv">Situar en mapa </a>';
         });
+		
+		$crud->unset_delete();
 
         $crud->callback_after_insert(array($this, 'log_bloque_after_insert'));
 

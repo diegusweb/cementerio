@@ -50,10 +50,7 @@ $(".mausoleo").mouseenter(function () {
         
        switch($(this).text()) {
             case "INGRESAR":
-                var urlInfo = base_url + "home/showFormAddNichoBloque/" + $(this).attr('data-id');
-                $("#contentDemoadd").load(urlInfo, function () {
-                    $('#myModalAddNicho').modal('show');
-                });
+                 "asd";
                 break;
             case "EXHUMAR":
                "asd";
@@ -88,10 +85,7 @@ $(".cremados").mouseenter(function () {
         
        switch($(this).text()) {
             case "INGRESAR":
-                var urlInfo = base_url + "home/showFormAddNichoBloque/" + $(this).attr('data-id');
-                $("#contentDemoadd").load(urlInfo, function () {
-                    $('#myModalAddNicho').modal('show');
-                });
+                 "asd";
                 break;
             case "EXHUMAR":
                "asd";
@@ -127,10 +121,7 @@ $(".bajoTierra").mouseenter(function () {
         
        switch($(this).text()) {
             case "INGRESAR":
-                var urlInfo = base_url + "home/showFormAddNichoBloque/" + $(this).attr('data-id');
-                $("#contentDemoadd").load(urlInfo, function () {
-                    $('#myModalAddNicho').modal('show');
-                });
+               "ADSA"
                 break;
             case "EXHUMAR":
                "asd";

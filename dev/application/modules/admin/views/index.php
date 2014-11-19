@@ -26,9 +26,10 @@
             }
 
             .modal.fade.in {
-                left: 40% !important;
-                top: 1%;
+                left: 35% !important;
+                top: 3%;
             }
+
 
         </style>
         <script type="text/javascript">
@@ -156,19 +157,19 @@
         </div>
 
 
-        <div id="myModalNews" class="modal hide fade contenidoMapa" style="width: 900px; height: 600px;" title="Empty the recycle bin?">
+        <div id="myModalNews" class="modal hide fade contenidoMapa" style="width: 1030px; height: 700px;" title="Empty the recycle bin?">
             <div id="colu" style="top:0px; left: 0px; position: absolute;" class="nicho"></div>
         </div>
         
-        <div id="myModalMausoleo" class="modal hide fade contenidoMapa" style="width: 900px; height: 600px;" title="Empty the recycle bin?">
+        <div id="myModalMausoleo" class="modal hide fade contenidoMapa" style="width: 1030px; height: 700px;" title="Empty the recycle bin?">
             <div id="colu" style="top:0px; left: 0px; position: absolute;" class="mausoleo"></div>
         </div>
         
-        <div id="myModalCremados" class="modal hide fade contenidoMapa" style="width: 900px; height: 600px;" title="Empty the recycle bin?">
+        <div id="myModalCremados" class="modal hide fade contenidoMapa" style="width: 1030px; height: 700px;" title="Empty the recycle bin?">
             <div id="colu" style="top:0px; left: 0px; position: absolute;" class="cremados"></div>
         </div>
         
-        <div id="myModalCBajoTierra" class="modal hide fade contenidoMapa" style="width: 900px; height: 600px;" title="Empty the recycle bin?">
+        <div id="myModalCBajoTierra" class="modal hide fade contenidoMapa" style="width: 1030px; height: 700px;" title="Empty the recycle bin?">
             <div id="colu" style="top:0px; left: 0px; position: absolute;" class="bajoTierra"></div>
         </div>
 
