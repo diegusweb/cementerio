@@ -32,7 +32,7 @@
                 <div class="container-fluid">
                     <!-- BEGIN LOGO -->
                     <a class="brand" href="index.html">
-                        <img src="<?php echo RESOURCES_PATH; ?>img/logo.png" alt="Admin Lab" />
+                        <img src="<?php echo RESOURCES_PATH; ?>img/logo.png_" alt="Cementerio" />
                     </a>
                     <!-- END LOGO -->
                     <!-- BEGIN RESPONSIVE MENU TOGGLER -->
@@ -48,7 +48,7 @@
                         <ul class="nav top-menu">
                                   
                             <!-- BEGIN NOTIFICATION DROPDOWN -->
-                            <li class="dropdown" id="header_notification_bar">
+                            <!--<li class="dropdown" id="header_notification_bar">
                                 <a href="#" class="dropdown-toggle" data-toggle="dropdown">
 
                                     <i class="icon-bell-alt"></i>
@@ -97,7 +97,7 @@
                                         <a href="#">See all notifications</a>
                                     </li>
                                 </ul>
-                            </li>
+                            </li>-->
                             <!-- END NOTIFICATION DROPDOWN -->
 
                         </ul>
@@ -109,7 +109,7 @@
                             <li class="dropdown">
                                 <a href="#" class="dropdown-toggle" data-toggle="dropdown">
                                     <img src="img/avatar1_small.jpg" alt="">
-                                    <span class="username">Mosaddek Hossain</span>
+                                    <span class="username">Diego Rueda</span>
                                     <b class="caret"></b>
                                 </a>
                                 <ul class="dropdown-menu">
@@ -183,7 +183,7 @@
             <!-- END SIDEBAR -->
             <!-- BEGIN PAGE -->
             <div id="main-content">
-                <br><br>
+                <br>
                 <?php echo $content_for_layout ?>
             </div>
             <!-- END PAGE -->
