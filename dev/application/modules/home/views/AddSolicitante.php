@@ -11,7 +11,7 @@
             },
             ci: {
                 required: true,
-				number: true
+                number: true
             },
             direccion: {
                 required: true,
@@ -19,18 +19,18 @@
             actividad: {
                 required: true,
             },
-			numeroDomicilio: {
+            numeroDomicilio: {
                 required: true,
             },
-			nit: {
+            nit: {
                 required: true,
-				number: true
+                number: true
             },
-			telefono: {
+            telefono: {
                 required: true,
-				number: true
+                number: true
             }
-            
+
 
         },
         messages: {
@@ -62,45 +62,44 @@
         },
         errorClass: "help-inline",
         errorElement: "span",
-        highlight: function(element, errorClass, validClass) {
+        highlight: function (element, errorClass, validClass) {
             $(element).parents('.control-group').addClass('error');
 
         },
-        unhighlight: function(element, errorClass, validClass) {
+        unhighlight: function (element, errorClass, validClass) {
             $(element).parents('.control-group').removeClass('error');
             $(element).parents('.control-group').addClass('success');
             console.log(element);
         },
-        showErrors: function(errorMap, errorList) {
+        showErrors: function (errorMap, errorList) {
 
-            $.each(this.validElements(), function(index, element) {
+            $.each(this.validElements(), function (index, element) {
                 var $element = $(element);
                 $element.parents('.control-group').removeClass("error")
                 var de = "#" + $element.attr("name");
                 $(de).tooltip("destroy");
             });
 
-            $.each(errorMap, function(key, value) {
+            $.each(errorMap, function (key, value) {
                 console.log(value);
                 $("#" + key).parents('.control-group').addClass('error');
                 $("#" + key).tooltip("destroy").tooltip({"animation": true, "placement": "right", "trigger": "focus", "title": value});
             });
         },
         //aqui es el funcionamiento del boton guardar
-        submitHandler: function(form) {
+        submitHandler: function (form) {
 
             $.ajax({
                 type: "POST",
-                url: "<?php echo base_url() . "home/addNicho"; ?>",
+                url: "<?php echo base_url() . "home/addSolicitante"; ?>",
                 data: $('#add-form').serialize(),
-                success: function(msg) {
+                success: function (msg) {
                     if (msg == 'true') {
-                        refresh_grid();
-                        $('#myModalAdd').modal('hide');
-
+                        $('#myModalAddSolicitante').modal('hide');
+                        alert("Se ingreso correctamente");
                     }
                 },
-                error: function(msg) {
+                error: function (msg) {
                     alert("Error");
                 }
             });
@@ -110,10 +109,12 @@
 
 </script>
 <form class="cform-form form-horizontal"  id="add-form" method="POST">
-    
+
     <div class="control-group">
         <label class="control-label" for="inputUsuario">Nombres</label>
-        <input type="text" id="nombre" name="nombre" value="" >
+        <div class="controls">
+            <input type="text" id="nombre" name="nombre" value="" >
+        </div>
     </div>
     <div class="control-group">
         <label class="control-label" for="inputPassword">Apellidos</label>
@@ -121,7 +122,7 @@
             <input type="text" id="apellido" name="apellido" value="" >
         </div>
     </div>
-     <div class="control-group">
+    <div class="control-group">
         <label class="control-label" for="inputPassword">Numero Carnet</label>
         <div class="controls">
             <input type="text" id="ci" name="ci" value="" >
@@ -139,31 +140,31 @@
             <input type="text" id="actividad" name="actividad" value="" >
         </div>
     </div>
-	<div class="control-group">
+    <div class="control-group">
         <label class="control-label" for="inputPassword">Numero de Domicilio</label>
         <div class="controls">
             <input type="text" id="numeroDomicilio" name="numeroDomicilio" value="" >
         </div>
     </div>
-	<div class="control-group">
+    <div class="control-group">
         <label class="control-label" for="inputPassword">Manzana</label>
         <div class="controls">
             <input type="text" id="manzana" name="manzana" value="" >
         </div>
     </div>
-	<div class="control-group">
+    <div class="control-group">
         <label class="control-label" for="inputPassword">NIT/CI</label>
         <div class="controls">
             <input type="text" id="nit" name="nit" value="" >
         </div>
     </div>
-	<div class="control-group">
+    <div class="control-group">
         <label class="control-label" for="inputPassword">Telefono</label>
         <div class="controls">
             <input type="text" id="telefono" name="telefono" value="" >
         </div>
     </div>
-	<div class="control-group">
+    <div class="control-group">
         <label class="control-label" for="inputPassword">Celular</label>
         <div class="controls">
             <input type="text" id="celular" name="celular" value="" >
@@ -172,7 +173,7 @@
     <div class="control-group">
         <div class="controls">
             <!--aqui se debe mandar al controlador? o a la vista home_view-->
-            <button type="submit" class="btn">Guardar Solicitante</button>
+            <button type="submit" class="btn btn-primary">Guardar Solicitante</button>
         </div>
     </div>
 

@@ -20,7 +20,7 @@
         <link href="<?php echo RESOURCES_PATH; ?>assets/fancybox/source/jquery.fancybox.css" rel="stylesheet" />
         <link rel="stylesheet" type="text/css" href="<?php echo RESOURCES_PATH; ?>assets/uniform/css/uniform.default.css" />
         <script src="<?php echo RESOURCES_PATH; ?>js/jquery-1.8.3.min.js"></script>
-<script> var base_url = "<?php echo base_url();?>";</script>
+        <script> var base_url = "<?php echo base_url();?>";</script>
     </head>
     <!-- END HEAD -->
     <!-- BEGIN BODY -->
@@ -143,7 +143,7 @@
                 <ul class="sidebar-menu">
                     <li class="has-sub">
                         <a href="javascript:;" class="">
-                            <span class="icon-box"> <i class="icon-dashboard"></i></span> Registros
+                            <span class="icon-box"> <i class="icon-dashboard"></i></span>Admin Registros
                             <span class="arrow"></span>
                         </a>
                         <ul class="sub">
@@ -153,7 +153,7 @@
                     </li>
                     <li class="has-sub">
                         <a href="javascript:;" class="">
-                            <span class="icon-box"> <i class="icon-dashboard"></i></span> Bloques
+                            <span class="icon-box"> <i class="icon-dashboard"></i></span>Admin Bloques
                             <span class="arrow"></span>
                         </a>
                         <ul class="sub">
@@ -165,11 +165,18 @@
                         </ul>
                     </li>
                     <li class="has-sub">
-                        <a href="<?php echo base_url() . "home"; ?>" class="">
-                            <span class="icon-box"> <i class="icon-book"></i></span> UI Mapa
+                        <a href="javascript:;" class="">
+                            <span class="icon-box"> <i class="icon-dashboard"></i></span>Registros
+                            <span class="arrow"></span>
+                        </a>
+                        <ul class="sub">
+                            <li><a class="formSolicitante" href="javascript:void(0)">Solicitantes</a></li>
+                            <li><a class="" href="<?php echo base_url() . "home/showFormDifunto"; ?>">Difuntos</a></li>
+                            <li><a class="" href="<?php echo base_url() . "home/Mapa"; ?>">Interfaz bloque</a></li>
                             
-                        </a>                   
+                        </ul>
                     </li>
+
                    <!-- <li class="has-sub">
                         <a href="javascript:;" class="">
                             <span class="icon-box"><i class="icon-cogs"></i></span> Components
@@ -230,6 +237,15 @@
                 App.init();
             });
         </script>
+        <div id="myModalAddSolicitante" class="modal hide fade" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
+                <h3 id="myModalLabel">Nuevo Solicitante</h3>
+            </div>
+            <div class="modal-body">
+                <p id="contentDemoSol">One fine body…</p>
+            </div>
+        </div>
     </body>
     <!-- END BODY -->
 </html>
