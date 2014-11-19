@@ -88,7 +88,7 @@
 
 
         <div id="myModalNews" class="modal hide fade contenidoMapa" style="width: 900px; height: 600px;" title="Empty the recycle bin?">
-           <div id="colu" style="top:0px; left: 0px; position: absolute;" class="nicho">Columna 1</div>
+           <div id="colu" style="top:0px; left: 0px; position: absolute;" class="nicho"></div>
         </div>
 
     </body>

@@ -172,25 +172,10 @@
                         <ul class="sub">
                             <li><a class="formSolicitante" href="javascript:void(0)">Solicitantes</a></li>
                             <li><a class="" href="<?php echo base_url() . "home/showFormDifunto"; ?>">Difuntos</a></li>
-                            <li><a class="" href="<?php echo base_url() . "home/Mapa"; ?>">Interfaz bloque</a></li>
+                            <li><a class="" href="<?php echo base_url() . "home"; ?>">Interfaz bloque</a></li>
                             
                         </ul>
                     </li>
-
-                   <!-- <li class="has-sub">
-                        <a href="javascript:;" class="">
-                            <span class="icon-box"><i class="icon-cogs"></i></span> Components
-                            <span class="arrow"></span>
-                        </a>
-                        <ul class="sub">
-                            <li><a class="" href="calendar.html">Calendar</a></li>
-                            <li class="active"><a class="" href="data_table.html">Data Table</a></li>
-                            <li><a class="" href="grids.html">Grids</a></li>
-                            <li><a class="" href="charts.html">Visual Charts</a></li>
-                            <li><a class="" href="messengers.html">Conversations</a></li>
-                            <li><a class="" href="gallery.html"> Gallery</a></li>
-                        </ul>
-                    </li>-->
 
                 </ul>
                 <!-- END SIDEBAR MENU -->

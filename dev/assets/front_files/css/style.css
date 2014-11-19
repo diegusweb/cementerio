@@ -28,9 +28,9 @@ body {
     font-family: 'MyriadPro-Bold';
     src: url('../font/myriadprobold.eot');
     src: url('../font/myriadprobold.eot?#iefix') format('embedded-opentype'),
-    url('../font/myriadprobold.woff') format('woff'),
-    url('../font/myriadprobold.ttf') format('truetype'),
-    url('../font/myriadprobold.svg#myriadprobold') format('svg');
+        url('../font/myriadprobold.woff') format('woff'),
+        url('../font/myriadprobold.ttf') format('truetype'),
+        url('../font/myriadprobold.svg#myriadprobold') format('svg');
     font-weight: normal;
     font-style: normal;
 }
@@ -39,9 +39,9 @@ body {
     font-family: 'MyriadPro-It';
     src: url('../font/myriadproit.eot');
     src: url('../font/myriadproit.eot?#iefix') format('embedded-opentype'),
-    url('../font/myriadproit.woff') format('woff'),
-    url('../font/myriadproit.ttf') format('truetype'),
-    url('../font/myriadproit.svg#myriadproit') format('svg');
+        url('../font/myriadproit.woff') format('woff'),
+        url('../font/myriadproit.ttf') format('truetype'),
+        url('../font/myriadproit.svg#myriadproit') format('svg');
     font-weight: normal;
     font-style: normal;
 }
@@ -50,9 +50,9 @@ body {
     font-family: 'MyriadPro-Light';
     src: url('../font/myriadprolight.eot');
     src: url('../font/myriadprolight.eot?#iefix') format('embedded-opentype'),
-    url('../font/myriadprolight.woff') format('woff'),
-    url('../font/myriadprolight.ttf') format('truetype'),
-    url('../font/myriadprolight.svg#myriadprolight') format('svg');
+        url('../font/myriadprolight.woff') format('woff'),
+        url('../font/myriadprolight.ttf') format('truetype'),
+        url('../font/myriadprolight.svg#myriadprolight') format('svg');
     font-weight: normal;
     font-style: normal;
 }
@@ -61,9 +61,9 @@ body {
     font-family: 'MyriadPro-Regular';
     src: url('../font/myriadproregular.eot');
     src: url('../font/myriadproregular.eot?#iefix') format('embedded-opentype'),
-    url('../font/myriadproregular.woff') format('woff'),
-    url('../font/myriadproregular.ttf') format('truetype'),
-    url('../font/myriadproregular.svg#myriadproregular') format('svg');
+        url('../font/myriadproregular.woff') format('woff'),
+        url('../font/myriadproregular.ttf') format('truetype'),
+        url('../font/myriadproregular.svg#myriadproregular') format('svg');
     font-weight: normal;
     font-style: normal;
 }
@@ -386,14 +386,14 @@ a,a:focus, a:hover, a:active {
 /* body container */
 #login-body {
     background-color: #f7f7f7  !important;
-	background-image: url("../img/body-bg.png") !important;
+    background-image: url("../img/body-bg.png") !important;
 }
 
 #main-content {
     margin-top: 0px;
     margin-left: 215px;
     min-height: 800px;
-     padding-left: 7px;
+    padding-left: 7px;
     padding-right: 7px;
     background: #f7f7f7 url("../img/body-bg.png");
 }
@@ -3504,27 +3504,34 @@ ul.amounts li {
 
 /*------------------------*/
 .nicho{
-     background-image:url("../img/company-48.png"); 
-     background-repeat: no-repeat;
-     width: 48px;
-     height: 48px;
-     cursor: pointer;
+    background-image:url("../img/company-48.png"); 
+    background-color: #FAFAFA;
+    background-repeat: no-repeat;
+    width: 48px;
+    height: 48px;
+    cursor: pointer;
 }
 
 .mausoleo{
-     background-image:url("../img/cemetery-48.png"); 
-     background-repeat: no-repeat;
-     width: 48px;
-     height: 48px;
-     cursor: pointer;
+    background-image:url("../img/cemetery-48.png"); 
+    background-repeat: no-repeat;
+    background-color: #FAFAFA;
+    width: 48px;
+    height: 48px;
+    cursor: pointer;
 }
 
 .bajoTierra{
-     background-image:url("../img/Coffin-48.png"); 
-     background-repeat: no-repeat;
-     width: 48px;
-     height: 48px;
-     cursor: pointer;
+    background-image:url("../img/Coffin-48.png"); 
+    background-repeat: no-repeat;
+    background-color: #FAFAFA;
+    width: 48px;
+    height: 48px;
+    cursor: pointer;
+}
+
+.contenidoMapa{
+    background-image: url("../img/PLANTA.jpg");
 }
 
 

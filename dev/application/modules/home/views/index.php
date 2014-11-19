@@ -5,6 +5,7 @@
         background-color: #E0DFE3;
         position: absolute;
         display: block;
+        background-image: url("<?php echo RESOURCES_PATH;?>/img/PLANTA.jpg");
     }
 
     #fila1, #fila2,#fila3,#fila4,#fila5,#fila6,#fila7,#fila8,#fila9,#fila10 {
