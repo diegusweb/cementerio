@@ -26,7 +26,8 @@
                 required: true
             },
             edadFallecido: {
-                required: true
+                required: true,
+				number: true
             },
             fechaFallecido: {
                 required: true
@@ -50,13 +51,15 @@
                 required: true
             },
             matricula_ci: {
-                required: true
+                required: true,
+				number: true
             },
             nombreCompletoInscripcion: {
                 required: true
             },
             ciInscripcion: {
-                required: true
+                required: true,
+				number: true
             },
             relacionConDifunto: {
                 required: true
@@ -113,6 +116,17 @@
 
         }
     });
+	
+	  $(function() {
+		$('#datetimepicker1').datetimepicker({
+		  language: 'pt-BR',
+		});
+		
+		$('#datetimepicker2').datetimepicker({
+		  language: 'pt-BR',
+		  pickTime: false
+		});
+	  });
 
 </script>
 <form class="cform-form form-horizontal"  id="add-form" method="POST">
@@ -172,10 +186,18 @@
 	<div class="control-group">
         <label class="control-label" for="inputPassword">Con Fecha de partida</label>
         <div class="controls">
-            <input type="text" id="fechaPartida" name="fechaPartida" value="" >
+		  <div id="datetimepicker2" class="input-append date">
+			<input data-format="dd/MM/yyyy" type="text" id="fechaPartida" name="fechaPartida"></input>
+			<span class="add-on">
+			  <i data-time-icon="icon-time" data-date-icon="icon-calendar">
+			  </i>
+			</span>
+		  </div>
         </div>
     </div>
-    ------ Informacion Difunto ----------------------------------------
+	<br/>
+    <div style="border-bottom :1px solid #333; font-size:14px;"><b>Informacion Difunto</b></div>
+	<br/>
     <div class="control-group">
         <label class="control-label" for="inputPassword">Nombre y Apellido</label>
         <div class="controls">
@@ -190,8 +212,14 @@
     </div>
     <div class="control-group">
         <label class="control-label" for="inputPassword">Fecha y Hora</label>
-        <div class="controls">
-            <input type="text" id="fechaFallecido" name="fechaFallecido" value="" >
+		<div class="controls">
+		 <div id="datetimepicker1" class="input-append date">
+			<input data-format="dd/MM/yyyy hh:mm:ss" type="text" id="fechaFallecido" name="fechaFallecido"></input>
+			<span class="add-on">
+			  <i data-time-icon="icon-time" data-date-icon="icon-calendar">
+			  </i>
+			</span>
+		  </div>
         </div>
     </div>
      <div class="control-group">
@@ -236,6 +264,9 @@
             <input type="text" id="matricula_ci" name="matricula_ci" value="" >
         </div>
     </div>
+	<br/>
+    <div style="border-bottom :1px solid #333; font-size:14px;"><b>Informacion Persona de Inscripcion</b></div>
+	<br/>
 	<div class="control-group">
         <label class="control-label" for="inputPassword">Nombre y apellido de la persona que pidio inscripcion</label>
         <div class="controls">
@@ -260,11 +291,11 @@
             <input type="text" id="nota" name="nota" value="" >
         </div>
     </div>
-
+<br/>
     <div class="control-group">
         <div class="controls">
             <!--aqui se debe mandar al controlador? o a la vista home_view-->
-            <button type="submit" class="btn">Guardar Informacion de Difunto</button>
+            <button type="submit" class="btn btn-primary">Guardar Informacion del Difunto</button>
         </div>
     </div>
 

@@ -29,6 +29,9 @@
             telefono: {
                 required: true,
                 number: true
+            },
+            celular: {
+                number: true
             }
 
 

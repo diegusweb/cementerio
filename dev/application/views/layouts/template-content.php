@@ -16,7 +16,7 @@
         <link href="<?php echo RESOURCES_PATH; ?>css/style.css" rel="stylesheet" />
         <link href="<?php echo RESOURCES_PATH; ?>css/style_responsive.css" rel="stylesheet" />
         <link href="<?php echo RESOURCES_PATH; ?>css/style_gray.css" rel="stylesheet" id="style_color" />
- 
+		<link href="<?php echo RESOURCES_PATH; ?>css/bootstrap-datetimepicker.min.css" rel="stylesheet" id="style_color" />
         <link href="<?php echo RESOURCES_PATH; ?>assets/fancybox/source/jquery.fancybox.css" rel="stylesheet" />
         <link rel="stylesheet" type="text/css" href="<?php echo RESOURCES_PATH; ?>assets/uniform/css/uniform.default.css" />
         <script src="<?php echo RESOURCES_PATH; ?>js/jquery-1.8.3.min.js"></script>
@@ -203,7 +203,7 @@
         <!-- Load javascripts at bottom, this will reduce page load time -->
 
         <script src="<?php echo RESOURCES_PATH; ?>assets/bootstrap/js/bootstrap.min.js"></script>   
-       
+       <script src="<?php echo RESOURCES_PATH; ?>js/bootstrap-datetimepicker.min.js"></script> 
         <!-- ie8 fixes -->
         <!--[if lt IE 9]>
         <script src="js/excanvas.js"></script>
