@@ -3,14 +3,12 @@ $(".nicho").mouseenter(function () {
     $(this).popover('show');
 
     $(".secMenu").click(function () {
-        console.log($(this).text());
-        //$('#myModalNewss').modal('show');
-        
        switch($(this).text()) {
             case "INGRESAR":
                 var urlInfo = base_url + "home/showFormAddNichoBloque/" + $(this).attr('data-id');
                 $("#contentDemoadd").load(urlInfo, function () {
-                    $('#myModalAddNicho').modal('show');
+                    $('#myModalAddForm #myModalLabel').text('Registro Nicho');
+                    $('#myModalAddForm').modal('show');
                 });
                 break;
             case "EXHUMAR":
@@ -30,6 +28,8 @@ $(".nicho").mouseenter(function () {
     });
 
 });
+
+
 
 $(document).on('mouseleave', '#insideDiv', function () {
     $(".nicho").popover('hide');
@@ -151,9 +151,10 @@ $(document).on('mouseenter', '#insideDiv', function () {
 });
 
 $('.formSolicitante').click(function(){
-
-    var urlInfo = base_url + "home/showFormSolicitante/";
+ //$('#myModalAddForm').modal('hide');
+    var urlInfo = base_url + "home/showFormDifunto/";
         $("#contentDemoSol").load(urlInfo, function () {
+           
             $('#myModalAddSolicitante').modal('show');
         });
 });

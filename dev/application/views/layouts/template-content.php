@@ -225,10 +225,20 @@
         <div id="myModalAddSolicitante" class="modal hide fade" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
             <div class="modal-header">
                 <button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
-                <h3 id="myModalLabel">Nuevo Solicitante</h3>
+                <h3 id="myModalLabel">Registro Solicitante</h3>
             </div>
             <div class="modal-body">
                 <p id="contentDemoSol">One fine body…</p>
+            </div>
+        </div>
+        
+        <div id="myModalAddDifuncto" class="modal hide fade" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
+                <h3 id="myModalLabel">Registro Difunto</h3>
+            </div>
+            <div class="modal-body">
+                <p id="contentDemoDif">One fine body…</p>
             </div>
         </div>
     </body>

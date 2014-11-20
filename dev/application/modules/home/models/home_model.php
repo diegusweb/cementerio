@@ -67,7 +67,16 @@ class Home_model extends CI_Model {
          $consulta = $this->db->insert('solicitante', $data);
 
         if ($consulta)
-            return true;
+            return $this->db->insert_id();
+        else
+            return false;
+    }
+    
+    public function addDifunto($data){
+         $consulta = $this->db->insert('difuncto', $data);
+
+        if ($consulta)
+            return $this->db->insert_id();
         else
             return false;
     }
