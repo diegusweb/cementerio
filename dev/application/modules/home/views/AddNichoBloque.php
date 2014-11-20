@@ -7,17 +7,21 @@
             piso: {
                 required: true
             },
-            rol: {
+            lado: {
                 required: true,
             },
-            nombre: {
+            clase: {
                 required: true,
             },
-            apellido: {
+            tiempo: {
+                required: true,
+            },
+            tipo: {
+                required: true,
+            },
+            costo: {
                 required: true,
             }
-
-
         },
         messages: {
 
@@ -53,13 +57,12 @@
 
             $.ajax({
                 type: "POST",
-                url: "<?php echo base_url() . "home/addNicho"; ?>",
+                url: "<?php echo base_url() . "home/AddTramiteNicho"; ?>",
                 data: $('#add-form').serialize(),
                 success: function (msg) {
                     if (msg == 'true') {
-                        refresh_grid();
-                        $('#myModalAdd').modal('hide');
-
+                        $('#myModalAddForm').modal('hide');
+						alert("correcto");
                     }
                 },
                 error: function (msg) {
@@ -80,8 +83,6 @@
     $('#lado').change(function () {
         var lado = 0;
         lado = $(this).attr('value');
-       
-        console.log(piso);
 		
         if (lado > 0) {
             //creamos un objeto JSON
@@ -95,8 +96,6 @@
              
                 var $comboNichoLibres = $("#nichoLibres");          
                 $comboNichoLibres.empty();
-                
-                console.log(nichos.nicho_info);
                 var nn = nichos.nicho_info;
              
                 $.each(nn, function(index, v) {          
@@ -174,8 +173,8 @@
         <div class="controls">
             <select class="form-control" id="clase" name="clase">
                 <option value="">Seleccione una Clase</option>
-                <option value="">1ra Clase</option>
-                <option value="">2ra Clase</option>
+                <option value="1ra Clase">1ra Clase</option>
+                <option value="2ra Clase">2ra Clase</option>
             </select>
         </div>
     </div>
@@ -185,8 +184,8 @@
         <div class="controls">
             <select class="form-control" id="tiempo" name="tiempo">
                 <option value="">Seleccione un Tiempo</option>
-                <option value="">Perpetuidad</option>
-                <option value="">5 a�os</option>
+                <option value="Perpetuidad">Perpetuidad</option>
+                <option value="5 años">5 años</option>
             </select>
         </div>
     </div>
@@ -196,24 +195,24 @@
         <div class="controls">
             <select class="form-control" id="tipo" name="tipo">
                 <option value="">Seleccione tipo</option>
-                <option value="">Mayor</option>
-                <option value="">Ni�o</option>
-                <option value="">Parvulo</option>
+                <option value="Mayor">Mayor</option>
+                <option value="Menor">Menor</option>
+                <option value="Parvulo">Parvulo</option>
             </select>
         </div>
     </div>
 
-    <div class="control-group">
+   <!-- <div class="control-group">
         <label class="control-label" for="inputRol">Fecha Tramite</label>
         <div class="controls">
             <input type="datetime" class="form-control" placeholder="Text input" id="fechaTramite" name="fechaTramite">
         </div>
-    </div>
+    </div> -->
 
     <div class="control-group">
         <label class="control-label" for="inputRol">Costo</label>
         <div class="controls">
-            <input type="text" class="form-control" placeholder="Text input" id="costo" name="costo">
+            <input type="text" class="form-control" id="costo" name="costo">
         </div>
     </div>
 

@@ -81,5 +81,20 @@ class Home_model extends CI_Model {
         else
             return false;
     }
+	
+	public function addTramiteNicho($data){
+		$consulta = $this->db->insert('tramite', $data);
+
+        if ($consulta)
+            return $this->db->insert_id();
+        else
+            return false;
+	}
+	
+	public function updateNichoStatus($id, $datas){
+
+			$this->db->where('id_nicho', $id);
+			$this->db->update('nicho', $datas); 
+	}
 
 }
