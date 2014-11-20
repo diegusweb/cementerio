@@ -11,8 +11,9 @@ class Home extends CI_Controller {
         $this->load->model('home_model');
         $this->layout->setLayout('template-content');
         
-        $this->session->set_userdata('id_solitante', 0);
-        $this->session->set_userdata('id_difunto', 0);
+		//boorrar
+        $this->session->set_userdata('id_solitantes', 1);
+        $this->session->set_userdata('id_difuntos', 1);
     }
 
     function index() {
@@ -51,8 +52,9 @@ class Home extends CI_Controller {
     function getNichoslibres() {
         $id = $_POST['idBloque'];
         $lado = $_POST['lado'];
+		$piso= $_POST['piso'];
 
-        $data['nicho_info'] = $this->home_model->getBloqueNichoLibres($id, $lado);
+        $data['nicho_info'] = $this->home_model->getBloqueNichoLibres($id, $lado, $piso);
 
         echo json_encode($data);
     }

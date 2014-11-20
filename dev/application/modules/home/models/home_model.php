@@ -51,12 +51,13 @@ class Home_model extends CI_Model {
         return $result;
     }
     
-    public function getBloqueNichoLibres($id, $lado) {
+    public function getBloqueNichoLibres($id, $lado, $piso) {
 
         $this->db->select('id_nicho, nicho');
         $this->db->from('nicho');
         $this->db->where('id_bloque', $id);
         $this->db->where('cara', $lado);
+		$this->db->where('piso', $piso);
         $this->db->where('estado', "Libre");
         $consulta = $this->db->get();
         return $consulta->result();

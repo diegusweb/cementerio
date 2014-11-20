@@ -162,27 +162,30 @@ class Admin extends CI_Controller {
         );
 
         if ($post_array['numero_filas'] > 0) {
+			for ($p = 1; $p <= $post_array['numero_piso']; $p++) {
+			
+				for ($s = 1; $s <= $post_array['numero_caras']; $s++) {
+					$ulti = 1;
+					for ($i = $post_array['numero_filas']; $i >= 1; $i--) {
 
-            for ($s = 1; $s <= $post_array['numero_caras']; $s++) {
-                $ulti = 1;
-                for ($i = $post_array['numero_filas']; $i >= 1; $i--) {
+						for ($j = 1; $j <= $post_array['numero_nichos']; $j++) {
 
-                    for ($j = 1; $j <= $post_array['numero_nichos']; $j++) {
+							$nichos_insert = array(
+								"id_bloque" => $primary_key,
+								"piso" => $p,
+								"cara" => $s,
+								"fila" => $i,
+								"nicho" => $ulti,
+								"estado" => 'Libre'
+							);
+							$ulti = $ulti + 1;
 
-                        $nichos_insert = array(
-                            "id_bloque" => $primary_key,
-                            "cara" => $s,
-                            "fila" => $i,
-                            "nicho" => $ulti,
-                            "estado" => 'Libre'
-                        );
-                        $ulti = $ulti + 1;
-
-                        $this->db->insert('nicho', $nichos_insert);
-                    }
-                    //$this->db->insert('nicho',$nichos_insert);
-                }
-            }
+							$this->db->insert('nicho', $nichos_insert);
+						}
+						//$this->db->insert('nicho',$nichos_insert);
+					}
+				}
+			}
         }
 
 

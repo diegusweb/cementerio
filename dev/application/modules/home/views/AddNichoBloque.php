@@ -69,17 +69,26 @@
 
         }
     });
+	
+	 var piso = 0;
+	 
+	 $('#piso').change(function () {
+	 
+        piso = $(this).attr('value');
+	 });
 
     $('#lado').change(function () {
         var lado = 0;
         lado = $(this).attr('value');
        
-        
+        console.log(piso);
+		
         if (lado > 0) {
             //creamos un objeto JSON
             var datos = {
                 lado: $(this).val(),
-                idBloque: <?php echo $bloque_info[0]['id_bloque_nicho']; ?>
+                idBloque: <?php echo $bloque_info[0]['id_bloque_nicho']; ?>,
+				piso: piso
             };
 
             $.post("<?php echo base_url() . "home/getNichoslibres"; ?>", datos, function(nichos) {
@@ -130,8 +139,12 @@
         <div class="controls">
             <select class="form-control" id="piso" name="piso">
                 <option value="">Seleccione un Piso</option>
-                <option value="Piso 1">Piso 1</option>
-                <option value="Piso 2">Piso 2</option>
+				<?php
+				$piso =  array("Piso 1", "Piso 2");
+				for($i=1; $i <= $bloque_info[0]['numero_piso']; $i++){
+					echo "<option value='".$i."'>".$piso[$i-1]."</option>";
+				}
+				?>
             </select>
         </div>
     </div>

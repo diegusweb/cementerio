@@ -1,6 +1,6 @@
 <b>Debe Llenar el fomulario de Solicitante para empezar</b>
 <br><br>
-<b><a href="#" class="formSolicitante">Formulario Solicitante</a></b>
+<b><a href="javascript:void(0);" class="formSolicitante">Formulario Solicitante</a></b>
 
 
 <script>

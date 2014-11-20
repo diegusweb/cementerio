@@ -1,6 +1,6 @@
 <b>Debe Llenar el fomulario de Nuevo Difunto</b>
 <br><br>
-<b><a href="#" class="formDifunto">Formulario Difunto</a></b>
+<b><a href="javascript:void(0);" class="formDifunto">Formulario Difunto</a></b>
 
 <script>
 

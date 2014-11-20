@@ -31,8 +31,8 @@
             <div class="navbar-inner">
                 <div class="container-fluid">
                     <!-- BEGIN LOGO -->
-                    <a class="brand" href="index.html">
-                        <img src="<?php echo RESOURCES_PATH; ?>img/logo.png_" alt="Cementerio" />
+                    <a class="brand" href="javascript:void(0);">
+                        Cementerio<!--<img src="<?php echo RESOURCES_PATH; ?>img/logo.png_" alt="Cementerio" />-->
                     </a>
                     <!-- END LOGO -->
                     <!-- BEGIN RESPONSIVE MENU TOGGLER -->
@@ -191,7 +191,7 @@
         <!-- END CONTAINER -->
         <!-- BEGIN FOOTER -->
         <div id="footer">
-            2014 &copy; Proyecto EPSA
+            2014 &copy; Proyecto Cementerio
             <div class="span pull-right">
                 <span class="go-top"><i class="icon-arrow-up"></i></span>
             </div>
