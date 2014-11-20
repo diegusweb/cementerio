@@ -103,9 +103,7 @@
                 data: $('#add-form').serialize(),
                 success: function(msg) {
                     if (msg == 'true') {
-                        refresh_grid();
                         $('#myModalAddDifuncto').modal('hide');
-
                     }
                 },
                 error: function(msg) {

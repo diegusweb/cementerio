@@ -113,7 +113,7 @@ class Home extends CI_Controller {
 
         if ($d > 0){
             echo "true";
-            $this->session->set_userdata('id_difuntos', 1);
+            $this->session->set_userdata('id_difuntos', $d);
         }            
         else
             echo "false";
