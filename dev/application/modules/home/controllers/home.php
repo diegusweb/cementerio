@@ -72,8 +72,8 @@ class Home extends CI_Controller {
             );
 			$this->home_model->updateNichoStatus($_POST['numeroNicho'],$datas);
             //$this->session->set_userdata('id_tramite', $d);
-			$this->session->set_userdata('id_solitantes', null);
-			$this->session->set_userdata('id_difuntos', null);
+			$this->session->set_userdata('id_solitantes', 0);
+			$this->session->set_userdata('id_difuntos', 0);
 			 echo "true";
         }            
         else
@@ -108,9 +108,9 @@ class Home extends CI_Controller {
         $data['celular'] = $_POST['celular'];
         // $data['usuario_id_usuario'] = $_POST['id_usuario'];
         $d = $this->home_model->addSolicitante($data);
-        if ($d > 0){
-            echo "true";
+        if ($d > 0){          
             $this->session->set_userdata('id_solitantes', $d);
+			 echo "true";
         }            
         else
             echo "false";
@@ -144,9 +144,9 @@ class Home extends CI_Controller {
         
         $d = $this->home_model->addDifunto($data);
 
-        if ($d > 0){
-            echo "true";
+        if ($d > 0){          
             $this->session->set_userdata('id_difuntos', $d);
+			 echo "true";
         }            
         else
             echo "false";
