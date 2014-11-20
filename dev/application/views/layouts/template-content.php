@@ -166,13 +166,13 @@
                     </li>
                     <li class="has-sub">
                         <a href="javascript:;" class="">
-                            <span class="icon-box"> <i class="icon-dashboard"></i></span>Registros
+                            <span class="icon-box"> <i class="icon-dashboard"></i></span>UI Formularios
                             <span class="arrow"></span>
                         </a>
                         <ul class="sub">
-                            <li><a class="formSolicitante" href="javascript:void(0)">Solicitantes</a></li>
-                            <li><a class="" href="<?php echo base_url() . "home/showFormDifunto"; ?>">Difuntos</a></li>
-                            <li><a class="" href="<?php echo base_url() . "home"; ?>">Interfaz bloque</a></li>
+                            <!--<li><a class="formSolicitante" href="javascript:void(0)">Solicitantes</a></li>
+                            <li><a class="" href="<?php echo base_url() . "home/showFormDifunto"; ?>">Difuntos</a></li>-->
+                            <li><a class="" href="<?php echo base_url() . "home"; ?>">Interfaz Mapa</a></li>
                             
                         </ul>
                     </li>
