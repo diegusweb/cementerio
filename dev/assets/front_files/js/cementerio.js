@@ -22,18 +22,28 @@ $(".nicho").mouseenter(function () {
                 });
                 break;
             case "RENOVAR":
-               "asd";
+                var urlInfo = base_url + "home/showFormRenovacionNicho/" + $(this).attr('data-id');
+                $("#contentDemoadd").load(urlInfo, function () {
+                    $('#myModalAddForm #myModalLabel').text('Registro Renovacion Nichos');
+                    $('#myModalAddForm').modal('show');
+                    $('.loading').hide();
+                });
                 break;
             case "AÑADIR LAPIDA":
                var urlInfo = base_url + "home/showFormAddLapidaBloque/" + $(this).attr('data-id');
                 $("#contentDemoadd").load(urlInfo, function () {
-                    $('#myModalAddForm #myModalLabel').text('Registro Colocacion Lapida');
+                    $('#myModalAddForm #myModalLabel').text('Renovacion de Nichos');
                     $('#myModalAddForm').modal('show');
                     $('.loading').hide();
                 });
                 break;
             case "CREMACION":
-               "asd";
+               var urlInfo = base_url + "home/showFormCremaciones/" + $(this).attr('data-id');
+                $("#contentDemoadd").load(urlInfo, function () {
+                    $('#myModalAddForm #myModalLabel').text('Cremaciones');
+                    $('#myModalAddForm').modal('show');
+                    $('.loading').hide();
+                });
                 break;    
         }
         
