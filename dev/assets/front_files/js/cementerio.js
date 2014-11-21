@@ -25,7 +25,12 @@ $(".nicho").mouseenter(function () {
                "asd";
                 break;
             case "AÑADIR LAPIDA":
-               "asd";
+               var urlInfo = base_url + "home/showFormAddLapidaBloque/" + $(this).attr('data-id');
+                $("#contentDemoadd").load(urlInfo, function () {
+                    $('#myModalAddForm #myModalLabel').text('Registro Colocacion Lapida');
+                    $('#myModalAddForm').modal('show');
+                    $('.loading').hide();
+                });
                 break;
             case "CREMACION":
                "asd";

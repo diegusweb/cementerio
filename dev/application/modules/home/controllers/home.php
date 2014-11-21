@@ -206,9 +206,46 @@ class Home extends CI_Controller {
         $this->load->view('AddExhumacionesTierra');
     }
 
-    function showFormAddLapidaBloque() {
-        $this->load->view('AddLapidaBloque');
+    function showFormAddLapidaBloque($id) {
+	     $id_solicitante = (int) $this->session->userdata('id_solitantes');
+        //$id_difunto = (int) $this->session->userdata('id_difuntos');
+        
+        if(empty($id_solicitante)){
+                $data['bloque_info'] = $this->home_model->getInfoBloqueNicho($id);
+                //$data['nicho_info'] = $this->home_model->getBloqueNicho();
+                $this->load->view('AddLapidaBloque', $data);
+        }
+        else{
+            $this->load->view('ErrorSolicitante');
+        }     
     }
+	
+	function AddTramiteNichoLadpida(){	
+		
+		//buscar difunto
+		 $difunto = $this->home_model->seacrhDifunto($_POST['numeroNicho']);
+		
+        $data['id_bloque'] = $_POST['id_bloque'];
+		$data['id_solicitante'] = (int) $this->session->userdata('id_solitantes');
+		$data['id_difunto'] = $difunto;
+		$data['tramite'] = $_POST['tramite'];
+		$data['bloque'] = "Nicho";
+        $data['piso'] = $_POST['piso'];
+        $data['lado'] = $_POST['lado'];
+		$data['clase'] = $_POST['clase'];
+        $data['nro_nicho'] = $_POST['numeroNicho'];;
+        $data['costo'] = $_POST['costo'];
+		$data['pagado'] = 0;
+		
+        $d = $this->home_model->addTramiteNicho($data);
+        if ($d > 0){    
+			$this->session->set_userdata('id_solitantes', 0);
+			$this->session->set_userdata('id_difuntos', 0);			 
+			echo "true";
+        }            
+        else
+            echo "false";
+	}
 
     function showFormRenovacionNicho() {
         $this->load->view('AddRenovacionNicho');
