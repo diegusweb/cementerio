@@ -7,9 +7,10 @@
 
 $('.formSolicitante').click(function(){
  $('#myModalAddForm').modal('hide');
+  $('.loading').show();
     var urlInfo = base_url + "home/showFormSolicitante/";
         $("#contentDemoSol").load(urlInfo, function () {
-           
+            $('.loading').hide();
             $('#myModalAddSolicitante').modal('show');
         });
 });

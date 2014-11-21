@@ -105,6 +105,7 @@
                     <!-- END  NOTIFICATION -->
                     <div class="top-nav ">
                         <ul class="nav pull-right top-menu" >
+                            
                             <!-- BEGIN USER LOGIN DROPDOWN -->
                             <li class="dropdown">
                                 <a href="#" class="dropdown-toggle" data-toggle="dropdown">
@@ -121,6 +122,9 @@
                             <!-- END USER LOGIN DROPDOWN -->
                         </ul>
                         <!-- END TOP NAVIGATION MENU -->
+                        <div style="padding-top: 10px; display: none;" class='loading'>
+                            <img src="<?php echo RESOURCES_PATH; ?>img/loading.gif" alt="" width="40" height="40"/>
+                        </div>
                     </div>
                 </div>
             </div>

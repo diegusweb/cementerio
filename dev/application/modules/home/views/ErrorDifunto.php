@@ -6,10 +6,12 @@
 
 $('.formDifunto').click(function(){
  $('#myModalAddForm').modal('hide');
+  $('.loading').show();
     var urlInfo = base_url + "home/showFormDifunto/";
         $("#contentDemoDif").load(urlInfo, function () {
            
             $('#myModalAddDifuncto').modal('show');
+             $('.loading').hide();
         });
 });
 

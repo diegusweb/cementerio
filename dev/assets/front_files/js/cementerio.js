@@ -3,12 +3,14 @@ $(".nicho").mouseenter(function () {
     $(this).popover('show');
 
     $(".secMenu").click(function () {
+        $('.loading').show();
        switch($(this).text()) {
             case "INGRESAR":
                 var urlInfo = base_url + "home/showFormAddNichoBloque/" + $(this).attr('data-id');
                 $("#contentDemoadd").load(urlInfo, function () {
                     $('#myModalAddForm #myModalLabel').text('Registro Nicho');
                     $('#myModalAddForm').modal('show');
+                    $('.loading').hide();
                 });
                 break;
             case "EXHUMAR":
