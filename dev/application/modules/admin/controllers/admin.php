@@ -199,6 +199,23 @@ class Admin extends CI_Controller {
 	{
 		return '<input type="text" maxlength="10" class="positionSet" style="width:50px!important" value="'.$value.'" name="position"> <a href="#" class="infoSucursalDiv">Situar en mapa </a>';
 	}
+	
+	public function tramites_management() {
+        $crud = new grocery_CRUD();
+
+        $crud->set_theme('datatables');
+        $crud->set_table('tramite');
+        
+         //$crud->required_fields('nombre', 'position');
+        // $crud->unset_fields('create_date');
+		$crud->unset_delete();
+		$crud->unset_add();
+		$crud->unset_edit();
+		$crud->unset_read();
+
+        $output = $crud->render();
+        $this->_mostrar_crud($output);
+    }
 
     function log_bloque_after_insert($post_array, $primary_key) {
         $nichos_insert = array(
