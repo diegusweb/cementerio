@@ -14,7 +14,12 @@ $(".nicho").mouseenter(function () {
                 });
                 break;
             case "EXHUMAR":
-               "asd";
+               var urlInfo = base_url + "home/showFormAddExhumarBloque/" + $(this).attr('data-id');
+                $("#contentDemoadd").load(urlInfo, function () {
+                    $('#myModalAddForm #myModalLabel').text('Registro Exhumar Nicho');
+                    $('#myModalAddForm').modal('show');
+                    $('.loading').hide();
+                });
                 break;
             case "RENOVAR":
                "asd";

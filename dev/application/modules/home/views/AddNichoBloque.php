@@ -111,6 +111,53 @@
         }
 
     });
+	
+	var clase;
+	var tiempo;
+	var tramite;
+	
+	$('#clase').change(function () {        
+        clase = $(this).attr('value');		
+	});
+	$('#tiempo').change(function () {        
+        tiempo = $(this).attr('value');		
+	});
+	
+	$('#tramite').change(function () {        
+        tramite = $(this).attr('value');		
+	});
+	
+	$('#generarCosto').click(function(){
+		console.log(tramite + " "+clase+" "+tiempo)		
+		if(tramite != "Anexion Nicho Perpetuidad"){
+			if(clase == "1ra Clase"){
+				if(tiempo == "Perpetuidad"){
+					$('#costo').val($('#costo_perpetuidad_1_clase').val());
+				}
+				if(tiempo == "5 años"){
+					$('#costo').val($('#costo_5_year_1_clase').val());
+				}
+			}
+			if(clase == "2ra Clase"){
+				if(tiempo == "Perpetuidad"){
+					$('#costo').val($('#costo_perpetuidad_2_clase').val());
+				}
+				if(tiempo == "5 años"){
+					$('#costo').val($('#costo_5_year_2_clase').val());
+				}
+			}
+		}
+		else{
+			if(clase == "1ra Clase"){
+				$('#costo').val("253");
+			}
+			if(clase == "2ra Clase"){
+				$('#costo').val("203");
+			}
+		}
+	
+	});
+	
 </script>
 <form class="cform-form form-horizontal"  id="add-form" method="POST">
 
@@ -168,6 +215,17 @@
             </select>
         </div>
     </div>
+	<div class="control-group">
+        <label class="control-label" for="inputRol">Tipo</label>
+        <div class="controls">
+            <select class="form-control" id="tipo" name="tipo">
+                <option value="">Seleccione tipo</option>
+                <option value="Mayor">Mayor</option>
+                <option value="Menor">Menor</option>
+                <option value="Parvulo">Parvulo</option>
+            </select>
+        </div>
+    </div>
     <div class="control-group">
         <label class="control-label" for="inputRol">Tipo Nicho</label>
         <div class="controls">
@@ -190,19 +248,7 @@
         </div>
     </div>
 
-    <div class="control-group">
-        <label class="control-label" for="inputRol">Tipo</label>
-        <div class="controls">
-            <select class="form-control" id="tipo" name="tipo">
-                <option value="">Seleccione tipo</option>
-                <option value="Mayor">Mayor</option>
-                <option value="Menor">Menor</option>
-                <option value="Parvulo">Parvulo</option>
-            </select>
-        </div>
-    </div>
-
-   <!-- <div class="control-group">
+   <!--<div class="control-group">
         <label class="control-label" for="inputRol">Fecha Tramite</label>
         <div class="controls">
             <input type="datetime" class="form-control" placeholder="Text input" id="fechaTramite" name="fechaTramite">
@@ -212,7 +258,11 @@
     <div class="control-group">
         <label class="control-label" for="inputRol">Costo</label>
         <div class="controls">
-            <input type="text" class="form-control" id="costo" name="costo">
+			<input type="hidden" class="form-control"  id="costo_perpetuidad_1_clase" value="<?php echo $bloque_info[0]['costo_perpetuidad_1_clase']; ?>">
+            <input type="hidden" class="form-control"  id="costo_perpetuidad_2_clase" value="<?php echo $bloque_info[0]['costo_perpetuidad_2_clase']; ?>">
+			<input type="hidden" class="form-control"  id="costo_5_year_1_clase" value="<?php echo $bloque_info[0]['costo_5_year_1_clase']; ?>">
+			<input type="hidden" class="form-control"  id="costo_5_year_2_clase" value="<?php echo $bloque_info[0]['costo_5_year_2_clase']; ?>">
+			<div><input type="text" class="form-control"  style="width:60px!important" id="costo" name="costo" readonly="true"> Bs <div id="generarCosto"  style="width:60px!important; float: left;">Generar costo</div></div>
         </div>
     </div>
 

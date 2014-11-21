@@ -50,7 +50,7 @@ class Home_model extends CI_Model {
         $result = $this->db->query($query)->result_array();
         return $result;
     }
-    
+ 
     public function getBloqueNichoLibres($id, $lado, $piso) {
 
         $this->db->select('id_nicho, nicho');
@@ -62,7 +62,25 @@ class Home_model extends CI_Model {
         $consulta = $this->db->get();
         return $consulta->result();
     }
+	
+	public function getBloqueNichoOcupados($id, $lado, $piso) {
+
+        $this->db->select('id_nicho, nicho');
+        $this->db->from('nicho');
+        $this->db->where('id_bloque', $id);
+        $this->db->where('cara', $lado);
+		$this->db->where('piso', $piso);
+        $this->db->where('estado', "Ocupado");
+        $consulta = $this->db->get();
+        return $consulta->result();
+    }
     
+	public function seacrhDifunto($id){
+		$query = "SELECT * FROM nicho WHERE id_nicho=" . $id;
+        $result = $this->db->query($query)->result_array();
+        return $result[0]['id_difunto'];
+	}
+	
     
     public function addSolicitante($data){
          $consulta = $this->db->insert('solicitante', $data);

@@ -133,9 +133,12 @@ class Admin extends CI_Controller {
         
         $crud->unset_fields('create_date');
         $crud->required_fields('nombre', 'position','numero_filas','numero_caras','numero_piso','numero_nichos');
+		$crud->set_rules('costo_perpetuidad_1_clase', 'costo perpetuidad 1.clase', 'required|decimal');
+		$crud->set_rules('costo_perpetuidad_2_clase', 'costo perpetuidad 2.clase', 'required|decimal');
+		$crud->set_rules('costo_5_year_1_clase', 'costo 5 años 1.clase', 'required|decimal');
+		$crud->set_rules('costo_5_year_2_clase', 'costo 5 años 2.clase', 'required|decimal');
 
         $crud->field_type('numero_piso', 'dropdown', array('1' => 'Piso 1', '2' => 'Piso 2'));
-
         $crud->field_type('numero_caras', 'dropdown', array('1' => '1', '2' => '2', '3' => '3', '4' => '4'));
 
 
@@ -143,17 +146,59 @@ class Admin extends CI_Controller {
             return '<input type="text" maxlength="10" class="positionSet" style="width:50px!important" value="" name="position"> <a href="#" class="infoSucursalDiv">Situar en mapa </a>';
         });
 
-        $crud->callback_edit_field('position', function () {
-            return '<input type="text" maxlength="10" class="positionSet" style="width:50px!important" value="" name="position"> <a href="#" class="infoSucursalDiv">Situar en mapa </a>';
+        /*$crud->callback_edit_field('position', function ($this) {
+            return '<input type="text" maxlength="10" class="positionSet" style="width:50px!important" value="'.$value.'" name="position"> <a href="#" class="infoSucursalDiv">Situar en mapa </a>';
+        });*/
+		$crud->callback_edit_field('position',array($this,'edit_field_callback_nicho'));
+		
+		$crud->display_as('costo_5_year_1_clase','1.clase 5 años');
+		$crud->display_as('costo_5_year_2_clase','2.clase 5 años');
+		$crud->display_as('costo_perpetuidad_1_clase','1.clase perpetuidad');
+		$crud->display_as('costo_perpetuidad_2_clase','2.clase perpetuidad');
+		
+		$crud->callback_add_field('costo_5_year_1_clase', function () {
+            return 'Costo <input type="text" maxlength="15" style="width:80px!important" value="" name="costo_5_year_1_clase"> Ejm: 123.51';
+        });
+        $crud->callback_edit_field('costo_5_year_1_clase', function () {
+            return 'Costo <input type="text" maxlength="15"  style="width:80px!important" value="" name="costo_5_year_1_clase"> Ejm: 123.51';
         });
 		
+		$crud->callback_add_field('costo_5_year_2_clase', function () {
+            return 'Costo <input type="text" maxlength="15" style="width:80px!important" value="" name="costo_5_year_2_clase"> Ejm: 123.51';
+        });
+        $crud->callback_edit_field('costo_5_year_2_clase', function () {
+            return 'Costo <input type="text" maxlength="15"  style="width:80px!important" value="" name="costo_5_year_2_clase"> Ejm: 123.51';
+        });
+		
+		$crud->callback_add_field('costo_perpetuidad_1_clase', function () {
+            return 'Costo <input type="text" maxlength="15" style="width:80px!important" value="" name="costo_perpetuidad_1_clase"> Ejm: 123.51';
+        });
+        $crud->callback_edit_field('costo_perpetuidad_1_clase', function () {
+            return 'Costo <input type="text" maxlength="15"  style="width:80px!important" value="" name="costo_perpetuidad_1_clase"> Ejm: 123.51';
+        });
+		
+		$crud->callback_add_field('costo_perpetuidad_2_clase', function () {
+            return 'Costo <input type="text" maxlength="15"  style="width:80px!important" value="" name="costo_perpetuidad_2_clase"> Ejm: 123.51';
+        });
+        $crud->callback_edit_field('costo_perpetuidad_2_clase', function () {
+            return 'Costo <input type="text" maxlength="15"  style="width:80px!important" value="" name="costo_perpetuidad_2_clase"> Ejm: 123.51';
+        });
+		
+		$crud->display_as('create_date','Fechas');
+		
 		$crud->unset_delete();
+		 $crud->unset_columns('create_date');
 
         $crud->callback_after_insert(array($this, 'log_bloque_after_insert'));
 
         $output = $crud->render();
         $this->_mostrar_crud($output);
     }
+	
+	function edit_field_callback_nicho($value, $primary_key)
+	{
+		return '<input type="text" maxlength="10" class="positionSet" style="width:50px!important" value="'.$value.'" name="position"> <a href="#" class="infoSucursalDiv">Situar en mapa </a>';
+	}
 
     function log_bloque_after_insert($post_array, $primary_key) {
         $nichos_insert = array(
