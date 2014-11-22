@@ -86,6 +86,17 @@
     </div>
 </div>
 
+<div id="myModalComprobante" class="modal hide fade" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+    <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
+        <h3 id="myModalLabel">Mostrar Comprobante</h3>
+    </div>
+    <div class="modal-body">
+        <p id="contentIdComprobante"></p>
+    </div>
+</div>
+
+
 <div id="example1" class="contenidoMapa">
 
     <?php

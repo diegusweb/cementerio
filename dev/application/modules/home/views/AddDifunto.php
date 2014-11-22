@@ -107,6 +107,7 @@
                 success: function(msg) {
                     if (msg == 'true') {
                         $('#myModalAddDifuncto').modal('hide');
+                        alert("Su registro fue exitoso, ya puede ingresar al formulario.");
                     }
                 },
                 error: function(msg) {
@@ -187,7 +188,7 @@
         <label class="control-label" for="inputPassword">Con Fecha de partida</label>
         <div class="controls">
 		  <div id="datetimepicker2" class="input-append date">
-			<input data-format="dd/MM/yyyy" type="text" id="fechaPartida" name="fechaPartida"></input>
+			<input data-format="yyyy-MM-dd" type="text" id="fechaPartida" name="fechaPartida"></input>
 			<span class="add-on">
 			  <i data-time-icon="icon-time" data-date-icon="icon-calendar">
 			  </i>
@@ -214,7 +215,7 @@
         <label class="control-label" for="inputPassword">Fecha y Hora</label>
 		<div class="controls">
 		 <div id="datetimepicker1" class="input-append date">
-			<input data-format="dd/MM/yyyy hh:mm:ss" type="text" id="fechaFallecido" name="fechaFallecido"></input>
+			<input data-format="yyyy-MM-dd hh:mm:ss" type="text" id="fechaFallecido" name="fechaFallecido"></input>
 			<span class="add-on">
 			  <i data-time-icon="icon-time" data-date-icon="icon-calendar">
 			  </i>

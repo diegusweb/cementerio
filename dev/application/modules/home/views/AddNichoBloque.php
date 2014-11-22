@@ -60,9 +60,12 @@
                 url: "<?php echo base_url() . "home/AddTramiteNicho"; ?>",
                 data: $('#add-form').serialize(),
                 success: function (msg) {
-                    if (msg == 'true') {
+                    if (msg > 0) {
                         $('#myModalAddForm').modal('hide');
-						alert("correcto");
+			$('#myModalComprobante').modal('show');
+                        var link = "<?php echo base_url()."home/comprobante/"?>"+msg;
+                        $('#myModalComprobante #contentIdComprobante').html("<a href='"+link+"' class='linkComprobante'>Ver comprobante</a>");
+                        
                     }
                 },
                 error: function (msg) {

@@ -44,7 +44,7 @@ class Home extends CI_Controller {
         }      
     }
 	
-	function showFormAddExhumarBloque($id) {    
+    function showFormAddExhumarBloque($id) {    
         $id_solicitante = (int) $this->session->userdata('id_solitantes');
         if(!empty($id_solicitante)){
                 $data['bloque_info'] = $this->home_model->getInfoBloqueNicho($id);
@@ -55,12 +55,12 @@ class Home extends CI_Controller {
         }      
     }
 	
-	function AddTramiteNicho(){	
+    function AddTramiteNicho(){	
         $data['id_bloque'] = $_POST['id_bloque'];
-		$data['id_solicitante'] = (int) $this->session->userdata('id_solitantes');
-		$data['id_difunto'] = (int) $this->session->userdata('id_difuntos');
-		$data['tramite'] = $_POST['tramite'];
-		$data['bloque'] = "Nicho";
+        $data['id_solicitante'] = (int) $this->session->userdata('id_solitantes');
+        $data['id_difunto'] = (int) $this->session->userdata('id_difuntos');
+        $data['tramite'] = $_POST['tramite'];
+        $data['bloque'] = "Nicho";
         $data['piso'] = $_POST['piso'];
         $data['lado'] = $_POST['lado'];
         $data['nro_nicho'] = $_POST['numeroNicho'];
@@ -74,15 +74,15 @@ class Home extends CI_Controller {
         $d = $this->home_model->addTramiteNicho($data);
         if ($d > 0){
            
-			$datas = array(
+	$datas = array(
                'estado' => 'Ocupado',
                'id_difunto' => (int) $this->session->userdata('id_difuntos')
             );
-			$this->home_model->updateNichoStatus($_POST['numeroNicho'],$datas);
-            //$this->session->set_userdata('id_tramite', $d);
-			$this->session->set_userdata('id_solitantes', 0);
-			$this->session->set_userdata('id_difuntos', 0);
-			 echo "true";
+        $this->home_model->updateNichoStatus($_POST['numeroNicho'],$datas);
+        //$this->session->set_userdata('id_tramite', $d);
+        $this->session->set_userdata('id_solitantes', 0);
+        $this->session->set_userdata('id_difuntos', 0);
+         echo $d;
         }            
         else
             echo "false";
@@ -173,6 +173,7 @@ class Home extends CI_Controller {
         $data['folioNum'] = $_POST['folioNum'];
         $data['departamento'] = $_POST['departamento'];
         $data['provincia'] = $_POST['provincia'];
+        $data['localidad'] = $_POST['localidad'];
         $data['fechaPartida'] = $_POST['fechaPartida'];
         $data['nombreCompletoFallecido'] = $_POST['nombreCompletoFallecido'];
         $data['edadFallecido'] = $_POST['edadFallecido'];
