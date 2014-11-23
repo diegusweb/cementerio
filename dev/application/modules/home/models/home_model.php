@@ -114,5 +114,17 @@ class Home_model extends CI_Model {
 			$this->db->where('id_nicho', $id);
 			$this->db->update('nicho', $datas); 
 	}
+        
+        public function getTarmite($id){
+            $this->db->select('*');
+            $this->db->from('tramite');
+            //$this->db->join('difunto', 'difunto.id_difunto = tramite.id_difunto');
+            $this->db->join('solicitante', 'solicitante.id_solicitante = tramite.id_solicitante');
+            $this->db->join('difunto', 'difunto.id_difunto= tramite.id_difunto');
+            $this->db->where('tramite.id_tramite', $id); 
+            
+            $consulta = $this->db->get();
+            return $consulta->result_array();
+        }
 
 }

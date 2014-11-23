@@ -10,8 +10,8 @@ class Home extends CI_Controller {
         $this->load->helper('url');
         $this->load->model('home_model');
         $this->layout->setLayout('template-content');
-        
-		//boorrar
+
+        //boorrar
         //$this->session->set_userdata('id_solitantes', 2);
         //$this->session->set_userdata('id_difuntos', 1);
     }
@@ -28,39 +28,36 @@ class Home extends CI_Controller {
     function showFormAddNichoBloque($id) {
         $id_solicitante = (int) $this->session->userdata('id_solitantes');
         $id_difunto = (int) $this->session->userdata('id_difuntos');
-        
-        if(!empty($id_solicitante)){
-            if(!empty($id_difunto)){
+
+        if (!empty($id_solicitante)) {
+            if (!empty($id_difunto)) {
                 $data['bloque_info'] = $this->home_model->getInfoBloqueNicho($id);
                 //$data['nicho_info'] = $this->home_model->getBloqueNicho();
                 $this->load->view('AddNichoBloque', $data);
-            }
-            else{
+            } else {
                 $this->load->view('ErrorDifunto');
             }
-        }
-        else{
+        } else {
             $this->load->view('ErrorSolicitante');
-        }      
+        }
     }
-	
-    function showFormAddExhumarBloque($id) {    
+
+    function showFormAddExhumarBloque($id) {
         $id_solicitante = (int) $this->session->userdata('id_solitantes');
-        if(!empty($id_solicitante)){
-                $data['bloque_info'] = $this->home_model->getInfoBloqueNicho($id);
-                $this->load->view('AddExhumacionesBloque', $data);
-        }
-        else{
+        if (!empty($id_solicitante)) {
+            $data['bloque_info'] = $this->home_model->getInfoBloqueNicho($id);
+            $this->load->view('AddExhumacionesBloque', $data);
+        } else {
             $this->load->view('ErrorSolicitante');
-        }      
+        }
     }
-	
-    function AddTramiteNicho(){	
+
+    function AddTramiteNicho() {
         $data['id_bloque'] = $_POST['id_bloque'];
         $data['id_solicitante'] = (int) $this->session->userdata('id_solitantes');
         $data['id_difunto'] = (int) $this->session->userdata('id_difuntos');
         $data['tramite'] = $_POST['tramite'];
-        $data['bloque'] = "Nicho";
+        $data['bloque'] = $_POST['bloque'];
         $data['piso'] = $_POST['piso'];
         $data['lado'] = $_POST['lado'];
         $data['nro_nicho'] = $_POST['numeroNicho'];
@@ -69,67 +66,65 @@ class Home extends CI_Controller {
         $data['tipo_nicho'] = $_POST['tipo'];
         //$data['fecha_tramite'] = $_POST['fechaTramite'];
         $data['costo'] = $_POST['costo'];
-		$data['pagado'] = 0;
-		
+        $data['pagado'] = 0;
+
         $d = $this->home_model->addTramiteNicho($data);
-        if ($d > 0){
-           
-	$datas = array(
-               'estado' => 'Ocupado',
-               'id_difunto' => (int) $this->session->userdata('id_difuntos')
+        if ($d > 0) {
+
+            $datas = array(
+                'estado' => 'Ocupado',
+                'id_difunto' => (int) $this->session->userdata('id_difuntos')
             );
-        $this->home_model->updateNichoStatus($_POST['numeroNicho'],$datas);
-        //$this->session->set_userdata('id_tramite', $d);
-        $this->session->set_userdata('id_solitantes', 0);
-        $this->session->set_userdata('id_difuntos', 0);
-         echo $d;
-        }            
-        else
+            $this->home_model->updateNichoStatus($_POST['numeroNicho'], $datas);
+            //$this->session->set_userdata('id_tramite', $d);
+            $this->session->set_userdata('id_solitantes', 0);
+            $this->session->set_userdata('id_difuntos', 0);
+            echo $d;
+        } else
             echo "false";
-	}
-	
-	function AddTramiteNichoExumacion(){	
-		
-		//buscar difunto
-		 $difunto = $this->home_model->seacrhDifunto($_POST['numeroNicho']);
-		
+    }
+
+    function AddTramiteNichoExumacion() {
+
+        //buscar difunto
+        $difunto = $this->home_model->seacrhDifunto($_POST['numeroNicho']);
+
         $data['id_bloque'] = $_POST['id_bloque'];
-		$data['id_solicitante'] = (int) $this->session->userdata('id_solitantes');
-		$data['id_difunto'] = $difunto;
-		$data['tramite'] = $_POST['tramite'];
-		$data['bloque'] = "Nicho";
+        $data['id_solicitante'] = (int) $this->session->userdata('id_solitantes');
+        $data['id_difunto'] = $difunto;
+        $data['tramite'] = $_POST['tramite'];
+        $data['bloque'] = "Nicho";
         $data['piso'] = $_POST['piso'];
         $data['lado'] = $_POST['lado'];
         $data['nro_nicho'] = $_POST['numeroNicho'];
         $data['tipo_nicho'] = $_POST['tipo'];
         //$data['fecha_tramite'] = $_POST['fechaTramite'];
         $data['costo'] = $_POST['costo'];
-		$data['pagado'] = 0;
-		
+        $data['pagado'] = 0;
+
         $d = $this->home_model->addTramiteNicho($data);
-        if ($d > 0){    
-			$this->session->set_userdata('id_solitantes', 0);
-			$this->session->set_userdata('id_difuntos', 0);			 
-			echo "true";
-        }            
-        else
+        if ($d > 0) {
+            $this->session->set_userdata('id_solitantes', 0);
+            $this->session->set_userdata('id_difuntos', 0);
+            echo "true";
+        } else
             echo "false";
-	}
+    }
 
     function getNichoslibres() {
         $id = $_POST['idBloque'];
         $lado = $_POST['lado'];
-		$piso= $_POST['piso'];
+        $piso = $_POST['piso'];
 
         $data['nicho_info'] = $this->home_model->getBloqueNichoLibres($id, $lado, $piso);
 
         echo json_encode($data);
     }
-	
-	function getNichosOcupados() {
+
+    function getNichosOcupados() {
         $id = $_POST['idBloque'];
         $lado = $_POST['lado'];
-		$piso= $_POST['piso'];
+        $piso = $_POST['piso'];
 
         $data['nicho_info'] = $this->home_model->getBloqueNichoOcupados($id, $lado, $piso);
 
@@ -154,11 +149,10 @@ class Home extends CI_Controller {
         $data['celular'] = $_POST['celular'];
         // $data['usuario_id_usuario'] = $_POST['id_usuario'];
         $d = $this->home_model->addSolicitante($data);
-        if ($d > 0){          
+        if ($d > 0) {
             $this->session->set_userdata('id_solitantes', $d);
-			 echo "true";
-        }            
-        else
+            echo "true";
+        } else
             echo "false";
     }
 
@@ -188,14 +182,13 @@ class Home extends CI_Controller {
         $data['ciInscripcion'] = $_POST['ciInscripcion'];
         $data['relacionConDifunto'] = $_POST['relacionConDifunto'];
         $data['nota'] = $_POST['nota'];
-        
+
         $d = $this->home_model->addDifunto($data);
 
-        if ($d > 0){          
+        if ($d > 0) {
             $this->session->set_userdata('id_difuntos', $d);
-			 echo "true";
-        }            
-        else
+            echo "true";
+        } else
             echo "false";
     }
 
@@ -208,127 +201,122 @@ class Home extends CI_Controller {
     }
 
     function showFormAddLapidaBloque($id) {
-	     $id_solicitante = (int) $this->session->userdata('id_solitantes');
+        $id_solicitante = (int) $this->session->userdata('id_solitantes');
         //$id_difunto = (int) $this->session->userdata('id_difuntos');
-        
-        if(!empty($id_solicitante)){
-                $data['bloque_info'] = $this->home_model->getInfoBloqueNicho($id);
-                //$data['nicho_info'] = $this->home_model->getBloqueNicho();
-                $this->load->view('AddLapidaBloque', $data);
-        }
-        else{
+
+        if (!empty($id_solicitante)) {
+            $data['bloque_info'] = $this->home_model->getInfoBloqueNicho($id);
+            //$data['nicho_info'] = $this->home_model->getBloqueNicho();
+            $this->load->view('AddLapidaBloque', $data);
+        } else {
             $this->load->view('ErrorSolicitante');
-        }     
+        }
     }
-	
-	function AddTramiteNichoLadpida(){	
-		
-		//buscar difunto
-		 $difunto = $this->home_model->seacrhDifunto($_POST['numeroNicho']);
-		
+
+    function AddTramiteNichoLadpida() {
+
+        //buscar difunto
+        $difunto = $this->home_model->seacrhDifunto($_POST['numeroNicho']);
+
         $data['id_bloque'] = $_POST['id_bloque'];
-		$data['id_solicitante'] = (int) $this->session->userdata('id_solitantes');
-		$data['id_difunto'] = $difunto;
-		$data['tramite'] = $_POST['tramite'];
-		$data['bloque'] = "Nicho";
+        $data['id_solicitante'] = (int) $this->session->userdata('id_solitantes');
+        $data['id_difunto'] = $difunto;
+        $data['tramite'] = $_POST['tramite'];
+        $data['bloque'] = "Nicho";
         $data['piso'] = $_POST['piso'];
         $data['lado'] = $_POST['lado'];
-		$data['clase'] = $_POST['clase'];
-        $data['nro_nicho'] = $_POST['numeroNicho'];;
+        $data['clase'] = $_POST['clase'];
+        $data['nro_nicho'] = $_POST['numeroNicho'];
+        ;
         $data['costo'] = $_POST['costo'];
-		$data['pagado'] = 0;
-		
+        $data['pagado'] = 0;
+
         $d = $this->home_model->addTramiteNicho($data);
-        if ($d > 0){    
-			$this->session->set_userdata('id_solitantes', 0);
-			$this->session->set_userdata('id_difuntos', 0);			 
-			echo "true";
-        }            
-        else
+        if ($d > 0) {
+            $this->session->set_userdata('id_solitantes', 0);
+            $this->session->set_userdata('id_difuntos', 0);
+            echo "true";
+        } else
             echo "false";
-	}
+    }
 
     function showFormRenovacionNicho($id) {
-		$id_solicitante = (int) $this->session->userdata('id_solitantes');
-        if(!empty($id_solicitante)){
-                $data['bloque_info'] = $this->home_model->getInfoBloqueNicho($id);
-                $this->load->view('AddRenovacionNicho', $data);
-        }
-        else{
+        $id_solicitante = (int) $this->session->userdata('id_solitantes');
+        if (!empty($id_solicitante)) {
+            $data['bloque_info'] = $this->home_model->getInfoBloqueNicho($id);
+            $this->load->view('AddRenovacionNicho', $data);
+        } else {
             $this->load->view('ErrorSolicitante');
-        }      
+        }
     }
-	
-	function AddTramiteNichoRenovacion(){			
-		//buscar difunto
-		 $difunto = $this->home_model->seacrhDifunto($_POST['numeroNicho']);
-		
+
+    function AddTramiteNichoRenovacion() {
+        //buscar difunto
+        $difunto = $this->home_model->seacrhDifunto($_POST['numeroNicho']);
+
         $data['id_bloque'] = $_POST['id_bloque'];
-		$data['id_solicitante'] = (int) $this->session->userdata('id_solitantes');
-		$data['id_difunto'] = $difunto;
-		$data['tramite'] = $_POST['tramite'];
-		$data['bloque'] = "Nicho";
+        $data['id_solicitante'] = (int) $this->session->userdata('id_solitantes');
+        $data['id_difunto'] = $difunto;
+        $data['tramite'] = $_POST['tramite'];
+        $data['bloque'] = "Nicho";
         $data['piso'] = $_POST['piso'];
         $data['lado'] = $_POST['lado'];
-		$data['clase'] = $_POST['clase'];
-        $data['nro_nicho'] = $_POST['numeroNicho'];;
+        $data['clase'] = $_POST['clase'];
+        $data['nro_nicho'] = $_POST['numeroNicho'];
+        ;
         $data['costo'] = $_POST['costo'];
-		$data['tipo_nicho'] = $_POST['tipo'];
-		
-		$data['pagado'] = 0;
-		
+        $data['tipo_nicho'] = $_POST['tipo'];
+
+        $data['pagado'] = 0;
+
         $d = $this->home_model->addTramiteNicho($data);
-        if ($d > 0){    
-			$this->session->set_userdata('id_solitantes', 0);
-			$this->session->set_userdata('id_difuntos', 0);			 
-			echo "true";
-        }            
-        else
+        if ($d > 0) {
+            $this->session->set_userdata('id_solitantes', 0);
+            $this->session->set_userdata('id_difuntos', 0);
+            echo "true";
+        } else
             echo "false";
-	}
+    }
 
     function showFormAutorizacionContrCripta() {
         $this->load->view('AddContruccionCripta');
     }
 
     function showFormCremaciones($id) {
-		$id_solicitante = (int) $this->session->userdata('id_solitantes');
-        if(!empty($id_solicitante)){
-                $data['bloque_info'] = $this->home_model->getInfoBloqueNicho($id);
-                $this->load->view('AddCremaciones', $data);
-        }
-        else{
+        $id_solicitante = (int) $this->session->userdata('id_solitantes');
+        if (!empty($id_solicitante)) {
+            $data['bloque_info'] = $this->home_model->getInfoBloqueNicho($id);
+            $this->load->view('AddCremaciones', $data);
+        } else {
             $this->load->view('ErrorSolicitante');
-        }      
-
+        }
     }
-	
-	function AddTramiteNichoCremacion(){			
-		//buscar difunto
-		 $difunto = $this->home_model->seacrhDifunto($_POST['numeroNicho']);
-		
+
+    function AddTramiteNichoCremacion() {
+        //buscar difunto
+        $difunto = $this->home_model->seacrhDifunto($_POST['numeroNicho']);
+
         $data['id_bloque'] = $_POST['id_bloque'];
-		$data['id_solicitante'] = (int) $this->session->userdata('id_solitantes');
-		$data['id_difunto'] = $difunto;
-		$data['tramite'] = $_POST['tramite'];
-		$data['bloque'] = "Nicho";
+        $data['id_solicitante'] = (int) $this->session->userdata('id_solitantes');
+        $data['id_difunto'] = $difunto;
+        $data['tramite'] = $_POST['tramite'];
+        $data['bloque'] = "Nicho";
         $data['piso'] = $_POST['piso'];
         $data['lado'] = $_POST['lado'];
-        $data['nro_nicho'] = $_POST['numeroNicho'];;
+        $data['nro_nicho'] = $_POST['numeroNicho'];
+        ;
         $data['costo'] = $_POST['costo'];
-		$data['tipo_nicho'] = $_POST['tipo'];		
-		$data['pagado'] = 0;
-		
+        $data['tipo_nicho'] = $_POST['tipo'];
+        $data['pagado'] = 0;
+
         $d = $this->home_model->addTramiteNicho($data);
-        if ($d > 0){    
-			$this->session->set_userdata('id_solitantes', 0);
-			$this->session->set_userdata('id_difuntos', 0);			 
-			echo "true";
-        }            
-        else
+        if ($d > 0) {
+            $this->session->set_userdata('id_solitantes', 0);
+            $this->session->set_userdata('id_difuntos', 0);
+            echo "true";
+        } else
             echo "false";
-	}
-	
+    }
 
     function showFormIngresarSitioTierra() {
         $this->load->view('AddSitioTierra');
@@ -336,6 +324,13 @@ class Home extends CI_Controller {
 
     function showFormbloqueCremados() {
         $this->load->view('AddBloqueCremados');
+    }
+
+    //comprobante
+    public function verComprobante($id_tarmite) {
+        $tramite['tramite'] = $this->home_model->getTarmite($id_tarmite);
+
+        $this->layout->view('Comprobante', $tramite);
     }
 
 }

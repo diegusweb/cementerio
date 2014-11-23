@@ -64,8 +64,7 @@
                         $('#myModalAddForm').modal('hide');
 			$('#myModalComprobante').modal('show');
                         var link = "<?php echo base_url()."home/comprobante/"?>"+msg;
-                        $('#myModalComprobante #contentIdComprobante').html("<a href='"+link+"' class='linkComprobante'>Ver comprobante</a>");
-                        
+                        $('#myModalComprobante #contentIdComprobante').html("<a href='"+link+"' class='linkComprobante'>Ver comprobante</a>");                      
                     }
                 },
                 error: function (msg) {
