@@ -168,7 +168,7 @@
         <div class="controls">
             <select class="form-control" id="tramite" name="tramite">
                 <option value="">Seleccione Tramite</option>
-                <option value="Nicho Enterratori">Nicho Enterratorio</option>
+                <option value="Nicho Enterratorio">Nicho Enterratorio</option>
                 <option value="Nicho Perpetuidad">Nicho Perpetuidad</option>
                 <option value="Anexion Nicho Perpetuidad">Anexion Nicho Perpetuidad</option>
             </select>

@@ -214,7 +214,7 @@ class Admin extends CI_Controller {
         // $crud->unset_fields('create_date');
         
         $crud->unset_columns('id_solicitante','id_difunto','id_bloque');
-        $crud->callback_column('lado',array($this,'_callback_lados_name'));
+        $crud->callback_column('tramite',array($this,'_callback_comprobante'));
         
         $crud->unset_delete();
         $crud->unset_add();
@@ -229,6 +229,12 @@ class Admin extends CI_Controller {
     {
         $caras =  array("Norte", "Sud", "Este", "Oeste");
       return $caras[$value-1];
+    }
+	
+	public function _callback_comprobante($value, $row)
+    {
+            return '<a href="'.base_url().'home/comprobante/'.$row->id_tramite.'" class="btn btn-primary btn-lg"  aria-label="Left Align">'.$row->tramite.'</button>';
+
     }
 
     function log_bloque_after_insert($post_array, $primary_key) {

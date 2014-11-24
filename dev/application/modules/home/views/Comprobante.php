@@ -21,7 +21,7 @@
 
 
 <p><h4>COMPROBANTE INGRESO<h4/></p>
-<form method="POST">
+<form method="POST" id="save-form">
 
 <table width="640" border="1" class="cont" cellpadding="0" cellspacing="0">
   <tr>
@@ -66,7 +66,7 @@
     <td width="254" class="title">IMPORTE Bs.</td>
   </tr>
   <tr>
-    <td class="contT">&nbsp;</td>
+    <td class="contT" valign="top"><?php echo $tramite[0]['id_tramite']?></td>
     <td class="contT"><p align="center">CEMENTERIO.- Pago por concepto de</p>
       <p align="center"><input type="hidden" name="tramite" value="<?php echo $tramite[0]['tramite']?>"><?php echo $tramite[0]['tramite']?></p>
       <p align="center"><input type="hidden" name="clase" value="<?php echo $tramite[0]['clase']?>"><?php echo $tramite[0]['clase']?></p>
@@ -93,7 +93,7 @@
     <td><div class="costoTotal contT"></div></td>
   </tr>
   <tr>
-    <td>SON:</td>
+    <td class="contT">SON:</td>
     <td><div class="totalLetras contT"></div></td>
     <td>&nbsp;</td>
   </tr>
@@ -104,9 +104,13 @@
   </tr>
 </table>
 <br/>
-<button type="button" id="saveComprobante" class="btn btn-primary btn-lg" aria-label="Left Align">
-  Guardas Datos de Comprobante de Ingreso
+<!--<button type="button" id="saveComprobante" class="btn btn-primary btn-lg" aria-label="Left Align">
+  Verifica para guardar los Datos de Comprobante
+</button>-->
+<button type="button" onclick="imprimir();" class="btn btn-primary btn-lg">
+  Imprimir
 </button>
+
 <form>
 <script>
 
@@ -133,5 +137,30 @@ $.ajax({
 		alert("Error");
 	}
 });
+
+$('#saveComprobante').click(function(){
+	$.ajax({
+		type: "POST",
+		url: "<?php echo base_url() . "home/AddTramiteNichosss"; ?>",
+		data: $('#save-form').serialize(),
+		success: function (msg) {
+			if (msg > 0) {
+				alert("Correcto");			
+			}
+		},
+		error: function (msg) {
+			alert("Error");
+		}
+	});
+});
+
+function imprimir(){
+  var objeto=document.getElementById('save-form');  //obtenemos el objeto a imprimir
+  var ventana=window.open('','_blank');  //abrimos una ventana vacía nueva
+  ventana.document.write(objeto.innerHTML);  //imprimimos el HTML del objeto en la nueva ventana
+  ventana.document.close();  //cerramos el documento
+  ventana.print();  //imprimimos la ventana
+  ventana.close();  //cerramos la ventana
+}
 
 </script>
