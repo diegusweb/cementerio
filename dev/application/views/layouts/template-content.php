@@ -152,7 +152,7 @@
                         </a>
                         <ul class="sub">
                             <li><a class="" href="<?php echo base_url() . "admin/users_management"; ?>">Usuario</a></li>
-
+                            <li><a class="" href="<?php echo base_url() . "admin/tramites_management"; ?>">tramites</a></li>
                         </ul>
                     </li>
                     <li class="has-sub">

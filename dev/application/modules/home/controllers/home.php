@@ -327,7 +327,7 @@ class Home extends CI_Controller {
     }
 
     //comprobante
-    public function verComprobante($id_tarmite) {
+    public function Comprobante($id_tarmite) {
         $tramite['tramite'] = $this->home_model->getTarmite($id_tarmite);
 
         $this->layout->view('Comprobante', $tramite);

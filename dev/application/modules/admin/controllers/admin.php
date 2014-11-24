@@ -212,6 +212,10 @@ class Admin extends CI_Controller {
 
         //$crud->required_fields('nombre', 'position');
         // $crud->unset_fields('create_date');
+        
+        $crud->unset_columns('id_solicitante','id_difunto','id_bloque');
+        $crud->callback_column('lado',array($this,'_callback_lados_name'));
+        
         $crud->unset_delete();
         $crud->unset_add();
         $crud->unset_edit();
@@ -219,6 +223,12 @@ class Admin extends CI_Controller {
 
         $output = $crud->render();
         $this->_mostrar_crud($output);
+    }
+    
+    public function _callback_lados_name($value, $row)
+    {
+        $caras =  array("Norte", "Sud", "Este", "Oeste");
+      return $caras[$value-1];
     }
 
     function log_bloque_after_insert($post_array, $primary_key) {
@@ -264,5 +274,6 @@ class Admin extends CI_Controller {
         else
             return $value;
     }
+    
 
 }
