@@ -332,5 +332,13 @@ class Home extends CI_Controller {
 
         $this->layout->view('Comprobante', $tramite);
     }
+	
+	public function conertirLetras(){
+		$num = $_POST['letras'];
+
+		$letras = strtoupper($this->enletras->ValorEnLetras($num,"Bs"));
+
+		echo $letras;	
+	}
 
 }
