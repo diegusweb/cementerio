@@ -208,10 +208,9 @@ class Admin extends CI_Controller {
         $crud = new grocery_CRUD();
 
         $crud->set_theme('datatables');
-        $crud->set_table('tramite');
-
-        //$crud->required_fields('nombre', 'position');
-        // $crud->unset_fields('create_date');
+        $crud->set_table('tramite')
+            ->set_subject('tramite')
+            ->order_by('id_tramite','desc');
         
         $crud->unset_columns('id_solicitante','id_difunto','id_bloque');
         $crud->callback_column('tramite',array($this,'_callback_comprobante'));
