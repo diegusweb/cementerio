@@ -1,5 +1,5 @@
 <?php
-class EnLetras
+class Enletras
 {
   var $Void = "";
   var $SP = " ";
