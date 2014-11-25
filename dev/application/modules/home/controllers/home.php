@@ -1,4 +1,4 @@
-<?php
+    <?php
 
 if (!defined('BASEPATH'))
     exit('No direct script access allowed');
@@ -81,7 +81,7 @@ class Home extends CI_Controller {
             $this->session->set_userdata('id_difuntos', 0);
             echo $d;
         } else
-            echo "false";
+            echo 0;
     }
 
     function AddTramiteNichoExumacion() {
@@ -106,9 +106,9 @@ class Home extends CI_Controller {
         if ($d > 0) {
             $this->session->set_userdata('id_solitantes', 0);
             $this->session->set_userdata('id_difuntos', 0);
-            echo "true";
+            echo $d;
         } else
-            echo "false";
+            echo 0;
     }
 
     function getNichoslibres() {
@@ -151,9 +151,9 @@ class Home extends CI_Controller {
         $d = $this->home_model->addSolicitante($data);
         if ($d > 0) {
             $this->session->set_userdata('id_solitantes', $d);
-            echo "true";
+            echo $d;
         } else
-            echo "false";
+            echo 0;
     }
 
     function showFormDifunto() {
@@ -187,9 +187,9 @@ class Home extends CI_Controller {
 
         if ($d > 0) {
             $this->session->set_userdata('id_difuntos', $d);
-            echo "true";
+            echo $d;
         } else
-            echo "false";
+            echo 0;
     }
 
     function showFormAddExhumacionesBloque() {
@@ -235,9 +235,9 @@ class Home extends CI_Controller {
         if ($d > 0) {
             $this->session->set_userdata('id_solitantes', 0);
             $this->session->set_userdata('id_difuntos', 0);
-            echo "true";
+            echo $d;
         } else
-            echo "false";
+            echo 0;
     }
 
     function showFormRenovacionNicho($id) {
@@ -273,9 +273,9 @@ class Home extends CI_Controller {
         if ($d > 0) {
             $this->session->set_userdata('id_solitantes', 0);
             $this->session->set_userdata('id_difuntos', 0);
-            echo "true";
+            echo $d;
         } else
-            echo "false";
+            echo 0;
     }
 
     function showFormAutorizacionContrCripta() {
@@ -313,9 +313,9 @@ class Home extends CI_Controller {
         if ($d > 0) {
             $this->session->set_userdata('id_solitantes', 0);
             $this->session->set_userdata('id_difuntos', 0);
-            echo "true";
+            echo $d;
         } else
-            echo "false";
+            echo 0;
     }
 
     function showFormIngresarSitioTierra() {

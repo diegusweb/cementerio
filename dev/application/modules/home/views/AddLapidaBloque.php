@@ -55,9 +55,13 @@
                 url: "<?php echo base_url() . "home/AddTramiteNichoLadpida"; ?>",
                 data: $('#add-form').serialize(),
                 success: function(msg) {
-                    if (msg == 'true') {
+                    if (msg > 0) {
                         $('#myModalAddForm').modal('hide');
-
+                        $('#myModalComprobante').modal('show');
+                        
+                        var link = base_url+"home/comprobante/"+msg;
+                        var link2 = link.replace(/\s/g,'');
+                        $('#myModalComprobante #contentIdComprobante').html("<a href='"+link2+"' class='linkComprobante'>Ver comprobante</a>");                      
                     }
                 },
                 error: function(msg) {

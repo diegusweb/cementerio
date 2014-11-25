@@ -71,9 +71,13 @@
                 url: "<?php echo base_url() . "home/addNicho"; ?>",
                 data: $('#add-form').serialize(),
                 success: function(msg) {
-                    if (msg == 'true') {
-                        refresh_grid();
+                    if (msg > 0) {
                         $('#myModalAdd').modal('hide');
+                        $('#myModalComprobante').modal('show');
+                        
+                        var link = base_url+"home/comprobante/"+msg;
+                        var link2 = link.replace(" ","");
+                        $('#myModalComprobante #contentIdComprobante').html("<a href='"+link2+"' class='linkComprobante'>Ver comprobante</a>");                      
 
                     }
                 },

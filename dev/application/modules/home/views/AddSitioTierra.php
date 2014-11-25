@@ -71,8 +71,7 @@
                 url: "<?php echo base_url() . "home/addNicho"; ?>",
                 data: $('#add-form').serialize(),
                 success: function(msg) {
-                    if (msg == 'true') {
-                        refresh_grid();
+                    if (msg > 0) {
                         $('#myModalAdd').modal('hide');
 
                     }
@@ -121,7 +120,7 @@
     
     <div class="control-group">
         <label class="control-label" for="inputUsuario">Tramite</label>
-		<input type="hidden" id="tramite" name="tramite" value="Renovacion de 1 año para Nichos" >
+		<input type="hidden" id="tramite" name="tramite" value="Renovacion de 1 aï¿½o para Nichos" >
 		Ingresar a Sitio Tierra
     </div>
     <div class="control-group">
@@ -145,7 +144,7 @@
         <div class="controls">
 			<select class="form-control" id="tiempo" name="tiempo">
 			  <option value="">Perpetuidad</option>
-			  <option value="">5 años</option>
+			  <option value="">5 aï¿½os</option>
 			</select>
         </div>
     </div>

@@ -97,7 +97,7 @@
                 url: "<?php echo base_url() . "home/addSolicitante"; ?>",
                 data: $('#add-form').serialize(),
                 success: function (msg) {
-                    if (msg == 'true') {
+                    if (msg > 0) {
                         $('#myModalAddSolicitante').modal('hide');
                         alert("Se ingreso correctamente");
                     }

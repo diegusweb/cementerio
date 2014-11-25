@@ -1,5 +1,5 @@
 <script type="text/javascript">
-    $('#add-form').validate({
+    $('#add-form-dif').validate({
         rules: {
             oficialia: {
                 required: true
@@ -103,14 +103,14 @@
             $.ajax({
                 type: "POST",
                 url: "<?php echo base_url() . "home/showFormAddDifuncto"; ?>",
-                data: $('#add-form').serialize(),
-                success: function(msg) {
-                    if (msg == 'true') {
+                data: $('#add-form-dif').serialize(),
+                success: function(mmsg) {
+                    if (mmsg > 0) {
                         $('#myModalAddDifuncto').modal('hide');
                         alert("Su registro fue exitoso, ya puede ingresar al formulario.");
                     }
                 },
-                error: function(msg) {
+                error: function(mmsg) {
                     alert("Error");
                 }
             });
@@ -130,7 +130,7 @@
 	  });
 
 </script>
-<form class="cform-form form-horizontal"  id="add-form" method="POST">
+<form class="cform-form form-horizontal"  id="add-form-dif" method="POST">
     <div class="control-group">
         <label class="control-label" for="inputUsuario">Oficialia</label>
         <div class="controls">
