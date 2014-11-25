@@ -72,7 +72,12 @@ $(".mausoleo").mouseenter(function () {
         
        switch($(this).text()) {
             case "INGRESAR":
-                 "asd";
+                 var urlInfo = base_url + "home/showFormAddDMausoleo/" + $(this).attr('data-id');
+                $("#contentDemoadd").load(urlInfo, function () {
+                    $('#myModalAddForm #myModalLabel').text('Ingresar a Mausoleo');
+                    $('#myModalAddForm').modal('show');
+                    $('.loading').hide();
+                });
                 break;
             case "EXHUMAR":
                "asd";

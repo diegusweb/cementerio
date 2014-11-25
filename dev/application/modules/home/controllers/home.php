@@ -340,5 +340,23 @@ class Home extends CI_Controller {
 
 		echo $letras;	
 	}
+	
+	//mausoleo
+	public function showFormAddDMausoleo($id){
+		$id_solicitante = (int) $this->session->userdata('id_solitantes');
+        $id_difunto = (int) $this->session->userdata('id_difuntos');
+
+        if (!empty($id_solicitante)) {
+            if (!empty($id_difunto)) {
+                $data['bloque_info'] = $this->home_model->getInfoMausoleo($id);
+                //$data['nicho_info'] = $this->home_model->getBloqueNicho();
+                //$this->load->view('AddNichoBloque', $data);
+            } else {
+                $this->load->view('ErrorDifunto');
+            }
+        } else {
+            $this->load->view('ErrorSolicitante');
+        }
+	}
 
 }
