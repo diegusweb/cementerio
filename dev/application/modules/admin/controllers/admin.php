@@ -15,7 +15,7 @@ class Admin extends CI_Controller {
     }
 
     public function _mostrar_crud($output = null) {
-        //$this->verifyLogin();
+        $this->verifyLogin();
         $this->layout->view('index.php', $output);
     }
 
@@ -280,5 +280,11 @@ class Admin extends CI_Controller {
             return $value;
     }
     
+	public function verifyLogin() {
+        $user_id = $this->session->userdata('username');
+        if (empty($user_id)) {
+            redirect(base_url() . "login", 'outside');
+        }
+    }
 
 }

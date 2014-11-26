@@ -20,7 +20,7 @@ class Login extends CI_Controller {
     {
         $aData['name']="login";
 
-        $result_ =  $this->authentication->login($this->input->post("username"), $this->input->post('password'));
+        $result_ =  $this->authentication->login($this->input->post("correo"), $this->input->post('password'));
         if ($result_) 
         {
             redirect(base_url()."home",'outside');

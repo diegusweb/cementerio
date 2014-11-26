@@ -14,6 +14,8 @@ class Reportes extends CI_Controller {
         //boorrar
         //$this->session->set_userdata('id_solitantes', 2);
         //$this->session->set_userdata('id_difuntos', 1);
+		
+		 $this->verifyLogin();
     }
 
     function index() {
@@ -21,6 +23,13 @@ class Reportes extends CI_Controller {
 		$bloque['nichos'] = $this->reportes_model->infoBloqueNicho();
 		
         $this->layout->view('index', $bloque);
+    }
+	
+	public function verifyLogin() {
+        $user_id = $this->session->userdata('username');
+        if (empty($user_id)) {
+            redirect(base_url() . "login", 'outside');
+        }
     }
 
 

@@ -7,7 +7,7 @@
           <div class="control-group">
               <div class="controls">
                   <div class="input-prepend">
-                      <span class="add-on"><i class="icon-user"></i></span><input id="input-username" type="text" placeholder="Username"  name="username"/>
+                      <span class="add-on"><i class="icon-user"></i></span><input id="input-username" type="text" placeholder="Correo"  name="correo"/>
                   </div>
               </div>
           </div>

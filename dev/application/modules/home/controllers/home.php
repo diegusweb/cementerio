@@ -14,10 +14,19 @@ class Home extends CI_Controller {
         //boorrar
         //$this->session->set_userdata('id_solitantes', 2);
         //$this->session->set_userdata('id_difuntos', 1);
+		
+		$this->session->set_userdata('id_users', 2);
+		$this->verifyLogin();
+    }
+	
+	public function verifyLogin() {
+        $user_id = $this->session->userdata('username');
+        if (empty($user_id)) {
+            redirect(base_url() . "login", 'outside');
+        }
     }
 
     function index() {
-
         $data['bloque_nicho'] = $this->home_model->getBloqueNicho();
         $data['bloque_mausoleo'] = $this->home_model->getBloqueMausoleo();
         $data['bloque_cremado'] = $this->home_model->getBloqueCremado();
@@ -54,6 +63,7 @@ class Home extends CI_Controller {
 
     function AddTramiteNicho() {
         $data['id_bloque'] = $_POST['id_bloque'];
+		$data['id_users'] = (int) $this->session->userdata('id_users');
         $data['id_solicitante'] = (int) $this->session->userdata('id_solitantes');
         $data['id_difunto'] = (int) $this->session->userdata('id_difuntos');
         $data['tramite'] = $_POST['tramite'];
@@ -90,6 +100,7 @@ class Home extends CI_Controller {
         $difunto = $this->home_model->seacrhDifunto($_POST['numeroNicho']);
 
         $data['id_bloque'] = $_POST['id_bloque'];
+		$data['id_users'] = (int) $this->session->userdata('id_users');
         $data['id_solicitante'] = (int) $this->session->userdata('id_solitantes');
         $data['id_difunto'] = $difunto;
         $data['tramite'] = $_POST['tramite'];
@@ -219,6 +230,7 @@ class Home extends CI_Controller {
         $difunto = $this->home_model->seacrhDifunto($_POST['numeroNicho']);
 
         $data['id_bloque'] = $_POST['id_bloque'];
+		$data['id_users'] = (int) $this->session->userdata('id_users');
         $data['id_solicitante'] = (int) $this->session->userdata('id_solitantes');
         $data['id_difunto'] = $difunto;
         $data['tramite'] = $_POST['tramite'];
@@ -254,6 +266,7 @@ class Home extends CI_Controller {
         $difunto = $this->home_model->seacrhDifunto($_POST['numeroNicho']);
 
         $data['id_bloque'] = $_POST['id_bloque'];
+		$data['id_users'] = (int) $this->session->userdata('id_users');
         $data['id_solicitante'] = (int) $this->session->userdata('id_solitantes');
         $data['id_difunto'] = $difunto;
         $data['tramite'] = utf8_encode($_POST['tramite']);
@@ -295,6 +308,7 @@ class Home extends CI_Controller {
         $difunto = $this->home_model->seacrhDifunto($_POST['numeroNicho']);
 
         $data['id_bloque'] = $_POST['id_bloque'];
+		$data['id_users'] = (int) $this->session->userdata('id_users');
         $data['id_solicitante'] = (int) $this->session->userdata('id_solitantes');
         $data['id_difunto'] = $difunto;
         $data['tramite'] = $_POST['tramite'];

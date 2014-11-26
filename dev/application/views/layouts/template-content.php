@@ -110,13 +110,12 @@
                             <li class="dropdown">
                                 <a href="#" class="dropdown-toggle" data-toggle="dropdown">
                                     <img src="img/avatar1_small.jpg" alt="">
-                                    <span class="username">Diego Rueda</span>
+                                    <span class="username"><?php echo $this->session->userdata('username');?></span>
                                     <b class="caret"></b>
                                 </a>
-                                <ul class="dropdown-menu">
-                                    <li><a href="#"><i class="icon-user"></i> My Profile</a></li>
-                                    <li class="divider"></li>
-                                    <li><a href="login.html"><i class="icon-key"></i> Log Out</a></li>
+                                <ul class="dropdown-menu">                                  
+                        
+                                    <li><a href="<?php echo base_url()."login/logout";?>"><i class="icon-key"></i> Salir</a></li>
                                 </ul>
                             </li>
                             <!-- END USER LOGIN DROPDOWN -->

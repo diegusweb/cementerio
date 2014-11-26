@@ -7,7 +7,7 @@ class Authentication {
 	var $_login = "";
         var $_username = "";
 	var $_password = "";
-        var $_email = "";
+        var $_rol = "";
 	//var $_roles = "";
 	var $_auth = FALSE;
 	function Authenticationfe($auto = TRUE)
@@ -17,17 +17,17 @@ class Authentication {
 			$CI =& get_instance();
 			if($this->login($CI->session->userdata('username'), $CI->session->userdata('password')))
 			{
-				$this->_user_id = $CI->session->userdata('id_user');
+				$this->_user_id = $CI->session->userdata('id_users');
 				$this->_username = $CI->session->userdata('username');
-				$this->_password = $CI->session->userdata('password');
-				$this->_image = $CI->session->userdata('image');
+				//$this->_password = $CI->session->userdata('password');
+				$this->_rol = $CI->session->userdata('rol');
 			}
 		}
 	}
 	function getId(){return $this->_user_id;}
 	function getLogin(){return $this->_login;}
 	function getPassword(){return $this->_password;}
-        function getCi(){return $this->_ci;}
+        function getRol(){return $this->_rol;}
 	//function getRol(){return $this->_roles;}
 	
 	function login($username= "", $password = "")
@@ -37,28 +37,25 @@ class Authentication {
 
 		$CI =& get_instance();	
                 
-               $password = md5($password);
 
-		$sql = "SELECT * FROM `persona` WHERE `NUMERO_DOCUMENTO`='".$username."' AND `PASSWORD`='".$password."'";
+		$sql = "SELECT * FROM users WHERE correo='".$username."' AND password='".$password."'";
 		$query = $CI->db->query($sql);
 		//login ok
 		if($query->num_rows()==1)
 		{ 
 			$row = $query->row();
-			$CI->session->set_userdata('id_user', $row->ID_PERSONA);
-			$this->_user_id = $row->ID_PERSONA;
+			$CI->session->set_userdata('id_users', $row->id_users);
+			$this->_user_id = $row->id_users;
                         
-                        $CI->session->set_userdata('username', $row->PRIMER_NOMBRE." ".$row->APELLIDO_PATERNO);
-			$this->_username = $row->PRIMER_NOMBRE." ".$row->APELLIDO_PATERNO;
+            $CI->session->set_userdata('username', $row->nombre." ".$row->apellido);
+			$this->_username = $row->nombre." ".$row->apellido;
 			
 			//$CI->session->set_userdata('password', $password);
 			//$this->_password = $row->PASSWORD;
                         
-                        $CI->session->set_userdata('rol',  $row->ID_CARGO);
-			$this->_email= $row->ID_CARGO;
+                        $CI->session->set_userdata('rol',  $row->rol);
+			$this->_rol= $row->rol;
                         
-                        $CI->session->set_userdata('image',  $row->IMAGE);
-			$this->_image= $row->IMAGE;
                         
 
 			$this->_auth = TRUE;
