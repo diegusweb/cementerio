@@ -1,4 +1,4 @@
-    <?php
+<?php
 
 if (!defined('BASEPATH'))
     exit('No direct script access allowed');
@@ -57,7 +57,7 @@ class Home extends CI_Controller {
         $data['id_solicitante'] = (int) $this->session->userdata('id_solitantes');
         $data['id_difunto'] = (int) $this->session->userdata('id_difuntos');
         $data['tramite'] = $_POST['tramite'];
-        $data['bloque'] = $_POST['bloque'];
+        $data['bloque'] = "Nicho";
         $data['piso'] = $_POST['piso'];
         $data['lado'] = $_POST['lado'];
         $data['nro_nicho'] = $_POST['numeroNicho'];
@@ -93,7 +93,7 @@ class Home extends CI_Controller {
         $data['id_solicitante'] = (int) $this->session->userdata('id_solitantes');
         $data['id_difunto'] = $difunto;
         $data['tramite'] = $_POST['tramite'];
-        $data['bloque'] = $_POST['bloque'];
+        $data['bloque'] = "Nicho";
         $data['piso'] = $_POST['piso'];
         $data['lado'] = $_POST['lado'];
         $data['nro_nicho'] = $_POST['numeroNicho'];
@@ -222,12 +222,11 @@ class Home extends CI_Controller {
         $data['id_solicitante'] = (int) $this->session->userdata('id_solitantes');
         $data['id_difunto'] = $difunto;
         $data['tramite'] = $_POST['tramite'];
-        $data['bloque'] = $_POST['bloque'];
+        $data['bloque'] = "Nicho";
         $data['piso'] = $_POST['piso'];
         $data['lado'] = $_POST['lado'];
         $data['clase'] = $_POST['clase'];
         $data['nro_nicho'] = $_POST['numeroNicho'];
-        ;
         $data['costo'] = $_POST['costo'];
         $data['pagado'] = 0;
 
@@ -257,13 +256,12 @@ class Home extends CI_Controller {
         $data['id_bloque'] = $_POST['id_bloque'];
         $data['id_solicitante'] = (int) $this->session->userdata('id_solitantes');
         $data['id_difunto'] = $difunto;
-        $data['tramite'] = $_POST['tramite'];
-        $data['bloque'] = $_POST['bloque'];
+        $data['tramite'] = utf8_encode($_POST['tramite']);
+        $data['bloque'] = "Nicho";
         $data['piso'] = $_POST['piso'];
         $data['lado'] = $_POST['lado'];
         $data['clase'] = $_POST['clase'];
         $data['nro_nicho'] = $_POST['numeroNicho'];
-        ;
         $data['costo'] = $_POST['costo'];
         $data['tipo_nicho'] = $_POST['tipo'];
 
@@ -300,11 +298,10 @@ class Home extends CI_Controller {
         $data['id_solicitante'] = (int) $this->session->userdata('id_solitantes');
         $data['id_difunto'] = $difunto;
         $data['tramite'] = $_POST['tramite'];
-        $data['bloque'] = $_POST['bloque'];
+        $data['bloque'] = "Nicho";
         $data['piso'] = $_POST['piso'];
         $data['lado'] = $_POST['lado'];
         $data['nro_nicho'] = $_POST['numeroNicho'];
-        ;
         $data['costo'] = $_POST['costo'];
         $data['tipo_nicho'] = $_POST['tipo'];
         $data['pagado'] = 0;
