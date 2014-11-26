@@ -28,7 +28,7 @@ Website: http://thevectorlab.net/
   <div class="login-header">
       <!-- BEGIN LOGO -->
       <div id="logo" class="center">
-          <img src="<?php echo RESOURCES_PATH; ?>img/logo.png" alt="logo" class="center" />
+          
       </div>
       <!-- END LOGO -->
   </div>
@@ -56,7 +56,7 @@ Website: http://thevectorlab.net/
   <!-- END LOGIN -->
   <!-- BEGIN COPYRIGHT -->
   <div id="login-copyright">
-      2013 &copy; Admin Lab Dashboard.
+      2014 &copy; Cementerio.
   </div>
   <!-- END COPYRIGHT -->
   <!-- BEGIN JAVASCRIPTS -->

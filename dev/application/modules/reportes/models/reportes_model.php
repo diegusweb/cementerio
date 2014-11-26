@@ -10,17 +10,31 @@ class Reportes_model extends CI_Model {
         //$this->CI =& get_instance();
     }
 
-	public function infoBloqueNicho(){
+	public function infoBloqueNicho($fechaInicio, $fechaFin, $funcionario ){
+	
+		if($fechaInicio =! "" && $fechaFin != ""){
+			if($funcionario != 0){
+				$this->db->select('*');
+				$this->db->from('tramite');
+				$this->db->where('id_users', $funcionario ); 
+			}
+			else{
+				$this->db->select('*');
+				$this->db->from('tramite');
+			}
+		}
 
-		$this->db->select('*');
-		$this->db->from('tramite');
-		//$this->db->join('solicitante', 'solicitante.id_solicitante = tramite.id_solicitante');
-		//$this->db->join('difunto', 'difunto.id_difunto= tramite.id_difunto');
-		$this->db->where('bloque', 'Nicho'); 
 		
 		$consulta = $this->db->get();
 		return $consulta->result_array();
 
+	}
+	
+	public function getFuncionarios(){
+		$this->db->select('id_users, nombre, apellido');
+        $this->db->from('users');
+        $consulta = $this->db->get();
+        return $consulta->result();
 	}
 
 }
