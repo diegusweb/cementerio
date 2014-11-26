@@ -19,7 +19,6 @@ class Reportes extends CI_Controller {
     }
 
     function index() {
-		
         $this->layout->view('index');
     }
 	
@@ -36,6 +35,7 @@ class Reportes extends CI_Controller {
         $fechaFin = $_POST['fechaFin'];
         $funcionario = $_POST['funcionario'];
 		
+
 		$bloque['nichos'] = $this->reportes_model->infoBloqueNicho($fechaInicio, $fechaFin, $funcionario );
 		$this->load->view('mostrar', $bloque);
 	}
