@@ -136,7 +136,12 @@ $(".cremados").mouseenter(function () {
                 });
                 break;
 			case "RENOVAR":
-               "asd";
+                var urlInfo = base_url + "home/showFormRenovarCremaciones/" + $(this).attr('data-id');
+                $("#contentDemoadd").load(urlInfo, function () {
+                    $('#myModalAddForm #myModalLabel').text('Renovar Cremados');
+                    $('#myModalAddForm').modal('show');
+                    $('.loading').hide();
+                });
                 break;
    
         }
@@ -166,10 +171,20 @@ $(".bajoTierra").mouseenter(function () {
         
        switch($(this).text()) {
             case "INGRESAR":
-               "ADSA"
+                var urlInfo = base_url + "home/showFormSitioTierra/" + $(this).attr('data-id');
+                $("#contentDemoadd").load(urlInfo, function () {
+                    $('#myModalAddForm #myModalLabel').text('Ingresar Sitio Tierra');
+                    $('#myModalAddForm').modal('show');
+                    $('.loading').hide();
+                });
                 break;
             case "EXHUMAR":
-               "asd";
+               var urlInfo = base_url + "home/showFormExhumarSitioTierra/" + $(this).attr('data-id');
+                $("#contentDemoadd").load(urlInfo, function () {
+                    $('#myModalAddForm #myModalLabel').text('Ingresar Sitio Tierra');
+                    $('#myModalAddForm').modal('show');
+                    $('.loading').hide();
+                });
                 break;
             case "AÑADIR LAPIDA":
                "asd";

@@ -536,5 +536,121 @@ class Home extends CI_Controller {
         } else
             echo 0;
     }
+	
+	public function showFormRenovarCremaciones($id){
+		$id_solicitante = (int) $this->session->userdata('id_solitantes');
+		
+        if (!empty($id_solicitante)) {
+            $data['bloque_info'] = $this->home_model->getInfoCremado($id);
+			$data['difuntos_info'] = $this->home_model->getDifuntosCremados($id);
 
+            $this->load->view('AddRenovarCremados', $data);
+        } else {
+            $this->load->view('ErrorSolicitante');
+        }
+	}
+	
+	public function AddTramiteCremadosRenovar() {
+	
+		///$dataa['status'] = 'inactivo';	
+		//$d = $this->home_model->updateStatusDifunto($_POST['id_bloque'], $_POST['difunto'],"Cremados", $dataa);
+		
+        $data['id_bloque'] = $_POST['id_bloque'];
+		$data['id_users'] = (int) $this->session->userdata('id_users');
+        $data['id_solicitante'] = (int) $this->session->userdata('id_solitantes');
+        $data['id_difunto'] = $_POST['difunto'];
+        $data['tramite'] = $_POST['tramite'];
+        $data['bloque'] = "Cremados";
+		$data['bloque_nombre'] = $_POST['bloque'];       
+        $data['tipo_nicho'] = $_POST['tipo'];
+        $data['costo'] = $_POST['costo'];
+        $data['pagado'] = 0;
+
+        $d = $this->home_model->addTramiteNicho($data);
+        if ($d > 0) {
+            $this->session->set_userdata('id_solitantes', 0);
+            $this->session->set_userdata('id_difuntos', 0);
+            echo $d;
+        } else
+            echo 0;
+    }
+	
+	//Ingresar Sitio tierra
+	function showFormSitioTierra($id) {
+        $id_solicitante = (int) $this->session->userdata('id_solitantes');
+        $id_difunto = (int) $this->session->userdata('id_difuntos');
+
+        if (!empty($id_solicitante)) {
+            if (!empty($id_difunto)) {
+                $data['bloque_info'] = $this->home_model->getInfoSitioTierra($id);
+		
+				$this->load->view('AddSitioTierra', $data);	
+            } else {
+                $this->load->view('ErrorDifunto');
+            }
+        } else {
+            $this->load->view('ErrorSolicitante');
+        }
+    }
+	
+	public function AddTramiteBajoTierra() {
+	
+        $data['id_bloque'] = $_POST['id_bloque'];
+		$data['id_users'] = (int) $this->session->userdata('id_users');
+        $data['id_solicitante'] = (int) $this->session->userdata('id_solitantes');
+        $data['id_difunto'] = (int) $this->session->userdata('id_difuntos');
+        $data['tramite'] = $_POST['tramite'];
+        $data['bloque'] = "Sitio Tierra";
+		$data['bloque_nombre'] = $_POST['bloque'];       
+        $data['tipo_nicho'] = $_POST['tipo'];
+        $data['costo'] = $_POST['costo'];
+        $data['pagado'] = 0;
+
+        $d = $this->home_model->addTramiteNicho($data);
+        if ($d > 0) {
+            $this->session->set_userdata('id_solitantes', 0);
+            $this->session->set_userdata('id_difuntos', 0);
+            echo $d;
+        } else
+            echo 0;
+    }
+	
+	public function showFormExhumarSitioTierra($id){
+		$id_solicitante = (int) $this->session->userdata('id_solitantes');
+		
+        if (empty($id_solicitante)) {
+            $data['bloque_info'] = $this->home_model->getInfoSitioTierra($id);
+			$data['difuntos_info'] = $this->home_model->getDifuntosSitioTierra($id);
+
+            $this->load->view('AddExhumacionesTierra', $data);
+        } else {
+            $this->load->view('ErrorSolicitante');
+        }
+	}
+	
+	public function AddTramiteSitioTierraExumacion() {
+	
+		$dataa['status'] = 'inactivo';	
+		$d = $this->home_model->updateStatusDifunto($_POST['id_bloque'], $_POST['difunto'],"Sitio Tierra", $dataa);
+		
+
+        $data['id_bloque'] = $_POST['id_bloque'];
+		$data['id_users'] = (int) $this->session->userdata('id_users');
+        $data['id_solicitante'] = (int) $this->session->userdata('id_solitantes');
+        $data['id_difunto'] = $_POST['difunto'];
+        $data['tramite'] = $_POST['tramite'];
+        $data['bloque'] = "Sitio Tierra";
+		$data['bloque_nombre'] = $_POST['bloque'];       
+        $data['tipo_nicho'] = $_POST['tipo'];
+        $data['costo'] = $_POST['costo'];
+        $data['pagado'] = 0;
+
+        $d = $this->home_model->addTramiteNicho($data);
+        if ($d > 0) {
+            $this->session->set_userdata('id_solitantes', 0);
+            $this->session->set_userdata('id_difuntos', 0);
+            echo $d;
+        } else
+            echo 0;
+    }
 }

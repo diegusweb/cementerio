@@ -52,7 +52,7 @@
 
             $.ajax({
                 type: "POST",
-                url: "<?php echo base_url() . "home/AddTramiteSitioTierraExumacion"; ?>",
+                url: "<?php echo base_url() . "home/AddTramiteCremadosRenovar"; ?>",
                 data: $('#add-form').serialize(),
                 success: function(msg) {
                     if (msg > 0) {
@@ -78,10 +78,10 @@
 	
 	$('#tipo').change(function () {        
 			if($(this).attr('value') == "Mayor"){
-				$('#costo').val(53);
+				$('#costo').val(163);
 			}
 			else{
-				$('#costo').val(43);
+				$('#costo').val(103);
 			}
 	});
 </script>
@@ -90,13 +90,13 @@
     <div class="control-group">
         <label class="control-label" for="inputUsuario">Tramite</label>
         <div class="controls">
-            <input type="text" id="tramite" name="tramite" value="Exhumacion Sitio Tierra" readonly="true">
+            <input type="text" id="tramite" name="tramite" value="Renovar Cremados" readonly="true">
         </div>
     </div>
     <div class="control-group">
         <label class="control-label" for="inputPassword">Bloque</label>
         <div class="controls">
-			<input type="hidden" id="id_bloque" name="id_bloque" value="<?php echo $bloque_info[0]['id_bloque_bajo_tierra']; ?>" >
+			<input type="hidden" id="id_bloque" name="id_bloque" value="<?php echo $bloque_info[0]['id_bloque_cremado']; ?>" >
             <input type="hidden" id="bloque" name="bloque" value="<?php echo $bloque_info[0]['nombre']; ?>" >
             <?php echo $bloque_info[0]['nombre']; ?>
         </div>

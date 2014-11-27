@@ -4,37 +4,16 @@
             tramite: {
                 required: true
             },
-            piso: {
+            tipo: {
                 required: true
             },
-            rol: {
-                required: true,
-            },
-            nombre: {
-                required: true,
-            },
-            apellido: {
-                required: true,
+           costo: {
+                required: true
             }
             
 
         },
         messages: {
-            usser: {
-                required: "Campo requerido."
-            },
-            password: {
-                required: "Campo requerido."
-            },
-            rol: {
-                required: "Campo requerido."
-            },
-            nombre: {
-                required: "Campo requerido."
-            },
-            apellido: {
-                required: "Campo requerido."
-            }
 
         },
         errorClass: "help-inline",
@@ -68,11 +47,17 @@
 
             $.ajax({
                 type: "POST",
-                url: "<?php echo base_url() . "home/addNicho"; ?>",
+                url: "<?php echo base_url() . "home/AddTramiteBajoTierra"; ?>",
                 data: $('#add-form').serialize(),
                 success: function(msg) {
                     if (msg > 0) {
-                        $('#myModalAdd').modal('hide');
+                         $('#myModalAddForm').modal('hide');
+                        $('#myModalComprobante').modal('show');
+                        
+                        var link = base_url+"home/comprobante/"+msg;
+                        var link2 = link.replace(" ","");
+                        $('#myModalComprobante #contentIdComprobante').html("<a href='"+link2+"' class='linkComprobante'>Ver comprobante</a>");                      
+
 
                     }
                 },
@@ -84,88 +69,48 @@
         }
     });
 
-	$('.lados').change(function() {
-		alert( "Handler for .change() called." );
-		var lado = $(this).val();
-		
-		if(lado != ""){
-			//creamos un objeto JSON
-            var datos = {
-                lado : $(this).val(),
-				idBloque : $(this).val()  				
-            };
-
-            $.post("<?php echo base_url() . "home/getNichoslibres"; ?>", datos, function(nichos) {
-
-                var $comboNichoLibres = $("#nichoLibres");
-
-                $comboNichoLibres.empty();
-
-                $.each(nichos, function(index, nichos) {
-
-                    $comboNichoLibres.append("<option value=".nichos.id_nicho.">" + nichos.nicho + "</option>");
-                });
-            }, 'json');
+	$('#tipo').change(function () {        
+		if($(this).attr('value') == "Mayor"){
+			$('#costo').val(103);
 		}
-		else
-        {
-            var $comboNichoLibres = $("#nichoLibres");
-            $comboNichoLibres.empty();
-            $comboNichoLibres.append("<option>Seleccione un lado</option>");
-        }
-
+		else if($(this).attr('value') == "Menor"){
+			$('#costo').val(83);
+		}
+		else{
+			$('#costo').val(43);
+		}
 	});
 </script>
 <form class="cform-form form-horizontal"  id="add-form" method="POST">
     
     <div class="control-group">
         <label class="control-label" for="inputUsuario">Tramite</label>
-		<input type="hidden" id="tramite" name="tramite" value="Renovacion de 1 a�o para Nichos" >
-		Ingresar a Sitio Tierra
+		<div class="controls">
+            <input type="text" id="tramite" name="tramite" value="Ingresar Sitio Tierra" readonly="true">
+        </div>
     </div>
     <div class="control-group">
         <label class="control-label" for="inputPassword">Bloque</label>
         <div class="controls">
-			<input type="hidden" id="id_bloque" name="id_bloque" value="" >
-            <input type="hidden" id="bloque" name="bloque" value="" >
-			<?php echo "BLOQUE";?>
+			<input type="hidden" id="id_bloque" name="id_bloque" value="<?php echo $bloque_info[0]['id_bloque_bajo_tierra']; ?>" >
+            <input type="hidden" id="bloque" name="bloque" value="<?php echo $bloque_info[0]['nombre']; ?>" >
+            <?php echo $bloque_info[0]['nombre']; ?>
         </div>
     </div>
 
-    <div class="control-group">
-        <label class="control-label" for="inputRol">Numero Sitio</label>
-        <div class="controls">
-			<select class="form-control" id="sitioLibres"  name="sitioLibres">
-			</select>
-        </div>
-    </div>
-	<div class="control-group">
-        <label class="control-label" for="inputRol">Tiempo</label>
-        <div class="controls">
-			<select class="form-control" id="tiempo" name="tiempo">
-			  <option value="">Perpetuidad</option>
-			  <option value="">5 a�os</option>
-			</select>
-        </div>
-    </div>
 	
 	<div class="control-group">
         <label class="control-label" for="inputRol">Tipo</label>
         <div class="controls">
 			<select class="form-control" id="tipo" name="tipo">
-			  <option value="">Mayor</option>
-			  <option value="">Menor</option>
-			  <option value="">Parvulos</option>
+			<option value="">Seleccion Tipo</option>
+			  <option value="Mayor">Mayor</option>
+			  <option value="Menor">Menor</option>
+			  <option value="Parvulo">Parvulo </option>
 			</select>
         </div>
     </div>
 	
-	<div class="control-group">
-        <label class="control-label" for="inputRol">Fecha Tramite</label>
-        <div class="controls">
-			<input type="datetime" class="form-control" placeholder="Text input" id="fechaTramite" name="fechaTramite">
-        </div>
-    </div>
 	
 	<div class="control-group">
         <label class="control-label" for="inputRol">Costo</label>
