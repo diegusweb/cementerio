@@ -117,8 +117,8 @@
 								foreach($tramite as $row){
 									?>
 								<tr class="odd gradeX">
+									<td class="hidden-phone"><?php echo $row['nombre']." ".$row['apellido'];?></td>
 									<td class="hidden-phone"><?php echo $row['tramite'];?></td>
-									<td class="hidden-phone"><?php //echo $row['clase'];?></td>
 									<td class="hidden-phone"><?php echo $row['clase'];?></td>
 									<td class="hidden-phone"><?php echo $row['tipo_nicho'];?></td>
 									<td class="hidden-phone"><?php echo $row['nro_nicho'];?></td>

@@ -14,7 +14,8 @@ class Reportes_model extends CI_Model {
 
         $this->db->select('*');
         $this->db->from('tramite');
-
+		$this->db->join('solicitante', 'solicitante.id_solicitante = tramite.id_solicitante');
+		
         if ($fechaInicio) {
             $this->db->where('fecha_tramite >=', $fechaInicio);
         }
@@ -39,9 +40,12 @@ class Reportes_model extends CI_Model {
     }
     
     public function infoBloqueTramites(){
-        $query = "SELECT * FROM tramite ";
-        $result = $this->db->query($query)->result_array();
-        return $result;
+		$this->db->select('*');
+        $this->db->from('tramite');
+		$this->db->join('solicitante', 'solicitante.id_solicitante = tramite.id_solicitante');
+        $consulta = $this->db->get();
+        return $consulta->result_array();
+		
     }
 
 }

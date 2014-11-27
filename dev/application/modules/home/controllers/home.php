@@ -15,7 +15,7 @@ class Home extends CI_Controller {
         //$this->session->set_userdata('id_solitantes', 2);
         //$this->session->set_userdata('id_difuntos', 1);
 		
-		$this->session->set_userdata('id_users', 2);
+		///$this->session->set_userdata('id_users', 2);
 		$this->verifyLogin();
     }
 	

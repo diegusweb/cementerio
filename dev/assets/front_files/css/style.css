@@ -3543,6 +3543,49 @@ ul.amounts li {
     background-image: url("../img/PLANTA.jpg");
 }
 
+.solicitud{
+    background-image: url("../img/icon_solicitante.png");
+	 background-repeat: no-repeat;
+	 width: 109px;
+    height: 109px;
+}
+
+.difunto{
+    background-image: url("../img/icon_difunto.png");
+	 background-repeat: no-repeat;
+	width: 109px;
+    height: 109px;
+}
+
+.tramite{
+    background-image: url("../img/icon_tramite.png");
+	background-repeat: no-repeat;
+	width: 109px;
+    height: 109px;
+}
+
+.solicitud_off{
+    background-image: url("../img/icon_solicitante_off.png");
+	 background-repeat: no-repeat;
+	 width: 109px;
+    height: 109px;
+}
+
+.difunto_off{
+    background-image: url("../img/icon_difunto_off.png");
+	 background-repeat: no-repeat;
+	width: 109px;
+    height: 109px;
+}
+
+.tramite_off{
+    background-image: url("../img/icon_tramite_off.png");
+	background-repeat: no-repeat;
+	width: 109px;
+    height: 109px;
+}
+
+
 
 
 
