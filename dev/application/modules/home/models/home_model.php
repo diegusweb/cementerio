@@ -138,10 +138,12 @@ class Home_model extends CI_Model {
 	public function getDifuntosMausoleo($id){
 		$query = "SELECT tramite.id_difunto, difunto.nombreCompletoFallecido FROM tramite as tramite 
 		LEFT JOIN difunto ON difunto.id_difunto = tramite.id_difunto
-		WHERE  tramite.bloque='Mausoleo' AND tramite.status = 'activo' AND tramite.id_bloque =".$id;
+		WHERE  tramite.bloque='Mausoleo' AND tramite.status = 'activo' AND tramite.tramite <> 'Exhumacion' AND tramite.id_bloque =".$id;
         $result = $this->db->query($query)->result_array();
         return $result;
 	}
+	
+
 
 	public function updateStatusDifunto($id, $idf, $datas){
 

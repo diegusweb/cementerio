@@ -374,10 +374,6 @@ class Home extends CI_Controller {
 				$data['tramite'] = "Ingresar a Mausoleo";
 				$data['bloque'] = "Mausoleo";
 				$data['bloque_nombre'] = $datas[0]['nombre'];
-				//$data['piso'] = 0;
-				//$data['lado'] = 0;
-				//$data['nro_nicho'] = 0;
-				//$data['costo'] = 0;
 				$data['tipo_nicho'] = "";
 				$data['pagado'] = 0;
 
@@ -436,5 +432,41 @@ class Home extends CI_Controller {
         } else
             echo 0;
     }
+	
+	public function showFormLapidaMausoleo($id){
+		$id_solicitante = (int) $this->session->userdata('id_solitantes');
+		
+        if (!empty($id_solicitante)) {
+            $data['bloque_info'] = $this->home_model->getInfoMausoleo($id);
+			$data['difuntos_info'] = $this->home_model->getDifuntosMausoleo($id);
+
+            $this->load->view('AddLapidaMausoleo', $data);
+        } else {
+            $this->load->view('ErrorSolicitante');
+        }
+	}
+	
+	public function AddTramiteMausoleoLapida($id){
+	
+		$data['id_bloque'] = $_POST['id_bloque'];
+		$data['id_users'] = (int) $this->session->userdata('id_users');
+        $data['id_solicitante'] = (int) $this->session->userdata('id_solitantes');
+        $data['id_difunto'] = $_POST['difunto'];
+        $data['tramite'] = utf8_encode($_POST['tramite']);
+        $data['bloque'] = "Mausoleo";
+		$data['bloque_nombre'] = $_POST['bloque'];       
+        $data['clase'] = $_POST['clase'];
+        $data['costo'] = $_POST['costo'];
+        $data['pagado'] = 0;
+
+        $d = $this->home_model->addTramiteNicho($data);
+        if ($d > 0) {
+            $this->session->set_userdata('id_solitantes', 0);
+            $this->session->set_userdata('id_difuntos', 0);
+            echo $d;
+        } else
+            echo 0;
+	}
+	
 
 }

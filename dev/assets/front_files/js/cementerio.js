@@ -88,7 +88,12 @@ $(".mausoleo").mouseenter(function () {
                 });
                 break;
             case "AÑADIR LAPIDA":
-               "asd";
+               var urlInfo = base_url + "home/showFormLapidaMausoleo/" + $(this).attr('data-id');
+                $("#contentDemoadd").load(urlInfo, function () {
+                    $('#myModalAddForm #myModalLabel').text('Añadir Lapida Mausoleo');
+                    $('#myModalAddForm').modal('show');
+                    $('.loading').hide();
+                });
                 break;
    
         }
