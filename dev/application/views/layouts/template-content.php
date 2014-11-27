@@ -151,7 +151,7 @@
                         </a>
                         <ul class="sub">
                             <li><a class="" href="<?php echo base_url() . "admin/users_management"; ?>">Usuario</a></li>
-                            <li><a class="" href="<?php echo base_url() . "admin/tramites_management"; ?>">tramites</a></li>
+                            
                         </ul>
                     </li>
                     <li class="has-sub">
@@ -176,6 +176,7 @@
                             <!--<li><a class="formSolicitante" href="javascript:void(0)">Solicitantes</a></li>
                             <li><a class="" href="<?php echo base_url() . "home/showFormDifunto"; ?>">Difuntos</a></li>-->
                             <li><a class="" href="<?php echo base_url() . "home"; ?>">Interfaz Mapa</a></li>
+							<li><a class="" href="<?php echo base_url() . "reportes"; ?>">Reportes</a></li>
                             
                         </ul>
                     </li>

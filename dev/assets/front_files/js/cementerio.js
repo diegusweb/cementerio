@@ -117,17 +117,25 @@ $(".cremados").mouseenter(function () {
     $(this).popover('show');
 
     $(".secMenu").click(function () {
-        console.log($(this).text());
-        //$('#myModalNewss').modal('show');
-        
+   
        switch($(this).text()) {
             case "INGRESAR":
-                 "asd";
+                 var urlInfo = base_url + "home/showFormCremaciones/" + $(this).attr('data-id');
+                $("#contentDemoadd").load(urlInfo, function () {
+                    $('#myModalAddForm #myModalLabel').text('Ingresar Cremados');
+                    $('#myModalAddForm').modal('show');
+                    $('.loading').hide();
+                });
                 break;
             case "EXHUMAR":
-               "asd";
+                var urlInfo = base_url + "home/showFormExhumarCremaciones/" + $(this).attr('data-id');
+                $("#contentDemoadd").load(urlInfo, function () {
+                    $('#myModalAddForm #myModalLabel').text('Exumacion Cremados');
+                    $('#myModalAddForm').modal('show');
+                    $('.loading').hide();
+                });
                 break;
-            case "AÑADIR LAPIDA":
+			case "RENOVAR":
                "asd";
                 break;
    

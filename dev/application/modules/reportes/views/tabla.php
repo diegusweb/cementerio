@@ -124,10 +124,10 @@
 									<td class="hidden-phone"><?php echo $row['nro_nicho'];?></td>
 									<td class="hidden-phone"><?php echo $row['bloque'];?></td>
 									<td class="hidden-phone"><?php echo $row['bloque_nombre'];?></td>
-									<td class="hidden-phone"><?php $caras =  array("Norte", "Sud", "Este", "Oeste"); echo $caras[$row['lado']-1];?></td>
+									<td class="hidden-phone"><?php $caras =  array("Norte", "Sud", "Este", "Oeste"); echo ($row['lado'] > 0)? $caras[$row['lado']-1] : "";?></td>
 									<td class="hidden-phone"><?php echo $row['costo'];?></td>
 									<td class="hidden-phone"><?php echo "3.00";?></td>
-									<td class="hidden-phone"><?php //echo $row[''];?></td>
+									<td class="hidden-phone"><?php echo ($row['costo'] + 3.00);?></td>
 								</tr>
 								<?php
 								}

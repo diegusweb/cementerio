@@ -19,7 +19,7 @@ class Reportes extends CI_Controller {
     }
 
     function index() {
-        //$bloque['tramite'] = $this->reportes_model->infoBloqueTramites();
+        $bloque['tramite'] = $this->reportes_model->infoBloqueTramites();
         $this->layout->view('tabla', $bloque);
     }
 

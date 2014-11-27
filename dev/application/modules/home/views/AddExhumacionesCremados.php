@@ -4,12 +4,19 @@
             tramite: {
                 required: true
             },
-			tipo: {
+            piso: {
+                required: true
+            },
+            lado: {
+                required: true,
+            },
+            tipo: {
                 required: true,
             },
             costo: {
                 required: true,
             }
+
         },
         messages: {
 
@@ -45,15 +52,16 @@
 
             $.ajax({
                 type: "POST",
-                url: "<?php echo base_url() . "home/AddTramiteCremacion"; ?>",
+                url: "<?php echo base_url() . "home/AddTramiteCremadosExumacion"; ?>",
                 data: $('#add-form').serialize(),
                 success: function(msg) {
                     if (msg > 0) {
                         $('#myModalAddForm').modal('hide');
+                        
                         $('#myModalComprobante').modal('show');
                         
                         var link = base_url+"home/comprobante/"+msg;
-                        var link2 = link.replace(" ","");
+                        var link2 = link.replace(/\s/g,'');
                         $('#myModalComprobante #contentIdComprobante').html("<a href='"+link2+"' class='linkComprobante'>Ver comprobante</a>");                      
 
                     }
@@ -66,14 +74,14 @@
         }
     });
 
-	
+
 	
 	$('#tipo').change(function () {        
 			if($(this).attr('value') == "Mayor"){
-				$('#costo').val(253);
+				$('#costo').val(53);
 			}
 			else{
-				$('#costo').val(143);
+				$('#costo').val(43);
 			}
 	});
 </script>
@@ -81,24 +89,38 @@
     
     <div class="control-group">
         <label class="control-label" for="inputUsuario">Tramite</label>
-		 <div class="controls">
-			<input type="text" id="tramite" name="tramite" value="Ingreso Cremados"  readonly="true">
-		</div>
-	</div>
-	<div class="control-group">
+        <div class="controls">
+            <input type="text" id="tramite" name="tramite" value="Exhumacion Cremados" readonly="true">
+        </div>
+    </div>
+    <div class="control-group">
         <label class="control-label" for="inputPassword">Bloque</label>
         <div class="controls">
 			<input type="hidden" id="id_bloque" name="id_bloque" value="<?php echo $bloque_info[0]['id_bloque_cremado']; ?>" >
             <input type="hidden" id="bloque" name="bloque" value="<?php echo $bloque_info[0]['nombre']; ?>" >
             <?php echo $bloque_info[0]['nombre']; ?>
         </div>
-    </div>     
+    </div>
+     
+    <div class="control-group">
+        <label class="control-label" for="inputRol">Mienbros del mausoleo</label>
+        <div class="controls">
+			<select class="form-control" id="difunto"  name="difunto">
+			 <option value="">Seleccione difunto</option>
+				<?php
+				foreach($difuntos_info as $row){
+					echo "<option value='".$row['id_difunto']."'>".$row['nombreCompletoFallecido']."</option>";
+				}
+				?>
+            </select>
+        </div>
+    </div>
 	
 	<div class="control-group">
         <label class="control-label" for="inputRol">Tipo</label>
         <div class="controls">
 			<select class="form-control" id="tipo" name="tipo">
-			   <option value="">Seleccione Tipo</option>
+			  <option value="">Seleccione tipo</option>
 			  <option value="Mayor">Mayor</option>
 			  <option value="Menor">Menor</option>
 			</select>

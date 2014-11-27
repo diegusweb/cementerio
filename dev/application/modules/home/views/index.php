@@ -110,7 +110,7 @@
              <li><a href="javascript:void(0);" class="secMenu" data-id="<?php echo $valor['id_bloque_nicho'] ?>">EXHUMAR</a></li>
              <li><a href="javascript:void(0);" class="secMenu" data-id="<?php echo $valor['id_bloque_nicho'] ?>">RENOVAR</a></li>
              <li><a href="javascript:void(0);" class="secMenu" data-id="<?php echo $valor['id_bloque_nicho'] ?>">AÑADIR LAPIDA</a></li>
-             <li><a href="javascript:void(0);" class="secMenu" data-id="<?php echo $valor['id_bloque_nicho'] ?>">CREMACION</a></li>
+             <!--<li><a href="javascript:void(0);" class="secMenu" data-id="<?php echo $valor['id_bloque_nicho'] ?>">CREMACION</a></li>-->
              </ul>
              </div>' style="top:<?php echo $d[1]; ?>px; left: <?php echo $d[0]; ?>px; position: absolute;" class="nicho"></div>
              <?php
@@ -140,6 +140,7 @@
              <ul>
              <li><a href="javascript:void(0);" class="secMenu" data-id="<?php echo $valorc['id_bloque_cremado'] ?>">INGRESAR</a></li>
              <li><a href="javascript:void(0);" class="secMenu" data-id="<?php echo $valorc['id_bloque_cremado'] ?>">EXHUMAR</a></li>
+			 <li><a href="javascript:void(0);" class="secMenu" data-id="<?php echo $valorc['id_bloque_cremado'] ?>">RENOVAR</a></li>
              </ul>
              </div>' style="top:<?php echo $d[1]; ?>px; left: <?php echo $d[0]; ?>px; position: absolute;" class="cremados"></div>
              <?php

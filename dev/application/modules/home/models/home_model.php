@@ -142,14 +142,28 @@ class Home_model extends CI_Model {
         $result = $this->db->query($query)->result_array();
         return $result;
 	}
-	
 
-
-	public function updateStatusDifunto($id, $idf, $datas){
+	public function updateStatusDifunto($id, $idf, $bloque,$datas){
 
 			$this->db->where('id_bloque', $id);
 			$this->db->where('id_difunto', $idf);
+			$this->db->where('bloque', $bloque);
 			$this->db->where('status', 'activo');
 			$this->db->update('tramite', $datas); 
+	}
+	
+	//cremados
+	public function getInfoCremado($id){
+		$query = "SELECT * FROM bloque_cremado WHERE id_bloque_cremado=" . $id;
+        $result = $this->db->query($query)->result_array();
+        return $result;
+	}
+	
+	public function getDifuntosCremados($id){
+		$query = "SELECT tramite.id_difunto, difunto.nombreCompletoFallecido FROM tramite as tramite 
+		LEFT JOIN difunto ON difunto.id_difunto = tramite.id_difunto
+		WHERE  tramite.bloque='Cremados' AND tramite.status = 'activo' AND tramite.tramite <> 'Exhumacion' AND tramite.id_bloque =".$id;
+        $result = $this->db->query($query)->result_array();
+        return $result;
 	}
 }
