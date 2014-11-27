@@ -10,42 +10,39 @@ class Reportes_model extends CI_Model {
         //$this->CI =& get_instance();
     }
 
-	public function infoBloqueNicho($fechaInicio, $fechaFin, $funcionario ){
-	
-		if($fechaInicio =! "" && $fechaFin != ""){
-			if($funcionario != 0){
-			
-				$fechaInicio = date("Y-m-d H:i:s",strtotime($fechaFin));
-				$fechaFin = date("Y-m-d H:i:s",strtotime($fechaFin."+ 1 days"));
-				 //$fin = date("Y-m-d ",strtotime($fin."+ 1 days"));
-				 
-				$this->db->select('*');
-				$this->db->from('tramite');
-				$this->db->where('id_users', $funcionario ); 
-				$this->db->where('fecha_tramite >=', $fechaInicio ); 
-				$this->db->where('fecha_tramite <=', $fechaFin ); 
-			}
-			else{
-				$fechaInicio = date("Y-m-d H:i:s",strtotime($fechaInicio));
-				$fechaFin = date("Y-m-d H:i:s",strtotime($fechaFin));
-				$this->db->select('*');
-				$this->db->from('tramite');
-				$this->db->where('fecha_tramite >=', $fechaInicio ); 
-				$this->db->where('fecha_tramite <=', $fechaFin ); 
-			}
-		}
+    public function infoBloqueNicho($fechaInicio, $fechaFin, $funcionario) {
 
-		
-		$consulta = $this->db->get();
-		return $consulta->result_array();
+        $this->db->select('*');
+        $this->db->from('tramite');
 
-	}
-	
-	public function getFuncionarios(){
-		$this->db->select('id_users, nombre, apellido');
+        if ($fechaInicio) {
+            $this->db->where('fecha_tramite >=', $fechaInicio);
+        }
+        if ($fechaFin) {
+            $fechaFin = date("Y-m-d ", strtotime($fechaFin . "+ 1 days"));
+            $this->db->where('fecha_tramite <=', $fechaFin);
+        }
+        if ($funcionario > 0) {
+            $this->db->where('id_users = ' . $funcionario);
+        }
+
+
+        $consulta = $this->db->get();
+        return $consulta->result_array();
+    }
+
+    public function getFuncionarios() {
+        $this->db->select('id_users, nombre, apellido');
         $this->db->from('users');
         $consulta = $this->db->get();
         return $consulta->result();
-	}
+    }
+    
+    public function infoBloqueTramites(){
+        $query = "SELECT * FROM tramite";
+        //$result=$this->db->query($query)->num_rows();
+        $result = $this->db->query($query)->result_array();
+        return $result;
+    }
 
 }

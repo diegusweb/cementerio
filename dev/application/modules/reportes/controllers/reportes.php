@@ -14,38 +14,38 @@ class Reportes extends CI_Controller {
         //boorrar
         //$this->session->set_userdata('id_solitantes', 2);
         //$this->session->set_userdata('id_difuntos', 1);
-		
-		 $this->verifyLogin();
+
+        $this->verifyLogin();
     }
 
     function index() {
-        $this->layout->view('index');
+        $this->layout->view('tabla');
     }
-	
-	public function verifyLogin() {
+
+    public function verifyLogin() {
         $user_id = $this->session->userdata('username');
         if (empty($user_id)) {
             redirect(base_url() . "login", 'outside');
         }
     }
-	
-	public function showReportes()
-	{
-		 $fechaInicio = $_POST['fechaInicio'];
+
+    public function showReportes() {
+        $fechaInicio = $_POST['fechaInicio'];
         $fechaFin = $_POST['fechaFin'];
         $funcionario = $_POST['funcionario'];
-		
 
-		$bloque['nichos'] = $this->reportes_model->infoBloqueNicho($fechaInicio, $fechaFin, $funcionario );
-		$this->load->view('mostrar', $bloque);
-	}
 
-	public function getFuncionarios()
-	{
-		$bloque['users'] = $this->reportes_model->getFuncionarios();
-		///$this->load->view('mostrar', $bloque);
-		
-		echo json_encode($bloque);
-	}
+        $bloque['nichos'] = $this->reportes_model->infoBloqueNicho($fechaInicio, $fechaFin, $funcionario);
+        
+        $bloque['tramite'] = $this->reportes_model->infoBloqueTramites();
+        $this->load->view('mostrar', $bloque);
+    }
+
+    public function getFuncionarios() {
+        $bloque['users'] = $this->reportes_model->getFuncionarios();
+        ///$this->load->view('mostrar', $bloque);
+
+        echo json_encode($bloque);
+    }
 
 }
