@@ -19,7 +19,8 @@ class Reportes extends CI_Controller {
     }
 
     function index() {
-        $this->layout->view('tabla');
+        //$bloque['tramite'] = $this->reportes_model->infoBloqueTramites();
+        $this->layout->view('tabla', $bloque);
     }
 
     public function verifyLogin() {
@@ -34,17 +35,13 @@ class Reportes extends CI_Controller {
         $fechaFin = $_POST['fechaFin'];
         $funcionario = $_POST['funcionario'];
 
-
-        $bloque['nichos'] = $this->reportes_model->infoBloqueNicho($fechaInicio, $fechaFin, $funcionario);
+        $bloque['tramite'] = $this->reportes_model->infoBloqueNicho($fechaInicio, $fechaFin, $funcionario);
         
-        $bloque['tramite'] = $this->reportes_model->infoBloqueTramites();
-        $this->load->view('mostrar', $bloque);
+        $this->layout->view('tabla', $bloque);
     }
 
     public function getFuncionarios() {
         $bloque['users'] = $this->reportes_model->getFuncionarios();
-        ///$this->load->view('mostrar', $bloque);
-
         echo json_encode($bloque);
     }
 

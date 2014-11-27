@@ -31,7 +31,7 @@ foreach ($nichos as $valor) {
 
 
 ?>
-
+<!--
 <div style="padding:10px;">
     <table width="420" style="float: left; margin-bottom: 10px;" border="1" class="cont" cellpadding="0" cellspacing="0">
         <tr>
@@ -144,37 +144,23 @@ foreach ($nichos as $valor) {
     </table>
 </div>
 
-<br><br>
-    <table width="900" border="1"  style="margin-bottom: 10px;" class="cont" cellpadding="0" cellspacing="0">
-        <tr>
-            <td width="208" class="title"><div align="center">Nombre</div></td>
-            <td width="206" class="title"><div align="center">Concepto</div></td>
-            <td width="206" class="title"><div align="center">Clase</div></td>
-            <td width="206" class="title"><div align="center">Cuerpo</div></td>
-            <td width="206" class="title"><div align="center">Nicho </div></td>
-            <td width="206" class="title"><div align="center">Bloque</div></td>
-            <td width="206" class="title"><div align="center">Lado</div></td>
-            <td width="206" class="title"><div align="center">Monto</div></td>
-            <td width="206" class="title"><div align="center">Reposición Boleta</div></td>
-            <td width="206" class="title"><div align="center">Total</div></td>
-        </tr>
-        <?php
-        foreach($tramite as $row){
-            ?>
-        <tr>
-            <td width="208" class="contT"><?php echo $row['tramite'];?></td>
-            <td width="206" class="contT"><?php echo $row['clase'];?></td>
-            <td width="206" class="contT"><?php //echo $row[''];?></td>
-            <td width="206" class="contT"><?php// echo $row[''];?></td>
-            <td width="206" class="contT"><?php //echo $row[''];?></td>
-            <td width="206" class="contT"><?php echo $row['bloque'];?></td>
-            <td width="206" class="contT"><?php //echo $row[''];?></td>
-            <td width="206" class="contT"><?php //echo $row[''];?></td>
-            <td width="206" class="contT"><?php //echo $row[''];?></td>
-            <td width="206" class="contT"><?php //echo $row[''];?></td>
-        </tr>
-        <?php
-        }
-        ?>
-        
-    </table>
+<br><br>-->
+    <?php
+								foreach($tramite as $row){
+									?>
+								<tr class="odd gradeX">
+									<td class="hidden-phone"><?php echo $row['tramite'];?></td>
+									<td class="hidden-phone"><?php //echo $row['clase'];?></td>
+									<td class="hidden-phone"><?php echo $row['clase'];?></td>
+									<td class="hidden-phone"><?php echo $row['tipo_nicho'];?></td>
+									<td class="hidden-phone"><?php echo $row['nro_nicho'];?></td>
+									<td class="hidden-phone"><?php echo $row['bloque'];?></td>
+									<td class="hidden-phone"><?php echo $row['bloque_nombre'];?></td>
+									<td class="hidden-phone"><?php $caras =  array("Norte", "Sud", "Este", "Oeste"); echo $caras[$row['lado']-1];?></td>
+									<td class="hidden-phone"><?php echo $row['costo'];?></td>
+									<td class="hidden-phone"><?php echo "3.00";?></td>
+									<td class="hidden-phone"><?php //echo $row[''];?></td>
+								</tr>
+								<?php
+								}
+								?>

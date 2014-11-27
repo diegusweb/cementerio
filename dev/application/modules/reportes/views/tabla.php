@@ -1,3 +1,52 @@
+<script>
+    $(function () {
+
+       
+        
+         $('#datetimepicker1').datetimepicker();
+           $('#datetimepicker2').datetimepicker();
+           
+            $("#datetimepicker1").on("dp.change",function (e) {
+               $('#datetimepicker2').data("DateTimePicker").setMinDate(e.date);
+            });
+            $("#datetimepicker2").on("dp.change",function (e) {
+               $('#datetimepicker1').data("DateTimePicker").setMaxDate(e.date);
+            });
+
+        var piso = 0;
+
+        $('#funcionario').change(function () {
+
+            piso = $(this).attr('value');
+        });
+
+       /* $('#buscar').click(function () {
+
+            $('.loading').show();
+
+            var urlInfo = base_url + "reportes/showReportes/";
+            $(".contenidoReportes").load(urlInfo, {fechaInicio: $('#fechaInicio').val(), fechaFin: $('#fechaFin').val(), funcionario: piso}, function () {
+                $('.loading').hide();
+            });
+
+        });*/
+
+        $.post("<?php echo base_url() . "reportes/getFuncionarios"; ?>", function (nichos) {
+
+            var $comboNichoLibres = $("#funcionario");
+            $comboNichoLibres.empty();
+            var nn = nichos.users;
+
+            $comboNichoLibres.append("<option value='todos'>todos</option>");
+            $.each(nn, function (index, v) {
+                $comboNichoLibres.append("<option value=" + v['id_users'] + ">" + v['nombre'] + " " + v['apellido'] + "</option>");
+            });
+        }, 'json');
+
+
+    });
+
+</script>
 <!-- BEGIN ADVANCED TABLE widget-->
             <div class="row-fluid">
                 <div class="span12">
@@ -5,224 +54,85 @@
                     <div class="widget">
                         <div class="widget-title">
                             <h4><i class="icon-reorder"></i>Managed Table</h4>
-                            <span class="tools">
-                                <a href="javascript:;" class="icon-chevron-down"></a>
-                                <a href="javascript:;" class="icon-remove"></a>
-                            </span>
+                            
                         </div>
                         <div class="widget-body">
+						<form method="POST" action="<?php echo base_url()."reportes/showReportes";?>">
+						<table width="898" style="float: left; margin-bottom: 10px;" border="0" class="cont" cellpadding="0" cellspacing="0">
+	
+							<tr>
+								<td width="218" class="contT">Fecha Inicio </td>
+								<td width="337" class="contT">  <div id="datetimepicker1" class='input-group date' >
+										<input data-format="yyyy-MM-dd" type="text" id="fechaInicio" name="fechaInicio"></input>
+										<span class="add-on">
+											<i data-time-icon="icon-time" data-date-icon="icon-calendar">
+											</i>
+										</span>
+									</div></td>
+								<td width="337" rowspan="3" class="contT">
+									<button id="buscar"  type="submit"  class="btn btn-primary btn-lg active">Mostrar Reportes</button>
+								</td>
+							</tr>
+							<tr>
+								<td width="218" class="contT">Fecha Fin </td>
+								<td width="337" class="contT"><div id="datetimepicker2" class='input-group date' >
+										<input data-format="yyyy-MM-dd" type="text" id="fechaFin" name="fechaFin"></input>
+										<span class="add-on">
+											<i data-time-icon="icon-time" data-date-icon="icon-calendar">
+											</i>
+										</span>
+									</div></td>
+							</tr>
+							<tr>
+								<td width="218" class="contT">Funcuionario</td>
+								<td width="337" class="contT"><select name="funcionario" id="funcionario">
+										<option value="todos">todos</option>
+									</select> </td>
+							</tr>
+							<tr>
+								<td colspan="3" class="contenidoReportes">&nbsp;</td>
+							</tr>
+						</table>
+						<form>
+						
                             <table class="table table-striped table-bordered" id="sample_1">
                             <thead>
                                 <tr>
-                                    <th style="width:8px;"><input type="checkbox" class="group-checkable" data-set="#sample_1 .checkboxes" /></th>
-                                    <th>Username</th>
-                                    <th class="hidden-phone">Email</th>
-                                    <th class="hidden-phone">Points</th>
-                                    <th class="hidden-phone">Joined</th>
-                                    <th class="hidden-phone"></th>
+                                    <th  class="hidden-phone"><div align="center">Nombre</div></th>
+									<th  class="hidden-phone"><div align="center">Concepto</div></th>
+									<th  class="hidden-phone"><div align="center">Clase</div></th>
+									<th class="hidden-phone"><div align="center">Cuerpo</div></th>
+									<th class="hidden-phone"><div align="center">Nicho </div></th>
+									<th  class="hidden-phone"><div align="center">Tipo</div></th>
+									<th  class="hidden-phone"><div align="center">Bloque</div></th>
+									<th  class="hidden-phone"><div align="center">Lado</div></th>
+									<th class="hidden-phone"><div align="center">Monto</div></th>
+									<th  class="hidden-phone"><div align="center">Reposición Boleta</div></th>
+									<th  class="hidden-phone"><div align="center">Total</div></th>
+									
                                 </tr>
                             </thead>
-                            <tbody>
-                                <tr class="odd gradeX">
-                                    <td><input type="checkbox" class="checkboxes" value="1" /></td>
-                                    <td>shuxer</td>
-                                    <td class="hidden-phone"><a href="mailto:shuxer@gmail.com">shuxer@gmail.com</a></td>
-                                    <td class="hidden-phone">120</td>
-                                    <td class="center hidden-phone">12 Jan 2012</td>
-                                    <td class="hidden-phone"><span class="label label-success">Approved</span></td>
-                                </tr>
-                                <tr class="odd gradeX">
-                                    <td><input type="checkbox" class="checkboxes" value="1" /></td>
-                                    <td>looper</td>
-                                    <td class="hidden-phone"><a href="mailto:looper90@gmail.com">looper90@gmail.com</a></td>
-                                    <td class="hidden-phone">120</td>
-                                    <td class="center hidden-phone">12.12.2011</td>
-                                    <td class="hidden-phone"><span class="label label-warning">Suspended</span></td>
-                                </tr>
-                                <tr class="odd gradeX">
-                                    <td><input type="checkbox" class="checkboxes" value="1" /></td>
-                                    <td>userwow</td>
-                                    <td class="hidden-phone"><a href="mailto:userwow@yahoo.com">userwow@yahoo.com</a></td>
-                                    <td class="hidden-phone">20</td>
-                                    <td class="center hidden-phone">12.12.2012</td>
-                                    <td class="hidden-phone"><span class="label label-success">Approved</span></td>
-                                </tr>
-                                <tr class="odd gradeX">
-                                    <td><input type="checkbox" class="checkboxes" value="1" /></td>
-                                    <td>user1wow</td>
-                                    <td class="hidden-phone"><a href="mailto:userwow@gmail.com">userwow@gmail.com</a></td>
-                                    <td class="hidden-phone">20</td>
-                                    <td class="center hidden-phone">12.12.2012</td>
-                                    <td class="hidden-phone"><span class="label label-inverse">Blocked</span></td>
-                                </tr>
-                                <tr class="odd gradeX">
-                                    <td><input type="checkbox" class="checkboxes" value="1" /></td>
-                                    <td>restest</td>
-                                    <td class="hidden-phone"><a href="mailto:userwow@gmail.com">test@gmail.com</a></td>
-                                    <td class="hidden-phone">20</td>
-                                    <td class="center hidden-phone">12.12.2012</td>
-                                    <td class="hidden-phone"><span class="label label-success">Approved</span></td>
-                                </tr>
-                                <tr class="odd gradeX">
-                                    <td><input type="checkbox" class="checkboxes" value="1" /></td>
-                                    <td>foopl</td>
-                                    <td class="hidden-phone"><a href="mailto:userwow@gmail.com">good@gmail.com</a></td>
-                                    <td class="hidden-phone">20</td>
-                                    <td class="center hidden-phone">19.11.2010</td>
-                                    <td class="hidden-phone"><span class="label label-success">Approved</span></td>
-                                </tr>
-                                <tr class="odd gradeX">
-                                    <td><input type="checkbox" class="checkboxes" value="1" /></td>
-                                    <td>weep</td>
-                                    <td class="hidden-phone"><a href="mailto:userwow@gmail.com">good@gmail.com</a></td>
-                                    <td class="hidden-phone">20</td>
-                                    <td class="center hidden-phone">19.11.2010</td>
-                                    <td class="hidden-phone"><span class="label label-success">Approved</span></td>
-                                </tr>
-                                <tr class="odd gradeX">
-                                    <td><input type="checkbox" class="checkboxes" value="1" /></td>
-                                    <td>coop</td>
-                                    <td class="hidden-phone"><a href="mailto:userwow@gmail.com">good@gmail.com</a></td>
-                                    <td class="hidden-phone">20</td>
-                                    <td class="center hidden-phone">19.11.2010</td>
-                                    <td class="hidden-phone"><span class="label label-success">Approved</span></td>
-                                </tr>
-                                <tr class="odd gradeX">
-                                    <td><input type="checkbox" class="checkboxes" value="1" /></td>
-                                    <td>pppol</td>
-                                    <td class="hidden-phone"><a href="mailto:userwow@gmail.com">good@gmail.com</a></td>
-                                    <td class="hidden-phone">20</td>
-                                    <td class="center hidden-phone">19.11.2010</td>
-                                    <td class="hidden-phone"><span class="label label-success">Approved</span></td>
-                                </tr>
-                                <tr class="odd gradeX">
-                                    <td><input type="checkbox" class="checkboxes" value="1" /></td>
-                                    <td>test</td>
-                                    <td class="hidden-phone"><a href="mailto:userwow@gmail.com">good@gmail.com</a></td>
-                                    <td class="hidden-phone">20</td>
-                                    <td class="center hidden-phone">19.11.2010</td>
-                                    <td class="hidden-phone"><span class="label label-success">Approved</span></td>
-                                </tr>
-                                <tr class="odd gradeX">
-                                    <td><input type="checkbox" class="checkboxes" value="1" /></td>
-                                    <td>userwow</td>
-                                    <td class="hidden-phone"><a href="mailto:userwow@gmail.com">userwow@gmail.com</a></td>
-                                    <td class="hidden-phone">20</td>
-                                    <td class="center hidden-phone">12.12.2012</td>
-                                    <td class="hidden-phone"><span class="label label-inverse">Blocked</span></td>
-                                </tr>
-                                <tr class="odd gradeX">
-                                    <td><input type="checkbox" class="checkboxes" value="1" /></td>
-                                    <td>test</td>
-                                    <td class="hidden-phone"><a href="mailto:userwow@gmail.com">test@gmail.com</a></td>
-                                    <td class="hidden-phone">20</td>
-                                    <td class="center hidden-phone">12.12.2012</td>
-                                    <td class="hidden-phone"><span class="label label-success">Approved</span></td>
-                                </tr>
-                                <tr class="odd gradeX">
-                                    <td><input type="checkbox" class="checkboxes" value="1" /></td>
-                                    <td>goop</td>
-                                    <td class="hidden-phone"><a href="mailto:userwow@gmail.com">good@gmail.com</a></td>
-                                    <td class="hidden-phone">20</td>
-                                    <td class="center hidden-phone">12.11.2010</td>
-                                    <td class="hidden-phone"><span class="label label-success">Approved</span></td>
-                                </tr>
-                                <tr class="odd gradeX">
-                                    <td><input type="checkbox" class="checkboxes" value="1" /></td>
-                                    <td>weep</td>
-                                    <td class="hidden-phone"><a href="mailto:userwow@gmail.com">good@gmail.com</a></td>
-                                    <td class="hidden-phone">20</td>
-                                    <td class="center hidden-phone">15.11.2011</td>
-                                    <td class="hidden-phone"><span class="label label-inverse">Blocked</span></td>
-                                </tr>
-                                <tr class="odd gradeX">
-                                    <td><input type="checkbox" class="checkboxes" value="1" /></td>
-                                    <td>toopl</td>
-                                    <td class="hidden-phone"><a href="mailto:userwow@gmail.com">good@gmail.com</a></td>
-                                    <td class="hidden-phone">20</td>
-                                    <td class="center hidden-phone">16.11.2010</td>
-                                    <td class="hidden-phone"><span class="label label-success">Approved</span></td>
-                                </tr>
-                                <tr class="odd gradeX">
-                                    <td><input type="checkbox" class="checkboxes" value="1" /></td>
-                                    <td>userwow</td>
-                                    <td class="hidden-phone"><a href="mailto:userwow@gmail.com">userwow@gmail.com</a></td>
-                                    <td class="hidden-phone">20</td>
-                                    <td class="center hidden-phone">9.12.2012</td>
-                                    <td class="hidden-phone"><span class="label label-inverse">Blocked</span></td>
-                                </tr>
-                                <tr class="odd gradeX">
-                                    <td><input type="checkbox" class="checkboxes" value="1" /></td>
-                                    <td>tes21t</td>
-                                    <td class="hidden-phone"><a href="mailto:userwow@gmail.com">test@gmail.com</a></td>
-                                    <td class="hidden-phone">20</td>
-                                    <td class="center hidden-phone">14.12.2012</td>
-                                    <td class="hidden-phone"><span class="label label-success">Approved</span></td>
-                                </tr>
-                                <tr class="odd gradeX">
-                                    <td><input type="checkbox" class="checkboxes" value="1" /></td>
-                                    <td>fop</td>
-                                    <td class="hidden-phone"><a href="mailto:userwow@gmail.com">good@gmail.com</a></td>
-                                    <td class="hidden-phone">20</td>
-                                    <td class="center hidden-phone">13.11.2010</td>
-                                    <td class="hidden-phone"><span class="label label-warning">Suspended</span></td>
-                                </tr>
-                                <tr class="odd gradeX">
-                                    <td><input type="checkbox" class="checkboxes" value="1" /></td>
-                                    <td>kop</td>
-                                    <td class="hidden-phone"><a href="mailto:userwow@gmail.com">good@gmail.com</a></td>
-                                    <td class="hidden-phone">20</td>
-                                    <td class="center hidden-phone">17.11.2010</td>
-                                    <td class="hidden-phone"><span class="label label-success">Approved</span></td>
-                                </tr>
-                                <tr class="odd gradeX">
-                                    <td><input type="checkbox" class="checkboxes" value="1" /></td>
-                                    <td>vopl</td>
-                                    <td class="hidden-phone"><a href="mailto:userwow@gmail.com">good@gmail.com</a></td>
-                                    <td class="hidden-phone">20</td>
-                                    <td class="center hidden-phone">19.11.2010</td>
-                                    <td class="hidden-phone"><span class="label label-success">Approved</span></td>
-                                </tr>
-                                <tr class="odd gradeX">
-                                    <td><input type="checkbox" class="checkboxes" value="1" /></td>
-                                    <td>userwow</td>
-                                    <td class="hidden-phone"><a href="mailto:userwow@gmail.com">userwow@gmail.com</a></td>
-                                    <td class="hidden-phone">20</td>
-                                    <td class="center hidden-phone">12.12.2012</td>
-                                    <td class="hidden-phone"><span class="label label-inverse">Blocked</span></td>
-                                </tr>
-                                <tr class="odd gradeX">
-                                    <td><input type="checkbox" class="checkboxes" value="1" /></td>
-                                    <td>wap</td>
-                                    <td class="hidden-phone"><a href="mailto:userwow@gmail.com">test@gmail.com</a></td>
-                                    <td class="hidden-phone">20</td>
-                                    <td class="center hidden-phone">12.12.2012</td>
-                                    <td class="hidden-phone"><span class="label label-success">Approved</span></td>
-                                </tr>
-                                <tr class="odd gradeX">
-                                    <td><input type="checkbox" class="checkboxes" value="1" /></td>
-                                    <td>test</td>
-                                    <td class="hidden-phone"><a href="mailto:userwow@gmail.com">good@gmail.com</a></td>
-                                    <td class="hidden-phone">20</td>
-                                    <td class="center hidden-phone">19.12.2010</td>
-                                    <td class="hidden-phone"><span class="label label-success">Approved</span></td>
-                                </tr>
-                                <tr class="odd gradeX">
-                                    <td><input type="checkbox" class="checkboxes" value="1" /></td>
-                                    <td>toop</td>
-                                    <td class="hidden-phone"><a href="mailto:userwow@gmail.com">good@gmail.com</a></td>
-                                    <td class="hidden-phone">20</td>
-                                    <td class="center hidden-phone">17.12.2010</td>
-                                    <td class="hidden-phone"><span class="label label-success">Approved</span></td>
-                                </tr>
-                                <tr class="odd gradeX">
-                                    <td><input type="checkbox" class="checkboxes" value="1" /></td>
-                                    <td>weep</td>
-                                    <td class="hidden-phone"><a href="mailto:userwow@gmail.com">good@gmail.com</a></td>
-                                    <td class="hidden-phone">20</td>
-                                    <td class="center hidden-phone">15.11.2011</td>
-                                    <td class="hidden-phone"><span class="label label-success">Approved</span></td>
-                                </tr>
+                            <tbody class="">
+								<?php
+								foreach($tramite as $row){
+									?>
+								<tr class="odd gradeX">
+									<td class="hidden-phone"><?php echo $row['tramite'];?></td>
+									<td class="hidden-phone"><?php //echo $row['clase'];?></td>
+									<td class="hidden-phone"><?php echo $row['clase'];?></td>
+									<td class="hidden-phone"><?php echo $row['tipo_nicho'];?></td>
+									<td class="hidden-phone"><?php echo $row['nro_nicho'];?></td>
+									<td class="hidden-phone"><?php echo $row['bloque'];?></td>
+									<td class="hidden-phone"><?php echo $row['bloque_nombre'];?></td>
+									<td class="hidden-phone"><?php $caras =  array("Norte", "Sud", "Este", "Oeste"); echo $caras[$row['lado']-1];?></td>
+									<td class="hidden-phone"><?php echo $row['costo'];?></td>
+									<td class="hidden-phone"><?php echo "3.00";?></td>
+									<td class="hidden-phone"><?php //echo $row[''];?></td>
+								</tr>
+								<?php
+								}
+								?>
+                                
                                 </tbody>
                         </table>
                         </div>

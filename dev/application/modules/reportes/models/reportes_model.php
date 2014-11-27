@@ -39,8 +39,7 @@ class Reportes_model extends CI_Model {
     }
     
     public function infoBloqueTramites(){
-        $query = "SELECT * FROM tramite";
-        //$result=$this->db->query($query)->num_rows();
+        $query = "SELECT * FROM tramite ";
         $result = $this->db->query($query)->result_array();
         return $result;
     }
