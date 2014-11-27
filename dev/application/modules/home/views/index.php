@@ -155,7 +155,7 @@
              <li><a href="javascript:void(0);" class="secMenu" data-id="<?php echo $valorc['id_bloque_bajo_tierra'] ?>">INGRESAR</a></li>
              <li><a href="javascript:void(0);" class="secMenu" data-id="<?php echo $valorc['id_bloque_bajo_tierra'] ?>">EXHUMAR</a></li>
              <li><a href="javascript:void(0);" class="secMenu" data-id="<?php echo $valorc['id_bloque_bajo_tierra'] ?>">RENOVAR</a></li>
-             <li><a href="javascript:void(0);" class="secMenu" data-id="<?php echo $valorc['id_bloque_bajo_tierra'] ?>">AUTORIZACION CONST. CRIPTA</a></li>
+             <li><a href="javascript:void(0);" class="secMenu" data-id="<?php echo $valorc['id_bloque_bajo_tierra'] ?>">AUTORIZACION CONST.CRIPTA</a></li>
              </ul>
 
              </div>' style="top:<?php echo $d[1]; ?>px; left: <?php echo $d[0]; ?>px; position: absolute;" class="bajoTierra"></div>

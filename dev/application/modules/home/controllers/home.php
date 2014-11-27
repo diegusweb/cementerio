@@ -653,4 +653,53 @@ class Home extends CI_Controller {
         } else
             echo 0;
     }
+	
+	public function showFormRenovarSitioTierra($id){
+		$id_solicitante = (int) $this->session->userdata('id_solitantes');
+		
+        if (!empty($id_solicitante)) {
+            $data['bloque_info'] = $this->home_model->getInfoSitioTierra($id);
+			$data['difuntos_info'] = $this->home_model->getDifuntosSitioTierra($id);
+
+            $this->load->view('AddRenovarSitioTierra', $data);
+        } else {
+            $this->load->view('ErrorSolicitante');
+        }
+	}
+	
+	public function AddTramiteSitioTierraRenovar() {
+	
+        $data['id_bloque'] = $_POST['id_bloque'];
+		$data['id_users'] = (int) $this->session->userdata('id_users');
+        $data['id_solicitante'] = (int) $this->session->userdata('id_solitantes');
+        $data['id_difunto'] = $_POST['difunto'];
+        $data['tramite'] = $_POST['tramite'];
+        $data['bloque'] = "Sitio Tierra";
+		$data['bloque_nombre'] = $_POST['bloque'];       
+        $data['tipo_nicho'] = $_POST['tipo'];
+        $data['costo'] = $_POST['costo'];
+        $data['pagado'] = 0;
+
+        $d = $this->home_model->addTramiteNicho($data);
+        if ($d > 0) {
+            $this->session->set_userdata('id_solitantes', 0);
+            $this->session->set_userdata('id_difuntos', 0);
+            echo $d;
+        } else
+            echo 0;
+    }
+	
+	public function showFormCriptaSitioTierra($id){
+		$id_solicitante = (int) $this->session->userdata('id_solitantes');
+		
+        if (!empty($id_solicitante)) {
+            $data['bloque_info'] = $this->home_model->getInfoSitioTierra($id);
+			$data['difuntos_info'] = $this->home_model->getDifuntosSitioTierra($id);
+
+            $this->load->view('AddCriptaSitioTierra', $data);
+        } else {
+            $this->load->view('ErrorSolicitante');
+        }
+	}
+	
 }

@@ -186,8 +186,21 @@ $(".bajoTierra").mouseenter(function () {
                     $('.loading').hide();
                 });
                 break;
-            case "AÑADIR LAPIDA":
-               "asd";
+			case "RENOVAR":
+               var urlInfo = base_url + "home/showFormRenovarSitioTierra/" + $(this).attr('data-id');
+                $("#contentDemoadd").load(urlInfo, function () {
+                    $('#myModalAddForm #myModalLabel').text('Renovar Sitio Tierra');
+                    $('#myModalAddForm').modal('show');
+                    $('.loading').hide();
+                });
+                break;	
+            case "AUTORIZACION CONST.CRIPTA":
+               var urlInfo = base_url + "home/showFormCriptaSitioTierra/" + $(this).attr('data-id');
+                $("#contentDemoadd").load(urlInfo, function () {
+                    $('#myModalAddForm #myModalLabel').text('Construccion Cripta Sitio Tierra');
+                    $('#myModalAddForm').modal('show');
+                    $('.loading').hide();
+                });
                 break;
    
         }
