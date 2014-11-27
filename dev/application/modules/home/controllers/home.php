@@ -357,16 +357,39 @@ class Home extends CI_Controller {
 		echo $letras;	
 	}
 	
-	//mausoleo
+	//mausoleos
 	public function showFormAddDMausoleo($id){
 		$id_solicitante = (int) $this->session->userdata('id_solitantes');
         $id_difunto = (int) $this->session->userdata('id_difuntos');
 
         if (!empty($id_solicitante)) {
             if (!empty($id_difunto)) {
-                $data['bloque_info'] = $this->home_model->getInfoMausoleo($id);
-                //$data['nicho_info'] = $this->home_model->getBloqueNicho();
-                //$this->load->view('AddNichoBloque', $data);
+                $datas = $this->home_model->getInfoMausoleo($id);
+				
+                //llenar tramite mausoleo
+				$data['id_bloque'] = $datas[0]['id_bloque_mausoleo'];
+				$data['id_users'] = (int) $this->session->userdata('id_users');
+				$data['id_solicitante'] = (int) $this->session->userdata('id_solitantes');
+				$data['id_difunto'] = (int) $this->session->userdata('id_difuntos');
+				$data['tramite'] = "Ingresar a Mausoleo";
+				$data['bloque'] = "Mausoleo";
+				$data['bloque_nombre'] = $datas[0]['nombre'];
+				//$data['piso'] = 0;
+				//$data['lado'] = 0;
+				//$data['nro_nicho'] = 0;
+				//$data['costo'] = 0;
+				$data['tipo_nicho'] = "";
+				$data['pagado'] = 0;
+
+				$d = $this->home_model->addTramiteNicho($data);
+				if ($d > 0) {
+					$this->session->set_userdata('id_solitantes', 0);
+					$this->session->set_userdata('id_difuntos', 0);
+					echo $d;
+				} else
+					echo 0;
+				
+				
             } else {
                 $this->load->view('ErrorDifunto');
             }
@@ -374,5 +397,44 @@ class Home extends CI_Controller {
             $this->load->view('ErrorSolicitante');
         }
 	}
+	
+	public function showFormExhumarMausoleo($id){
+		$id_solicitante = (int) $this->session->userdata('id_solitantes');
+		
+        if (!empty($id_solicitante)) {
+            $data['bloque_info'] = $this->home_model->getInfoMausoleo($id);
+			$data['difuntos_info'] = $this->home_model->getDifuntosMausoleo($id);
+
+            $this->load->view('AddExhumacionesMausoleo', $data);
+        } else {
+            $this->load->view('ErrorSolicitante');
+        }
+	}
+	
+	function AddTramiteMausoleoExumacion() {
+	
+		$dataa['status'] = 'inactivo';	
+		$d = $this->home_model->updateStatusDifunto($_POST['id_bloque'], $_POST['difunto'], $dataa);
+		
+
+        $data['id_bloque'] = $_POST['id_bloque'];
+		$data['id_users'] = (int) $this->session->userdata('id_users');
+        $data['id_solicitante'] = (int) $this->session->userdata('id_solitantes');
+        $data['id_difunto'] = $_POST['difunto'];
+        $data['tramite'] = $_POST['tramite'];
+        $data['bloque'] = "Mausoleo";
+		$data['bloque_nombre'] = $_POST['bloque'];       
+        $data['tipo_nicho'] = $_POST['tipo'];
+        $data['costo'] = $_POST['costo'];
+        $data['pagado'] = 0;
+
+        $d = $this->home_model->addTramiteNicho($data);
+        if ($d > 0) {
+            $this->session->set_userdata('id_solitantes', 0);
+            $this->session->set_userdata('id_difuntos', 0);
+            echo $d;
+        } else
+            echo 0;
+    }
 
 }

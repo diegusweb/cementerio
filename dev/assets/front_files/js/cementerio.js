@@ -80,7 +80,12 @@ $(".mausoleo").mouseenter(function () {
                 });
                 break;
             case "EXHUMAR":
-               "asd";
+                var urlInfo = base_url + "home/showFormExhumarMausoleo/" + $(this).attr('data-id');
+                $("#contentDemoadd").load(urlInfo, function () {
+                    $('#myModalAddForm #myModalLabel').text('Exumar Mausoleo');
+                    $('#myModalAddForm').modal('show');
+                    $('.loading').hide();
+                });
                 break;
             case "AÑADIR LAPIDA":
                "asd";
