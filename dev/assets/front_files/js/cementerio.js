@@ -199,7 +199,7 @@ $(".bajoTierra").mouseenter(function () {
                 });
                 break;	
             case "AUTORIZACION CONST.CRIPTA":
-               var urlInfo = base_url + "home/showFormCriptaSitioTierra/" + $(this).attr('data-id');
+               var urlInfo = base_url + "home/showFormCriptaSitioTierra/" + $(this).attr('data-id')+"/"+$(this).attr('data-form');
                 $("#contentDemoadd").load(urlInfo, function () {
                     $('#myModalAddForm #myModalLabel').text('Construccion Cripta Sitio Tierra');
                     $('#myModalAddForm').modal('show');

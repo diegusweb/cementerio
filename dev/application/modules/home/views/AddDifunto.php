@@ -116,7 +116,7 @@
 							   var urlInfo = base_url + "home/"+pag+"/" + <?php echo $id;?>+"/"+form;
 							   $("#contentDemoadd").load(urlInfo, function () {
 								   $('#myModalAddForm').modal('show');
-								   $('#myModalAddForm #myModalLabel').html("Pasos de Registross");
+								   $('#myModalAddForm #myModalLabel').html("Registrar Tramite");
 								   $('.loading').hide();
 								   
 							   });

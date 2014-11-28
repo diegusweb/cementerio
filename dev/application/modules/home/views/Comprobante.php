@@ -20,7 +20,7 @@
 
 
 
-<p><h4>COMPROBANTE INGRESO<h4/></p>
+<p><h4>COMPROBANTE<h4/></p>
 <form method="POST" id="save-form">
 
 <table width="640" border="1" class="cont" cellpadding="0" cellspacing="0">
@@ -71,9 +71,19 @@
       <p align="center"><?php echo $tramite[0]['tramite']?></p>
       <p align="center"><?php echo $tramite[0]['clase']?></p>
       <p align="center">Cuerpo: <?php echo $tramite[0]['tipo_nicho']?></p>
-      <p align="center">Numero Nicho: <?php echo $tramite[0]['nro_nicho']?></p>
+	  <?php
+	    if ($tramite[0]['nro_nicho'] > 0)
+		{
+			echo " <p align='center'>Numero Nicho: ".$tramite[0]['nro_nicho'];
+		}
+	  ?>
       <p align="center">Bloque: <?php echo $tramite[0]['bloque']?></p>
-      <p align="center">Lado: <?php  $caras =  array("Norte", "Sud", "Este", "Oeste"); echo $caras[$tramite[0]['lado']-1]?> </p>
+      <?php  $caras =  array("Norte", "Sud", "Este", "Oeste");  
+	    if (!empty($tramite[0]['lado']))
+		{
+			echo " <p align='center'>Lado: ".$caras[$tramite[0]['lado']-1];
+		}
+		?> </p>
       <p align="center">Difunto (a): <?php echo $tramite[0]['nombreCompletoFallecido']?></p>
     <p align="center">&nbsp;</p>
     <p align="center">&nbsp;</p>

@@ -108,19 +108,18 @@
 							   var urlInfo = base_url + "home/"+pag+"/" + <?php echo $id;?>+"/"+form;
 							   $("#contentDemoadd").load(urlInfo, function () {
 								   $('#myModalAddForm').modal('show');
-								   $('#myModalAddForm #myModalLabel').html("Pasos de Registross");
+								   $('#myModalAddForm #myModalLabel').html("Pasos de Registros");
 								   $('.loading').hide();
 								   
 							   });
 						}
 						else{
-							alert("asdas");
 							$('#myModalError').modal('hide');
 							$('.loading').show();
 							   var urlInfo = base_url + "home/"+pag+"/" + <?php echo $id;?>+"/"+form;
 							   $("#contentDemoadd").load(urlInfo, function () {
 								   $('#myModalAddForm').modal('show');
-								   $('#myModalAddForm #myModalLabel').html("Registro Form");
+								   $('#myModalAddForm #myModalLabel').html("Registro Tramite");
 								   $('.loading').hide();
 								   
 							   });
