@@ -106,8 +106,7 @@
                 data: $('#add-form-dif').serialize(),
                 success: function(mmsg) {
                     if (mmsg > 0) {
-                        $('#myModalAddDifuncto').modal('hide');
-                        alert("Su registro fue exitoso, ya puede ingresar al formulario.");
+                        $('#myModalAddDifuncto').modal('hide');                  
                     }
                 },
                 error: function(mmsg) {

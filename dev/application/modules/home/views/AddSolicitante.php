@@ -99,7 +99,14 @@
                 success: function (msg) {
                     if (msg > 0) {
                         $('#myModalAddSolicitante').modal('hide');
-                        alert("Se ingreso correctamente");
+                        //alert("Se ingreso correctamente");
+                        
+                        /* $('.loading').show();
+                        var urlInfo = base_url + "home/showDifuntoView/";
+                            $("#contentDemoDif").load(urlInfo, function () {
+                                $('#myModalAddDifuncto').modal('show');
+                                 $('.loading').hide();
+                            });*/
                     }
                 },
                 error: function (msg) {

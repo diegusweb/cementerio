@@ -67,8 +67,7 @@ $(".mausoleo").mouseenter(function () {
     $(this).popover('show');
 
     $(".secMenu").click(function () {
-        console.log($(this).text());
-        //$('#myModalNewss').modal('show');
+        $('.loading').show();
         
        switch($(this).text()) {
             case "INGRESAR":
@@ -117,6 +116,7 @@ $(".cremados").mouseenter(function () {
     $(this).popover('show');
 
     $(".secMenu").click(function () {
+        $('.loading').show();
    
        switch($(this).text()) {
             case "INGRESAR":
@@ -166,8 +166,7 @@ $(".bajoTierra").mouseenter(function () {
     $(this).popover('show');
 
     $(".secMenu").click(function () {
-        console.log($(this).text());
-        //$('#myModalNewss').modal('show');
+       $('.loading').show();
         
        switch($(this).text()) {
             case "INGRESAR":

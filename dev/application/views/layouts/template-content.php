@@ -144,6 +144,9 @@
                 <!-- END RESPONSIVE QUICK SEARCH FORM -->
                 <!-- BEGIN SIDEBAR MENU -->
                 <ul class="sidebar-menu">
+                    <?php
+                    if($this->session->userdata('rol') == "Administrador"){
+                    ?>
                     <li class="has-sub">
                         <a href="javascript:;" class="">
                             <span class="icon-box"> <i class="icon-dashboard"></i></span>Admin Registros
@@ -167,16 +170,19 @@
 
                         </ul>
                     </li>
+                    <?php
+                    }
+                    ?>
                     <li class="has-sub">
                         <a href="javascript:;" class="">
-                            <span class="icon-box"> <i class="icon-dashboard"></i></span>UI Formularios
+                            <span class="icon-box"> <i class="icon-dashboard"></i></span>Mapa y Reportes
                             <span class="arrow"></span>
                         </a>
                         <ul class="sub">
                             <!--<li><a class="formSolicitante" href="javascript:void(0)">Solicitantes</a></li>
                             <li><a class="" href="<?php echo base_url() . "home/showFormDifunto"; ?>">Difuntos</a></li>-->
-                            <li><a class="" href="<?php echo base_url() . "home"; ?>">Interfaz Mapa</a></li>
-							<li><a class="" href="<?php echo base_url() . "reportes"; ?>">Reportes</a></li>
+                            <li><a class="" href="<?php echo base_url() . "home"; ?>">Mapa de Bloques</a></li>
+			    <li><a class="" href="<?php echo base_url() . "reportes"; ?>">Reportes Registros</a></li>
                             
                         </ul>
                     </li>

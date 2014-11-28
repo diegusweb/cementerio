@@ -4,13 +4,13 @@
 <table style="width:600px;">
 <tr>
 <td width="150" align="center"><div id="uno" class="solicitud_off"></div></td>
-<td width="150" align="center"><div id="dos" class="formDifunto difunto"></div></td>
-<td width="150" align="center"><div id="tres" class="tramite_off"></div></td>
+<td width="150" align="center"><div id="dos" class="formDifunto difunto_off"></div></td>
+<td width="150" align="center"><div id="tres" class="tramite"></div></td>
 </tr>
 <tr>
 <td width="150" align="center">Formulario Solicitante</td>
-<td width="150" align="center"><b><a href="javascript:void(0);" class="formDifunto">Formulario Difunto</a></b></td>
-<td width="150" align="center">Formulario Tramite</td>
+<td width="150" align="center">Formulario Difunt</td>
+<td width="150" align="center"><b><a href="javascript:void(0);" class="formDifunto">Formulario Tramiteo</a></b></td>
 </tr>
 </table>
 

@@ -14,12 +14,11 @@ class Home extends CI_Controller {
         //boorrar
         //$this->session->set_userdata('id_solitantes', 2);
         //$this->session->set_userdata('id_difuntos', 1);
-		
-		///$this->session->set_userdata('id_users', 2);
-		$this->verifyLogin();
+        ///$this->session->set_userdata('id_users', 2);
+        $this->verifyLogin();
     }
-	
-	public function verifyLogin() {
+
+    public function verifyLogin() {
         $user_id = $this->session->userdata('username');
         if (empty($user_id)) {
             redirect(base_url() . "login", 'outside');
@@ -32,6 +31,20 @@ class Home extends CI_Controller {
         $data['bloque_cremado'] = $this->home_model->getBloqueCremado();
         $data['bloque_bajo_tierra'] = $this->home_model->getBloqueBajoTierra();
         $this->layout->view('index', $data);
+    }
+    
+    function showDifuntoView()
+    {
+         if (empty($id_difunto)) {
+              $this->load->view('ErrorDifunto');
+         }
+    }
+    
+    function showTRamiteView()
+    {
+         if (empty($id_difunto)) {
+              $this->load->view('ErrorTramite');
+         }
     }
 
     function showFormAddNichoBloque($id) {
@@ -63,12 +76,12 @@ class Home extends CI_Controller {
 
     function AddTramiteNicho() {
         $data['id_bloque'] = $_POST['id_bloque'];
-		$data['id_users'] = (int) $this->session->userdata('id_users');
+        $data['id_users'] = (int) $this->session->userdata('id_users');
         $data['id_solicitante'] = (int) $this->session->userdata('id_solitantes');
         $data['id_difunto'] = (int) $this->session->userdata('id_difuntos');
         $data['tramite'] = $_POST['tramite'];
         $data['bloque'] = "Nicho";
-		$data['bloque_nombre'] = $_POST['bloque'];
+        $data['bloque_nombre'] = $_POST['bloque'];
         $data['piso'] = $_POST['piso'];
         $data['lado'] = $_POST['lado'];
         $data['nro_nicho'] = $_POST['numeroNicho'];
@@ -101,12 +114,12 @@ class Home extends CI_Controller {
         $difunto = $this->home_model->seacrhDifunto($_POST['numeroNicho']);
 
         $data['id_bloque'] = $_POST['id_bloque'];
-		$data['id_users'] = (int) $this->session->userdata('id_users');
+        $data['id_users'] = (int) $this->session->userdata('id_users');
         $data['id_solicitante'] = (int) $this->session->userdata('id_solitantes');
         $data['id_difunto'] = $difunto;
         $data['tramite'] = $_POST['tramite'];
         $data['bloque'] = "Nicho";
-		$data['bloque_nombre'] = $_POST['bloque'];
+        $data['bloque_nombre'] = $_POST['bloque'];
         $data['piso'] = $_POST['piso'];
         $data['lado'] = $_POST['lado'];
         $data['nro_nicho'] = $_POST['numeroNicho'];
@@ -232,12 +245,12 @@ class Home extends CI_Controller {
         $difunto = $this->home_model->seacrhDifunto($_POST['numeroNicho']);
 
         $data['id_bloque'] = $_POST['id_bloque'];
-		$data['id_users'] = (int) $this->session->userdata('id_users');
+        $data['id_users'] = (int) $this->session->userdata('id_users');
         $data['id_solicitante'] = (int) $this->session->userdata('id_solitantes');
         $data['id_difunto'] = $difunto;
         $data['tramite'] = $_POST['tramite'];
         $data['bloque'] = "Nicho";
-		$data['bloque_nombre'] = $_POST['bloque'];
+        $data['bloque_nombre'] = $_POST['bloque'];
         $data['piso'] = $_POST['piso'];
         $data['lado'] = $_POST['lado'];
         $data['clase'] = $_POST['clase'];
@@ -269,12 +282,12 @@ class Home extends CI_Controller {
         $difunto = $this->home_model->seacrhDifunto($_POST['numeroNicho']);
 
         $data['id_bloque'] = $_POST['id_bloque'];
-		$data['id_users'] = (int) $this->session->userdata('id_users');
+        $data['id_users'] = (int) $this->session->userdata('id_users');
         $data['id_solicitante'] = (int) $this->session->userdata('id_solitantes');
         $data['id_difunto'] = $difunto;
         $data['tramite'] = utf8_encode($_POST['tramite']);
         $data['bloque'] = "Nicho";
-		$data['bloque_nombre'] = $_POST['bloque'];
+        $data['bloque_nombre'] = $_POST['bloque'];
         $data['piso'] = $_POST['piso'];
         $data['lado'] = $_POST['lado'];
         $data['clase'] = $_POST['clase'];
@@ -296,19 +309,18 @@ class Home extends CI_Controller {
     function showFormAutorizacionContrCripta() {
         $this->load->view('AddContruccionCripta');
     }
-  
 
     function AddTramiteNichoCremacion() {
         //buscar difunto
         $difunto = $this->home_model->seacrhDifunto($_POST['numeroNicho']);
 
         $data['id_bloque'] = $_POST['id_bloque'];
-		$data['id_users'] = (int) $this->session->userdata('id_users');
+        $data['id_users'] = (int) $this->session->userdata('id_users');
         $data['id_solicitante'] = (int) $this->session->userdata('id_solitantes');
         $data['id_difunto'] = $difunto;
         $data['tramite'] = $_POST['tramite'];
         $data['bloque'] = "Nicho";
-		$data['bloque_nombre'] = $_POST['bloque'];
+        $data['bloque_nombre'] = $_POST['bloque'];
         $data['piso'] = $_POST['piso'];
         $data['lado'] = $_POST['lado'];
         $data['nro_nicho'] = $_POST['numeroNicho'];
@@ -339,78 +351,76 @@ class Home extends CI_Controller {
 
         $this->layout->view('Comprobante', $tramite);
     }
-	
-	public function conertirLetras(){
-		$num = $_POST['letras'];
 
-		$letras = strtoupper($this->enletras->ValorEnLetras($num,"Bs"));
+    public function conertirLetras() {
+        $num = $_POST['letras'];
 
-		echo $letras;	
-	}
-	
-	//mausoleos
-	public function showFormAddDMausoleo($id){
-		$id_solicitante = (int) $this->session->userdata('id_solitantes');
+        $letras = strtoupper($this->enletras->ValorEnLetras($num, "Bs"));
+
+        echo $letras;
+    }
+
+    //mausoleos
+    public function showFormAddDMausoleo($id) {
+        $id_solicitante = (int) $this->session->userdata('id_solitantes');
         $id_difunto = (int) $this->session->userdata('id_difuntos');
 
         if (!empty($id_solicitante)) {
             if (!empty($id_difunto)) {
                 $datas = $this->home_model->getInfoMausoleo($id);
-				
-                //llenar tramite mausoleo
-				$data['id_bloque'] = $datas[0]['id_bloque_mausoleo'];
-				$data['id_users'] = (int) $this->session->userdata('id_users');
-				$data['id_solicitante'] = (int) $this->session->userdata('id_solitantes');
-				$data['id_difunto'] = (int) $this->session->userdata('id_difuntos');
-				$data['tramite'] = "Ingresar a Mausoleo";
-				$data['bloque'] = "Mausoleo";
-				$data['bloque_nombre'] = $datas[0]['nombre'];
-				$data['tipo_nicho'] = "";
-				$data['pagado'] = 0;
 
-				$d = $this->home_model->addTramiteNicho($data);
-				if ($d > 0) {
-					$this->session->set_userdata('id_solitantes', 0);
-					$this->session->set_userdata('id_difuntos', 0);
-					echo $d;
-				} else
-					echo 0;
-				
-				
+                //llenar tramite mausoleo
+                $data['id_bloque'] = $datas[0]['id_bloque_mausoleo'];
+                $data['id_users'] = (int) $this->session->userdata('id_users');
+                $data['id_solicitante'] = (int) $this->session->userdata('id_solitantes');
+                $data['id_difunto'] = (int) $this->session->userdata('id_difuntos');
+                $data['tramite'] = "Ingresar a Mausoleo";
+                $data['bloque'] = "Mausoleo";
+                $data['bloque_nombre'] = $datas[0]['nombre'];
+                $data['tipo_nicho'] = "";
+                $data['pagado'] = 0;
+
+                $d = $this->home_model->addTramiteNicho($data);
+                if ($d > 0) {
+                    $this->session->set_userdata('id_solitantes', 0);
+                    $this->session->set_userdata('id_difuntos', 0);
+                    echo $d;
+                } else
+                    echo 0;
             } else {
                 $this->load->view('ErrorDifunto');
             }
         } else {
             $this->load->view('ErrorSolicitante');
         }
-	}
-	
-	public function showFormExhumarMausoleo($id){
-		$id_solicitante = (int) $this->session->userdata('id_solitantes');
-		
+    }
+
+    public function showFormExhumarMausoleo($id) {
+        $id_solicitante = (int) $this->session->userdata('id_solitantes');
+
         if (!empty($id_solicitante)) {
             $data['bloque_info'] = $this->home_model->getInfoMausoleo($id);
-			$data['difuntos_info'] = $this->home_model->getDifuntosMausoleo($id);
+            $data['difuntos_info'] = $this->home_model->getDifuntosMausoleo($id);
 
             $this->load->view('AddExhumacionesMausoleo', $data);
         } else {
             $this->load->view('ErrorSolicitante');
         }
-	}
-	
-	function AddTramiteMausoleoExumacion() {
-	
-		$dataa['status'] = 'inactivo';	
-		$d = $this->home_model->updateStatusDifunto($_POST['id_bloque'], $_POST['difunto'], "Mausoleo", $dataa);
-		
+    }
+
+    function AddTramiteMausoleoExumacion() {
+
+        $dataa['status'] = 'inactivo';
+        $d = $this->home_model->updateStatusDifunto($_POST['id_bloque'], $_POST['difunto'], "Mausoleo", $dataa);
+
 
         $data['id_bloque'] = $_POST['id_bloque'];
-		$data['id_users'] = (int) $this->session->userdata('id_users');
+        $data['id_users'] = (int) $this->session->userdata('id_users');
         $data['id_solicitante'] = (int) $this->session->userdata('id_solitantes');
         $data['id_difunto'] = $_POST['difunto'];
         $data['tramite'] = $_POST['tramite'];
         $data['bloque'] = "Mausoleo";
-		$data['bloque_nombre'] = $_POST['bloque'];       
+        $data['bloque_nombre'] = $_POST['bloque'];
         $data['tipo_nicho'] = $_POST['tipo'];
         $data['costo'] = $_POST['costo'];
         $data['pagado'] = 0;
@@ -423,29 +433,29 @@ class Home extends CI_Controller {
         } else
             echo 0;
     }
-	
-	public function showFormLapidaMausoleo($id){
-		$id_solicitante = (int) $this->session->userdata('id_solitantes');
-		
+
+    public function showFormLapidaMausoleo($id) {
+        $id_solicitante = (int) $this->session->userdata('id_solitantes');
+
         if (!empty($id_solicitante)) {
             $data['bloque_info'] = $this->home_model->getInfoMausoleo($id);
-			$data['difuntos_info'] = $this->home_model->getDifuntosMausoleo($id);
+            $data['difuntos_info'] = $this->home_model->getDifuntosMausoleo($id);
 
             $this->load->view('AddLapidaMausoleo', $data);
         } else {
             $this->load->view('ErrorSolicitante');
         }
-	}
-	
-	public function AddTramiteMausoleoLapida($id){
-	
-		$data['id_bloque'] = $_POST['id_bloque'];
-		$data['id_users'] = (int) $this->session->userdata('id_users');
+    }
+
+    public function AddTramiteMausoleoLapida($id) {
+
+        $data['id_bloque'] = $_POST['id_bloque'];
+        $data['id_users'] = (int) $this->session->userdata('id_users');
         $data['id_solicitante'] = (int) $this->session->userdata('id_solitantes');
         $data['id_difunto'] = $_POST['difunto'];
         $data['tramite'] = utf8_encode($_POST['tramite']);
         $data['bloque'] = "Mausoleo";
-		$data['bloque_nombre'] = $_POST['bloque'];       
+        $data['bloque_nombre'] = $_POST['bloque'];
         $data['clase'] = $_POST['clase'];
         $data['costo'] = $_POST['costo'];
         $data['pagado'] = 0;
@@ -457,18 +467,18 @@ class Home extends CI_Controller {
             echo $d;
         } else
             echo 0;
-	}
-	
-	//cremados
-	function showFormCremaciones($id) {
+    }
+
+    //cremados
+    function showFormCremaciones($id) {
         $id_solicitante = (int) $this->session->userdata('id_solitantes');
         $id_difunto = (int) $this->session->userdata('id_difuntos');
 
         if (!empty($id_solicitante)) {
             if (!empty($id_difunto)) {
                 $data['bloque_info'] = $this->home_model->getInfoCremado($id);
-		
-				$this->load->view('AddCremaciones', $data);	
+
+                $this->load->view('AddCremaciones', $data);
             } else {
                 $this->load->view('ErrorDifunto');
             }
@@ -476,15 +486,15 @@ class Home extends CI_Controller {
             $this->load->view('ErrorSolicitante');
         }
     }
-	
-	public function AddTramiteCremacion(){
-		$data['id_bloque'] = $_POST['id_bloque'];
-		$data['id_users'] = (int) $this->session->userdata('id_users');
+
+    public function AddTramiteCremacion() {
+        $data['id_bloque'] = $_POST['id_bloque'];
+        $data['id_users'] = (int) $this->session->userdata('id_users');
         $data['id_solicitante'] = (int) $this->session->userdata('id_solitantes');
         $data['id_difunto'] = (int) $this->session->userdata('id_difuntos');
         $data['tramite'] = utf8_encode($_POST['tramite']);
         $data['bloque'] = "Cremados";
-		$data['bloque_nombre'] = $_POST['bloque'];       
+        $data['bloque_nombre'] = $_POST['bloque'];
         $data['tipo_nicho'] = $_POST['tipo'];
         $data['costo'] = $_POST['costo'];
         $data['pagado'] = 0;
@@ -496,34 +506,34 @@ class Home extends CI_Controller {
             echo $d;
         } else
             echo 0;
-	}
-	
-	public function showFormExhumarCremaciones($id){
-		$id_solicitante = (int) $this->session->userdata('id_solitantes');
-		
+    }
+
+    public function showFormExhumarCremaciones($id) {
+        $id_solicitante = (int) $this->session->userdata('id_solitantes');
+
         if (!empty($id_solicitante)) {
             $data['bloque_info'] = $this->home_model->getInfoCremado($id);
-			$data['difuntos_info'] = $this->home_model->getDifuntosCremados($id);
+            $data['difuntos_info'] = $this->home_model->getDifuntosCremados($id);
 
             $this->load->view('AddExhumacionesCremados', $data);
         } else {
             $this->load->view('ErrorSolicitante');
         }
-	}
-	
-	public function AddTramiteCremadosExumacion() {
-	
-		$dataa['status'] = 'inactivo';	
-		$d = $this->home_model->updateStatusDifunto($_POST['id_bloque'], $_POST['difunto'],"Cremados", $dataa);
-		
+    }
+
+    public function AddTramiteCremadosExumacion() {
+
+        $dataa['status'] = 'inactivo';
+        $d = $this->home_model->updateStatusDifunto($_POST['id_bloque'], $_POST['difunto'], "Cremados", $dataa);
+
 
         $data['id_bloque'] = $_POST['id_bloque'];
-		$data['id_users'] = (int) $this->session->userdata('id_users');
+        $data['id_users'] = (int) $this->session->userdata('id_users');
         $data['id_solicitante'] = (int) $this->session->userdata('id_solitantes');
         $data['id_difunto'] = $_POST['difunto'];
         $data['tramite'] = $_POST['tramite'];
         $data['bloque'] = "Cremados";
-		$data['bloque_nombre'] = $_POST['bloque'];       
+        $data['bloque_nombre'] = $_POST['bloque'];
         $data['tipo_nicho'] = $_POST['tipo'];
         $data['costo'] = $_POST['costo'];
         $data['pagado'] = 0;
@@ -536,32 +546,32 @@ class Home extends CI_Controller {
         } else
             echo 0;
     }
-	
-	public function showFormRenovarCremaciones($id){
-		$id_solicitante = (int) $this->session->userdata('id_solitantes');
-		
+
+    public function showFormRenovarCremaciones($id) {
+        $id_solicitante = (int) $this->session->userdata('id_solitantes');
+
         if (!empty($id_solicitante)) {
             $data['bloque_info'] = $this->home_model->getInfoCremado($id);
-			$data['difuntos_info'] = $this->home_model->getDifuntosCremados($id);
+            $data['difuntos_info'] = $this->home_model->getDifuntosCremados($id);
 
             $this->load->view('AddRenovarCremados', $data);
         } else {
             $this->load->view('ErrorSolicitante');
         }
-	}
-	
-	public function AddTramiteCremadosRenovar() {
-	
-		///$dataa['status'] = 'inactivo';	
-		//$d = $this->home_model->updateStatusDifunto($_POST['id_bloque'], $_POST['difunto'],"Cremados", $dataa);
-		
+    }
+
+    public function AddTramiteCremadosRenovar() {
+
+        ///$dataa['status'] = 'inactivo';	
+        //$d = $this->home_model->updateStatusDifunto($_POST['id_bloque'], $_POST['difunto'],"Cremados", $dataa);
+
         $data['id_bloque'] = $_POST['id_bloque'];
-		$data['id_users'] = (int) $this->session->userdata('id_users');
+        $data['id_users'] = (int) $this->session->userdata('id_users');
         $data['id_solicitante'] = (int) $this->session->userdata('id_solitantes');
         $data['id_difunto'] = $_POST['difunto'];
         $data['tramite'] = $_POST['tramite'];
         $data['bloque'] = "Cremados";
-		$data['bloque_nombre'] = $_POST['bloque'];       
+        $data['bloque_nombre'] = $_POST['bloque'];
         $data['tipo_nicho'] = $_POST['tipo'];
         $data['costo'] = $_POST['costo'];
         $data['pagado'] = 0;
@@ -574,17 +584,17 @@ class Home extends CI_Controller {
         } else
             echo 0;
     }
-	
-	//Ingresar Sitio tierra
-	function showFormSitioTierra($id) {
+
+    //Ingresar Sitio tierra
+    function showFormSitioTierra($id) {
         $id_solicitante = (int) $this->session->userdata('id_solitantes');
         $id_difunto = (int) $this->session->userdata('id_difuntos');
 
         if (!empty($id_solicitante)) {
             if (!empty($id_difunto)) {
                 $data['bloque_info'] = $this->home_model->getInfoSitioTierra($id);
-		
-				$this->load->view('AddSitioTierra', $data);	
+
+                $this->load->view('AddSitioTierra', $data);
             } else {
                 $this->load->view('ErrorDifunto');
             }
@@ -592,16 +602,16 @@ class Home extends CI_Controller {
             $this->load->view('ErrorSolicitante');
         }
     }
-	
-	public function AddTramiteBajoTierra() {
-	
+
+    public function AddTramiteBajoTierra() {
+
         $data['id_bloque'] = $_POST['id_bloque'];
-		$data['id_users'] = (int) $this->session->userdata('id_users');
+        $data['id_users'] = (int) $this->session->userdata('id_users');
         $data['id_solicitante'] = (int) $this->session->userdata('id_solitantes');
         $data['id_difunto'] = (int) $this->session->userdata('id_difuntos');
         $data['tramite'] = $_POST['tramite'];
         $data['bloque'] = "Sitio Tierra";
-		$data['bloque_nombre'] = $_POST['bloque'];       
+        $data['bloque_nombre'] = $_POST['bloque'];
         $data['tipo_nicho'] = $_POST['tipo'];
         $data['costo'] = $_POST['costo'];
         $data['pagado'] = 0;
@@ -614,33 +624,33 @@ class Home extends CI_Controller {
         } else
             echo 0;
     }
-	
-	public function showFormExhumarSitioTierra($id){
-		$id_solicitante = (int) $this->session->userdata('id_solitantes');
-		
-        if (empty($id_solicitante)) {
+
+    public function showFormExhumarSitioTierra($id) {
+        $id_solicitante = (int) $this->session->userdata('id_solitantes');
+
+        if (!empty($id_solicitante)) {
             $data['bloque_info'] = $this->home_model->getInfoSitioTierra($id);
-			$data['difuntos_info'] = $this->home_model->getDifuntosSitioTierra($id);
+            $data['difuntos_info'] = $this->home_model->getDifuntosSitioTierra($id);
 
             $this->load->view('AddExhumacionesTierra', $data);
         } else {
             $this->load->view('ErrorSolicitante');
         }
-	}
-	
-	public function AddTramiteSitioTierraExumacion() {
-	
-		$dataa['status'] = 'inactivo';	
-		$d = $this->home_model->updateStatusDifunto($_POST['id_bloque'], $_POST['difunto'],"Sitio Tierra", $dataa);
-		
+    }
+
+    public function AddTramiteSitioTierraExumacion() {
+
+        $dataa['status'] = 'inactivo';
+        $d = $this->home_model->updateStatusDifunto($_POST['id_bloque'], $_POST['difunto'], "Sitio Tierra", $dataa);
+
 
         $data['id_bloque'] = $_POST['id_bloque'];
-		$data['id_users'] = (int) $this->session->userdata('id_users');
+        $data['id_users'] = (int) $this->session->userdata('id_users');
         $data['id_solicitante'] = (int) $this->session->userdata('id_solitantes');
         $data['id_difunto'] = $_POST['difunto'];
         $data['tramite'] = $_POST['tramite'];
         $data['bloque'] = "Sitio Tierra";
-		$data['bloque_nombre'] = $_POST['bloque'];       
+        $data['bloque_nombre'] = $_POST['bloque'];
         $data['tipo_nicho'] = $_POST['tipo'];
         $data['costo'] = $_POST['costo'];
         $data['pagado'] = 0;
@@ -653,29 +663,29 @@ class Home extends CI_Controller {
         } else
             echo 0;
     }
-	
-	public function showFormRenovarSitioTierra($id){
-		$id_solicitante = (int) $this->session->userdata('id_solitantes');
-		
+
+    public function showFormRenovarSitioTierra($id) {
+        $id_solicitante = (int) $this->session->userdata('id_solitantes');
+
         if (!empty($id_solicitante)) {
             $data['bloque_info'] = $this->home_model->getInfoSitioTierra($id);
-			$data['difuntos_info'] = $this->home_model->getDifuntosSitioTierra($id);
+            $data['difuntos_info'] = $this->home_model->getDifuntosSitioTierra($id);
 
             $this->load->view('AddRenovarSitioTierra', $data);
         } else {
             $this->load->view('ErrorSolicitante');
         }
-	}
-	
-	public function AddTramiteSitioTierraRenovar() {
-	
+    }
+
+    public function AddTramiteSitioTierraRenovar() {
+
         $data['id_bloque'] = $_POST['id_bloque'];
-		$data['id_users'] = (int) $this->session->userdata('id_users');
+        $data['id_users'] = (int) $this->session->userdata('id_users');
         $data['id_solicitante'] = (int) $this->session->userdata('id_solitantes');
         $data['id_difunto'] = $_POST['difunto'];
         $data['tramite'] = $_POST['tramite'];
         $data['bloque'] = "Sitio Tierra";
-		$data['bloque_nombre'] = $_POST['bloque'];       
+        $data['bloque_nombre'] = $_POST['bloque'];
         $data['tipo_nicho'] = $_POST['tipo'];
         $data['costo'] = $_POST['costo'];
         $data['pagado'] = 0;
@@ -688,18 +698,18 @@ class Home extends CI_Controller {
         } else
             echo 0;
     }
-	
-	public function showFormCriptaSitioTierra($id){
-		$id_solicitante = (int) $this->session->userdata('id_solitantes');
-		
+
+    public function showFormCriptaSitioTierra($id) {
+        $id_solicitante = (int) $this->session->userdata('id_solitantes');
+
         if (!empty($id_solicitante)) {
             $data['bloque_info'] = $this->home_model->getInfoSitioTierra($id);
-			$data['difuntos_info'] = $this->home_model->getDifuntosSitioTierra($id);
+            $data['difuntos_info'] = $this->home_model->getDifuntosSitioTierra($id);
 
             $this->load->view('AddCriptaSitioTierra', $data);
         } else {
             $this->load->view('ErrorSolicitante');
         }
-	}
-	
+    }
+
 }
