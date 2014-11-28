@@ -56,7 +56,7 @@ class Home extends CI_Controller {
                 $data['bloque_info'] = $this->home_model->getInfoBloqueNicho($id);
                 //$data['nicho_info'] = $this->home_model->getBloqueNicho();
                 $this->load->view('AddNichoBloque', $data);
-            } else {
+            } else { 
                 $this->load->view('ErrorDifunto');
             }
         } else {
@@ -447,7 +447,7 @@ class Home extends CI_Controller {
         }
     }
 
-    public function AddTramiteMausoleoLapida($id) {
+    public function AddTramiteMausoleoLapida() {
 
         $data['id_bloque'] = $_POST['id_bloque'];
         $data['id_users'] = (int) $this->session->userdata('id_users');

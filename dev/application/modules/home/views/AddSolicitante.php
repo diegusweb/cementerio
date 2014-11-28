@@ -98,26 +98,28 @@
                 data: $('#add-form').serialize(),
                 success: function (msg) {
                     if (msg > 0) {
-                        $('#myModalAddSolicitante').modal('hide');
+                        $('#myModalError').modal('hide');
                         //alert("Se ingreso correctamente");
                         
-                        /* $('.loading').show();
-                        var urlInfo = base_url + "home/showDifuntoView/";
-                            $("#contentDemoDif").load(urlInfo, function () {
-                                $('#myModalAddDifuncto').modal('show');
-                                 $('.loading').hide();
-                            });*/
+                       /*$('#myModalError').modal('hide');
+                        $('.loading').show();
+                          var urlInfo = base_url + "home/showDifuntoView/";
+                           $("#contentDemoM").load(urlInfo, function () {
+                               $('#myModalError').modal('show');
+                               $('#myModalError #myModalLabel').html("Pasos de Registro");
+                               $('.loading').hide();
+                           });*/
                     }
                 },
                 error: function (msg) {
                     alert("Error");
                 }
             });
-
         }
     });
 
 </script>
+
 <form class="cform-form form-horizontal"  id="add-form" method="POST">
 
     <div class="control-group">

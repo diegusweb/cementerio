@@ -1,4 +1,4 @@
-<b>Debe Llenar el fomulario de Solicitante para empezar</b>
+<b>Debe Llenar el formualrio marcado</b>
 <br><br>
 <!--<b><a href="javascript:void(0);" class="formSolicitante">Formulario Solicitante</a></b>-->
 
@@ -22,9 +22,10 @@ $('.formSolicitante').click(function(){
  $('#myModalAddForm').modal('hide');
   $('.loading').show();
     var urlInfo = base_url + "home/showFormSolicitante/";
-        $("#contentDemoSol").load(urlInfo, function () {
+        $("#contentDemoM").load(urlInfo, function () {
             $('.loading').hide();
-            $('#myModalAddSolicitante').modal('show');
+            $('#myModalError #myModalLabel').html("Registro Solicitante");
+            $('#myModalError').modal('show');
         });
 });
 

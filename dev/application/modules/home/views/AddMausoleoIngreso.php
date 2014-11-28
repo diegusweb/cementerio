@@ -24,7 +24,6 @@
             }
         },
         messages: {
-
         },
         errorClass: "help-inline",
         errorElement: "span",
@@ -62,11 +61,11 @@
                 success: function (msg) {
                     if (msg > 0) {
                         $('#myModalAddForm').modal('hide');
-			$('#myModalComprobante').modal('show');
-                        
-                        var link = base_url+"home/comprobante/"+msg;
-                        var link2 = link.replace(/\s/g,'');
-                        $('#myModalComprobante #contentIdComprobante').html("<a href='"+link2+"' class='linkComprobante'>Ver comprobante</a>");                      
+                        $('#myModalComprobante').modal('show');
+
+                        var link = base_url + "home/comprobante/" + msg;
+                        var link2 = link.replace(/\s/g, '');
+                        $('#myModalComprobante #contentIdComprobante').html("<a href='" + link2 + "' class='linkComprobante'>Ver comprobante</a>");
                     }
                 },
                 error: function (msg) {
@@ -76,36 +75,36 @@
 
         }
     });
-	
-	 var piso = 0;
-	 
-	 $('#piso').change(function () {
-	 
+
+    var piso = 0;
+
+    $('#piso').change(function () {
+
         piso = $(this).attr('value');
-	 });
+    });
 
     $('#lado').change(function () {
         var lado = 0;
         lado = $(this).attr('value');
-		
+
         if (lado > 0) {
             //creamos un objeto JSON
             var datos = {
                 lado: $(this).val(),
                 idBloque: <?php echo $bloque_info[0]['id_bloque_nicho']; ?>,
-				piso: piso
+                piso: piso
             };
 
-            $.post("<?php echo base_url() . "home/getNichoslibres"; ?>", datos, function(nichos) {
-             
-                var $comboNichoLibres = $("#nichoLibres");          
+            $.post("<?php echo base_url() . "home/getNichoslibres"; ?>", datos, function (nichos) {
+
+                var $comboNichoLibres = $("#nichoLibres");
                 $comboNichoLibres.empty();
                 var nn = nichos.nicho_info;
-             
-                $.each(nn, function(index, v) {          
-                   $comboNichoLibres.append("<option value="+v['id_nicho']+">" + v['nicho'] + "</option>");
+
+                $.each(nn, function (index, v) {
+                    $comboNichoLibres.append("<option value=" + v['id_nicho'] + ">" + v['nicho'] + "</option>");
                 });
-             }, 'json');
+            }, 'json');
         }
         else
         {
@@ -115,53 +114,53 @@
         }
 
     });
-	
-	var clase;
-	var tiempo;
-	var tramite;
-	
-	$('#clase').change(function () {        
-        clase = $(this).attr('value');		
-	});
-	$('#tiempo').change(function () {        
-        tiempo = $(this).attr('value');		
-	});
-	
-	$('#tramite').change(function () {        
-        tramite = $(this).attr('value');		
-	});
-	
-	$('#generarCosto').click(function(){
-		console.log(tramite + " "+clase+" "+tiempo)		
-		if(tramite != "Anexion Nicho Perpetuidad"){
-			if(clase == "1ra Clase"){
-				if(tiempo == "Perpetuidad"){
-					$('#costo').val($('#costo_perpetuidad_1_clase').val());
-				}
-				if(tiempo == "5 años"){
-					$('#costo').val($('#costo_5_year_1_clase').val());
-				}
-			}
-			if(clase == "2ra Clase"){
-				if(tiempo == "Perpetuidad"){
-					$('#costo').val($('#costo_perpetuidad_2_clase').val());
-				}
-				if(tiempo == "5 años"){
-					$('#costo').val($('#costo_5_year_2_clase').val());
-				}
-			}
-		}
-		else{
-			if(clase == "1ra Clase"){
-				$('#costo').val("253");
-			}
-			if(clase == "2ra Clase"){
-				$('#costo').val("203");
-			}
-		}
-	
-	});
-	
+
+    var clase;
+    var tiempo;
+    var tramite;
+
+    $('#clase').change(function () {
+        clase = $(this).attr('value');
+    });
+    $('#tiempo').change(function () {
+        tiempo = $(this).attr('value');
+    });
+
+    $('#tramite').change(function () {
+        tramite = $(this).attr('value');
+    });
+
+    $('#generarCosto').click(function () {
+        console.log(tramite + " " + clase + " " + tiempo)
+        if (tramite != "Anexion Nicho Perpetuidad") {
+            if (clase == "1ra Clase") {
+                if (tiempo == "Perpetuidad") {
+                    $('#costo').val($('#costo_perpetuidad_1_clase').val());
+                }
+                if (tiempo == "5 aï¿½os") {
+                    $('#costo').val($('#costo_5_year_1_clase').val());
+                }
+            }
+            if (clase == "2ra Clase") {
+                if (tiempo == "Perpetuidad") {
+                    $('#costo').val($('#costo_perpetuidad_2_clase').val());
+                }
+                if (tiempo == "5 aï¿½os") {
+                    $('#costo').val($('#costo_5_year_2_clase').val());
+                }
+            }
+        }
+        else {
+            if (clase == "1ra Clase") {
+                $('#costo').val("253");
+            }
+            if (clase == "2ra Clase") {
+                $('#costo').val("203");
+            }
+        }
+
+    });
+
 </script>
 <form class="cform-form form-horizontal"  id="add-form" method="POST">
 
@@ -191,7 +190,7 @@
             </select>
         </div>
     </div>
-	<div class="control-group">
+    <div class="control-group">
         <label class="control-label" for="inputRol">Tipo</label>
         <div class="controls">
             <select class="form-control" id="tipo" name="tipo">
@@ -219,26 +218,26 @@
             <select class="form-control" id="tiempo" name="tiempo">
                 <option value="">Seleccione un Tiempo</option>
                 <option value="Perpetuidad">Perpetuidad</option>
-                <option value="5 años">5 años</option>
+                <option value="5 aï¿½os">5 aï¿½os</option>
             </select>
         </div>
     </div>
 
-   <!--<div class="control-group">
-        <label class="control-label" for="inputRol">Fecha Tramite</label>
-        <div class="controls">
-            <input type="datetime" class="form-control" placeholder="Text input" id="fechaTramite" name="fechaTramite">
-        </div>
-    </div> -->
+    <!--<div class="control-group">
+         <label class="control-label" for="inputRol">Fecha Tramite</label>
+         <div class="controls">
+             <input type="datetime" class="form-control" placeholder="Text input" id="fechaTramite" name="fechaTramite">
+         </div>
+     </div> -->
 
     <div class="control-group">
         <label class="control-label" for="inputRol">Costo</label>
         <div class="controls">
-			<input type="hidden" class="form-control"  id="costo_perpetuidad_1_clase" value="<?php echo $bloque_info[0]['costo_perpetuidad_1_clase']; ?>">
+            <input type="hidden" class="form-control"  id="costo_perpetuidad_1_clase" value="<?php echo $bloque_info[0]['costo_perpetuidad_1_clase']; ?>">
             <input type="hidden" class="form-control"  id="costo_perpetuidad_2_clase" value="<?php echo $bloque_info[0]['costo_perpetuidad_2_clase']; ?>">
-			<input type="hidden" class="form-control"  id="costo_5_year_1_clase" value="<?php echo $bloque_info[0]['costo_5_year_1_clase']; ?>">
-			<input type="hidden" class="form-control"  id="costo_5_year_2_clase" value="<?php echo $bloque_info[0]['costo_5_year_2_clase']; ?>">
-			<div><input type="text" class="form-control"  style="width:60px!important" id="costo" name="costo" readonly="true"> Bs <div id="generarCosto"  style="width:60px!important; float: left;">Generar costo</div></div>
+            <input type="hidden" class="form-control"  id="costo_5_year_1_clase" value="<?php echo $bloque_info[0]['costo_5_year_1_clase']; ?>">
+            <input type="hidden" class="form-control"  id="costo_5_year_2_clase" value="<?php echo $bloque_info[0]['costo_5_year_2_clase']; ?>">
+            <div><input type="text" class="form-control"  style="width:60px!important" id="costo" name="costo" readonly="true"> Bs <div id="generarCosto"  style="width:60px!important; float: left;">Generar costo</div></div>
         </div>
     </div>
 

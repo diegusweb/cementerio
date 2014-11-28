@@ -106,7 +106,7 @@
                 data: $('#add-form-dif').serialize(),
                 success: function(mmsg) {
                     if (mmsg > 0) {
-                        $('#myModalAddDifuncto').modal('hide');                  
+                        $('#myModalError').modal('hide');                  
                     }
                 },
                 error: function(mmsg) {
@@ -128,7 +128,10 @@
 		});
 	  });
 
+
 </script>
+
+
 <form class="cform-form form-horizontal"  id="add-form-dif" method="POST">
     <div class="control-group">
         <label class="control-label" for="inputUsuario">Oficialia</label>

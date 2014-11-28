@@ -1,4 +1,3 @@
-
 <!DOCTYPE html>
 <!--[if IE 8]> <html lang="en" class="ie8"> <![endif]-->
 <!--[if IE 9]> <html lang="en" class="ie9"> <![endif]-->
@@ -232,7 +231,7 @@
                 App.init();
             });
         </script>
-        <div id="myModalAddSolicitante" class="modal hide fade" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+        <!--<div id="myModalAddSolicitante" class="modal hide fade" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
             <div class="modal-header">
                 <button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
                 <h3 id="myModalLabel">Registro Solicitante</h3>
@@ -240,15 +239,15 @@
             <div class="modal-body">
                 <p id="contentDemoSol">One fine body…</p>
             </div>
-        </div>
+        </div>-->
         
-        <div id="myModalAddDifuncto" class="modal hide fade" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+        <div id="myModalError" class="modal hide fade" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
             <div class="modal-header">
                 <button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
                 <h3 id="myModalLabel">Registro Difunto</h3>
             </div>
             <div class="modal-body">
-                <p id="contentDemoDif">One fine body…</p>
+                <p id="contentDemoM">One fine body…</p>
             </div>
         </div>
     </body>
