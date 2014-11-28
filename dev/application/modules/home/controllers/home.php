@@ -204,6 +204,11 @@ class Home extends CI_Controller {
 		$send['form'] = $this->uri->segment(4);
 		$send['pag'] = $this->uri->segment(5);
 		
+		//diego
+		$sends = $this->home_model->getSolicitante((int)$this->session->userdata('id_solitantes'));
+		$send['nombre'] = $sends[0]['nombre']." ".$sends[0]['apellido'];
+		$send['ci'] = $sends[0]['ci'];
+		
         $this->load->view('AddDifunto',$send);
     }
 

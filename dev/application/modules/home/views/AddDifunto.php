@@ -150,7 +150,6 @@
 
 </script>
 
-
 <form class="cform-form form-horizontal"  id="add-form-dif" method="POST">
     <div class="control-group">
         <label class="control-label" for="inputUsuario">Oficialia</label>
@@ -292,13 +291,13 @@
 	<div class="control-group">
         <label class="control-label" for="inputPassword">Nombre y apellido de la persona que pidio inscripcion</label>
         <div class="controls">
-            <input type="text" id="nombreCompletoInscripcion" name="nombreCompletoInscripcion" value="" >
+            <input type="text" id="nombreCompletoInscripcion" name="nombreCompletoInscripcion" value="<?php echo $nombre;?>" >
         </div>
     </div>
     <div class="control-group">
         <label class="control-label" for="inputPassword">CI</label>
         <div class="controls">
-            <input type="text" id="ciInscripcion" name="ciInscripcion" value="" >
+            <input type="text" id="ciInscripcion" name="ciInscripcion" value="<?php echo $ci;?>" >
         </div>
     </div>
     <div class="control-group">
