@@ -76,8 +76,10 @@
                                         </i>
                                     </span>
                                 </div></td>
-                            <td width="337" rowspan="3" class="contT">
-                                <button id="buscar"  type="submit"  class="btn btn-primary btn-lg active">Mostrar Reportes</button>
+                            <td width="337"  class="contT">
+                                Funcuionario : <select name="funcionario" id="funcionario">
+                                    <option value="todos">todos</option>
+                                </select>
                             </td>
                         </tr>
                         <tr>
@@ -89,13 +91,9 @@
                                         </i>
                                     </span>
                                 </div></td>
+								<td><button id="buscar"  type="submit"  class="btn btn-primary btn-lg active">Mostrar Reportes</button></td>
                         </tr>
-                        <tr>
-                            <td width="218" class="contT">Funcuionario</td>
-                            <td width="337" class="contT"><select name="funcionario" id="funcionario">
-                                    <option value="todos">todos</option>
-                                </select> </td>
-                        </tr>
+    
                         <tr>
                             <td colspan="3" class="contenidoReportes">&nbsp;</td>
                         </tr>

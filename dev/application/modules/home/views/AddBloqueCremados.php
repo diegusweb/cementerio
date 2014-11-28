@@ -175,7 +175,7 @@
 	<div class="control-group">
         <label class="control-label" for="inputRol">Costo</label>
         <div class="controls">
-			<input type="text" class="form-control" placeholder="Text input" id="costo" name="costo">
+			<input type="text" class="form-control" placeholder="Text input" id="costo" name="costo"  readonly="true"> Bs
         </div>
     </div>
 	

@@ -431,7 +431,7 @@ class Home extends CI_Controller {
                 if ($d > 0) {
                     $this->session->set_userdata('id_solitantes', 0);
                     $this->session->set_userdata('id_difuntos', 0);
-                    echo $d;
+                    echo "Se registro Correctamente.";
                 } else
                     echo 0;
             } else {
