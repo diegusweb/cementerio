@@ -90,7 +90,7 @@
     <div class="control-group">
         <label class="control-label" for="inputUsuario">Tramite</label>
         <div class="controls">
-            <input type="text" id="tramite" name="tramite" value="A&ntilde;adir Lapida" readonly="true">
+            <input type="text" id="tramite" name="tramite" value="Colocacion de Lapida" readonly="true">
         </div>
     </div>
     <div class="control-group">
