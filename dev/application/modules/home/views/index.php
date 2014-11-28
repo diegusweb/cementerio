@@ -1,7 +1,7 @@
 <style>
     .contenidoMapa{
         width: 1020px;
-        height: 700px;
+        height: 623px;
         background-color: #E0DFE3;
         position: absolute;
         display: block;
