@@ -126,7 +126,7 @@
                                         <td class="hidden-phone"><?php echo utf8_decode($row['tramite']); ?></td>
                                         <td class="hidden-phone"><?php echo $row['clase']; ?></td>
                                         <td class="hidden-phone"><?php echo $row['tipo_nicho']; ?></td>
-                                        <td class="hidden-phone"><?php echo $row['nro_nicho']; ?></td>
+                                        <td class="hidden-phone"><?php echo ($row['nro_nicho'] > 0)?$row['nro_nicho']:""; ?></td>
                                         <td class="hidden-phone"><?php echo $row['bloque']; ?></td>
                                         <td class="hidden-phone"><?php echo $row['bloque_nombre']; ?></td>
                                         <td class="hidden-phone"><?php $caras = array("Norte", "Sud", "Este", "Oeste");
