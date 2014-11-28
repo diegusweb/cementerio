@@ -4,7 +4,7 @@
             tramite: {
                 required: true
             },
-            piso: {
+            difunto: {
                 required: true
             },
             lado: {

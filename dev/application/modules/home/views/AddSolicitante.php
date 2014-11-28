@@ -99,16 +99,33 @@
                 success: function (msg) {
                     if (msg > 0) {
                         $('#myModalError').modal('hide');
-                        //alert("Se ingreso correctamente");
-                        
-                       /*$('#myModalError').modal('hide');
-                        $('.loading').show();
-                          var urlInfo = base_url + "home/showDifuntoView/";
-                           $("#contentDemoM").load(urlInfo, function () {
-                               $('#myModalError').modal('show');
-                               $('#myModalError #myModalLabel').html("Pasos de Registro");
-                               $('.loading').hide();
-                           });*/
+
+                        var form = <?php echo $form;?>;
+						var pag = urlControllers[<?php echo $pag;?>-1];
+						
+						if(form == 1){							
+							$('.loading').show();
+							   var urlInfo = base_url + "home/"+pag+"/" + <?php echo $id;?>+"/"+form;
+							   $("#contentDemoadd").load(urlInfo, function () {
+								   $('#myModalAddForm').modal('show');
+								   $('#myModalAddForm #myModalLabel').html("Pasos de Registross");
+								   $('.loading').hide();
+								   
+							   });
+						}
+						else{
+							alert("asdas");
+							$('#myModalError').modal('hide');
+							$('.loading').show();
+							   var urlInfo = base_url + "home/"+pag+"/" + <?php echo $id;?>+"/"+form;
+							   $("#contentDemoadd").load(urlInfo, function () {
+								   $('#myModalAddForm').modal('show');
+								   $('#myModalAddForm #myModalLabel').html("Registro Form");
+								   $('.loading').hide();
+								   
+							   });
+						}
+						
                     }
                 },
                 error: function (msg) {

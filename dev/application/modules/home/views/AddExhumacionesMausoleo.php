@@ -7,7 +7,7 @@
             piso: {
                 required: true
             },
-            lado: {
+            difunto: {
                 required: true,
             },
             tipo: {

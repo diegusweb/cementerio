@@ -19,7 +19,8 @@
 $('.formDifunto').click(function(){
  $('#myModalAddForm').modal('hide');
   $('.loading').show();
-    var urlInfo = base_url + "home/showFormDifunto/";
+    //var urlInfo = base_url + "home/showFormDifunto/";
+	var urlInfo = base_url + "home/showFormDifunto/"+<?php echo $id;?>+"/"+<?php echo $form;?>+"/"+<?php echo $pag;?>;
         $("#contentDemoM").load(urlInfo, function () {
            
             $('#myModalError').modal('show');

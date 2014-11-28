@@ -47,30 +47,44 @@ class Home extends CI_Controller {
          }
     }
 
-    function showFormAddNichoBloque($id) {
+    function showFormAddNichoBloque() {
+	
+		$id = $this->uri->segment(3);
+		$form = $this->uri->segment(4);
+		
+		$send['id'] = $id;
+		$send['form'] = $form;
+		$send['pag'] = 1;
+		
         $id_solicitante = (int) $this->session->userdata('id_solitantes');
-        $id_difunto = (int) $this->session->userdata('id_difuntos');
+        $id_difunto = (int) $this->session->userdata('id_difuntos');		
 
         if (!empty($id_solicitante)) {
             if (!empty($id_difunto)) {
                 $data['bloque_info'] = $this->home_model->getInfoBloqueNicho($id);
-                //$data['nicho_info'] = $this->home_model->getBloqueNicho();
                 $this->load->view('AddNichoBloque', $data);
             } else { 
-                $this->load->view('ErrorDifunto');
+                $this->load->view('ErrorDifunto',$send);
             }
         } else {
-            $this->load->view('ErrorSolicitante');
+            $this->load->view('ErrorSolicitante',$send);
         }
     }
 
-    function showFormAddExhumarBloque($id) {
+    function showFormAddExhumarBloque() {
+		$id = $this->uri->segment(3);
+		$form = $this->uri->segment(4);
+		
+		$send['id'] = $id;
+		$send['form'] = $form;
+		$send['pag'] = 2;
+		
         $id_solicitante = (int) $this->session->userdata('id_solitantes');
         if (!empty($id_solicitante)) {
             $data['bloque_info'] = $this->home_model->getInfoBloqueNicho($id);
             $this->load->view('AddExhumacionesBloque', $data);
         } else {
-            $this->load->view('ErrorSolicitante');
+            $this->load->view('ErrorSolicitante',$send);
         }
     }
 
@@ -159,7 +173,10 @@ class Home extends CI_Controller {
 
     //form solicitante
     function showFormSolicitante() {
-        $this->load->view('AddSolicitante');
+		$send['id'] = $this->uri->segment(3);
+		$send['form'] = $this->uri->segment(4);
+		$send['pag'] = $this->uri->segment(5);
+        $this->load->view('AddSolicitante',$send);
     }
 
     function addSolicitante() {
@@ -183,7 +200,11 @@ class Home extends CI_Controller {
     }
 
     function showFormDifunto() {
-        $this->load->view('AddDifunto');
+		$send['id'] = $this->uri->segment(3);
+		$send['form'] = $this->uri->segment(4);
+		$send['pag'] = $this->uri->segment(5);
+		
+        $this->load->view('AddDifunto',$send);
     }
 
     function showFormAddDifuncto() {
@@ -226,7 +247,14 @@ class Home extends CI_Controller {
         $this->load->view('AddExhumacionesTierra');
     }
 
-    function showFormAddLapidaBloque($id) {
+    function showFormAddLapidaBloque() {
+		$id = $this->uri->segment(3);
+		$form = $this->uri->segment(4);
+		
+		$send['id'] = $id;
+		$send['form'] = $form;
+		$send['pag'] = 4;
+		
         $id_solicitante = (int) $this->session->userdata('id_solitantes');
         //$id_difunto = (int) $this->session->userdata('id_difuntos');
 
@@ -235,7 +263,7 @@ class Home extends CI_Controller {
             //$data['nicho_info'] = $this->home_model->getBloqueNicho();
             $this->load->view('AddLapidaBloque', $data);
         } else {
-            $this->load->view('ErrorSolicitante');
+            $this->load->view('ErrorSolicitante',$send);
         }
     }
 
@@ -267,13 +295,20 @@ class Home extends CI_Controller {
             echo 0;
     }
 
-    function showFormRenovacionNicho($id) {
+    function showFormRenovacionNicho() {
+		$id = $this->uri->segment(3);
+		$form = $this->uri->segment(4);
+		
+		$send['id'] = $id;
+		$send['form'] = $form;
+		$send['pag'] = 3;
+		
         $id_solicitante = (int) $this->session->userdata('id_solitantes');
         if (!empty($id_solicitante)) {
             $data['bloque_info'] = $this->home_model->getInfoBloqueNicho($id);
             $this->load->view('AddRenovacionNicho', $data);
         } else {
-            $this->load->view('ErrorSolicitante');
+            $this->load->view('ErrorSolicitante',$send);
         }
     }
 
@@ -361,7 +396,14 @@ class Home extends CI_Controller {
     }
 
     //mausoleos
-    public function showFormAddDMausoleo($id) {
+    public function showFormAddDMausoleo() {
+		$id = $this->uri->segment(3);
+		$form = $this->uri->segment(4);
+		
+		$send['id'] = $id;
+		$send['form'] = $form;
+		$send['pag'] = 5;
+		
         $id_solicitante = (int) $this->session->userdata('id_solitantes');
         $id_difunto = (int) $this->session->userdata('id_difuntos');
 
@@ -388,14 +430,21 @@ class Home extends CI_Controller {
                 } else
                     echo 0;
             } else {
-                $this->load->view('ErrorDifunto');
+                $this->load->view('ErrorDifunto',$send);
             }
         } else {
-            $this->load->view('ErrorSolicitante');
+            $this->load->view('ErrorSolicitante',$send);
         }
     }
 
-    public function showFormExhumarMausoleo($id) {
+    public function showFormExhumarMausoleo() {
+		$id = $this->uri->segment(3);
+		$form = $this->uri->segment(4);
+		
+		$send['id'] = $id;
+		$send['form'] = $form;
+		$send['pag'] = 6;
+		
         $id_solicitante = (int) $this->session->userdata('id_solitantes');
 
         if (!empty($id_solicitante)) {
@@ -404,7 +453,7 @@ class Home extends CI_Controller {
 
             $this->load->view('AddExhumacionesMausoleo', $data);
         } else {
-            $this->load->view('ErrorSolicitante');
+            $this->load->view('ErrorSolicitante',$send);
         }
     }
 
@@ -434,7 +483,14 @@ class Home extends CI_Controller {
             echo 0;
     }
 
-    public function showFormLapidaMausoleo($id) {
+    public function showFormLapidaMausoleo() {
+		$id = $this->uri->segment(3);
+		$form = $this->uri->segment(4);
+		
+		$send['id'] = $id;
+		$send['form'] = $form;
+		$send['pag'] = 7;
+		
         $id_solicitante = (int) $this->session->userdata('id_solitantes');
 
         if (!empty($id_solicitante)) {
@@ -443,7 +499,7 @@ class Home extends CI_Controller {
 
             $this->load->view('AddLapidaMausoleo', $data);
         } else {
-            $this->load->view('ErrorSolicitante');
+            $this->load->view('ErrorSolicitante',$send);
         }
     }
 
@@ -470,7 +526,14 @@ class Home extends CI_Controller {
     }
 
     //cremados
-    function showFormCremaciones($id) {
+    function showFormCremaciones() {
+		$id = $this->uri->segment(3);
+		$form = $this->uri->segment(4);
+		
+		$send['id'] = $id;
+		$send['form'] = $form;
+		$send['pag'] = 8;
+		
         $id_solicitante = (int) $this->session->userdata('id_solitantes');
         $id_difunto = (int) $this->session->userdata('id_difuntos');
 
@@ -480,10 +543,10 @@ class Home extends CI_Controller {
 
                 $this->load->view('AddCremaciones', $data);
             } else {
-                $this->load->view('ErrorDifunto');
+                $this->load->view('ErrorDifunto',$send);
             }
         } else {
-            $this->load->view('ErrorSolicitante');
+            $this->load->view('ErrorSolicitante',$send);
         }
     }
 
@@ -508,7 +571,14 @@ class Home extends CI_Controller {
             echo 0;
     }
 
-    public function showFormExhumarCremaciones($id) {
+    public function showFormExhumarCremaciones() {
+		$id = $this->uri->segment(3);
+		$form = $this->uri->segment(4);
+		
+		$send['id'] = $id;
+		$send['form'] = $form;
+		$send['pag'] = 9;
+		
         $id_solicitante = (int) $this->session->userdata('id_solitantes');
 
         if (!empty($id_solicitante)) {
@@ -517,7 +587,7 @@ class Home extends CI_Controller {
 
             $this->load->view('AddExhumacionesCremados', $data);
         } else {
-            $this->load->view('ErrorSolicitante');
+            $this->load->view('ErrorSolicitante',$send);
         }
     }
 
@@ -547,7 +617,14 @@ class Home extends CI_Controller {
             echo 0;
     }
 
-    public function showFormRenovarCremaciones($id) {
+    public function showFormRenovarCremaciones() {
+		$id = $this->uri->segment(3);
+		$form = $this->uri->segment(4);
+		
+		$send['id'] = $id;
+		$send['form'] = $form;
+		$send['pag'] = 10;
+		
         $id_solicitante = (int) $this->session->userdata('id_solitantes');
 
         if (!empty($id_solicitante)) {
@@ -556,7 +633,7 @@ class Home extends CI_Controller {
 
             $this->load->view('AddRenovarCremados', $data);
         } else {
-            $this->load->view('ErrorSolicitante');
+            $this->load->view('ErrorSolicitante',$send);
         }
     }
 
@@ -586,7 +663,14 @@ class Home extends CI_Controller {
     }
 
     //Ingresar Sitio tierra
-    function showFormSitioTierra($id) {
+    function showFormSitioTierra() {
+		$id = $this->uri->segment(3);
+		$form = $this->uri->segment(4);
+		
+		$send['id'] = $id;
+		$send['form'] = $form;
+		$send['pag'] = 11;
+		
         $id_solicitante = (int) $this->session->userdata('id_solitantes');
         $id_difunto = (int) $this->session->userdata('id_difuntos');
 
@@ -596,10 +680,10 @@ class Home extends CI_Controller {
 
                 $this->load->view('AddSitioTierra', $data);
             } else {
-                $this->load->view('ErrorDifunto');
+                $this->load->view('ErrorDifunto',$send);
             }
         } else {
-            $this->load->view('ErrorSolicitante');
+            $this->load->view('ErrorSolicitante',$send);
         }
     }
 
@@ -625,7 +709,14 @@ class Home extends CI_Controller {
             echo 0;
     }
 
-    public function showFormExhumarSitioTierra($id) {
+    public function showFormExhumarSitioTierra() {
+		$id = $this->uri->segment(3);
+		$form = $this->uri->segment(4);
+		
+		$send['id'] = $id;
+		$send['form'] = $form;
+		$send['pag'] = 12;
+		
         $id_solicitante = (int) $this->session->userdata('id_solitantes');
 
         if (!empty($id_solicitante)) {
@@ -634,7 +725,7 @@ class Home extends CI_Controller {
 
             $this->load->view('AddExhumacionesTierra', $data);
         } else {
-            $this->load->view('ErrorSolicitante');
+            $this->load->view('ErrorSolicitante',$send);
         }
     }
 
@@ -664,7 +755,14 @@ class Home extends CI_Controller {
             echo 0;
     }
 
-    public function showFormRenovarSitioTierra($id) {
+    public function showFormRenovarSitioTierra() {
+		$id = $this->uri->segment(3);
+		$form = $this->uri->segment(4);
+		
+		$send['id'] = $id;
+		$send['form'] = $form;
+		$send['pag'] = 13;
+		
         $id_solicitante = (int) $this->session->userdata('id_solitantes');
 
         if (!empty($id_solicitante)) {
@@ -673,7 +771,7 @@ class Home extends CI_Controller {
 
             $this->load->view('AddRenovarSitioTierra', $data);
         } else {
-            $this->load->view('ErrorSolicitante');
+            $this->load->view('ErrorSolicitante',$send);
         }
     }
 
@@ -699,7 +797,14 @@ class Home extends CI_Controller {
             echo 0;
     }
 
-    public function showFormCriptaSitioTierra($id) {
+    public function showFormCriptaSitioTierra() {
+		$id = $this->uri->segment(3);
+		$form = $this->uri->segment(4);
+		
+		$send['id'] = $id;
+		$send['form'] = $form;
+		$send['pag'] = 14;
+		
         $id_solicitante = (int) $this->session->userdata('id_solitantes');
 
         if (!empty($id_solicitante)) {
@@ -708,7 +813,7 @@ class Home extends CI_Controller {
 
             $this->load->view('AddCriptaSitioTierra', $data);
         } else {
-            $this->load->view('ErrorSolicitante');
+            $this->load->view('ErrorSolicitante',$send);
         }
     }
 

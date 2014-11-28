@@ -21,7 +21,7 @@
 $('.formSolicitante').click(function(){
  $('#myModalAddForm').modal('hide');
   $('.loading').show();
-    var urlInfo = base_url + "home/showFormSolicitante/";
+    var urlInfo = base_url + "home/showFormSolicitante/"+<?php echo $id;?>+"/"+<?php echo $form;?>+"/"+<?php echo $pag;?>;
         $("#contentDemoM").load(urlInfo, function () {
             $('.loading').hide();
             $('#myModalError #myModalLabel').html("Registro Solicitante");

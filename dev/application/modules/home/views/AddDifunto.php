@@ -106,7 +106,24 @@
                 data: $('#add-form-dif').serialize(),
                 success: function(mmsg) {
                     if (mmsg > 0) {
-                        $('#myModalError').modal('hide');                  
+                        $('#myModalError').modal('hide');     
+
+                        var form = <?php echo $form;?>;
+						var pag = urlControllers[<?php echo $pag;?>-1];
+						
+						if(form == 1){							
+							$('.loading').show();
+							   var urlInfo = base_url + "home/"+pag+"/" + <?php echo $id;?>+"/"+form;
+							   $("#contentDemoadd").load(urlInfo, function () {
+								   $('#myModalAddForm').modal('show');
+								   $('#myModalAddForm #myModalLabel').html("Pasos de Registross");
+								   $('.loading').hide();
+								   
+							   });
+						}
+						else{
+							
+						}						
                     }
                 },
                 error: function(mmsg) {
@@ -127,6 +144,8 @@
 		  pickTime: false
 		});
 	  });
+	  
+
 
 
 </script>
