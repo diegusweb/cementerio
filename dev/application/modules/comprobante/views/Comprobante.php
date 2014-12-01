@@ -4,11 +4,12 @@
         color: #fff;
         background-color: #05B2D2;
         padding-left: 5px;
+		text-align:center;
     }
     
     .cont{
         font-size: 14px;
-		border-radius: 15px;
+		border-radius:10px;
     }
     
     .contT{
@@ -43,17 +44,34 @@
 	
 <p><h4  style="width:640px; text-align: center; padding-top:25px; padding-bottom:25px;">COMPROBANTE<h4/></p>
 
-<table width="640" border="1" class="cont" cellpadding="0" cellspacing="0">
-  <tr>
-      <td width="196" class="title">Nro.  CARNET</td>
-    <td width="475" class="title">NOMBRE Y APELLIDO O RAZON SOCIAL</td>
-  </tr>
-  <tr>
-    <td class="contT"><?php echo $tramite[0]['ci']?></td>
-    <td class="contT"><?php echo $tramite[0]['nombre']." ".$tramite[0]['apellido']?></td>
-  </tr>
-  </table>
+<div style="border: 1px solid #333; width:588px; height:50px; padding:6px;" class="cont">
+  <div style="float:left; border: 1px solid #333; width:150px; height:50px; border-radius:10px;">
+      <div class="title">Nro.  CARNET</div>
+      <div><?php echo $tramite[0]['ci']?></div>
+  </div>
+  <div style="float:right; border: 1px solid #333; width:420px; height:50px; border-radius:10px;">
+     <div class="title">NOMBRE Y APELLIDO O RAZON SOCIAL</div>
+    <div><?php echo $tramite[0]['nombre']." ".$tramite[0]['apellido']?></div>
+  </div>
+</div>
+  
+  
+  
 <p>&nbsp;</p>
+<div style="border: 1px solid #333; width:588px; height:50px; padding:6px;" class="cont">
+  <div style="float:left; width: 170px;">
+    <div  class="title">DIRECCION</div>
+	 <div class="title">ACTIVIDAD</div>
+  </div>
+  <div style="float:left; width: 170px;">
+   
+
+  </div>
+  <div style="float:left; width: 170px;">
+
+  </div>
+</div>
+<br><br>
 <table width="640" border="1"  class="cont"  cellpadding="0" cellspacing="0">
   <tr>
     <td width="87" class="title">DIRECCION</td>
