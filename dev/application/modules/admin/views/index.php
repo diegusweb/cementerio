@@ -152,6 +152,7 @@
                 </div>-->
             </div>
         </div><!-- /.row -->
+		<h4><?php echo $this->session->userdata('seccion');?></h4>
         <div>
             <?php echo $output; ?>
         </div>

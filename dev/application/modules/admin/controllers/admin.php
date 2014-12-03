@@ -25,6 +25,8 @@ class Admin extends CI_Controller {
 
     public function users_management() {
         //$this->session->set_userdata('page', 'Proveedores');
+		
+		$this->session->set_userdata('seccion',"Administración de Usuarios");
 
         $crud = new grocery_CRUD();
 
@@ -48,6 +50,8 @@ class Admin extends CI_Controller {
     }
 
     public function bloque_mausoleo_management() {
+	
+	$this->session->set_userdata('seccion',"Administración de Bloque Mausoleo");
         $crud = new grocery_CRUD();
 
         $crud->set_theme('datatables');
@@ -69,6 +73,7 @@ class Admin extends CI_Controller {
     }
 
     public function bloque_cremados_management() {
+	$this->session->set_userdata('seccion',"Administración de Bloque Cremados");
         $crud = new grocery_CRUD();
 
         $crud->set_theme('datatables');
@@ -97,6 +102,7 @@ class Admin extends CI_Controller {
     }
 
     public function bloque_tierra_management() {
+	$this->session->set_userdata('seccion',"Administración de Sitio Tierra");
         $crud = new grocery_CRUD();
 
         $crud->set_theme('datatables');
@@ -122,6 +128,7 @@ class Admin extends CI_Controller {
 
     public function bloque_nicho_management() {
         //$this->session->set_userdata('page', 'Proveedores');
+		$this->session->set_userdata('seccion',"Administración de Bloque Nichos");
 
         $crud = new grocery_CRUD();
 
@@ -164,30 +171,27 @@ class Admin extends CI_Controller {
         $crud->callback_add_field('costo_5_year_1_clase', function () {
             return 'Costo <input type="text" maxlength="15" style="width:80px!important" value="" name="costo_5_year_1_clase"> Ejm: 123.51';
         });
-        $crud->callback_edit_field('costo_5_year_1_clase', function () {
-            return 'Costo <input type="text" maxlength="15"  style="width:80px!important" value="" name="costo_5_year_1_clase"> Ejm: 123.51';
-        });
+		 $crud->callback_edit_field('costo_5_year_1_clase', array($this, 'edit_costo_5_year_1_clase'));
 
         $crud->callback_add_field('costo_5_year_2_clase', function () {
             return 'Costo <input type="text" maxlength="15" style="width:80px!important" value="" name="costo_5_year_2_clase"> Ejm: 123.51';
         });
-        $crud->callback_edit_field('costo_5_year_2_clase', function () {
-            return 'Costo <input type="text" maxlength="15"  style="width:80px!important" value="" name="costo_5_year_2_clase"> Ejm: 123.51';
-        });
+$crud->callback_edit_field('costo_5_year_2_clase', array($this, 'edit_costo_5_year_2_clase'));
 
         $crud->callback_add_field('costo_perpetuidad_1_clase', function () {
             return 'Costo <input type="text" maxlength="15" style="width:80px!important" value="" name="costo_perpetuidad_1_clase"> Ejm: 123.51';
         });
-        $crud->callback_edit_field('costo_perpetuidad_1_clase', function () {
-            return 'Costo <input type="text" maxlength="15"  style="width:80px!important" value="" name="costo_perpetuidad_1_clase"> Ejm: 123.51';
-        });
+		
+		$crud->callback_edit_field('costo_perpetuidad_1_clase', array($this, 'edit_costo_perpetuidad_1_clase'));
+
 
         $crud->callback_add_field('costo_perpetuidad_2_clase', function () {
             return 'Costo <input type="text" maxlength="15"  style="width:80px!important" value="" name="costo_perpetuidad_2_clase"> Ejm: 123.51';
         });
-        $crud->callback_edit_field('costo_perpetuidad_2_clase', function () {
-            return 'Costo <input type="text" maxlength="15"  style="width:80px!important" value="" name="costo_perpetuidad_2_clase"> Ejm: 123.51';
-        });
+$crud->callback_edit_field('costo_perpetuidad_2_clase', array($this, 'edit_costo_perpetuidad_2_clase'));
+		
+		//edit
+		
 
         $crud->display_as('create_date', 'Fechas');
 
@@ -203,6 +207,22 @@ class Admin extends CI_Controller {
     function edit_field_callback_nicho($value, $primary_key) {
         return '<input type="text" maxlength="10" class="positionSet" style="width:50px!important" value="' . $value . '" name="position"> <a href="#" class="infoSucursalDiv">Situar en mapa </a>';
     }
+	
+	function edit_costo_5_year_1_clase($value, $primary_key) {
+        return 'Costo <input type="text" maxlength="15"  style="width:80px!important" value="'.$value.'" name="costo_5_year_1_clase"> Ejm: 123.51';
+	}
+				
+	function edit_costo_5_year_2_clase($value, $primary_key) {
+        return 'Costo <input type="text" maxlength="15"  style="width:80px!important" value="'.$value.'" name="costo_5_year_1_clase"> Ejm: 123.51';
+	}
+	
+	function edit_costo_perpetuidad_1_clase($value, $primary_key) {
+        return 'Costo <input type="text" maxlength="15"  style="width:80px!important" value="'.$value.'" name="costo_perpetuidad_1_clase"> Ejm: 123.51';
+	}
+
+	function edit_costo_perpetuidad_2_clase($value, $primary_key) {
+        return 'Costo <input type="text" maxlength="15"  style="width:80px!important" value="'.$value.'" name="costo_perpetuidad_2_clase"> Ejm: 123.51';
+	}	
 
     public function tramites_management() {
         $crud = new grocery_CRUD();
