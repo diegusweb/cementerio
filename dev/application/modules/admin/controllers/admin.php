@@ -167,6 +167,8 @@ class Admin extends CI_Controller {
         $crud->display_as('costo_5_year_2_clase', '2.clase 5 años');
         $crud->display_as('costo_perpetuidad_1_clase', '1.clase perpetuidad');
         $crud->display_as('costo_perpetuidad_2_clase', '2.clase perpetuidad');
+		
+		$crud->display_as('numero_nichos', 'Numero nichos por fila');
 
         $crud->callback_add_field('costo_5_year_1_clase', function () {
             return 'Costo <input type="text" maxlength="15" style="width:80px!important" value="" name="costo_5_year_1_clase"> Ejm: 123.51';

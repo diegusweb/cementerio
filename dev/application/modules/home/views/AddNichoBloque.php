@@ -103,7 +103,8 @@
                 var nn = nichos.nicho_info;
              
                 $.each(nn, function(index, v) {          
-                   $comboNichoLibres.append("<option value="+v['id_nicho']+">" + v['nicho'] + "</option>");
+                   //$comboNichoLibres.append("<option value="+v['id_nicho']+">" + v['nicho'] + "</option>");
+				   $comboNichoLibres.append("<option value="+v['id_nicho']+">" + v['nicho'] + "</option>");
                 });
              }, 'json');
         }
@@ -201,7 +202,7 @@
     <div class="control-group">
         <label class="control-label" for="inputRol">Lado</label>
         <div class="controls">
-            <select class="form-control" id="lado" name="lado">
+            <select class="form-control" id="lado" name="lado" data-lado="<?php echo $bloque_info[0]['numero_filas'];?>">
                  <option value="">Seleccione un lado</option>
             <?php
             $caras =  array("Norte", "Sud", "Este", "Oeste");

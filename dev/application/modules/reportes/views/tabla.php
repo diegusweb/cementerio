@@ -77,7 +77,7 @@
                                     </span>
                                 </div></td>
                             <td width="337"  class="contT">
-                                Funcuionario : <select name="funcionario" id="funcionario">
+                                Funcionario : <select name="funcionario" id="funcionario">
                                     <option value="todos">todos</option>
                                 </select>
                             </td>
