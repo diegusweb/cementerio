@@ -105,6 +105,8 @@
                                 <tr>
                                     <th bgcolor="#32c2cd" class="hidden-phone titl"><div align="center">Nombre</div></th>
                                     <th bgcolor="#32c2cd" class="hidden-phone titl"><div align="center">Concepto</div></th>
+									<th bgcolor="#32c2cd" class="hidden-phone titl"><div align="center">F. Tramite</div></th>
+                                    <th bgcolor="#32c2cd" class="hidden-phone titl"><div align="center">Responsable</div></th>
                                     <th bgcolor="#32c2cd" class="hidden-phone titl"><div align="center">Clase</div></th>
                                     <th bgcolor="#32c2cd" class="hidden-phone titl"><div align="center">Cuerpo</div></th>
                                     <th bgcolor="#32c2cd" class="hidden-phone titl"><div align="center">Nicho </div></th>
@@ -122,8 +124,10 @@
                                 foreach ($tramite as $row) {
                                     ?>
                                     <tr class="odd gradeX">
-                                        <td class="hidden-phone"><?php echo $row['nombre'] . " " . $row['apellido']; ?></td>
+										<td class="hidden-phone"><?php echo $row['nombre'] . " " . $row['apellido']; ?></td>
                                         <td class="hidden-phone"><?php echo utf8_decode($row['tramite']); ?></td>
+										 <td class="hidden-phone"><?php echo $row['fecha_tramite']; ?></td>
+                                        <td class="hidden-phone"><?php echo $row['user_nombre']." ".$row['user_apellido']; ?></td>
                                         <td class="hidden-phone"><?php echo $row['clase']; ?></td>
                                         <td class="hidden-phone"><?php echo $row['tipo_nicho']; ?></td>
                                         <td class="hidden-phone"><?php echo ($row['nro_nicho'] > 0)?$row['nro_nicho']:""; ?></td>
