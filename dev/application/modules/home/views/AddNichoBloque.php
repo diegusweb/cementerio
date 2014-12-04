@@ -21,6 +21,9 @@
             },
             costo: {
                 required: true,
+            },
+			numeroNichoView: {
+                required: true,
             }
         },
         messages: {
@@ -62,7 +65,7 @@
                 success: function (msg) {
                     if (msg > 0) {
                         $('#myModalAddForm').modal('hide');
-			$('#myModalComprobante').modal('show');
+						$('#myModalComprobante').modal('show');
                         
                         var link = base_url+"home/comprobante/"+msg;
                         var link2 = link.replace(/\s/g,'');
@@ -109,10 +112,16 @@
                var i=1;
                var salto = (parseInt($('#lado').attr('data-nicho')));
                 var to = (parseInt($('#lado').attr('data-nicho')))*(parseInt($('#lado').attr('data-fila')));
+				
+				$('#numeroNicho').val('');
+				$('#numeroNichoView').val('');
                 
                 $.each(nn, function(index, v) {          
                    //$comboNichoLibres.append("<option value="+v['id_nicho']+">" + v['nicho'] + "</option>");
-                   $dibujoNichoLibres.append("<li value="+v['id_nicho']+">" + v['nicho'] + "</li>");
+				   var estado = (v['estado'] == "Libre")? "libre": "ocupado";
+				   var box = (v['nicho'] < 10)? "padding-left: 14px; padding-right: 13px;": "5px;";
+				   
+                   $dibujoNichoLibres.append("<li class="+estado+' '+box+" data-id="+v['id_nicho']+" style='"+box+"'>" + v['nicho'] + "</li>");
                    if(i==salto){
                        $dibujoNichoLibres.append("<br>");
                        i=0;
@@ -180,6 +189,12 @@
 	
 	});
 	
+	
+	 $( "#navegador" ).on("click","li.libre", function(event) {    
+		$('#numeroNicho').val($(this).attr('data-id'));
+		$('#numeroNichoView').val($(this).text());
+    });
+	
 </script>
 
 <style>
@@ -190,8 +205,9 @@
 #navegador li{
    display: inline;
    text-align: center;
-padding: 3px 10px 1px;
+padding: 2px 10px 1px;
      border: 1px solid;
+	 cursor:pointer;
 }
 #navegador li a {
    padding: 2px 7px 2px 7px;
@@ -203,6 +219,27 @@ padding: 3px 10px 1px;
 #navegador li a:hover{
    background-color: #333333;
    color: #ffffff;
+}
+
+#navegador .libre{
+	background-color: #fff;
+}
+
+#navegador .ocupado{
+	background-color: #ff0000;
+}
+
+#navegador .boxX{
+	padding-left:5px;
+}
+
+#navegador .boxL{
+	
+}
+
+ul, ol {
+    margin: 0;
+    padding: 0;
 }
 </style>
 
@@ -258,9 +295,8 @@ padding: 3px 10px 1px;
     <div class="control-group">
         <label class="control-label" for="inputRol">Numero de nicho Disponible</label>
         <div class="controls">
-            <ul id="navegador" style="width: 30px; height: 40px;"</ul> 
-            <select class="form-control" id="nichoLibres"  name="numeroNicho">
-            </select>
+			<input type="text" class="form-control" style="width:15px;" id="numeroNichoView" value="" name="numeroNichoView" readonly="true">
+            <ul id="navegador" style="width: 30px; height: auto;"</ul>            
         </div>
     </div>
 	<div class="control-group">
@@ -306,6 +342,7 @@ padding: 3px 10px 1px;
     <div class="control-group">
         <label class="control-label" for="inputRol">Costo</label>
         <div class="controls">
+			<input type="hidden" class="form-control"  id="numeroNicho" value="">
 			<input type="hidden" class="form-control"  id="costo_perpetuidad_1_clase" value="<?php echo $bloque_info[0]['costo_perpetuidad_1_clase']; ?>">
             <input type="hidden" class="form-control"  id="costo_perpetuidad_2_clase" value="<?php echo $bloque_info[0]['costo_perpetuidad_2_clase']; ?>">
 			<input type="hidden" class="form-control"  id="costo_5_year_1_clase" value="<?php echo $bloque_info[0]['costo_5_year_1_clase']; ?>">
