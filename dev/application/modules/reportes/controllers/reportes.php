@@ -44,5 +44,17 @@ class Reportes extends CI_Controller {
         $bloque['users'] = $this->reportes_model->getFuncionarios();
         echo json_encode($bloque);
     }
+    
+    public function showSolicitante($id){
+          $data['info'] = $this->reportes_model->getInfoSol($id);
+           // $data['difuntos_info'] = $this->home_model->getDifuntosSitioTierra($id);
+           $this->load->view('solicitud', $data);
+    }
+    
+    public function showDifunto($id){
+          $data['info'] = $this->reportes_model->getInfoDifunto($id);
+           // $data['difuntos_info'] = $this->home_model->getDifuntosSitioTierra($id);
+           $this->load->view('difunto', $data);
+    }
 
 }

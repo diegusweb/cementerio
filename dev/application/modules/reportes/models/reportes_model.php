@@ -41,7 +41,7 @@ class Reportes_model extends CI_Model {
     }
     
     public function infoBloqueTramites(){
-		$this->db->select('solicitante.nombre, solicitante.apellido, tramite.tramite,tramite.fecha_tramite,users.nombre as user_nombre,users.apellido as user_apellido,tramite.clase
+		$this->db->select('tramite.id_solicitante, tramite.id_difunto,solicitante.nombre, solicitante.apellido, tramite.tramite,tramite.fecha_tramite,users.nombre as user_nombre,users.apellido as user_apellido,tramite.clase
 		,tramite.tipo_nicho,tramite.nro_nicho,tramite.bloque, tramite.bloque_nombre,tramite.lado,tramite.costo');
         $this->db->from('tramite');
 		$this->db->join('solicitante', 'solicitante.id_solicitante = tramite.id_solicitante');
@@ -49,6 +49,18 @@ class Reportes_model extends CI_Model {
         $consulta = $this->db->get();
         return $consulta->result_array();
 		
+    }
+    
+    public function getInfoSol($id){
+        $query = "SELECT * FROM solicitante WHERE id_solicitante=" . $id;
+        $result = $this->db->query($query)->result_array();
+        return $result;
+    }
+    
+    public function getInfoDifunto($id){
+        $query = "SELECT * FROM difunto WHERE id_difunto=" . $id;
+        $result = $this->db->query($query)->result_array();
+        return $result;
     }
 
 }

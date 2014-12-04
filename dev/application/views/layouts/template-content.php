@@ -123,6 +123,9 @@
                         <div style="padding-top: 10px; display: none;" class='loading'>
                             <img src="<?php echo RESOURCES_PATH; ?>img/loading.gif" alt="" width="40" height="40"/>
                         </div>
+                        <button id="imprimirView" style="display: none;" type="button" onclick="imprimir();" class="btn btn-primary btn-lg">
+                            Imprimir Comprobante
+                        </button>
                     </div>
                 </div>
             </div>
@@ -248,6 +251,16 @@
             </div>
             <div class="modal-body">
                 <p id="contentDemoM">One fine body…</p>
+            </div>
+        </div>
+        
+         <div id="myModalReport" class="modal hide fade" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
+                <h3 id="myModalLabel">Registro Difunto</h3>
+            </div>
+            <div class="modal-body">
+                <p id="contentDemoR">One fine body…</p>
             </div>
         </div>
     </body>

@@ -100,13 +100,30 @@
              
                 var $comboNichoLibres = $("#nichoLibres");          
                 $comboNichoLibres.empty();
+                
+                var $dibujoNichoLibres = $("#navegador");          
+                $dibujoNichoLibres.empty();
+                
                 var nn = nichos.nicho_info;
-             
+               // $dibujoNichoLibres.append('<ul>');
+               var i=1;
+               var salto = (parseInt($('#lado').attr('data-nicho')));
+                var to = (parseInt($('#lado').attr('data-nicho')))*(parseInt($('#lado').attr('data-fila')));
+                
                 $.each(nn, function(index, v) {          
                    //$comboNichoLibres.append("<option value="+v['id_nicho']+">" + v['nicho'] + "</option>");
-				   $comboNichoLibres.append("<option value="+v['id_nicho']+">" + v['nicho'] + "</option>");
+                   $dibujoNichoLibres.append("<li value="+v['id_nicho']+">" + v['nicho'] + "</li>");
+                   if(i==salto){
+                       $dibujoNichoLibres.append("<br>");
+                       i=0;
+                   }
+                                          
+                    i = i+1;
                 });
+                //$dibujoNichoLibres.append('</ul>');
              }, 'json');
+                
+             
         }
         else
         {
@@ -164,6 +181,31 @@
 	});
 	
 </script>
+
+<style>
+#navegador ul{
+   list-style-type: none;
+   text-align: center;
+}
+#navegador li{
+   display: inline;
+   text-align: center;
+padding: 3px 10px 1px;
+     border: 1px solid;
+}
+#navegador li a {
+   padding: 2px 7px 2px 7px;
+   color: #666;
+   background-color: #eeeeee;
+   border: 1px solid #ccc;
+   text-decoration: none;
+}
+#navegador li a:hover{
+   background-color: #333333;
+   color: #ffffff;
+}
+</style>
+
 <form class="cform-form form-horizontal"  id="add-form" method="POST">
 
     <div class="control-group">
@@ -202,7 +244,7 @@
     <div class="control-group">
         <label class="control-label" for="inputRol">Lado</label>
         <div class="controls">
-            <select class="form-control" id="lado" name="lado" data-lado="<?php echo $bloque_info[0]['numero_filas'];?>">
+            <select class="form-control" id="lado" name="lado" data-nicho="<?php echo $bloque_info[0]['numero_nichos'];?>" data-fila="<?php echo $bloque_info[0]['numero_filas'];?>">
                  <option value="">Seleccione un lado</option>
             <?php
             $caras =  array("Norte", "Sud", "Este", "Oeste");
@@ -216,6 +258,7 @@
     <div class="control-group">
         <label class="control-label" for="inputRol">Numero de nicho Disponible</label>
         <div class="controls">
+            <ul id="navegador" style="width: 30px; height: 40px;"</ul> 
             <select class="form-control" id="nichoLibres"  name="numeroNicho">
             </select>
         </div>

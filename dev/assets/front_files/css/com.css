@@ -1,0 +1,28 @@
+.title{
+    font-size: 13px;
+    color: #fff;
+    background-color: #05B2D2;
+    padding-left: 5px;
+    text-align:center;
+}
+
+.cont{
+    font-size: 14px;
+    border-radius:10px;
+}
+
+.contT{
+    background-color:"#f8f8f8";
+    padding-left: 5px;
+
+}
+.impri{
+    margin: 0 auto;
+    width:604.7px;
+    height:566.9px;
+}
+.marco{
+    margin: 0 auto;
+    width:812.5px;
+    height:699.2px;
+}
