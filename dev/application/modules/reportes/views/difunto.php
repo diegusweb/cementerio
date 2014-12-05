@@ -1,80 +1,87 @@
 <?php
 foreach($info as $row){
 ?> 
-<div class="control-group">
-        <label class="control-label" for="inputUsuario">Oficialia : <?php echo $row['oficialia'];?></label>
+<table>
+<tr>
+  <td><strong>Oficialia</strong></td>
+  <td><strong><?php echo $row['oficialia'];?></strong></td>
+</tr>
+ 
+<tr>
+  <td>Libro</td>
+  <td><?php echo $row['libro'];?></td>
+</tr>
+ 
+<tr>
+  <td>Partida</td>
+  <td><?php echo $row['partida'];?></td>
+</tr>
+ 
+<tr>
+  <td>Folio Nro.</td>
+  <td><?php echo $row['folioNum'];?></td>
+</tr>
 
-    </div>
-    <div class="control-group">
-        <label class="control-label" for="inputPassword">Libro: <?php echo $row['libro'];?></label>
+<tr>
+  <td>Departamento</td>
+  <td><?php echo $row['departamento'];?></td>
+</tr>
 
-    </div>
-     <div class="control-group">
-        <label class="control-label" for="inputPassword">Partida: <?php echo $row['partida'];?></label>
+<tr>
+  <td>Provincia</td>
+  <td><?php echo $row['provincia'];?></td>
+</tr>
 
-    </div>
-    <div class="control-group">
-        <label class="control-label" for="inputPassword">Folio Nro.: <?php echo $row['folioNum'];?></label>
+<tr>
+  <td>Localidad</td>
+  <td><?php echo $row['localidad'];?></td>
+</tr>
 
-    </div>
-    <div class="control-group">
-        <label class="control-label" for="inputPassword">Departamento: <?php echo $row['departamento'];?></label>
+<tr>
+  <td>Con Fecha de partida</td>
+  <td><?php echo $row['fechaPartida'];?></td>
+</tr>
+<tr>
+  <td>Informacion Difuntoo</td>
+  <td style="border-bottom :1px solid #333; font-size:14px;"></td>
+</tr>
+<tr>
+  <td>Nombre y Apellido</td>
+  <td><?php echo $row['nombreCompletoFallecido'];?></td>
+</tr>
+<tr>
+  <td>Edad Fallecido</td>
+  <td><?php echo $row['edadFallecido'];?></td>
+</tr>
+<tr>
+  <td>Fecha y Hora</td>
+  <td><?php echo $row['fechaFallecido'];?></td>
+</tr>
+<tr>
+  <td>En localidad</td>
+  <td><?php echo $row['localidadFallecido'];?></td>
+</tr>
+<tr>
+  <td>Provincia</td>
+  <td><?php echo $row['provinciaFallecido'];?></td>
+</tr>
+<tr>
+  <td>Departamento</td>
+  <td><?php echo $row['departamentoFallecido'];?></td>
+</tr>
+<tr>
+  <td>Pais</td>
+  <td><?php echo $row['paisFallecido'];?></td>
+</tr>
+<tr>
+  <td>Comprobante de fallecimiento</td>
+  <td><?php echo $row['comprobante'];?></td>
+</tr><tr>
+  <td>Nro Matricula o CI</td>
+  <td><?php echo $row['matricula_ci'];?></td>
+</tr>
+</table>
 
-    </div>
-    <div class="control-group">
-        <label class="control-label" for="inputPassword">Provincia: <?php echo $row['provincia'];?></label>
-
-    </div>
-    <div class="control-group">
-        <label class="control-label" for="inputPassword">Localidad: <?php echo $row['localidad'];?></label>
-
-    </div>
-	<div class="control-group">
-        <label class="control-label" for="inputPassword">Con Fecha de partida: <?php echo $row['fechaPartida'];?></label>
-
-    </div>
-	<br/>
-    <div style="border-bottom :1px solid #333; font-size:14px;"><b>Informacion Difunto</b></div>
-	<br/>
-    <div class="control-group">
-        <label class="control-label" for="inputPassword">Nombre y Apellido : <?php echo $row['nombreCompletoFallecido'];?></label>
-
-    </div>
-    <div class="control-group">
-        <label class="control-label" for="inputPassword">Edad Fallecido : <?php echo $row['edadFallecido'];?></label>
-
-    </div>
-    <div class="control-group">
-        <label class="control-label" for="inputPassword">Fecha y Hora : <?php echo $row['fechaFallecido'];?></label>
-
-
-    </div>
-     <div class="control-group">
-        <label class="control-label" for="inputPassword">En localidad : <?php echo $row['localidadFallecido'];?></label>
-
-    </div>
-    <div class="control-group">
-        <label class="control-label" for="inputPassword">Provincia : <?php echo $row['provinciaFallecido'];?></label>
-
-    </div>
-    <div class="control-group">
-        <label class="control-label" for="inputPassword">Departamento : <?php echo $row['departamentoFallecido'];?></label>
-
-    </div>
-    <div class="control-group">
-        <label class="control-label" for="inputPassword">Pais : <?php echo $row['paisFallecido'];?></label>
-
-    </div>
-
-    <div class="control-group">
-        <label class="control-label" for="inputPassword">Comprobante de fallecimiento : <?php echo $row['comprobante'];?></label>
-
-    </div>
-    <div class="control-group">
-        <label class="control-label" for="inputPassword">Nro Matricula o CI : <?php echo $row['matricula_ci'];?></label>
-
-    </div>
-	<br/>
 
 <?php
 }

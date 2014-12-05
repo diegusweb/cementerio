@@ -1,46 +1,55 @@
 <?php
 foreach($info as $row){
 ?>
-    <div class="control-group">
-        <label class="control-label" for="inputUsuario">Nombres : <?php echo $row['nombre'];?></label> 
+<table>
+<tr>
+  <td><strong>Nombres</strong></td>
+  <td><strong><?php echo $row['nombre'];?></strong></td>
+</tr>
+ 
+<tr>
+  <td>Apellidos</td>
+  <td><?php echo $row['apellido'];?></td>
+</tr>
+ 
+<tr>
+  <td>Numero Carnet</td>
+  <td><?php echo $row['ci'];?></td>
+</tr>
+ 
+<tr>
+  <td>Direccion</td>
+  <td><?php echo $row['direccion'];?></td>
+</tr>
 
-    </div>
-    <div class="control-group">
-        <label class="control-label" for="inputPassword">Apellidos : <?php echo $row['apellido'];?></label> 
+<tr>
+  <td>Actividad</td>
+  <td><?php echo $row['actividad'];?></td>
+</tr>
 
-    </div>
-    <div class="control-group">
-        <label class="control-label" for="inputPassword">Numero Carnet : <?php echo $row['ci'];?></label>
+<tr>
+  <td>Numero de Domicilio</td>
+  <td><?php echo $row['numero_casa'];?></td>
+</tr>
 
-    </div>
-    <div class="control-group">
-        <label class="control-label" for="inputPassword">Direccion : <?php echo $row['direccion'];?></label>
+<tr>
+  <td>Manzana</td>
+  <td><?php echo $row['manzana'];?></td>
+</tr>
 
-    </div>
-    <div class="control-group">
-        <label class="control-label" for="inputPassword">Actividad : <?php echo $row['actividad'];?></label>
+<tr>
+  <td>NIT/CI</td>
+  <td><?php echo $row['nit'];?></td>
+</tr>
 
-    </div>
-    <div class="control-group">
-        <label class="control-label" for="inputPassword">Numero de Domicilio : <?php echo $row['numero_casa'];?></label>
+<tr>
+  <td>Celular</td>
+  <td><?php echo $row['celular'];?></td>
+</tr>
 
-    </div>
-    <div class="control-group">
-        <label class="control-label" for="inputPassword">Manzana : <?php echo $row['manzana'];?></label>
+</table>
 
-    </div>
-    <div class="control-group">
-        <label class="control-label" for="inputPassword">NIT/CI : <?php echo $row['nit'];?></label>
 
-    </div>
-    <div class="control-group">
-        <label class="control-label" for="inputPassword">Telefono : <?php echo $row['telefono'];?></label>
-
-    </div>
-    <div class="control-group">
-        <label class="control-label" for="inputPassword">Celular : <?php echo $row['celular'];?></label>
-
-    </div>
 
 <?php
 }
