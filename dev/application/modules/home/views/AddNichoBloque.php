@@ -342,7 +342,7 @@ ul, ol {
     <div class="control-group">
         <label class="control-label" for="inputRol">Costo</label>
         <div class="controls">
-			<input type="hidden" class="form-control"  id="numeroNicho" value="">
+			<input type="hidden" class="form-control" name="numeroNicho"  id="numeroNicho" value="">
 			<input type="hidden" class="form-control"  id="costo_perpetuidad_1_clase" value="<?php echo $bloque_info[0]['costo_perpetuidad_1_clase']; ?>">
             <input type="hidden" class="form-control"  id="costo_perpetuidad_2_clase" value="<?php echo $bloque_info[0]['costo_perpetuidad_2_clase']; ?>">
 			<input type="hidden" class="form-control"  id="costo_5_year_1_clase" value="<?php echo $bloque_info[0]['costo_5_year_1_clase']; ?>">

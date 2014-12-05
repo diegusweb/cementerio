@@ -11,10 +11,6 @@ class Home extends CI_Controller {
         $this->load->model('home_model');
         $this->layout->setLayout('template-content');
 
-        //boorrar
-        //$this->session->set_userdata('id_solitantes', 2);
-        //$this->session->set_userdata('id_difuntos', 1);
-        ///$this->session->set_userdata('id_users', 2);
         $this->verifyLogin();
     }
 
@@ -106,10 +102,22 @@ class Home extends CI_Controller {
 
         $d = $this->home_model->addTramiteNicho($data);
         if ($d > 0) {
+            
+            $Fecha = date("Y-m-d");
+            $ca = date("Y-m-d", strtotime("$Fecha +1 year"));
+            
+            if($_POST['tiempo'] == "Perpetuidad"){
+                $ca = date("Y-m-d", strtotime("$Fecha +100 year"));
+            }
+            else{
+                $ca = date("Y-m-d", strtotime("$Fecha +5 year"));
+            }
 
             $datas = array(
                 'estado' => 'Ocupado',
-                'id_difunto' => (int) $this->session->userdata('id_difuntos')
+                'id_difunto' => (int) $this->session->userdata('id_difuntos'),
+                'fecha_inicio' => $Fecha, 
+                'fecha_fin' => $ca 
             );
             $this->home_model->updateNichoStatus($_POST['numeroNicho'], $datas);
             //$this->session->set_userdata('id_tramite', $d);

@@ -25,8 +25,8 @@ class Admin extends CI_Controller {
 
     public function users_management() {
         //$this->session->set_userdata('page', 'Proveedores');
-		
-		$this->session->set_userdata('seccion',"Administración de Usuarios");
+
+        $this->session->set_userdata('seccion', "Administración de Usuarios");
 
         $crud = new grocery_CRUD();
 
@@ -50,8 +50,8 @@ class Admin extends CI_Controller {
     }
 
     public function bloque_mausoleo_management() {
-	
-	$this->session->set_userdata('seccion',"Administración de Bloque Mausoleo");
+
+        $this->session->set_userdata('seccion', "Administración de Bloque Mausoleo");
         $crud = new grocery_CRUD();
 
         $crud->set_theme('datatables');
@@ -59,7 +59,7 @@ class Admin extends CI_Controller {
 
         $crud->required_fields('nombre', 'position');
         $crud->unset_fields('create_date');
-
+        $crud->unset_delete();
         $crud->callback_add_field('position', function () {
             return '<input type="text" maxlength="10" class="positionSet" style="width:50px!important" value="" name="position"> <a href="#" class="infoMausoleoDiv">Situar en mapa </a>';
         });
@@ -73,7 +73,7 @@ class Admin extends CI_Controller {
     }
 
     public function bloque_cremados_management() {
-	$this->session->set_userdata('seccion',"Administración de Bloque Cremados");
+        $this->session->set_userdata('seccion', "Administración de Bloque Cremados");
         $crud = new grocery_CRUD();
 
         $crud->set_theme('datatables');
@@ -84,7 +84,7 @@ class Admin extends CI_Controller {
 
         $crud->callback_add_field('nombre', array($this, 'add_field_callback_1'));
 
-
+        $crud->unset_delete();
         $crud->callback_add_field('position', function () {
             return '<input type="text" maxlength="10" class="positionSet" style="width:50px!important" value="" name="position"> <a href="#" class="infoCremadoDiv">Situar en mapa </a>';
         });
@@ -102,7 +102,7 @@ class Admin extends CI_Controller {
     }
 
     public function bloque_tierra_management() {
-	$this->session->set_userdata('seccion',"Administración de Sitio Tierra");
+        $this->session->set_userdata('seccion', "Administración de Sitio Tierra");
         $crud = new grocery_CRUD();
 
         $crud->set_theme('datatables');
@@ -121,14 +121,14 @@ class Admin extends CI_Controller {
         $crud->callback_edit_field('position', function () {
             return '<input type="text" maxlength="10" class="positionSet" style="width:50px!important" value="" name="position"> <a href="#" class="infoCbajoTierraDiv">Situar en mapa </a>';
         });
-
+$crud->unset_delete();
         $output = $crud->render();
         $this->_mostrar_crud($output);
     }
 
     public function bloque_nicho_management() {
         //$this->session->set_userdata('page', 'Proveedores');
-		$this->session->set_userdata('seccion',"Administración de Bloque Nichos");
+        $this->session->set_userdata('seccion', "Administración de Bloque Nichos");
 
         $crud = new grocery_CRUD();
 
@@ -137,21 +137,22 @@ class Admin extends CI_Controller {
         $crud->set_table('bloque_nicho');
 
         $crud->unset_fields('create_date');
+
         $crud->required_fields('nombre', 'position', 'numero_filas', 'numero_caras', 'numero_piso', 'numero_nichos');
         $crud->set_rules('costo_perpetuidad_1_clase', 'costo perpetuidad 1.clase', 'required|decimal');
         $crud->set_rules('costo_perpetuidad_2_clase', 'costo perpetuidad 2.clase', 'required|decimal');
         $crud->set_rules('costo_5_year_1_clase', 'costo 5 años 1.clase', 'required|decimal');
         $crud->set_rules('costo_5_year_2_clase', 'costo 5 años 2.clase', 'required|decimal');
-        
+
         $crud->set_rules('numero_filas', 'numero filas', 'required|number');
         $crud->set_rules('numero_nichos', 'numero nichos', 'required|number');
 
         $crud->field_type('numero_piso', 'dropdown', array('1' => 'Piso 1', '2' => 'Piso 2'));
         $crud->field_type('numero_caras', 'dropdown', array('1' => '1', '2' => '2', '3' => '3', '4' => '4'));
-        
-        $crud->field_type('numero_filas', 'dropdown', array('1' => '1', '2' => '2', '3' => '3', '4' => '4', '5' => '5', '6' => '6', '7' => '7', '8' => '8'));     
-        $crud->field_type('numero_nichos', 'dropdown', array('1' => '1', '2' => '2', '3' => '3', '4' => '4', '5' => '5', '6' => '6', '7' => '7', '8' => '8', '9' => '9', '10' => '10'));    
-        
+
+        $crud->field_type('numero_filas', 'dropdown', array('1' => '1', '2' => '2', '3' => '3', '4' => '4', '5' => '5', '6' => '6', '7' => '7', '8' => '8'));
+        $crud->field_type('numero_nichos', 'dropdown', array('1' => '1', '2' => '2', '3' => '3', '4' => '4', '5' => '5', '6' => '6', '7' => '7', '8' => '8', '9' => '9', '10' => '10'));
+
 
 
         $crud->callback_add_field('position', function () {
@@ -167,38 +168,39 @@ class Admin extends CI_Controller {
         $crud->display_as('costo_5_year_2_clase', '2.clase 5 años');
         $crud->display_as('costo_perpetuidad_1_clase', '1.clase perpetuidad');
         $crud->display_as('costo_perpetuidad_2_clase', '2.clase perpetuidad');
-		
-		$crud->display_as('numero_nichos', 'Numero nichos por fila');
+
+        $crud->display_as('numero_nichos', 'Numero nichos por fila');
 
         $crud->callback_add_field('costo_5_year_1_clase', function () {
             return 'Costo <input type="text" maxlength="15" style="width:80px!important" value="" name="costo_5_year_1_clase"> Ejm: 123.51';
         });
-		 $crud->callback_edit_field('costo_5_year_1_clase', array($this, 'edit_costo_5_year_1_clase'));
+        $crud->callback_edit_field('costo_5_year_1_clase', array($this, 'edit_costo_5_year_1_clase'));
 
         $crud->callback_add_field('costo_5_year_2_clase', function () {
             return 'Costo <input type="text" maxlength="15" style="width:80px!important" value="" name="costo_5_year_2_clase"> Ejm: 123.51';
         });
-$crud->callback_edit_field('costo_5_year_2_clase', array($this, 'edit_costo_5_year_2_clase'));
+        $crud->callback_edit_field('costo_5_year_2_clase', array($this, 'edit_costo_5_year_2_clase'));
 
         $crud->callback_add_field('costo_perpetuidad_1_clase', function () {
             return 'Costo <input type="text" maxlength="15" style="width:80px!important" value="" name="costo_perpetuidad_1_clase"> Ejm: 123.51';
         });
-		
-		$crud->callback_edit_field('costo_perpetuidad_1_clase', array($this, 'edit_costo_perpetuidad_1_clase'));
+
+        $crud->callback_edit_field('costo_perpetuidad_1_clase', array($this, 'edit_costo_perpetuidad_1_clase'));
 
 
         $crud->callback_add_field('costo_perpetuidad_2_clase', function () {
             return 'Costo <input type="text" maxlength="15"  style="width:80px!important" value="" name="costo_perpetuidad_2_clase"> Ejm: 123.51';
         });
-$crud->callback_edit_field('costo_perpetuidad_2_clase', array($this, 'edit_costo_perpetuidad_2_clase'));
-		
-		//edit
-		
+        $crud->callback_edit_field('costo_perpetuidad_2_clase', array($this, 'edit_costo_perpetuidad_2_clase'));
+
+        //edit
+
 
         $crud->display_as('create_date', 'Fechas');
 
         $crud->unset_delete();
-        $crud->unset_columns('create_date');
+        $crud->unset_read();
+        $crud->unset_columns('create_date', 'position');
 
         $crud->callback_after_insert(array($this, 'log_bloque_after_insert'));
 
@@ -209,34 +211,34 @@ $crud->callback_edit_field('costo_perpetuidad_2_clase', array($this, 'edit_costo
     function edit_field_callback_nicho($value, $primary_key) {
         return '<input type="text" maxlength="10" class="positionSet" style="width:50px!important" value="' . $value . '" name="position"> <a href="#" class="infoSucursalDiv">Situar en mapa </a>';
     }
-	
-	function edit_costo_5_year_1_clase($value, $primary_key) {
-        return 'Costo <input type="text" maxlength="15"  style="width:80px!important" value="'.$value.'" name="costo_5_year_1_clase"> Ejm: 123.51';
-	}
-				
-	function edit_costo_5_year_2_clase($value, $primary_key) {
-        return 'Costo <input type="text" maxlength="15"  style="width:80px!important" value="'.$value.'" name="costo_5_year_1_clase"> Ejm: 123.51';
-	}
-	
-	function edit_costo_perpetuidad_1_clase($value, $primary_key) {
-        return 'Costo <input type="text" maxlength="15"  style="width:80px!important" value="'.$value.'" name="costo_perpetuidad_1_clase"> Ejm: 123.51';
-	}
 
-	function edit_costo_perpetuidad_2_clase($value, $primary_key) {
-        return 'Costo <input type="text" maxlength="15"  style="width:80px!important" value="'.$value.'" name="costo_perpetuidad_2_clase"> Ejm: 123.51';
-	}	
+    function edit_costo_5_year_1_clase($value, $primary_key) {
+        return 'Costo <input type="text" maxlength="15"  style="width:80px!important" value="' . $value . '" name="costo_5_year_1_clase"> Ejm: 123.51';
+    }
+
+    function edit_costo_5_year_2_clase($value, $primary_key) {
+        return 'Costo <input type="text" maxlength="15"  style="width:80px!important" value="' . $value . '" name="costo_5_year_1_clase"> Ejm: 123.51';
+    }
+
+    function edit_costo_perpetuidad_1_clase($value, $primary_key) {
+        return 'Costo <input type="text" maxlength="15"  style="width:80px!important" value="' . $value . '" name="costo_perpetuidad_1_clase"> Ejm: 123.51';
+    }
+
+    function edit_costo_perpetuidad_2_clase($value, $primary_key) {
+        return 'Costo <input type="text" maxlength="15"  style="width:80px!important" value="' . $value . '" name="costo_perpetuidad_2_clase"> Ejm: 123.51';
+    }
 
     public function tramites_management() {
         $crud = new grocery_CRUD();
 
         $crud->set_theme('datatables');
         $crud->set_table('tramite')
-            ->set_subject('tramite')
-            ->order_by('id_tramite','desc');
-        
-        $crud->unset_columns('id_solicitante','id_difunto','id_bloque');
-        $crud->callback_column('tramite',array($this,'_callback_comprobante'));
-        
+                ->set_subject('tramite')
+                ->order_by('id_tramite', 'desc');
+
+        $crud->unset_columns('id_solicitante', 'id_difunto', 'id_bloque');
+        $crud->callback_column('tramite', array($this, '_callback_comprobante'));
+
         $crud->unset_delete();
         $crud->unset_add();
         $crud->unset_edit();
@@ -245,17 +247,14 @@ $crud->callback_edit_field('costo_perpetuidad_2_clase', array($this, 'edit_costo
         $output = $crud->render();
         $this->_mostrar_crud($output);
     }
-    
-    public function _callback_lados_name($value, $row)
-    {
-        $caras =  array("Norte", "Sud", "Este", "Oeste");
-      return $caras[$value-1];
-    }
-	
-	public function _callback_comprobante($value, $row)
-    {
-            return '<a href="'.base_url().'home/comprobante/'.$row->id_tramite.'" class="btn btn-primary btn-lg"  aria-label="Left Align">'.$row->tramite.'</button>';
 
+    public function _callback_lados_name($value, $row) {
+        $caras = array("Norte", "Sud", "Este", "Oeste");
+        return $caras[$value - 1];
+    }
+
+    public function _callback_comprobante($value, $row) {
+        return '<a href="' . base_url() . 'home/comprobante/' . $row->id_tramite . '" class="btn btn-primary btn-lg"  aria-label="Left Align">' . $row->tramite . '</button>';
     }
 
     function log_bloque_after_insert($post_array, $primary_key) {
@@ -301,8 +300,8 @@ $crud->callback_edit_field('costo_perpetuidad_2_clase', array($this, 'edit_costo
         else
             return $value;
     }
-    
-	public function verifyLogin() {
+
+    public function verifyLogin() {
         $user_id = $this->session->userdata('username');
         if (empty($user_id)) {
             redirect(base_url() . "login", 'outside');
