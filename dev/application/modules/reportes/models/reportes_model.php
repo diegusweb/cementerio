@@ -12,7 +12,8 @@ class Reportes_model extends CI_Model {
 
     public function infoBloqueNicho($fechaInicio, $fechaFin, $funcionario) {
 
-        $this->db->select('*');
+        $this->db->select('tramite.id_solicitante, tramite.id_difunto,solicitante.nombre, solicitante.apellido, tramite.tramite,tramite.fecha_tramite,users.nombre as user_nombre,users.apellido as user_apellido,tramite.clase
+		,tramite.tipo_nicho,tramite.nro_nicho,tramite.bloque, tramite.bloque_nombre,tramite.lado,tramite.costo');
         $this->db->from('tramite');
 		$this->db->join('solicitante', 'solicitante.id_solicitante = tramite.id_solicitante');
 		$this->db->join('users', 'users.id_users = tramite.id_users');
@@ -25,7 +26,7 @@ class Reportes_model extends CI_Model {
             $this->db->where('fecha_tramite <=', $fechaFin);
         }
         if ($funcionario > 0) {
-            $this->db->where('id_users = ' . $funcionario);
+            $this->db->where('tramite.id_users = ' . $funcionario);
         }
 
 
@@ -59,6 +60,13 @@ class Reportes_model extends CI_Model {
     
     public function getInfoDifunto($id){
         $query = "SELECT * FROM difunto WHERE id_difunto=" . $id;
+        $result = $this->db->query($query)->result_array();
+        return $result;
+    }
+    
+        public function getAlarmaNicho(){
+        $id = date("Y-m-d");
+         $query = "SELECT * FROM nicho where estado='Ocupado' AND fecha_inicio <=" . $id;
         $result = $this->db->query($query)->result_array();
         return $result;
     }

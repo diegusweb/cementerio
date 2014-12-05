@@ -9,7 +9,7 @@ class Helper_model extends CI_Model {
         parent::__construct();
         //$this->CI =& get_instance();
     }
-     public function getIdProv($id) {
+   /*  public function getIdProv($id) {
         $query = "SELECT * FROM articulo_proveedor WHERE ID_ARTICULO=".$id;
         $result = $this->db->query($query)->result_array();
         return $result[0]['ID_PROVEEDOR'];
@@ -20,6 +20,13 @@ class Helper_model extends CI_Model {
         $query="SELECT * FROM alertas WHERE TIPO='".$tipo."' ORDER BY ID_ALERTAS DESC LIMIT 5";
         //$result=$this->db->query($query)->num_rows();
         $result=$this->db->query($query)->result_array();
+        return $result;
+    }*/
+    
+    public function getAlarmaNicho(){
+        $id = date("Y-m-d");
+         $query = "SELECT * FROM nicho where estado='Ocupado' AND fecha_inicio <=" . $id;
+        $result = $this->db->query($query)->result_array();
         return $result;
     }
 }    

@@ -20,7 +20,9 @@ class Reportes extends CI_Controller {
 
     function index() {
         $bloque['tramite'] = $this->reportes_model->infoBloqueTramites();
+         $bloque['alarma'] = $this->reportes_model->getAlarmaNicho(); 
         $this->layout->view('tabla', $bloque);
+        
     }
 
     public function verifyLogin() {
@@ -34,7 +36,7 @@ class Reportes extends CI_Controller {
         $fechaInicio = $_POST['fechaInicio'];
         $fechaFin = $_POST['fechaFin'];
         $funcionario = $_POST['funcionario'];
-
+        $bloque['alarma'] = $this->reportes_model->getAlarmaNicho(); 
         $bloque['tramite'] = $this->reportes_model->infoBloqueNicho($fechaInicio, $fechaFin, $funcionario);
         
         $this->layout->view('tabla', $bloque);

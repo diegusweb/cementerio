@@ -26,6 +26,8 @@ class Home extends CI_Controller {
         $data['bloque_mausoleo'] = $this->home_model->getBloqueMausoleo();
         $data['bloque_cremado'] = $this->home_model->getBloqueCremado();
         $data['bloque_bajo_tierra'] = $this->home_model->getBloqueBajoTierra();
+        
+        $data['alarma'] = $this->home_model->getAlarmaNicho(); 
         $this->layout->view('index', $data);
     }
 

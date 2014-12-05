@@ -181,5 +181,12 @@ class Home_model extends CI_Model {
         $result = $this->db->query($query)->result_array();
         return $result;
     }
+    
+    public function getAlarmaNicho(){
+        $id = date("Y-m-d");
+         $query = "SELECT * FROM nicho where estado='Ocupado' AND fecha_inicio <=" . $id;
+        $result = $this->db->query($query)->result_array();
+        return $result;
+    }
 
 }

@@ -12,10 +12,14 @@ class Admin extends CI_Controller {
         $this->load->helper('url');
         $this->load->library('grocery_CRUD');
         $this->layout->setLayout('template-content');
+        $this->load->model('helper_model');
     }
 
     public function _mostrar_crud($output = null) {
         $this->verifyLogin();
+         $data['alarma'] = $this->helper_model->getAlarmaNicho(); 
+
+        $this->load->view('encabezado.php', $data);
         $this->layout->view('index.php', $output);
     }
 
@@ -68,6 +72,29 @@ class Admin extends CI_Controller {
             return '<input type="text" maxlength="10" class="positionSet" style="width:50px!important" value="" name="position"> <a href="#" class="infoMausoleoDiv">Situar en mapa </a>';
         });
 
+        $output = $crud->render();
+        $this->_mostrar_crud($output);
+    }
+    
+    public function bloque_expiro_management() {
+
+        $this->session->set_userdata('seccion', "Administración de Nichos que expiraron");
+
+        $crud = new grocery_CRUD();
+        $crud->set_model('custom_query_model');
+        $crud->set_theme('datatables');
+        $crud->set_table('nicho'); //Change to your table name
+        
+        
+        $Fecha = date("Y-m-d");
+        $crud->basic_model->set_query_str('SELECT * FROM nicho where estado="Ocupado" AND fecha_inicio <='.$Fecha); //Query text here
+
+        $crud->unset_add();
+        $crud->unset_edit();
+        $crud->unset_delete();
+        $crud->unset_read();
+
+       
         $output = $crud->render();
         $this->_mostrar_crud($output);
     }
