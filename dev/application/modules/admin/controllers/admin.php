@@ -26,6 +26,42 @@ class Admin extends CI_Controller {
     public function index() {
         $this->_mostrar_crud((object) array('output' => '', 'js_files' => array(), 'css_files' => array()));
     }
+	
+	public function reporte_management() {
+        //$this->session->set_userdata('page', 'Proveedores');
+
+        $this->session->set_userdata('seccion', "Administración de Usuarios");
+		
+
+        $crud = new grocery_CRUD();
+
+        //$this->session->set_userdata('page', 'Configuracones');
+        $crud->set_theme('datatables');
+        $crud->set_table('tramite');
+		$crud->set_relation('id_difunto','difunto','nombreCompletoFallecido');
+		$crud->set_relation('id_solicitante','solicitante','nombre');
+		$crud->set_relation('id_users','users','nombre');      
+
+		
+$crud->columns('id_solicitante','tramite','fecha_tramite','id_users','clase','tipo_nicho','nrp_nicho','bloque','bloque_nombre','lado','costo');  
+
+$crud->display_as('tramite', 'Concepto');
+$crud->display_as('id_solicitante', 'Nombre');
+$crud->display_as('fecha_tramite', 'f. tramite');
+$crud->display_as('id_users', 'Responsable');
+$crud->display_as('tipo_nicho', 'Cuerpo');
+$crud->display_as('nrp_nicho', 'Nicho');
+$crud->display_as('bloque_nombre', 'Bloque');
+$crud->display_as('bloque', 'Tipo');
+
+        $crud->unset_add();
+        $crud->unset_edit();
+        $crud->unset_delete();
+        $crud->unset_read();
+
+        $output = $crud->render();
+        $this->_mostrar_crud($output);
+    }
 
     public function users_management() {
         //$this->session->set_userdata('page', 'Proveedores');
@@ -350,6 +386,9 @@ $crud->unset_delete();
         if (empty($user_id)) {
             redirect(base_url() . "login", 'outside');
         }
+		if($this->session->userdata('rol') != "Administrador"){
+			redirect(base_url() . "login", 'outside');
+		}
     }
 
 }
