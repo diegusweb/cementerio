@@ -34,8 +34,8 @@
         <p><h4  style="width:604.7px;; text-align: center; padding-top:25px; padding-bottom:25px;">COMPROBANTE<h4/></p>
     </div>
     <div id="save-form" style="margin: 0 auto; width:604.7px; height:566.9px;">
-
-        <div style="border: 1px solid #333; width:588px; height:125px; padding:6px;  font-size: 14px; border-radius:10px; margin-bottom: 10px;" class="cont">
+<!-- border: 1px solid #333; -->
+        <div style=" width:588px; height:125px; padding:6px;  font-size: 14px; border-radius:10px; margin-bottom: 10px;" class="cont">
             <div style="float:left; border: 1px solid #333; width:150px; height:50px; border-radius:10px;">
                 <div style="font-size: 12px; text-align: center;">Nro.  CARNET</div>
                 <div><?php echo $tramite[0]['ci'] ?></div>

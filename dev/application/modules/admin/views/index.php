@@ -36,6 +36,8 @@
             var demo;
 
             $("document").ready(function () {
+			
+				$('#numero_caras_input_box').append(" Norte, Sud, Este, Oeste");
 
                 $('.infoSucursalDiv').click(function () {
                     $('#myModalNews').modal('show');

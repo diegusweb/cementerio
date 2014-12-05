@@ -25,9 +25,23 @@ class Helper_model extends CI_Model {
     
     public function getAlarmaNicho(){
         $id = date("Y-m-d");
-         $query = "SELECT * FROM nicho where estado='Ocupado' AND fecha_inicio <=" . $id;
+         $query = "SELECT * FROM nicho where estado='Ocupado' AND fecha_fin >=" . $id;
         $result = $this->db->query($query)->result_array();
         return $result;
+    }
+	
+	public function getNombreDif($id){
+
+         $query = "SELECT nombreCompletoFAllecido FROM difunto where id_difunto=" . $id;
+        $result = $this->db->query($query)->result_array();
+        return $result[0]['nombreCompletoFAllecido'];
+    }
+	
+	public function getNombreBloque($id){
+
+         $query = "SELECT nombre FROM bloque_nicho where id_bloque_nicho=" . $id;
+        $result = $this->db->query($query)->result_array();
+        return $result[0]['nombre'];
     }
 }    
 

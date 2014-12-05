@@ -84,11 +84,17 @@ class Admin extends CI_Controller {
         $crud->set_model('custom_query_model');
         $crud->set_theme('datatables');
         $crud->set_table('nicho'); //Change to your table name
-        
+		//$crud->set_primary_key('id_nicho');
+        //$crud->set_relation('id_difunto','difunto','nombreCompletoFallecido');
         
         $Fecha = date("Y-m-d");
-        $crud->basic_model->set_query_str('SELECT * FROM nicho where estado="Ocupado" AND fecha_inicio <='.$Fecha); //Query text here
 
+        $crud->basic_model->set_query_str('SELECT * FROM nicho where estado="Ocupado" AND fecha_fin >='.$Fecha); //Query text here
+		//$crud->set_relation('id_difunto','difunto','nombreCompletoFallecido');
+		
+		$crud->callback_column('id_difunto',array($this,'_callback_id_difunto'));
+		$crud->callback_column('id_bloque',array($this,'_callback_id_bloque'));
+		
         $crud->unset_add();
         $crud->unset_edit();
         $crud->unset_delete();
@@ -98,6 +104,16 @@ class Admin extends CI_Controller {
         $output = $crud->render();
         $this->_mostrar_crud($output);
     }
+	
+	public function _callback_id_difunto($value, $row)
+	{
+	  return $this->helper_model->getNombreDif($row->id_difunto);
+	}
+	
+	public function _callback_id_bloque($value, $row)
+	{
+	  return $this->helper_model->getNombrebloque($row->id_bloque);
+	}
 
     public function bloque_cremados_management() {
         $this->session->set_userdata('seccion', "Administración de Bloque Cremados");
@@ -173,12 +189,13 @@ $crud->unset_delete();
 
         $crud->set_rules('numero_filas', 'numero filas', 'required|number');
         $crud->set_rules('numero_nichos', 'numero nichos', 'required|number');
-
-        $crud->field_type('numero_piso', 'dropdown', array('1' => 'Piso 1', '2' => 'Piso 2'));
+		
+		$crud->display_as('numero_piso', 'Numero de pisos del bloque');
+        $crud->field_type('numero_piso', 'dropdown', array('1' => '1', '2' => '2'));
         $crud->field_type('numero_caras', 'dropdown', array('1' => '1', '2' => '2', '3' => '3', '4' => '4'));
 
         $crud->field_type('numero_filas', 'dropdown', array('1' => '1', '2' => '2', '3' => '3', '4' => '4', '5' => '5', '6' => '6', '7' => '7', '8' => '8'));
-        $crud->field_type('numero_nichos', 'dropdown', array('1' => '1', '2' => '2', '3' => '3', '4' => '4', '5' => '5', '6' => '6', '7' => '7', '8' => '8', '9' => '9', '10' => '10'));
+        $crud->field_type('numero_nichos', 'dropdown', array('1' => '1', '2' => '2', '3' => '3', '4' => '4', '5' => '5', '6' => '6', '7' => '7', '8' => '8', '9' => '9', '10' => '10', '11' => '11', '12' => '12', '13' => '13', '14' => '14'));
 
 
 
