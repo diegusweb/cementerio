@@ -18,7 +18,7 @@ class Admin extends CI_Controller {
     public function _mostrar_crud($output = null) {
         $this->verifyLogin();
         $data['alarma'] = $this->helper_model->getAlarmaNicho();
-
+        
         $this->load->view('encabezado.php', $data);
         $this->layout->view('index.php', $output);
     }
@@ -117,20 +117,22 @@ class Admin extends CI_Controller {
         $this->session->set_userdata('seccion', "Administración de Nichos que expiraron");
 
         $crud = new grocery_CRUD();
-        $crud->set_model('custom_query_model');
+        //$crud->set_model('custom_query_model');
         $crud->set_theme('datatables');
         $crud->set_table('nicho'); //Change to your table name
-        //$crud->set_primary_key('id_nicho');
-        //$crud->set_relation('id_difunto','difunto','nombreCompletoFallecido');
+        $crud->where('estado','Renovar');
 
         $fecha = date("Y-m-d");
 
 
-        $crud->basic_model->set_query_str('SELECT * FROM nicho where estado="Ocupado" AND fecha_fin <="'.$fecha.'"'); //Query text here
+        //$crud->basic_model->set_query_str('SELECT * FROM nicho where estado="Renovar" AND fecha_fin <="'.$fecha.'"'); //Query text here
         //$crud->set_relation('id_difunto','difunto','nombreCompletoFallecido');
+        
+        $crud->set_relation('id_difunto','difunto','nombreCompletoFallecido');
+        $crud->set_relation('id_bloque','tramite','bloque_nombre');
 
-        $crud->callback_column('id_difunto', array($this, '_callback_id_difunto'));
-        $crud->callback_column('id_bloque', array($this, '_callback_id_bloque'));
+       // $crud->callback_column('id_difunto', array($this, '_callback_id_difunto'));
+        //$crud->callback_column('id_bloque', array($this, '_callback_id_bloque'));
         $crud->callback_column('fecha_fin', array($this, '_callback_fecha'));
         $crud->callback_column('fecha_inicio', array($this, '_callback_fecha_ini'));
         $crud->callback_column('cara', array($this, '_callback_cara'));

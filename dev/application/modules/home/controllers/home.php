@@ -106,7 +106,7 @@ class Home extends CI_Controller {
         if ($d > 0) {
             
             $Fecha = date("Y-m-d");
-            $ca = date("Y-m-d", strtotime("$Fecha +1 year"));
+            //$ca = date("Y-m-d", strtotime("$Fecha +1 year"));
             
             if($_POST['tiempo'] == "Perpetuidad"){
                 $ca = date("Y-m-d", strtotime("$Fecha +100 year"));
@@ -175,6 +175,16 @@ class Home extends CI_Controller {
         $piso = $_POST['piso'];
 
         $data['nicho_info'] = $this->home_model->getBloqueNichoOcupados($id, $lado, $piso);
+
+        echo json_encode($data);
+    }
+    
+    function getNichosRenovar(){
+        $id = $_POST['idBloque'];
+        $lado = $_POST['lado'];
+        $piso = $_POST['piso'];
+
+        $data['nicho_info'] = $this->home_model->getBloqueNichoRenovar($id, $lado, $piso);
 
         echo json_encode($data);
     }
@@ -344,6 +354,16 @@ class Home extends CI_Controller {
         $data['tipo_nicho'] = $_POST['tipo'];
 
         $data['pagado'] = 0;
+        $Fecha = date("Y-m-d");
+        $ca = date("Y-m-d", strtotime("$Fecha +1 year"));
+            
+        //cambiar estado
+        $datad = array(
+            'estado' => 'Ocupado',
+            'fecha_fin' => $ca
+        );
+        $this->home_model->updateNichoStatus($_POST['numeroNicho'],$datad);
+        
 
         $d = $this->home_model->addTramiteNicho($data);
         if ($d > 0) {

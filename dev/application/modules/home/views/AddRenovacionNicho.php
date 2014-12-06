@@ -94,7 +94,7 @@
 				piso: piso
             };
 
-            $.post("<?php echo base_url() . "home/getNichosOcupados"; ?>", datos, function(nichos) {
+            $.post("<?php echo base_url() . "home/getNichosRenovar"; ?>", datos, function(nichos) {
              
                 var $comboNichoLibres = $("#nichoLibres");          
                 $comboNichoLibres.empty();
@@ -219,7 +219,7 @@
 	<div class="control-group">
         <label class="control-label" for="inputRol">Costo</label>
         <div class="controls">
-			<div><input type="text" class="form-control"  style="width:60px!important" id="costo" name="costo" readonly="true"> Bs <div id="generarCosto"  style="width:60px!important; float: left;">Generar costo</div></div>
+			<div><input type="text" class="form-control"  style="width:60px!important" id="costo" name="costo" readonly="true"> Bs <div id="generarCosto"  style="width:92px!important; cursor: pointer; color: blue; float: left;">Generar costo</div></div>
         </div>
     </div>
 	
