@@ -123,15 +123,17 @@ class Admin extends CI_Controller {
         //$crud->set_primary_key('id_nicho');
         //$crud->set_relation('id_difunto','difunto','nombreCompletoFallecido');
 
-        $Fecha = date("Y-m-d");
+        $fecha = date("Y-m-d");
 
-        $crud->basic_model->set_query_str('SELECT * FROM nicho where estado="Ocupado" AND fecha_fin >=' . $Fecha); //Query text here
+
+        $crud->basic_model->set_query_str('SELECT * FROM nicho where estado="Ocupado" AND fecha_fin <="'.$fecha.'"'); //Query text here
         //$crud->set_relation('id_difunto','difunto','nombreCompletoFallecido');
 
         $crud->callback_column('id_difunto', array($this, '_callback_id_difunto'));
         $crud->callback_column('id_bloque', array($this, '_callback_id_bloque'));
         $crud->callback_column('fecha_fin', array($this, '_callback_fecha'));
         $crud->callback_column('fecha_inicio', array($this, '_callback_fecha_ini'));
+        $crud->callback_column('cara', array($this, '_callback_cara'));
 
         $crud->unset_add();
         $crud->unset_edit();
@@ -141,6 +143,11 @@ class Admin extends CI_Controller {
 
         $output = $crud->render();
         $this->_mostrar_crud($output);
+    }
+    
+    public function _callback_cara($value, $row) {
+         $caras =  array("Norte", "Sud", "Este", "Oeste");
+        return $caras[$value-1];
     }
     
     public function _callback_fecha($value, $row) {

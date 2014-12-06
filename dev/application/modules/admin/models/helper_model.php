@@ -25,7 +25,7 @@ class Helper_model extends CI_Model {
     
     public function getAlarmaNicho(){
         $id = date("Y-m-d");
-         $query = "SELECT * FROM nicho where estado='Ocupado' AND fecha_fin >=" . $id;
+         $query = "SELECT * FROM nicho where estado='Ocupado' AND fecha_fin <='".$id."'";
         $result = $this->db->query($query)->result_array();
         return $result;
     }
