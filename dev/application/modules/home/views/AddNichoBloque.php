@@ -295,7 +295,7 @@ ul, ol {
     <div class="control-group">
         <label class="control-label" for="inputRol">Numero de nicho Disponible</label>
         <div class="controls">
-			<input type="text" class="form-control" style="width:15px;" id="numeroNichoView" value="" name="numeroNichoView" readonly="true">
+			<input type="text" class="form-control" style="width:26px;" id="numeroNichoView" value="" name="numeroNichoView" readonly="true">
             <ul id="navegador" style="width: 30px; height: auto;"</ul>            
         </div>
     </div>
@@ -347,7 +347,7 @@ ul, ol {
             <input type="hidden" class="form-control"  id="costo_perpetuidad_2_clase" value="<?php echo $bloque_info[0]['costo_perpetuidad_2_clase']; ?>">
 			<input type="hidden" class="form-control"  id="costo_5_year_1_clase" value="<?php echo $bloque_info[0]['costo_5_year_1_clase']; ?>">
 			<input type="hidden" class="form-control"  id="costo_5_year_2_clase" value="<?php echo $bloque_info[0]['costo_5_year_2_clase']; ?>">
-			<div><input type="text" class="form-control"  style="width:60px!important" id="costo" name="costo" readonly="true"> Bs <div id="generarCosto"  style="width:60px!important; float: left;">Generar costo</div></div>
+			<div><input type="text" class="form-control"  style="width:60px!important" id="costo" name="costo" readonly="true"> Bs <div id="generarCosto"  style="width:92px!important; cursor: pointer; color: blue; float: left;">Generar costo</div></div>
         </div>
     </div>
 

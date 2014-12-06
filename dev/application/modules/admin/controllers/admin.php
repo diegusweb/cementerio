@@ -17,7 +17,7 @@ class Admin extends CI_Controller {
 
     public function _mostrar_crud($output = null) {
         $this->verifyLogin();
-         $data['alarma'] = $this->helper_model->getAlarmaNicho(); 
+        $data['alarma'] = $this->helper_model->getAlarmaNicho();
 
         $this->load->view('encabezado.php', $data);
         $this->layout->view('index.php', $output);
@@ -26,33 +26,33 @@ class Admin extends CI_Controller {
     public function index() {
         $this->_mostrar_crud((object) array('output' => '', 'js_files' => array(), 'css_files' => array()));
     }
-	
-	public function reporte_management() {
+
+    public function reporte_management() {
         //$this->session->set_userdata('page', 'Proveedores');
 
         $this->session->set_userdata('seccion', "Administración de Usuarios");
-		
+
 
         $crud = new grocery_CRUD();
 
         //$this->session->set_userdata('page', 'Configuracones');
         $crud->set_theme('datatables');
         $crud->set_table('tramite');
-		$crud->set_relation('id_difunto','difunto','nombreCompletoFallecido');
-		$crud->set_relation('id_solicitante','solicitante','nombre');
-		$crud->set_relation('id_users','users','nombre');      
+        $crud->set_relation('id_difunto', 'difunto', 'nombreCompletoFallecido');
+        $crud->set_relation('id_solicitante', 'solicitante', 'nombre');
+        $crud->set_relation('id_users', 'users', 'nombre');
 
-		
-$crud->columns('id_solicitante','tramite','fecha_tramite','id_users','clase','tipo_nicho','nrp_nicho','bloque','bloque_nombre','lado','costo');  
 
-$crud->display_as('tramite', 'Concepto');
-$crud->display_as('id_solicitante', 'Nombre');
-$crud->display_as('fecha_tramite', 'f. tramite');
-$crud->display_as('id_users', 'Responsable');
-$crud->display_as('tipo_nicho', 'Cuerpo');
-$crud->display_as('nrp_nicho', 'Nicho');
-$crud->display_as('bloque_nombre', 'Bloque');
-$crud->display_as('bloque', 'Tipo');
+        $crud->columns('id_solicitante', 'tramite', 'fecha_tramite', 'id_users', 'clase', 'tipo_nicho', 'nrp_nicho', 'bloque', 'bloque_nombre', 'lado', 'costo');
+
+        $crud->display_as('tramite', 'Concepto');
+        $crud->display_as('id_solicitante', 'Nombre');
+        $crud->display_as('fecha_tramite', 'f. tramite');
+        $crud->display_as('id_users', 'Responsable');
+        $crud->display_as('tipo_nicho', 'Cuerpo');
+        $crud->display_as('nrp_nicho', 'Nicho');
+        $crud->display_as('bloque_nombre', 'Bloque');
+        $crud->display_as('bloque', 'Tipo');
 
         $crud->unset_add();
         $crud->unset_edit();
@@ -111,7 +111,7 @@ $crud->display_as('bloque', 'Tipo');
         $output = $crud->render();
         $this->_mostrar_crud($output);
     }
-    
+
     public function bloque_expiro_management() {
 
         $this->session->set_userdata('seccion', "Administración de Nichos que expiraron");
@@ -120,36 +120,46 @@ $crud->display_as('bloque', 'Tipo');
         $crud->set_model('custom_query_model');
         $crud->set_theme('datatables');
         $crud->set_table('nicho'); //Change to your table name
-		//$crud->set_primary_key('id_nicho');
+        //$crud->set_primary_key('id_nicho');
         //$crud->set_relation('id_difunto','difunto','nombreCompletoFallecido');
-        
+
         $Fecha = date("Y-m-d");
 
-        $crud->basic_model->set_query_str('SELECT * FROM nicho where estado="Ocupado" AND fecha_fin >='.$Fecha); //Query text here
-		//$crud->set_relation('id_difunto','difunto','nombreCompletoFallecido');
-		
-		$crud->callback_column('id_difunto',array($this,'_callback_id_difunto'));
-		$crud->callback_column('id_bloque',array($this,'_callback_id_bloque'));
-		
+        $crud->basic_model->set_query_str('SELECT * FROM nicho where estado="Ocupado" AND fecha_fin >=' . $Fecha); //Query text here
+        //$crud->set_relation('id_difunto','difunto','nombreCompletoFallecido');
+
+        $crud->callback_column('id_difunto', array($this, '_callback_id_difunto'));
+        $crud->callback_column('id_bloque', array($this, '_callback_id_bloque'));
+        $crud->callback_column('fecha_fin', array($this, '_callback_fecha'));
+        $crud->callback_column('fecha_inicio', array($this, '_callback_fecha_ini'));
+
         $crud->unset_add();
         $crud->unset_edit();
         $crud->unset_delete();
         $crud->unset_read();
 
-       
+
         $output = $crud->render();
         $this->_mostrar_crud($output);
     }
-	
-	public function _callback_id_difunto($value, $row)
-	{
-	  return $this->helper_model->getNombreDif($row->id_difunto);
-	}
-	
-	public function _callback_id_bloque($value, $row)
-	{
-	  return $this->helper_model->getNombrebloque($row->id_bloque);
-	}
+    
+    public function _callback_fecha($value, $row) {
+        
+        return "<b style='color:#ff0000;'>".date('Y-m-d',strtotime($value))."</b>";
+    }
+    
+     public function _callback_fecha_ini($value, $row) {
+        
+        return "<b>".date('Y-m-d',strtotime($value))."</b>";
+    }
+
+    public function _callback_id_difunto($value, $row) {
+        return $this->helper_model->getNombreDif($row->id_difunto);
+    }
+
+    public function _callback_id_bloque($value, $row) {
+        return $this->helper_model->getNombrebloque($row->id_bloque);
+    }
 
     public function bloque_cremados_management() {
         $this->session->set_userdata('seccion', "Administración de Bloque Cremados");
@@ -200,7 +210,7 @@ $crud->display_as('bloque', 'Tipo');
         $crud->callback_edit_field('position', function () {
             return '<input type="text" maxlength="10" class="positionSet" style="width:50px!important" value="" name="position"> <a href="#" class="infoCbajoTierraDiv">Situar en mapa </a>';
         });
-$crud->unset_delete();
+        $crud->unset_delete();
         $output = $crud->render();
         $this->_mostrar_crud($output);
     }
@@ -225,15 +235,19 @@ $crud->unset_delete();
 
         $crud->set_rules('numero_filas', 'numero filas', 'required|number');
         $crud->set_rules('numero_nichos', 'numero nichos', 'required|number');
-		
-		$crud->display_as('numero_piso', 'Numero de pisos del bloque');
+
+        $crud->display_as('numero_piso', 'N. pisos bloque');
         $crud->field_type('numero_piso', 'dropdown', array('1' => '1', '2' => '2'));
         $crud->field_type('numero_caras', 'dropdown', array('1' => '1', '2' => '2', '3' => '3', '4' => '4'));
 
         $crud->field_type('numero_filas', 'dropdown', array('1' => '1', '2' => '2', '3' => '3', '4' => '4', '5' => '5', '6' => '6', '7' => '7', '8' => '8'));
-        $crud->field_type('numero_nichos', 'dropdown', array('1' => '1', '2' => '2', '3' => '3', '4' => '4', '5' => '5', '6' => '6', '7' => '7', '8' => '8', '9' => '9', '10' => '10', '11' => '11', '12' => '12', '13' => '13', '14' => '14'));
+        $crud->field_type('numero_nichos', 'dropdown', array('1' => '1', '2' => '2', '3' => '3', '4' => '4', '5' => '5', '6' => '6', '7' => '7', '8' => '8', '9' => '9',
+            '10' => '10', '11' => '11', '12' => '12', '13' => '13', '14' => '14', '15' => '15', '16' => '16', '17' => '17', '18' => '18', '19' => '19', '20' => '20',
+            '21' => '21', '22' => '22', '24' => '24', '25' => '25', '26' => '26', '27' => '27', '28' => '28', '29' => '29', '30' => '30'));
 
-
+        for ($i = 1; $i >= 30; $i++) {
+            
+        }
 
         $crud->callback_add_field('position', function () {
             return '<input type="text" maxlength="10" class="positionSet" style="width:50px!important" value="" name="position"> <a href="#" class="infoSucursalDiv">Situar en mapa </a>';
@@ -386,9 +400,9 @@ $crud->unset_delete();
         if (empty($user_id)) {
             redirect(base_url() . "login", 'outside');
         }
-		if($this->session->userdata('rol') != "Administrador"){
-			redirect(base_url() . "login", 'outside');
-		}
+        if ($this->session->userdata('rol') != "Administrador") {
+            redirect(base_url() . "login", 'outside');
+        }
     }
 
 }

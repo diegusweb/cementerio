@@ -70,7 +70,7 @@
                         <tr>
                             <td width="218" class="contT">Fecha Inicio </td>
                             <td width="337" class="contT">  <div id="datetimepicker1" class='input-group date' >
-                                    <input data-format="yyyy-MM-dd" type="text" id="fechaInicio" name="fechaInicio"></input>
+                                    <input data-format="yyyy-MM-dd" type="text" id="fechaInicio" value="<?php echo  $this->session->userdata('fechaInicio');?>" name="fechaInicio"></input>
                                     <span class="add-on">
                                         <i data-time-icon="icon-time" data-date-icon="icon-calendar">
                                         </i>
@@ -85,13 +85,14 @@
                         <tr>
                             <td width="218" class="contT">Fecha Fin </td>
                             <td width="337" class="contT"><div id="datetimepicker2" class='input-group date' >
-                                    <input data-format="yyyy-MM-dd" type="text" id="fechaFin" name="fechaFin"></input>
+                                    <input data-format="yyyy-MM-dd" type="text" id="fechaFin" value="<?php echo  $this->session->userdata('fechaFin');?>" name="fechaFin"></input>
                                     <span class="add-on">
                                         <i data-time-icon="icon-time" data-date-icon="icon-calendar">
                                         </i>
                                     </span>
                                 </div></td>
-                            <td><button id="buscar"  type="submit"  class="btn btn-primary btn-lg active">Mostrar Reportes</button></td>
+                            <td><button id="buscar"  type="submit"  class="btn btn-primary btn-lg active">Mostrar Reportes</button>
+                                <A id="imprimir" href="<?php echo base_url()."reportes/exportCheckedApplicants"?>"  class="btn btn-success btn-lg active">Imprimir Reportes</a></td>
                         </tr>
 
                         <tr>

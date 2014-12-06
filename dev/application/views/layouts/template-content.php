@@ -56,19 +56,19 @@
                                 </a>
                                 <ul class="dropdown-menu extended notification">
                                     <li>
-                                        <p>Hay <?php echo count($alarma);?> nichos para renovar</p>
+                                        <p>Alertas</p>
                                     </li>
-                                    <!--<li>
+                                    <li>
                                         <a href="#">
                                             <span class="label label-important"><i class="icon-bolt"></i></span>
-                                            Server #3 overloaded.
-                                            <span class="small italic">34 mins</span>
+                                          
+                                            <span class="small italic"> Hay <?php echo count($alarma);?> nichos para renovar</span>
                                         </a>
                                     </li>
                                     
                                     <li>
-                                        <a href="#">See all notifications</a>
-                                    </li>-->
+                                        <a href="<?php echo base_url()."admin/bloque_expiro_management"?>">Mostrar Nichos</a>
+                                    </li>
                                 </ul>
                             </li>
                             <!-- END NOTIFICATION DROPDOWN -->
