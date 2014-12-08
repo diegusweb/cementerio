@@ -409,9 +409,9 @@ class Admin extends CI_Controller {
         if (empty($user_id)) {
             redirect(base_url() . "login", 'outside');
         }
-        if ($this->session->userdata('rol') != "Administrador") {
+        /*if ($this->session->userdata('rol') != "Administrador") {
             redirect(base_url() . "login", 'outside');
-        }
+        }*/
     }
 
 }

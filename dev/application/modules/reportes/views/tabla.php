@@ -41,9 +41,17 @@
             $.each(nn, function (index, v) {
                 $comboNichoLibres.append("<option value=" + v['id_users'] + ">" + v['nombre'] + " " + v['apellido'] + "</option>");
             });
+			
+			var func = "<?php echo ($this->session->userdata('funcionario')) ? $this->session->userdata('funcionario') : "0";?>";					
+			$("#funcionario option[value='"+func+"']").attr("selected",true);
+			
         }, 'json');
-
-
+		
+		var funcc = <?php echo ($this->session->userdata('concepto')) ? $this->session->userdata('concepto') : "0";?>;					
+			$("#concepto option[value='"+funcc+"']").attr("selected",true);
+			
+			var funct = "<?php echo ($this->session->userdata('tipo')) ? $this->session->userdata('tipo') : "0";?>";					
+			$("#tipo option[value='"+funct+"']").attr("selected",true);
     });
 
 </script>
@@ -84,13 +92,13 @@
                                 </div> </td>
                             <td width="337"  class="contT">
                                 Funcionario : <select name="funcionario" id="funcionario">
-                                    <option value="todos">todos</option>
+                                    <option value="0">todos</option>
                                 </select>
                             </td>
                         </tr>
                         <tr>
                             <td width="218" class="contT">
-                                <select style="width: 150px;" name="tipo">
+                                <select style="width: 150px;" name="tipo" id="tipo">
                                     <option value="">Tipo de bloque </option>
                                     <option value="Nicho">Bloque Nicho</option>
                                     <option value="Mausoleo">Bloque Mausoleo</option>
@@ -99,7 +107,7 @@
                                 </select>
                             </td>
                             <td width="337" class="contT">
-                             <select style="width: 150px;" name="concepto">
+                             <select style="width: 150px;" name="concepto" id="concepto">
                                     <option value="">Concepto</option>
                                     <option value="1">Nicho Perpetuidad</option>
                                     <option value="2">Añadir Lapida</option>
@@ -185,3 +193,6 @@
                         <!-- END EXAMPLE TABLE widget-->
                         </div>
                         </div>
+						
+						
+				

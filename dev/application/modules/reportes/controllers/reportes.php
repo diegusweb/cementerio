@@ -56,8 +56,8 @@ class Reportes extends CI_Controller {
         $this->session->set_userdata('fechaInicio', $fechaInicio);
         $this->session->set_userdata('fechaFin', $fechaFin);
         $this->session->set_userdata('funcionario', $funcionario);
-        $this->session->set_userdata('funcionario', $tipo);
-        $this->session->set_userdata('funcionario', $concepto);
+        $this->session->set_userdata('tipo', $tipo);
+        $this->session->set_userdata('concepto', $concepto);
 
         $bloque['alarma'] = $this->reportes_model->getAlarmaNicho();
         $bloque['tramite'] = $this->reportes_model->infoBloqueNicho($fechaInicio, $fechaFin, $funcionario, $tipo, $concepto);
@@ -100,8 +100,8 @@ class Reportes extends CI_Controller {
         $fechaInicio = $this->session->userdata('fechaInicio');
         $fechaFin = $this->session->userdata('fechaFin');
         $funcionario = $this->session->userdata('funcionario');
-        $tipo = $this->session->userdata('funcionario');
-        $concepto = $this->session->userdata('funcionario');
+        $tipo = $this->session->userdata('tipo');
+        $concepto = $this->session->userdata('concepto');
 
         //$data['tramite'] = $this->reportes_model->infoBloqueTramites();
         if ($fechaInicio != "" || $fechaFin != "" || $funcionario != "")
