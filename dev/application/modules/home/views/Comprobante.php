@@ -86,10 +86,10 @@
                     <span align="center">Cuerpo: <?php echo $tramite[0]['tipo_nicho'] ?></span><br>
                     <?php
                     if ($tramite[0]['nro_nicho'] > 0) {
-                        echo " <span align='center'>Numero Nicho: " . $tramite[0]['nro_nicho']."</span>";
+                        echo " <span align='center'>Numero Nicho: " . $tramite[0]['nro_nicho']."</span><br>";
                     }
                     ?>
-                    <span align="center">Bloque: <?php echo $tramite[0]['bloque'] ?></span><br>
+                    <span align="center">Bloque: <?php echo $tramite[0]['bloque_nombre'] ?></span><br>
                     <?php
                     $caras = array("Norte", "Sud", "Este", "Oeste");
                     if (!empty($tramite[0]['lado'])) {

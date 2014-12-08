@@ -159,7 +159,7 @@
                             <li><a class="" href="<?php echo base_url() . "home/showFormDifunto"; ?>">Difuntos</a></li>-->
                             <li><a class="" href="<?php echo base_url() . "home"; ?>">Mapa de Bloques</a></li>
 			    <li><a class="" href="<?php echo base_url() . "reportes"; ?>">Reportes Registros</a></li>
-                            
+                            <li><a class="" href="<?php echo base_url() . "reportes/reporteNicho"; ?>">Reportes Nichos</a></li>
                         </ul>
                     </li>
 

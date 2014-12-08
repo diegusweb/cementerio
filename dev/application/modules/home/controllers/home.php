@@ -149,6 +149,11 @@ class Home extends CI_Controller {
         //$data['fecha_tramite'] = $_POST['fechaTramite'];
         $data['costo'] = $_POST['costo'];
         $data['pagado'] = 0;
+        
+        $datas = array(
+                'estado' => 'Libre'
+            );
+            $this->home_model->updateNichoStatus($_POST['numeroNicho'], $datas);
 
         $d = $this->home_model->addTramiteNicho($data);
         if ($d > 0) {

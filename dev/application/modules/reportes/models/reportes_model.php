@@ -10,7 +10,7 @@ class Reportes_model extends CI_Model {
         //$this->CI =& get_instance();
     }
 
-    public function infoBloqueNicho($fechaInicio, $fechaFin, $funcionario) {
+    public function infoBloqueNicho($fechaInicio, $fechaFin, $funcionario, $tipo, $concepto) {
 
         $this->db->select('tramite.id_solicitante, tramite.id_difunto,solicitante.nombre, solicitante.apellido, tramite.tramite,tramite.fecha_tramite,users.nombre as user_nombre,users.apellido as user_apellido,tramite.clase
 		,tramite.tipo_nicho,tramite.nro_nicho,tramite.bloque, tramite.bloque_nombre,tramite.lado,tramite.costo');
@@ -26,7 +26,30 @@ class Reportes_model extends CI_Model {
             $this->db->where('fecha_tramite <=', $fechaFin);
         }
         if ($funcionario > 0) {
-            $this->db->where('tramite.id_users = ' . $funcionario);
+            $this->db->where('tramite.id_users' , $funcionario);
+        }
+        if ($tipo) {
+            $this->db->where('tramite.bloque' , $tipo);
+        }
+        if ($concepto > 0) {
+            switch ($concepto) {
+                case 1:
+                    $this->db->where('tramite.tramite',"Nicho Perpetuidad");
+                    break;
+                 case 2:
+                    $this->db->where('tramite.tramite', "Añadir Lapida");
+                    break;
+                 case 3:
+                    $this->db->where('tramite.tramite',"Ingresar Sitio Tierra");
+                    break;
+                 case 4:
+                    $this->db->where('tramite.tramite',"Ingresar a Mausoleo");
+                    break;
+                 case 5:
+                    $this->db->where('tramite.tramite', "Renovacion de 1 año para Nichos");
+                    break;
+            }
+            //$this->db->where('tramite.tramite = ' . $concepto);
         }
         $this->db->order_by("id_tramite", "desc");
 
@@ -83,6 +106,29 @@ class Reportes_model extends CI_Model {
         $result = $this->db->query($query)->result_array();
 
         return $result;
+    }
+    
+    function getInfoNicho(){
+        
+         $this->db->select('*');
+        $this->db->from('nicho');
+        //$this->db->join('difunto', 'difunto.id_difunto = tramite.id_difunto');
+        //$this->db->join('bloque_nicho', 'bloque_nicho.id_bloque_nicho = nicho.id_bloque');
+
+
+        $consulta = $this->db->get();
+        return $consulta->result_array();
+    
+    }
+    
+        function getInfoBloque(){
+        
+         $this->db->select('*');
+        $this->db->from('bloque_nicho');
+
+        $consulta = $this->db->get();
+        return $consulta->result_array();
+    
     }
 
 }

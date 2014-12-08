@@ -68,14 +68,20 @@
                     <table width="898" style="float: left; margin-bottom: 10px;" border="0" class="cont" cellpadding="0" cellspacing="0">
 
                         <tr>
-                            <td width="218" class="contT">Fecha Inicio </td>
-                            <td width="337" class="contT">  <div id="datetimepicker1" class='input-group date' >
-                                    <input data-format="yyyy-MM-dd" type="text" id="fechaInicio" value="<?php echo  $this->session->userdata('fechaInicio');?>" name="fechaInicio"></input>
+                            <td width="218" class="contT"><div id="datetimepicker1" class='input-group date' >
+                                    <input data-format="yyyy-MM-dd" style="width: 100px;" type="text" id="fechaInicio" value="<?php echo  $this->session->userdata('fechaInicio');?>" name="fechaInicio" placeholder="Fecha Inicio"></input>
                                     <span class="add-on">
                                         <i data-time-icon="icon-time" data-date-icon="icon-calendar">
                                         </i>
                                     </span>
                                 </div></td>
+                            <td width="337" class="contT"> <div id="datetimepicker2" class='input-group date' >
+                                    <input data-format="yyyy-MM-dd" style="width: 100px;" placeholder="Fecha Fin" type="text" id="fechaFin" value="<?php echo  $this->session->userdata('fechaFin');?>" name="fechaFin"></input>
+                                    <span class="add-on">
+                                        <i data-time-icon="icon-time" data-date-icon="icon-calendar">
+                                        </i>
+                                    </span>
+                                </div> </td>
                             <td width="337"  class="contT">
                                 Funcionario : <select name="funcionario" id="funcionario">
                                     <option value="todos">todos</option>
@@ -83,14 +89,26 @@
                             </td>
                         </tr>
                         <tr>
-                            <td width="218" class="contT">Fecha Fin </td>
-                            <td width="337" class="contT"><div id="datetimepicker2" class='input-group date' >
-                                    <input data-format="yyyy-MM-dd" type="text" id="fechaFin" value="<?php echo  $this->session->userdata('fechaFin');?>" name="fechaFin"></input>
-                                    <span class="add-on">
-                                        <i data-time-icon="icon-time" data-date-icon="icon-calendar">
-                                        </i>
-                                    </span>
-                                </div></td>
+                            <td width="218" class="contT">
+                                <select style="width: 150px;" name="tipo">
+                                    <option value="">Tipo de bloque </option>
+                                    <option value="Nicho">Bloque Nicho</option>
+                                    <option value="Mausoleo">Bloque Mausoleo</option>
+                                    <option value="Cremados">Bloque Crematorios</option>
+                                    <option value="Sitio Tierra">Bloque Sitio Tierra</option>
+                                </select>
+                            </td>
+                            <td width="337" class="contT">
+                             <select style="width: 150px;" name="concepto">
+                                    <option value="">Concepto</option>
+                                    <option value="1">Nicho Perpetuidad</option>
+                                    <option value="2">Añadir Lapida</option>
+                                    <option value="3">Ingresar Sitio Tierra</option>
+                                    <option value="4">Ingresar a Mausoleo</option>
+                                    <option value="5">Renovacion de 1 año para Nichos</option>
+                                    
+                                </select>
+                            </td>
                             <td><button id="buscar"  type="submit"  class="btn btn-primary btn-lg active">Mostrar Reportes</button>
                                 <A id="imprimir" href="<?php echo base_url()."reportes/exportCheckedApplicants"?>"  class="btn btn-success btn-lg active">Imprimir Reportes</a></td>
                         </tr>
@@ -151,6 +169,17 @@
 
                             </tbody>
                         </table>
+                        <div style="float: right;">
+<table width="419" border="0">
+  <tr>
+    <td width="132" bgcolor="#CCCCCC"><div align="center">Total</div></td>
+    <td width="46" bgcolor="#CCCCCC"><?php echo $monto;?></td>
+    <td width="54" bgcolor="#CCCCCC"><?php echo $sumBoleta;?></td>
+    <td width="159" bgcolor="#CCCCCC"><?php echo $sumMonto;?></td>
+  </tr>
+</table>
+
+                                </div>
                         </div>
                         </div>
                         <!-- END EXAMPLE TABLE widget-->
