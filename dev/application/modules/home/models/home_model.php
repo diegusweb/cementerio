@@ -213,5 +213,11 @@ class Home_model extends CI_Model {
 
         return $result;
     }
+    
+    public function getNombreAdmin(){
+        $query = "SELECT * FROM users WHERE rol='Administrador'";
+        $result = $this->db->query($query)->result_array();
+        return $result[0]['nombre']." ".$result[0]['apellido'];
+    }
 
 }

@@ -31,7 +31,7 @@
             Calle final Bolivar acera este
         </div>
 
-        <p><h4  style="width:604.7px;; text-align: center; padding-top:25px; padding-bottom:25px;">COMPROBANTE<h4/></p>
+        <p><h4  style="width:604.7px;; text-align: center; padding-top:20px; padding-bottom:20px;">COMPROBANTE<h4/></p>
     </div>
     <div id="save-form" style="margin: 0 auto; width:604.7px; height:566.9px;">
 <!-- border: 1px solid #333; -->
@@ -123,6 +123,25 @@
                 <td>&nbsp;</td>
             </tr>
         </table>
+        <div style="width: 600px; text-align: center; margin-top: 5px; font-size: 11px;">
+            
+            <?php setlocale(LC_ALL,"es_ES");
+echo "Fecha ".strftime("%d de %B del %Y");?> 
+        </div>
+         <div style="width: 600px; text-align: center; margin-top: 5px; font-size: 11px;">
+            <div style="width: 300px; float: left; text-align: center; margin-top: 5px; margin-top: 45px;">
+             <?php echo strtoupper($admin)."<br>";?>
+                ENCARGADO CEMENTERIO<br>
+Responsable Cementerio
+        </div>
+             <div style="width: 300px; float: right; text-align: center; margin-top: 5px; margin-top: 45px;">
+                 <?php echo strtoupper($this->session->userdata('username'))."<br>";?>
+      AUX. CEMENTERIO<br>
+      Cajero(a)
+
+        </div>
+
+        </div>
         <br/>
     </div>
 </div>

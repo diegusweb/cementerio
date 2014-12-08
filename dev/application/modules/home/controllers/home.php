@@ -421,7 +421,8 @@ class Home extends CI_Controller {
     //comprobante
     public function Comprobante($id_tarmite) {
         $tramite['tramite'] = $this->home_model->getTarmite($id_tarmite);
-		$tramite['alarma'] = $this->home_model->getAlarmaNicho(); 
+	$tramite['alarma'] = $this->home_model->getAlarmaNicho(); 
+        $tramite['admin'] = $this->home_model->getNombreAdmin(); 
         $this->layout->view('Comprobante', $tramite);
     }
 
