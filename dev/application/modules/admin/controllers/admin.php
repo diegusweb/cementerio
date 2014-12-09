@@ -297,7 +297,7 @@ class Admin extends CI_Controller {
         $crud->callback_edit_field('costo_perpetuidad_2_clase', array($this, 'edit_costo_perpetuidad_2_clase'));
 
         //edit
-
+         $crud->edit_fields('nombre','position','costo_perpetuidad_1_clase','costo_perpetuidad_2_clase','costo_5_year_2_clase','costo_5_year_1_clase');
 
         $crud->display_as('create_date', 'Fechas');
 
