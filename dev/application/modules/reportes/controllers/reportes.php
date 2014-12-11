@@ -27,8 +27,14 @@ class Reportes extends CI_Controller {
         $total3 = 0;
         foreach ($bloque['tramite'] as $row) {
             $total1 = $row['costo'] + $total1;
-            $total2 = ($row['costo'] + 3) + $total2;
-            $total3 = 3 + $total3;
+            if($row['bloque'] == "Mausoleo"){
+                $total2 = ($row['costo'] + 0) + $total2;
+                $total3 = 0 + $total3;
+            }
+            else{
+                $total2 = ($row['costo'] + 3) + $total2;
+                 $total3 = 3 + $total3;
+            }
         }
 
         $bloque['monto'] = $total1;
@@ -67,8 +73,16 @@ class Reportes extends CI_Controller {
         $total3 = 0;
         foreach ($bloque['tramite'] as $row) {
             $total1 = $row['costo'] + $total1;
-            $total2 = ($row['costo'] + 3) + $total2;
-            $total3 = 3 + $total3;
+            if($row['bloque'] == "Mausoleo"){
+                $total2 = ($row['costo'] + 0) + $total2;
+                $total3 = 0 + $total3;
+            }
+            else{
+                $total2 = ($row['costo'] + 3) + $total2;
+                 $total3 = 3 + $total3;
+            }
+            
+           
         }
 
         $bloque['monto'] = $total1;
@@ -115,8 +129,14 @@ class Reportes extends CI_Controller {
         $total3 = 0;
         foreach ($data['tramite'] as $row) {
             $total1 = $row['costo'] + $total1;
-            $total2 = ($row['costo'] + 3) + $total2;
-            $total3 = 3 + $total3;
+            if($row['bloque'] == "Mausoleo"){
+                $total2 = ($row['costo'] + 0) + $total2;
+                $total3 = 0 + $total3;
+            }
+            else{
+                $total2 = ($row['costo'] + 3) + $total2;
+                 $total3 = 3 + $total3;
+            }
         }
 
         $data['monto'] = $total1;

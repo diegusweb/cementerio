@@ -236,20 +236,21 @@ $('.formSolicitante').click(function(){
         });
 });
 
-$('.showSolicitante').click(function(){
+function showSolicitante(id){
  //$('#myModalAddForm').modal('hide');
-    var urlInfo = base_url + "reportes/showSolicitante/"+$('.showSolicitante').attr('data-id');
+ console.log(id);
+    var urlInfo = base_url + "reportes/showSolicitante/"+id;
         $("#contentDemoR").load(urlInfo, function () {
             $('#myModalReport #myModalLabel').text('Informacion Solicitante');
             $('#myModalReport').modal('show');
         });
-});
+};
 
-$('.showDifunto').click(function(){
+function showDifunto(id){
  //$('#myModalAddForm').modal('hide');
-    var urlInfo = base_url + "reportes/showDifunto/"+$('.showDifunto').attr('data-id');
+    var urlInfo = base_url + "reportes/showDifunto/"+id;
         $("#contentDemoR").load(urlInfo, function () {
             $('#myModalReport #myModalLabel').text('Informacion Difunto');
             $('#myModalReport').modal('show');
         });
-});
+};

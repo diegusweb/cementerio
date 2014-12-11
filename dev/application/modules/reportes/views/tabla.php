@@ -41,17 +41,17 @@
             $.each(nn, function (index, v) {
                 $comboNichoLibres.append("<option value=" + v['id_users'] + ">" + v['nombre'] + " " + v['apellido'] + "</option>");
             });
-			
-			var func = "<?php echo ($this->session->userdata('funcionario')) ? $this->session->userdata('funcionario') : "0";?>";					
-			$("#funcionario option[value='"+func+"']").attr("selected",true);
-			
+
+            var func = "<?php echo ($this->session->userdata('funcionario')) ? $this->session->userdata('funcionario') : "0"; ?>";
+            $("#funcionario option[value='" + func + "']").attr("selected", true);
+
         }, 'json');
-		
-		var funcc = <?php echo ($this->session->userdata('concepto')) ? $this->session->userdata('concepto') : "0";?>;					
-			$("#concepto option[value='"+funcc+"']").attr("selected",true);
-			
-			var funct = "<?php echo ($this->session->userdata('tipo')) ? $this->session->userdata('tipo') : "0";?>";					
-			$("#tipo option[value='"+funct+"']").attr("selected",true);
+
+        var funcc = <?php echo ($this->session->userdata('concepto')) ? $this->session->userdata('concepto') : "0"; ?>;
+        $("#concepto option[value='" + funcc + "']").attr("selected", true);
+
+        var funct = "<?php echo ($this->session->userdata('tipo')) ? $this->session->userdata('tipo') : "0"; ?>";
+        $("#tipo option[value='" + funct + "']").attr("selected", true);
     });
 
 </script>
@@ -77,14 +77,14 @@
 
                         <tr>
                             <td width="218" class="contT"><div id="datetimepicker1" class='input-group date' >
-                                    <input data-format="yyyy-MM-dd" style="width: 100px;" type="text" id="fechaInicio" value="<?php echo  $this->session->userdata('fechaInicio');?>" name="fechaInicio" placeholder="Fecha Inicio"></input>
+                                    <input data-format="yyyy-MM-dd" style="width: 100px;" type="text" id="fechaInicio" value="<?php echo $this->session->userdata('fechaInicio'); ?>" name="fechaInicio" placeholder="Fecha Inicio"></input>
                                     <span class="add-on">
                                         <i data-time-icon="icon-time" data-date-icon="icon-calendar">
                                         </i>
                                     </span>
                                 </div></td>
                             <td width="337" class="contT"> <div id="datetimepicker2" class='input-group date' >
-                                    <input data-format="yyyy-MM-dd" style="width: 100px;" placeholder="Fecha Fin" type="text" id="fechaFin" value="<?php echo  $this->session->userdata('fechaFin');?>" name="fechaFin"></input>
+                                    <input data-format="yyyy-MM-dd" style="width: 100px;" placeholder="Fecha Fin" type="text" id="fechaFin" value="<?php echo $this->session->userdata('fechaFin'); ?>" name="fechaFin"></input>
                                     <span class="add-on">
                                         <i data-time-icon="icon-time" data-date-icon="icon-calendar">
                                         </i>
@@ -107,18 +107,19 @@
                                 </select>
                             </td>
                             <td width="337" class="contT">
-                             <select style="width: 150px;" name="concepto" id="concepto">
+                                <select style="width: 150px;" name="concepto" id="concepto">
                                     <option value="">Concepto</option>
                                     <option value="1">Nicho Perpetuidad</option>
                                     <option value="2">Añadir Lapida</option>
                                     <option value="3">Ingresar Sitio Tierra</option>
                                     <option value="4">Ingresar a Mausoleo</option>
-                                    <option value="5">Renovacion de 1 año para Nichos</option>
-                                    
+                                    <option value="5">Renovacion Nichos</option>
+                                    <option value="6">Exhumacion</option>
+                                    <option value="7">construccion de cripta</option>
                                 </select>
                             </td>
                             <td><button id="buscar"  type="submit"  class="btn btn-primary btn-lg active">Mostrar Reportes</button>
-                                <A id="imprimir" href="<?php echo base_url()."reportes/exportCheckedApplicants"?>"  class="btn btn-success btn-lg active">Imprimir Reportes</a></td>
+                                <A id="imprimir" href="<?php echo base_url() . "reportes/exportCheckedApplicants" ?>"  class="btn btn-success btn-lg active">Imprimir Reportes</a></td>
                         </tr>
 
                         <tr>
@@ -162,14 +163,15 @@
                                         <td class="hidden-phone"><?php echo ($row['nro_nicho'] > 0) ? $row['nro_nicho'] : ""; ?></td>
                                         <td class="hidden-phone"><?php echo $row['bloque']; ?></td>
                                         <td class="hidden-phone"><?php echo $row['bloque_nombre']; ?></td>
-                                        <td class="hidden-phone"><?php $caras = array("Norte", "Sud", "Este", "Oeste");
-                                echo ($row['lado'] > 0) ? $caras[$row['lado'] - 1] : "";
-                                    ?></td>
+                                        <td class="hidden-phone"><?php
+                                            $caras = array("Norte", "Sud", "Este", "Oeste");
+                                            echo ($row['lado'] > 0) ? $caras[$row['lado'] - 1] : "";
+                                            ?></td>
                                         <td class="hidden-phone"><?php echo $row['costo']; ?></td>
-                                        <td class="hidden-phone"><?php echo "3.00"; ?></td>
-                                        <td class="hidden-phone"><?php echo ($row['costo'] + 3.00); ?></td>
-                                        <td class="hidden-phone"><a href="#" class="showSolicitante" data-id="<?php echo $row['id_solicitante']; ?>">Solicitud</a></td>
-                                        <td class="hidden-phone"><a href="#" class="showDifunto" data-id="<?php echo $row['id_difunto']; ?>">Difunto</a></td>
+                                        <td class="hidden-phone"><?php echo ($row['bloque'] == "Mausoleo")?"0.00":"3.00"; ?></td>
+                                        <td class="hidden-phone"><?php echo ($row['bloque'] != "Mausoleo")?($row['costo'] + 3.00):$row['costo']; ?></td>
+                                        <td class="hidden-phone"><a href="#" class="showSolicitante" onClick="showSolicitante(<?php echo $row['id_solicitante']; ?>)">Solicitud</a></td>
+                                        <td class="hidden-phone"><a href="#" class="showDifunto" onClick="showDifunto(<?php echo $row['id_difunto']; ?>)">Difunto</a></td>
                                     </tr>
                                     <?php
                                 }
@@ -178,21 +180,20 @@
                             </tbody>
                         </table>
                         <div style="float: right;">
-<table width="419" border="0">
-  <tr>
-    <td width="132" bgcolor="#CCCCCC"><div align="center">Total</div></td>
-    <td width="46" bgcolor="#CCCCCC"><?php echo $monto;?></td>
-    <td width="54" bgcolor="#CCCCCC"><?php echo $sumBoleta;?></td>
-    <td width="159" bgcolor="#CCCCCC"><?php echo $sumMonto;?></td>
-  </tr>
-</table>
+                            <table width="419" border="0">
+                                <tr>
+                                    <td width="132" bgcolor="#CCCCCC"><div align="center">Total</div></td>
+                                    <td width="46" bgcolor="#CCCCCC"><?php echo $monto; ?></td>
+                                    <td width="54" bgcolor="#CCCCCC"><?php echo $sumBoleta; ?></td>
+                                    <td width="159" bgcolor="#CCCCCC"><?php echo $sumMonto; ?></td>
+                                </tr>
+                            </table>
 
-                                </div>
+                        </div>
                         </div>
                         </div>
                         <!-- END EXAMPLE TABLE widget-->
                         </div>
                         </div>
-						
-						
-				
+
+

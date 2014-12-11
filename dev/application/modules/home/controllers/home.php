@@ -55,8 +55,8 @@ class Home extends CI_Controller {
         $id_solicitante = (int) $this->session->userdata('id_solitantes');
         $id_difunto = (int) $this->session->userdata('id_difuntos');
 
-        if (!empty($id_solicitante)) {
-            if (!empty($id_difunto)) {
+        if (empty($id_solicitante)) {
+            if (empty($id_difunto)) {
                 $data['bloque_info'] = $this->home_model->getInfoBloqueNicho($id);
                 $this->load->view('AddNichoBloque', $data);
             } else {

@@ -125,7 +125,7 @@
     
     <div class="control-group">
         <label class="control-label" for="inputUsuario">Tramite</label>
-		<input type="hidden" id="tramite" name="tramite" value="Ingresar a Bloque Cremados" >
+		<input type="hidden" id="tramite" name="tramite" value="Autorizacion de construccion de cripta" >
 		Autorizacion de construccion de cripta
     </div>
     <div class="control-group">
