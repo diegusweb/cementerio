@@ -99,7 +99,7 @@
         //aqui es el funcionamiento del boton guardar
         submitHandler: function (form) {
             var x;
-            if (confirm("Press a button!") == true) {
+            if (confirm("Confirma que desea guardar!") == true) {
                $.ajax({
                 type: "POST",
                 url: "<?php echo base_url() . "home/showFormAddDifuncto"; ?>",

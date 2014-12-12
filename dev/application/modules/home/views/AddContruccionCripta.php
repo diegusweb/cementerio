@@ -65,8 +65,9 @@
         },
         //aqui es el funcionamiento del boton guardar
         submitHandler: function(form) {
-
-            $.ajax({
+    var x;
+    if (confirm("Confirma que desea guardar!") == true) {
+        $.ajax({
                 type: "POST",
                 url: "<?php echo base_url() . "home/addNicho"; ?>",
                 data: $('#add-form').serialize(),
@@ -85,6 +86,10 @@
                     alert("Error");
                 }
             });
+    } else {
+        x = "You pressed Cancel!";
+    }
+            
 
         }
     });

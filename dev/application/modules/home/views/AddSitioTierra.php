@@ -44,7 +44,12 @@
         },
         //aqui es el funcionamiento del boton guardar
         submitHandler: function(form) {
-
+var x;
+            if (confirm("Confirma que desea guardar!") == true) {
+                x = "You pressed OK!";
+            } else {
+                x = "You pressed Cancel!";
+            }
             $.ajax({
                 type: "POST",
                 url: "<?php echo base_url() . "home/AddTramiteBajoTierra"; ?>",
