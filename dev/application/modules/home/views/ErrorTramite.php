@@ -22,7 +22,11 @@ $('.formDifunto').click(function(){
     var urlInfo = base_url + "home/showFormDifunto/";
         $("#contentDemoDif").load(urlInfo, function () {
            
-            $('#myModalAddDifuncto').modal('show');
+            $('#myModalAddDifuncto').modal({
+                show: true,
+                keyboard: false,
+                backdrop: 'static'
+            });
              $('.loading').hide();
         });
 });

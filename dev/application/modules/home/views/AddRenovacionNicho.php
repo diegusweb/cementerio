@@ -60,7 +60,7 @@
                 success: function(msg) {
                     if (msg > 0) {
                         $('#myModalAddForm').modal('hide');
-                        $('#myModalComprobante').modal('show');
+                        $('#myModalComprobante').modal({ show: true, keyboard: false, backdrop: 'static' });
                         
                         var link = base_url+"home/comprobante/"+msg;
                         var link2 = link.replace(/\s/g,'');
@@ -127,10 +127,10 @@
 	$('#generarCosto').click(function(){
 		if(tipo == "Mayor"){
 			if(clase == "Nuevo"){
-				$('#costo').val(163);
+				$('#costo').val(160);
 			}
 			if(clase == "Antiguo"){
-				$('#costo').val(83);
+				$('#costo').val(80);
 			}
 		}
 		if(tipo == "Menor"){
@@ -138,7 +138,7 @@
 				$('#costo').val(103);
 			}
 			if(clase == "Antiguo"){
-				$('#costo').val(63);
+				$('#costo').val(60);
 			}
 		}
 	});

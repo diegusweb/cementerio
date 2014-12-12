@@ -132,7 +132,8 @@ class Home_model extends CI_Model {
         $this->db->from('tramite');
         //$this->db->join('difunto', 'difunto.id_difunto = tramite.id_difunto');
         $this->db->join('solicitante', 'solicitante.id_solicitante = tramite.id_solicitante');
-        $this->db->join('difunto', 'difunto.id_difunto= tramite.id_difunto');
+        //$this->db->join('nicho', 'nicho.id_nicho = tramite.nro_nicho');
+        $this->db->join('difunto', 'difunto.id_difunto = tramite.id_difunto');
         $this->db->where('tramite.id_tramite', $id);
 
         $consulta = $this->db->get();
@@ -143,6 +144,12 @@ class Home_model extends CI_Model {
         $query = "SELECT * FROM bloque_mausoleo WHERE id_bloque_mausoleo=" . $id;
         $result = $this->db->query($query)->result_array();
         return $result;
+    }
+    
+    public function getNichoCompro($id) {
+        $query = "SELECT nicho FROM nicho WHERE id_nicho=" . $id;
+        $result = $this->db->query($query)->result_array();
+        return $result[0]['nicho'];
     }
 
     //mausoleo

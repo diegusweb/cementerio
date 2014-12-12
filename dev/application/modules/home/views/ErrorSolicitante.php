@@ -25,7 +25,11 @@ $('.formSolicitante').click(function(){
         $("#contentDemoM").load(urlInfo, function () {
             $('.loading').hide();
             $('#myModalError #myModalLabel').html("Registro Solicitante");
-            $('#myModalError').modal('show');
+            $('#myModalError').modal({
+                show: true,
+                keyboard: false,
+                backdrop: 'static'
+            });
         });
 });
 

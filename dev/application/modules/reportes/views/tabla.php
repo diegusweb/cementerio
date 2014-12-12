@@ -110,12 +110,13 @@
                                 <select style="width: 150px;" name="concepto" id="concepto">
                                     <option value="">Concepto</option>
                                     <option value="1">Nicho Perpetuidad</option>
+                                    <option value="8">Nicho Perpetuidad</option>
                                     <option value="2">Añadir Lapida</option>
                                     <option value="3">Ingresar Sitio Tierra</option>
                                     <option value="4">Ingresar a Mausoleo</option>
                                     <option value="5">Renovacion Nichos</option>
                                     <option value="6">Exhumacion</option>
-                                    <option value="7">construccion de cripta</option>
+                                    <option value="7">Construccion de cripta</option>
                                 </select>
                             </td>
                             <td><button id="buscar"  type="submit"  class="btn btn-primary btn-lg active">Mostrar Reportes</button>

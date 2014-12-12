@@ -23,7 +23,11 @@ $('.formDifunto').click(function(){
 	var urlInfo = base_url + "home/showFormDifunto/"+<?php echo $id;?>+"/"+<?php echo $form;?>+"/"+<?php echo $pag;?>;
         $("#contentDemoM").load(urlInfo, function () {
            
-            $('#myModalError').modal('show');
+            $('#myModalError').modal({
+            show: true,
+            keyboard: false,
+            backdrop: 'static'
+        });
             $('#myModalError #myModalLabel').html("Registro Difunto");
              $('.loading').hide();
         });

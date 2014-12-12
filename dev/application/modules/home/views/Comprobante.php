@@ -36,16 +36,16 @@
     <div id="save-form" style="margin: 0 auto; width:604.7px; height:566.9px;">
 <!-- border: 1px solid #333; -->
         <div style=" width:588px; height:125px; padding:6px;  font-size: 14px; border-radius:10px; margin-bottom: 10px;" class="cont">
-            <div style="float:left; border: 1px solid #333; width:150px; height:50px; border-radius:10px;">
+            <div style="float:left;  width:150px; height:50px; border-radius:10px;">
                 <div style="font-size: 12px; text-align: center;">Nro.  CARNET</div>
                 <div><?php echo $tramite[0]['ci'] ?></div>
             </div>
-            <div style="float:right; border: 1px solid #333; width:420px; height:50px; border-radius:10px;">
+            <div style="float:right;  width:420px; height:50px; border-radius:10px;">
                 <div style="font-size: 12px; text-align: center;">NOMBRE Y APELLIDO O RAZON SOCIAL</div>
                 <div><?php echo $tramite[0]['nombre'] . " " . $tramite[0]['apellido'] ?></div>
             </div>
             <div style="margin-bottom: 10px;  clear: both;"></div>
-            <table width="590" border="1" style="font-size: 12px;"  cellpadding="0" cellspacing="0">
+            <table width="590" border="0" style="font-size: 12px;"  cellpadding="0" cellspacing="0">
                 <tr>
                     <td width="80" style="font-size: 12px;">DIRECCION</td>
                     <td width="200" class="contT"><?php echo $tramite[0]['direccion'] ?></td>
@@ -71,7 +71,7 @@
         </div>
 
         <p>HA EFECTUADO EL SIGUIENTE PAGO:</p>
-        <table width="604.7" border="1" class="cont"  cellpadding="0" cellspacing="0">
+        <table width="604.7" border="0" class="cont"  cellpadding="0" cellspacing="0">
             <tr>
                 <td width="167" style="font-size: 12px; text-align: center;">CODIGO CUENTA</td>
                 <td width="461" style="font-size: 12px; text-align: center;">CONCEPTO</td>
@@ -86,7 +86,7 @@
                     <span align="center">Cuerpo: <?php echo $tramite[0]['tipo_nicho'] ?></span><br>
                     <?php
                     if ($tramite[0]['nro_nicho'] > 0) {
-                        echo " <span align='center'>Numero Nicho: " . $tramite[0]['nro_nicho']."</span><br>";
+                        echo " <span align='center'>Numero Nicho: " . $nichoReal."</span><br>";
                     }
                     ?>
                     <span align="center">Bloque: <?php echo $tramite[0]['bloque_nombre'] ?></span><br>

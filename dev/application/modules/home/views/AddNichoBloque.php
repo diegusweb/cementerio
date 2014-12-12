@@ -56,15 +56,16 @@
         },
         //aqui es el funcionamiento del boton guardar
         submitHandler: function (form) {
-
-            $.ajax({
+var x;
+            if (confirm("Press a button!") == true) {
+                $.ajax({
                 type: "POST",
                 url: "<?php echo base_url() . "home/AddTramiteNicho"; ?>",
                 data: $('#add-form').serialize(),
                 success: function (msg) {
                     if (msg > 0) {
                         $('#myModalAddForm').modal('hide');
-                        $('#myModalComprobante').modal('show');
+                        $('#myModalComprobante').modal({ show: true, keyboard: false, backdrop: 'static' });
 
                         var link = base_url + "home/comprobante/" + msg;
                         var link2 = link.replace(/\s/g, '');
@@ -75,6 +76,10 @@
                     alert("Error");
                 }
             });
+            } else {
+                x = "You pressed Cancel!";
+            }
+            
 
         }
     });
@@ -186,10 +191,10 @@
         }
         else {
             if (clase == "1ra Clase") {
-                $('#costo').val("253");
+                $('#costo').val("250");
             }
             if (clase == "2ra Clase") {
-                $('#costo').val("203");
+                $('#costo').val("200");
             }
         }
 

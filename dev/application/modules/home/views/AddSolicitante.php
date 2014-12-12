@@ -91,8 +91,10 @@
         },
         //aqui es el funcionamiento del boton guardar
         submitHandler: function (form) {
-
-            $.ajax({
+            var x;
+            if (confirm("Confirma que desea guardar!") == true) {
+                
+                $.ajax({
                 type: "POST",
                 url: "<?php echo base_url() . "home/addSolicitante"; ?>",
                 data: $('#add-form').serialize(),
@@ -100,37 +102,42 @@
                     if (msg > 0) {
                         $('#myModalError').modal('hide');
 
-                        var form = <?php echo $form;?>;
-						var pag = urlControllers[<?php echo $pag;?>-1];
-						
-						if(form == 1){							
-							$('.loading').show();
-							   var urlInfo = base_url + "home/"+pag+"/" + <?php echo $id;?>+"/"+form;
-							   $("#contentDemoadd").load(urlInfo, function () {
-								   $('#myModalAddForm').modal('show');
-								   $('#myModalAddForm #myModalLabel').html("Pasos de Registros");
-								   $('.loading').hide();
-								   
-							   });
-						}
-						else{
-							$('#myModalError').modal('hide');
-							$('.loading').show();
-							   var urlInfo = base_url + "home/"+pag+"/" + <?php echo $id;?>+"/"+form;
-							   $("#contentDemoadd").load(urlInfo, function () {
-								   $('#myModalAddForm').modal('show');
-								   $('#myModalAddForm #myModalLabel').html("Registro Tramite");
-								   $('.loading').hide();
-								   
-							   });
-						}
-						
+                        var form = <?php echo $form; ?>;
+                        var pag = urlControllers[<?php echo $pag; ?> - 1];
+
+                        if (form == 1) {
+                            $('.loading').show();
+                            var urlInfo = base_url + "home/" + pag + "/" + <?php echo $id; ?> + "/" + form;
+                            $("#contentDemoadd").load(urlInfo, function () {
+                                $('#myModalAddForm').modal({show: true, keyboard: false, backdrop: 'static'});
+                                $('#myModalAddForm #myModalLabel').html("Pasos de Registros");
+                                $('.loading').hide();
+
+                            });
+                        }
+                        else {
+                            $('#myModalError').modal('hide');
+                            $('.loading').show();
+                            var urlInfo = base_url + "home/" + pag + "/" + <?php echo $id; ?> + "/" + form;
+                            $("#contentDemoadd").load(urlInfo, function () {
+                                $('#myModalAddForm').modal({show: true, keyboard: false, backdrop: 'static'});
+                                $('#myModalAddForm #myModalLabel').html("Registro Tramite");
+                                $('.loading').hide();
+
+                            });
+                        }
+
                     }
                 },
                 error: function (msg) {
                     alert("Error");
                 }
             });
+                
+            } else {
+                x = "You pressed Cancel!";
+            }
+            
         }
     });
 

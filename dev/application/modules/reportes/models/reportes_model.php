@@ -54,6 +54,9 @@ class Reportes_model extends CI_Model {
                 case 7:
                     $this->db->where('tramite.tramite', "Autorizacion de construccion de cripta");
                     break;
+                 case 8:
+                    $this->db->where('tramite.tramite', "Nicho Enterratorio");
+                    break;
 
                 
                 

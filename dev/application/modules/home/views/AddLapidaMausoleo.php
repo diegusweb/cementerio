@@ -46,8 +46,9 @@
         },
         //aqui es el funcionamiento del boton guardar
         submitHandler: function(form) {
-
-            $.ajax({
+var x;
+            if (confirm("Press a button!") == true) {
+               $.ajax({
                 type: "POST",
                 url: "<?php echo base_url() . "home/AddTramiteMausoleoLapida"; ?>",
                 data: $('#add-form').serialize(),
@@ -55,7 +56,7 @@
                     if (msg > 0) {
                         $('#myModalAddForm').modal('hide');
                         
-                        $('#myModalComprobante').modal('show');
+                        $('#myModalComprobante').modal({ show: true, keyboard: false, backdrop: 'static' });
                         
                         var link = base_url+"home/comprobante/"+msg;
                         var link2 = link.replace(/\s/g,'');
@@ -68,6 +69,10 @@
                 }
             });
 
+            } else {
+                x = "You pressed Cancel!";
+            }
+            
         }
     });
 
@@ -75,13 +80,13 @@
 	
 	$('#clase').change(function () {        
 			if($(this).attr('value') == "1ra Clase"){
-				$('#costo').val(63);
+				$('#costo').val(60);
 			}
 			else if($(this).attr('value') == "2ra Clase"){
-				$('#costo').val(53);
+				$('#costo').val(50);
 			}
 			else{
-				$('#costo').val(33);
+				$('#costo').val(30);
 			}
 	});
 </script>

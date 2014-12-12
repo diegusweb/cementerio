@@ -42,15 +42,16 @@
         },
         //aqui es el funcionamiento del boton guardar
         submitHandler: function(form) {
-
-            $.ajax({
+            var x;
+            if (confirm("Press a button!") == true) {
+                $.ajax({
                 type: "POST",
                 url: "<?php echo base_url() . "home/AddTramiteCremacion"; ?>",
                 data: $('#add-form').serialize(),
                 success: function(msg) {
                     if (msg > 0) {
                         $('#myModalAddForm').modal('hide');
-                        $('#myModalComprobante').modal('show');
+                        $('#myModalComprobante').modal({ show: true, keyboard: false, backdrop: 'static' });
                         
                         var link = base_url+"home/comprobante/"+msg;
                         var link2 = link.replace(" ","");
@@ -62,6 +63,9 @@
                     alert("Error");
                 }
             });
+            } else {
+                x = "You pressed Cancel!";
+            }
 
         }
     });
@@ -70,10 +74,10 @@
 	
 	$('#tipo').change(function () {        
 			if($(this).attr('value') == "Mayor"){
-				$('#costo').val(253);
+				$('#costo').val(250);
 			}
 			else{
-				$('#costo').val(143);
+				$('#costo').val(140);
 			}
 	});
 </script>

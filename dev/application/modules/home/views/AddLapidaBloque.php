@@ -49,15 +49,16 @@
         },
         //aqui es el funcionamiento del boton guardar
         submitHandler: function(form) {
-
-            $.ajax({
+var x;
+            if (confirm("Press a button!") == true) {
+                $.ajax({
                 type: "POST",
                 url: "<?php echo base_url() . "home/AddTramiteNichoLadpida"; ?>",
                 data: $('#add-form').serialize(),
                 success: function(msg) {
                     if (msg > 0) {
                         $('#myModalAddForm').modal('hide');
-                        $('#myModalComprobante').modal('show');
+                        $('#myModalComprobante').modal({ show: true, keyboard: false, backdrop: 'static' });
                         
                         var link = base_url+"home/comprobante/"+msg;
                         var link2 = link.replace(/\s/g,'');
@@ -68,6 +69,10 @@
                     alert("Error");
                 }
             });
+            } else {
+                x = "You pressed Cancel!";
+            }
+            
 
         }
     });
@@ -117,10 +122,10 @@
 				$('#costo').val(63);
 			}
 			if($(this).attr('value') == "2ra Clase"){
-				$('#costo').val(53);
+				$('#costo').val(50);
 			}
 			if($(this).attr('value') == "3ra Clase"){
-				$('#costo').val(33);
+				$('#costo').val(30);
 			}
 	});
 </script>

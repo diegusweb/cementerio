@@ -233,6 +233,7 @@ class Admin extends CI_Controller {
         //$this->session->set_userdata('page', 'Configuracones');
         $crud->set_theme('datatables');
         $crud->set_table('bloque_nicho');
+         $crud->order_by('id_bloque_nicho','desc');
 
         $crud->unset_fields('create_date');
 
@@ -301,7 +302,7 @@ class Admin extends CI_Controller {
 
         $crud->display_as('create_date', 'Fechas');
 
-        $crud->unset_delete();
+        //$crud->unset_delete();
         $crud->unset_read();
         $crud->unset_columns('create_date', 'position');
 
@@ -320,7 +321,7 @@ class Admin extends CI_Controller {
     }
 
     function edit_costo_5_year_2_clase($value, $primary_key) {
-        return 'Costo <input type="text" maxlength="15"  style="width:80px!important" value="' . $value . '" name="costo_5_year_1_clase"> Ejm: 123.51';
+        return 'Costo <input type="text" maxlength="15"  style="width:80px!important" value="' . $value . '" name="costo_5_year_2_clase"> Ejm: 123.51';
     }
 
     function edit_costo_perpetuidad_1_clase($value, $primary_key) {

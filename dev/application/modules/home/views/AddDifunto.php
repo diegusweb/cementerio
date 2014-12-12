@@ -27,7 +27,7 @@
             },
             edadFallecido: {
                 required: true,
-				number: true
+                number: true
             },
             fechaFallecido: {
                 required: true
@@ -52,14 +52,14 @@
             },
             matricula_ci: {
                 required: true,
-				number: true
+                number: true
             },
             nombreCompletoInscripcion: {
                 required: true
             },
             ciInscripcion: {
                 required: true,
-				number: true
+                number: true
             },
             relacionConDifunto: {
                 required: true
@@ -69,82 +69,84 @@
             }
         },
         messages: {
-            
         },
         errorClass: "help-inline",
         errorElement: "span",
-        highlight: function(element, errorClass, validClass) {
+        highlight: function (element, errorClass, validClass) {
             $(element).parents('.control-group').addClass('error');
 
         },
-        unhighlight: function(element, errorClass, validClass) {
+        unhighlight: function (element, errorClass, validClass) {
             $(element).parents('.control-group').removeClass('error');
             $(element).parents('.control-group').addClass('success');
             console.log(element);
         },
-        showErrors: function(errorMap, errorList) {
+        showErrors: function (errorMap, errorList) {
 
-            $.each(this.validElements(), function(index, element) {
+            $.each(this.validElements(), function (index, element) {
                 var $element = $(element);
                 $element.parents('.control-group').removeClass("error")
                 var de = "#" + $element.attr("name");
                 $(de).tooltip("destroy");
             });
 
-            $.each(errorMap, function(key, value) {
+            $.each(errorMap, function (key, value) {
                 console.log(value);
                 $("#" + key).parents('.control-group').addClass('error');
                 $("#" + key).tooltip("destroy").tooltip({"animation": true, "placement": "right", "trigger": "focus", "title": value});
             });
         },
         //aqui es el funcionamiento del boton guardar
-        submitHandler: function(form) {
-
-            $.ajax({
+        submitHandler: function (form) {
+            var x;
+            if (confirm("Press a button!") == true) {
+               $.ajax({
                 type: "POST",
                 url: "<?php echo base_url() . "home/showFormAddDifuncto"; ?>",
                 data: $('#add-form-dif').serialize(),
-                success: function(mmsg) {
+                success: function (mmsg) {
                     if (mmsg > 0) {
-                        $('#myModalError').modal('hide');     
+                        $('#myModalError').modal('hide');
 
-                        var form = <?php echo $form;?>;
-						var pag = urlControllers[<?php echo $pag;?>-1];
-						
-						if(form == 1){							
-							$('.loading').show();
-							   var urlInfo = base_url + "home/"+pag+"/" + <?php echo $id;?>+"/"+form;
-							   $("#contentDemoadd").load(urlInfo, function () {
-								   $('#myModalAddForm').modal('show');
-								   $('#myModalAddForm #myModalLabel').html("Registrar Tramite");
-								   $('.loading').hide();
-								   
-							   });
-						}
-						else{
-							
-						}						
+                        var form = <?php echo $form; ?>;
+                        var pag = urlControllers[<?php echo $pag; ?> - 1];
+
+                        if (form == 1) {
+                            $('.loading').show();
+                            var urlInfo = base_url + "home/" + pag + "/" + <?php echo $id; ?> + "/" + form;
+                            $("#contentDemoadd").load(urlInfo, function () {
+                                $('#myModalAddForm').modal({ show: true, keyboard: false, backdrop: 'static' });
+                                $('#myModalAddForm #myModalLabel').html("Registrar Tramite");
+                                $('.loading').hide();
+
+                            });
+                        }
+                        else {
+
+                        }
                     }
                 },
-                error: function(mmsg) {
+                error: function (mmsg) {
                     alert("Error");
                 }
             });
-
+            } else {
+                x = "You pressed Cancel!";
+            }
         }
     });
-	
-	  $(function() {
-		$('#datetimepicker1').datetimepicker({
-		  language: 'pt-BR',
-		});
-		
-		$('#datetimepicker2').datetimepicker({
-		  language: 'pt-BR',
-		  pickTime: false
-		});
-	  });
-	  
+
+    $(function () {
+        $('#datetimepicker1').datetimepicker({
+            language: 'pt-BR',
+        });
+
+        $('#datetimepicker2').datetimepicker({
+            language: 'pt-BR',
+            pickTime: false
+        });
+    });
+
 
 
 
@@ -163,7 +165,7 @@
             <input type="text" id="libro" name="libro" value="" >
         </div>
     </div>
-     <div class="control-group">
+    <div class="control-group">
         <label class="control-label" for="inputPassword">Partida</label>
         <div class="controls">
             <input type="text" id="partida" name="partida" value="" >
@@ -204,21 +206,21 @@
             <input type="text" id="localidad" name="localidad" value="" >
         </div>
     </div>
-	<div class="control-group">
+    <div class="control-group">
         <label class="control-label" for="inputPassword">Con Fecha de partida</label>
         <div class="controls">
-		  <div id="datetimepicker2" class="input-append date">
-			<input data-format="yyyy-MM-dd" type="text" id="fechaPartida" name="fechaPartida"></input>
-			<span class="add-on">
-			  <i data-time-icon="icon-time" data-date-icon="icon-calendar">
-			  </i>
-			</span>
-		  </div>
+            <div id="datetimepicker2" class="input-append date">
+                <input data-format="yyyy-MM-dd" type="text" id="fechaPartida" name="fechaPartida"></input>
+                <span class="add-on">
+                    <i data-time-icon="icon-time" data-date-icon="icon-calendar">
+                    </i>
+                </span>
+            </div>
         </div>
     </div>
-	<br/>
+    <br/>
     <div style="border-bottom :1px solid #333; font-size:14px;"><b>Informacion Difunto</b></div>
-	<br/>
+    <br/>
     <div class="control-group">
         <label class="control-label" for="inputPassword">Nombre y Apellido</label>
         <div class="controls">
@@ -233,17 +235,17 @@
     </div>
     <div class="control-group">
         <label class="control-label" for="inputPassword">Fecha y Hora</label>
-		<div class="controls">
-		 <div id="datetimepicker1" class="input-append date">
-			<input data-format="yyyy-MM-dd hh:mm:ss" type="text" id="fechaFallecido" name="fechaFallecido"></input>
-			<span class="add-on">
-			  <i data-time-icon="icon-time" data-date-icon="icon-calendar">
-			  </i>
-			</span>
-		  </div>
+        <div class="controls">
+            <div id="datetimepicker1" class="input-append date">
+                <input data-format="yyyy-MM-dd hh:mm:ss" type="text" id="fechaFallecido" name="fechaFallecido"></input>
+                <span class="add-on">
+                    <i data-time-icon="icon-time" data-date-icon="icon-calendar">
+                    </i>
+                </span>
+            </div>
         </div>
     </div>
-     <div class="control-group">
+    <div class="control-group">
         <label class="control-label" for="inputPassword">En localidad</label>
         <div class="controls">
             <input type="text" id="localidadFallecido" name="localidadFallecido" value="" >
@@ -285,19 +287,19 @@
             <input type="text" id="matricula_ci" name="matricula_ci" value="" >
         </div>
     </div>
-	<br/>
+    <br/>
     <div style="border-bottom :1px solid #333; font-size:14px;"><b>Informacion Persona de Inscripcion</b></div>
-	<br/>
-	<div class="control-group">
+    <br/>
+    <div class="control-group">
         <label class="control-label" for="inputPassword">Nombre y apellido de la persona que pidio inscripcion</label>
         <div class="controls">
-            <input type="text" id="nombreCompletoInscripcion" name="nombreCompletoInscripcion" value="<?php echo $nombre;?>" >
+            <input type="text" id="nombreCompletoInscripcion" name="nombreCompletoInscripcion" value="<?php echo $nombre; ?>" >
         </div>
     </div>
     <div class="control-group">
         <label class="control-label" for="inputPassword">CI</label>
         <div class="controls">
-            <input type="text" id="ciInscripcion" name="ciInscripcion" value="<?php echo $ci;?>" >
+            <input type="text" id="ciInscripcion" name="ciInscripcion" value="<?php echo $ci; ?>" >
         </div>
     </div>
     <div class="control-group">
@@ -312,7 +314,7 @@
             <input type="text" id="nota" name="nota" value="" >
         </div>
     </div>
-<br/>
+    <br/>
     <div class="control-group">
         <div class="controls">
             <!--aqui se debe mandar al controlador? o a la vista home_view-->

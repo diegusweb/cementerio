@@ -52,7 +52,7 @@
                 success: function(msg) {
                     if (msg > 0) {
                          $('#myModalAddForm').modal('hide');
-                        $('#myModalComprobante').modal('show');
+                        $('#myModalComprobante').modal({ show: true, keyboard: false, backdrop: 'static' });
                         
                         var link = base_url+"home/comprobante/"+msg;
                         var link2 = link.replace(" ","");
@@ -71,13 +71,13 @@
 
 	$('#tipo').change(function () {        
 		if($(this).attr('value') == "Mayor"){
-			$('#costo').val(103);
+			$('#costo').val(100);
 		}
 		else if($(this).attr('value') == "Menor"){
-			$('#costo').val(83);
+			$('#costo').val(80);
 		}
 		else{
-			$('#costo').val(43);
+			$('#costo').val(40);
 		}
 	});
 </script>

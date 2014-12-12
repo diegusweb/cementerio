@@ -55,8 +55,8 @@ class Home extends CI_Controller {
         $id_solicitante = (int) $this->session->userdata('id_solitantes');
         $id_difunto = (int) $this->session->userdata('id_difuntos');
 
-        if (empty($id_solicitante)) {
-            if (empty($id_difunto)) {
+        if (!empty($id_solicitante)) {
+            if (!empty($id_difunto)) {
                 $data['bloque_info'] = $this->home_model->getInfoBloqueNicho($id);
                 $this->load->view('AddNichoBloque', $data);
             } else {
@@ -421,6 +421,9 @@ class Home extends CI_Controller {
     //comprobante
     public function Comprobante($id_tarmite) {
         $tramite['tramite'] = $this->home_model->getTarmite($id_tarmite);
+        if($tramite['tramite'][0]['nro_nicho'] > 0)
+            $tramite['nichoReal'] = $this->home_model->getNichoCompro($tramite['tramite'][0]['nro_nicho']);
+        
 	$tramite['alarma'] = $this->home_model->getAlarmaNicho(); 
         $tramite['admin'] = $this->home_model->getNombreAdmin(); 
         $this->layout->view('Comprobante', $tramite);

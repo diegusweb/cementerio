@@ -49,8 +49,9 @@
         },
         //aqui es el funcionamiento del boton guardar
         submitHandler: function(form) {
-
-            $.ajax({
+                var x;
+            if (confirm("Press a button!") == true) {
+                $.ajax({
                 type: "POST",
                 url: "<?php echo base_url() . "home/AddTramiteSitioTierraRenovar"; ?>",
                 data: $('#add-form').serialize(),
@@ -58,7 +59,7 @@
                     if (msg > 0) {
                         $('#myModalAddForm').modal('hide');
                         
-                        $('#myModalComprobante').modal('show');
+                        $('#myModalComprobante').modal({ show: true, keyboard: false, backdrop: 'static' });
                         
                         var link = base_url+"home/comprobante/"+msg;
                         var link2 = link.replace(/\s/g,'');
@@ -70,6 +71,9 @@
                     alert("Error");
                 }
             });
+            } else {
+                x = "You pressed Cancel!";
+            }
 
         }
     });
@@ -78,10 +82,10 @@
 	
 	$('#tipo').change(function () {        
 			if($(this).attr('value') == "Mayor"){
-				$('#costo').val(43);
+				$('#costo').val(40);
 			}
 			else{
-				$('#costo').val(33);
+				$('#costo').val(30);
 			}
 	});
 </script>
