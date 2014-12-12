@@ -79,16 +79,18 @@ var x;
         }
     });
 
-
-	
-	$('#tipo').change(function () {        
-			if($(this).attr('value') == "Mayor"){
-				$('#costo').val(160);
-			}
-			else{
-				$('#costo').val(103);
-			}
+$('#difunto').change(function () {        
+            if($(this).find("option:selected").attr('data-edad') > 18){
+                    $('#costo').val(160);
+                    $('#tipo').val("Mayor");
+            }
+            else{
+                    $('#costo').val(100);
+                    $('#tipo').val("Menor");
+            }
 	});
+	
+
 </script>
 <form class="cform-form form-horizontal"  id="add-form" method="POST">
     
@@ -114,7 +116,7 @@ var x;
 			 <option value="">Seleccione difunto</option>
 				<?php
 				foreach($difuntos_info as $row){
-					echo "<option value='".$row['id_difunto']."'>".$row['nombreCompletoFallecido']."</option>";
+					echo "<option ata-edad='".$row['edadFallecido']."' value='".$row['id_difunto']."'>".$row['nombreCompletoFallecido']."</option>";
 				}
 				?>
             </select>
@@ -124,11 +126,7 @@ var x;
 	<div class="control-group">
         <label class="control-label" for="inputRol">Tipo</label>
         <div class="controls">
-			<select class="form-control" id="tipo" name="tipo">
-			  <option value="">Seleccione tipo</option>
-			  <option value="Mayor">Mayor</option>
-			  <option value="Menor">Menor</option>
-			</select>
+			 <input type="text"  id="tipo" name="tipo"  readonly="true">
         </div>
     </div>
 	

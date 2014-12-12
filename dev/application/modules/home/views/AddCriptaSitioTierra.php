@@ -80,13 +80,15 @@
 
 
 	
-	$('#tipo').change(function () {        
-			if($(this).attr('value') == "Mayor"){
-				$('#costo').val(40);
-			}
-			else{
-				$('#costo').val(30);
-			}
+	$('#difunto').change(function () {        
+            if($(this).find("option:selected").attr('data-edad') > 18){
+                    $('#costo').val(40);
+                    $('#tipo').val("Mayor");
+            }
+            else{
+                    $('#costo').val(30);
+                    $('#tipo').val("Menor");
+            }
 	});
 </script>
 <form class="cform-form form-horizontal"  id="add-form" method="POST">
@@ -109,11 +111,12 @@
     <div class="control-group">
         <label class="control-label" for="inputRol">Difuntos</label>
         <div class="controls">
+           
 			<select class="form-control" id="difunto"  name="difunto">
 			 <option value="">Seleccione difunto</option>
 				<?php
 				foreach($difuntos_info as $row){
-					echo "<option value='".$row['id_difunto']."'>".$row['nombreCompletoFallecido']."</option>";
+					echo "<option data-edad='".$row['edadFallecido']."' value='".$row['id_difunto']."'>".$row['nombreCompletoFallecido']."</option>";
 				}
 				?>
             </select>
@@ -123,11 +126,14 @@
 	<div class="control-group">
         <label class="control-label" for="inputRol">Tipo</label>
         <div class="controls">
-			<select class="form-control" id="tipo" name="tipo">
-			  <option value="">Seleccione tipo</option>
-			  <option value="Mayor">Mayor</option>
-			  <option value="Menor">Menor</option>
-			</select>
+             
+            <!--<select class="form-control" id="tipo" name="tipo">
+              <option value="">Seleccione tipo</option>
+              <option value="Mayor">Mayor</option>
+              <option value="Menor">Menor</option>
+            </select>-->
+      
+            <input type="text"  id="tipo" name="tipo"  readonly="true">
         </div>
     </div>
 	
@@ -135,7 +141,7 @@
 	<div class="control-group">
         <label class="control-label" for="inputRol">Costo</label>
         <div class="controls">
-			<input type="text" class="form-control" style="width:60px!important" id="costo" name="costo" readonly="true"> Bs
+            <input type="text" class="form-control" style="width:60px!important" id="costo" name="costo" readonly="true"> Bs
         </div>
     </div>
 	
