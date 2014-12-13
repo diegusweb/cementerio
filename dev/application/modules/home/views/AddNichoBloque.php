@@ -159,18 +159,34 @@ var x;
     var tramite;
 
     $('#clase').change(function () {
+        $('#costo').val("");
         clase = $(this).attr('value');
     });
     $('#tiempo').change(function () {
-        tiempo = $(this).attr('value');
+       // tiempo = $(this).attr('value');
     });
 
     $('#tramite').change(function () {
+        $('#costo').val("");
         tramite = $(this).attr('value');
+        if (tramite == "Anexion Nicho Perpetuidad") {
+            tiempo = "Perpetuidad";
+             $('#tiempo').val(tiempo);
+        }
+        else if(tramite == "Nicho Enterratorio"){
+            tiempo = "5 años";
+            $('#tiempo').val(tiempo);
+           
+        }
+        else{
+             tiempo = "Perpetuidad";
+             $('#tiempo').val(tiempo);
+        }
     });
 
     $('#generarCosto').click(function () {
-        console.log(tramite + " " + clase + " " + tiempo)
+        console.log(tramite + " " + clase + " " + tiempo);
+        
         if (tramite != "Anexion Nicho Perpetuidad") {
             if (clase == "1ra Clase") {
                 if (tiempo == "Perpetuidad") {
@@ -205,6 +221,7 @@ var x;
         $('#numeroNicho').val($(this).attr('data-id'));
         $('#numeroNichoView').val($(this).text());
     });
+    
 
 </script>
 
@@ -335,11 +352,12 @@ var x;
     <div class="control-group">
         <label class="control-label" for="inputRol">Tiempo</label>
         <div class="controls">
-            <select class="form-control" id="tiempo" name="tiempo">
+            <!--<select class="form-control" id="tiempo" name="tiempo">
                 <option value="">Seleccione un Tiempo</option>
                 <option value="Perpetuidad">Perpetuidad</option>
                 <option value="5 años">5 años</option>
-            </select>
+            </select>-->
+            <input type="text" class="form-control" name="tiempo"  id="tiempo" value="" readonly="true">
         </div>
     </div>
 

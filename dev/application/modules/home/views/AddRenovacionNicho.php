@@ -18,6 +18,9 @@
             },
             costo: {
                 required: true,
+            },
+            nichoLibres: {
+                required: true
             }
 
         },
@@ -104,9 +107,10 @@ var x;
                 var $comboNichoLibres = $("#nichoLibres");          
                 $comboNichoLibres.empty();
                 var nn = nichos.nicho_info;
-             
+                
+                $comboNichoLibres.append("<option value=''>Seleccione Difunto</option>");
                 $.each(nn, function(index, v) {          
-                   $comboNichoLibres.append("<option value="+v['id_nicho']+">" + v['nicho'] + "</option>");
+                   $comboNichoLibres.append("<option data-fecha="+v['fecha_fin']+" data-edad="+v['edadFallecido']+" value="+v['id_nicho']+">" + v['nicho'] + "</option>");
                 });
              }, 'json');
         }
@@ -118,35 +122,113 @@ var x;
         }
 
     });
-	
+    
+	function CalculateDateDiff(dateFrom, dateTo) {
+            var difference = (dateTo - dateFrom);
+
+            var years = Math.floor(difference / (1000 * 60 * 60 * 24 * 365));
+            difference -= years * (1000 * 60 * 60 * 24 * 365);
+            var months = Math.floor(difference / (1000 * 60 * 60 * 24 * 30.4375));
+
+            var dif = '';
+            var difddd = '';
+            if (years > 0){
+                dif = years + ' años ';
+                difddd = years;     
+            }
+                
+
+            if (months > 0) {
+                if (years > 0) dif += ' y ';
+                dif += months + ' meses';
+                
+                if(months > 5){
+                    difddd = difddd + 1;
+                }
+            }
+
+            return difddd;
+        }
+        
+        function CalculateDateDiffText(dateFrom, dateTo) {
+            var difference = (dateTo - dateFrom);
+
+            var years = Math.floor(difference / (1000 * 60 * 60 * 24 * 365));
+            difference -= years * (1000 * 60 * 60 * 24 * 365);
+            var months = Math.floor(difference / (1000 * 60 * 60 * 24 * 30.4375));
+
+            var dif = '';
+
+            if (years > 0){
+                dif = years + ' años ';
+   
+            }
+
+            if (months > 0) {
+                if (years > 0) dif += ' y ';
+                dif += months + ' meses';
+            }
+
+            return dif;
+        }
+
 	var clase;
 	var tipo;
+        var fechaFin;
+        var trans;
 	
-	$('#tipo').change(function () {        
+	$('#tipo').change(function () {   
+         $('#costo').val("");
         tipo = $(this).attr('value');		
 	});
-	$('#clase').change(function () {        
+	$('#clase').change(function () { 
+             $('#costo').val("");
         clase = $(this).attr('value');		
+	});
+        
+         $('#nichoLibres').change(function () {  
+              $('#costo').val("");
+              fecha = $(this).find("option:selected").attr('data-fecha');
+
+            var d = new Date(); //establecemos la fecha de hoy
+            var fechaInicio= new Date(d.getFullYear()+ "-" + (d.getMonth() + 1 ) + "-" + d.getDate());
+            var fechaFinal= new Date(fecha);            
+
+       trans = CalculateDateDiff(fechaInicio, fechaFinal);
+      $('#transcurido').text(CalculateDateDiffText(fechaInicio, fechaFinal)+" Transcurridos = "+trans +" años");
+              
+            if($(this).find("option:selected").attr('data-edad') > 18){
+                   tipo = "Mayor";
+                   $('#tipo').val("Mayor");
+            }
+            else{
+                    tipo = "Menor";
+                    $('#tipo').val("Menor");
+            }
 	});
 	
 	$('#generarCosto').click(function(){
+             $('#costo').val("");
+
 		if(tipo == "Mayor"){
 			if(clase == "Nuevo"){
-				$('#costo').val(160);
+				$('#costo').val(160*parseInt(trans));
 			}
 			if(clase == "Antiguo"){
-				$('#costo').val(80);
+				$('#costo').val(80*parseInt(trans));
 			}
 		}
 		if(tipo == "Menor"){
 			if(clase == "Nuevo"){
-				$('#costo').val(103);
+				$('#costo').val(100*parseInt(trans));
 			}
 			if(clase == "Antiguo"){
-				$('#costo').val(60);
+				$('#costo').val(60*parseInt(trans));
 			}
 		}
 	});
+        
+
 </script>
 <form class="cform-form form-horizontal"  id="add-form" method="POST">
     
@@ -213,13 +295,22 @@ var x;
 	<div class="control-group">
         <label class="control-label" for="inputRol">Tipo</label>
         <div class="controls">
-			<select class="form-control" id="tipo" name="tipo">
+            <input type="text" id="tipo" name="tipo" value=""  readonly="true">
+			<!--<select class="form-control" id="tipo" name="tipo">
 			  <option value="">Seleccione Tipo</option>
 			  <option value="Mayor">Mayor</option>
 			  <option value="Menor">Menor</option>
-			</select>
+			</select>-->
         </div>
     </div>	
+    <div class="control-group">
+         <label class="control-label" for="inputRol">Tiempo tranxurrido</label>
+         <div class="controls">
+             <div id="transcurido"></div>
+             El costo que genero ya fue multiplicado por el tiempo transcurrido
+         </div>
+    </div>
+    
 	
 	<div class="control-group">
         <label class="control-label" for="inputRol">Costo</label>

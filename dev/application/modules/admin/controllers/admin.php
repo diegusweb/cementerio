@@ -124,14 +124,14 @@ class Admin extends CI_Controller {
 
         $fecha = date("Y-m-d");
 
-
+         $crud->display_as('id_difunto', 'difunto / solicitante / telefono');
         //$crud->basic_model->set_query_str('SELECT * FROM nicho where estado="Renovar" AND fecha_fin <="'.$fecha.'"'); //Query text here
         //$crud->set_relation('id_difunto','difunto','nombreCompletoFallecido');
         
-        $crud->set_relation('id_difunto','difunto','nombreCompletoFallecido');
+        //$crud->set_relation('id_difunto','difunto','nombreCompletoFallecido');
         $crud->set_relation('id_bloque','tramite','bloque_nombre');
 
-       // $crud->callback_column('id_difunto', array($this, '_callback_id_difunto'));
+        $crud->callback_column('id_difunto', array($this, '_callback_id_difunto'));
         //$crud->callback_column('id_bloque', array($this, '_callback_id_bloque'));
         $crud->callback_column('fecha_fin', array($this, '_callback_fecha'));
         $crud->callback_column('fecha_inicio', array($this, '_callback_fecha_ini'));
@@ -163,7 +163,11 @@ class Admin extends CI_Controller {
     }
 
     public function _callback_id_difunto($value, $row) {
-        return $this->helper_model->getNombreDif($row->id_difunto);
+        $nombre = $this->helper_model->getNombreDif($row->id_difunto);
+        $id = $this->helper_model->getSoliDif($row->id_difunto);
+        $solici = $this->helper_model->getSoliNombre($id);
+        
+        return "- ".$nombre." <br>- ".$solici;
     }
 
     public function _callback_id_bloque($value, $row) {

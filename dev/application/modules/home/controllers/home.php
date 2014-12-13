@@ -110,13 +110,15 @@ class Home extends CI_Controller {
             
             if($_POST['tiempo'] == "Perpetuidad"){
                 $ca = date("Y-m-d", strtotime("$Fecha +100 year"));
+                $estados = "Perpetuidad";
             }
             else{
                 $ca = date("Y-m-d", strtotime("$Fecha +5 year"));
+                $estados = "Ocupado";
             }
 
             $datas = array(
-                'estado' => 'Ocupado',
+                'estado' => $estados,
                 'id_difunto' => (int) $this->session->userdata('id_difuntos'),
                 'fecha_inicio' => $Fecha, 
                 'fecha_fin' => $ca 
@@ -364,7 +366,7 @@ class Home extends CI_Controller {
             
         //cambiar estado
         $datad = array(
-            'estado' => 'Ocupado',
+            'estado' => 'Renovado',
             'fecha_fin' => $ca
         );
         $this->home_model->updateNichoStatus($_POST['numeroNicho'],$datad);

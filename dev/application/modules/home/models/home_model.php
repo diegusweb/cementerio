@@ -78,8 +78,9 @@ class Home_model extends CI_Model {
     
     public function getBloqueNichoRenovar($id, $lado, $piso) {
 
-        $this->db->select('id_nicho, nicho');
+        $this->db->select('id_nicho, nicho, edadFallecido,fecha_fin');
         $this->db->from('nicho');
+        $this->db->join('difunto', 'difunto.id_difunto = nicho.id_difunto');
         $this->db->where('id_bloque', $id);
         $this->db->where('cara', $lado);
         $this->db->where('piso', $piso);
@@ -210,12 +211,14 @@ class Home_model extends CI_Model {
             'estado' => 'Renovar'
         );
 
-        foreach ($results as $row) {
-            $this->db->where('id_nicho', $row['id_nicho']);
-            $this->db->update('nicho', $data);
+        if(count($results) > 0){
+            foreach ($results as $row) {
+                $this->db->where('id_nicho', $row['id_nicho']);
+                $this->db->update('nicho', $data);
+            }
         }
 
-        $query = "SELECT * FROM nicho where estado='Renovar' AND fecha_fin <='" . $id . "'";
+        $query = "SELECT * FROM nicho where estado='Renovar'";
         $result = $this->db->query($query)->result_array();
 
         return $result;
