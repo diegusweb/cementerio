@@ -81,7 +81,20 @@
                 <td class="contT" valign="top" style="padding: 20px;"><?php echo "15100";//$tramite[0]['id_tramite'] ?></td>
                 <td class="contT">
                     <span  align="center">CEMENTERIO.- Pago por concepto de</span><br>
-                    <span align="center"><?php echo $tramite[0]['tramite'] ?></span><br>
+                    <span align="center"><?php 
+
+                    if(utf8_decode($tramite[0]['tramite']) == utf8_decode("Renovacion de 1 año para Nichos")){
+                        $di = ($tramite[0]['costo']) / ($tramite[0]['pagado']);
+                        
+                        echo $tramite[0]['tramite']."<br>";
+                        echo "Renovacion ".$tramite[0]['pagado']." * ".$di;
+
+                    }
+                    else{
+                        echo $tramite[0]['tramite'];
+                    }
+                    
+                    ?></span><br>
                     <span align="center"><?php echo $tramite[0]['clase'] ?></span><br>
                     <span align="center">Cuerpo: <?php echo $tramite[0]['tipo_nicho'] ?></span><br>
                     <?php

@@ -29,14 +29,20 @@ class Helper_model extends CI_Model {
         $query = "SELECT * FROM nicho where estado='Ocupado' AND fecha_fin <> '1970-01-01' AND fecha_fin <='" . $id . "'";
         $results = $this->db->query($query)->result_array();
 
-        $data = array(
-            'estado' => 'Renovar'
-        );
-
         if(count($results) > 0){
             foreach ($results as $row) {
+                $fecha1 = new DateTime($id);
+                $fecha2 = new DateTime($row['fecha_fin']);
+                $fecha = $fecha1->diff($fecha2);
+
+                 $data = array(
+                    'estado' => 'Renovar',
+                    'transcurrido' => $fecha->y
+                );
+                 
                 $this->db->where('id_nicho', $row['id_nicho']);
                 $this->db->update('nicho', $data);
+                 
             }
         }
 

@@ -56,30 +56,30 @@
         },
         //aqui es el funcionamiento del boton guardar
         submitHandler: function (form) {
-var x;
+            var x;
             if (confirm("Confirma que desea guardar!") == true) {
                 $.ajax({
-                type: "POST",
-                url: "<?php echo base_url() . "home/AddTramiteNicho"; ?>",
-                data: $('#add-form').serialize(),
-                success: function (msg) {
-                    if (msg > 0) {
-                        $('#myModalAddForm').modal('hide');
-                        $('#myModalComprobante').modal({ show: true, keyboard: false, backdrop: 'static' });
+                    type: "POST",
+                    url: "<?php echo base_url() . "home/AddTramiteNicho"; ?>",
+                    data: $('#add-form').serialize(),
+                    success: function (msg) {
+                        if (msg > 0) {
+                            $('#myModalAddForm').modal('hide');
+                            $('#myModalComprobante').modal({show: true, keyboard: false, backdrop: 'static'});
 
-                        var link = base_url + "home/comprobante/" + msg;
-                        var link2 = link.replace(/\s/g, '');
-                        $('#myModalComprobante #contentIdComprobante').html("<a href='" + link2 + "' class='linkComprobante'>Ver comprobante</a>");
+                            var link = base_url + "home/comprobante/" + msg;
+                            var link2 = link.replace(/\s/g, '');
+                            $('#myModalComprobante #contentIdComprobante').html("<a href='" + link2 + "' class='linkComprobante'>Ver comprobante</a>");
+                        }
+                    },
+                    error: function (msg) {
+                        alert("Error");
                     }
-                },
-                error: function (msg) {
-                    alert("Error");
-                }
-            });
+                });
             } else {
                 x = "You pressed Cancel!";
             }
-            
+
 
         }
     });
@@ -114,10 +114,30 @@ var x;
                 var nn = nichos.nicho_info;
                 // $dibujoNichoLibres.append('<ul>');
                 var i = 1;
-                 var j = 2;
-                var salto = (parseInt($('#lado').attr('data-nicho')));
-                var to = (parseInt($('#lado').attr('data-nicho'))) * (parseInt($('#lado').attr('data-fila')));
-                var fila = parseInt($('#lado').attr('data-fila'));
+                var j = 2;
+
+                // var salto = (parseInt($('#lado').attr('data-nicho')));
+                //var fila = parseInt($('#lado').attr('data-fila'));
+
+
+                var salto = 0;
+                var fila = 0;
+                if($('#lado').val() == 3 || $('#lado').val() == 4){
+                    if ($('#lado').attr('data-extra') != null) {
+                        var c = $('#lado').attr('data-extra');
+                        var elem = c.split('.');
+
+                        salto = elem[1];
+                        fila = elem[0];
+                    }
+                }             
+                else {
+                    salto = (parseInt($('#lado').attr('data-nicho')));
+                    fila = parseInt($('#lado').attr('data-fila'));
+                }
+
+
+                console.log("salto " + salto + " fila " + fila);
 
                 $('#numeroNicho').val('');
                 $('#numeroNichoView').val('');
@@ -128,13 +148,13 @@ var x;
                     var box = (v['nicho'] < 10) ? "padding-left: 14px; padding-right: 13px;" : "5px;";
 
                     $dibujoNichoLibres.append("<li class=" + estado + ' ' + box + " data-id=" + v['id_nicho'] + " style='" + box + "'>" + v['nicho'] + "</li>");
-                    if (i == salto) {                      
+                    if (i == salto) {
                         $dibujoNichoLibres.append("<br>");
-                        if(j <= fila){
-                            $dibujoNichoLibres.append("<li style='background-color: #f9dd34;'>"+j+"</li>");
+                        if (j <= fila) {
+                            $dibujoNichoLibres.append("<li style='background-color: #f9dd34;'>" + j + "</li>");
                             j = j + 1;
                         }
-                        
+
                         i = 0;
                     }
 
@@ -163,7 +183,7 @@ var x;
         clase = $(this).attr('value');
     });
     $('#tiempo').change(function () {
-       // tiempo = $(this).attr('value');
+        // tiempo = $(this).attr('value');
     });
 
     $('#tramite').change(function () {
@@ -171,22 +191,21 @@ var x;
         tramite = $(this).attr('value');
         if (tramite == "Anexion Nicho Perpetuidad") {
             tiempo = "Perpetuidad";
-             $('#tiempo').val(tiempo);
+            $('#tiempo').val(tiempo);
         }
-        else if(tramite == "Nicho Enterratorio"){
+        else if (tramite == "Nicho Enterratorio") {
             tiempo = "5 años";
             $('#tiempo').val(tiempo);
-           
+
         }
-        else{
-             tiempo = "Perpetuidad";
-             $('#tiempo').val(tiempo);
+        else {
+            tiempo = "Perpetuidad";
+            $('#tiempo').val(tiempo);
         }
     });
 
     $('#generarCosto').click(function () {
-        console.log(tramite + " " + clase + " " + tiempo);
-        
+
         if (tramite != "Anexion Nicho Perpetuidad") {
             if (clase == "1ra Clase") {
                 if (tiempo == "Perpetuidad") {
@@ -221,7 +240,7 @@ var x;
         $('#numeroNicho').val($(this).attr('data-id'));
         $('#numeroNichoView').val($(this).text());
     });
-    
+
 
 </script>
 
@@ -309,7 +328,7 @@ var x;
     <div class="control-group">
         <label class="control-label" for="inputRol">Lado</label>
         <div class="controls">
-            <select class="form-control" id="lado" name="lado" data-nicho="<?php echo $bloque_info[0]['numero_nichos']; ?>" data-fila="<?php echo $bloque_info[0]['numero_filas']; ?>">
+            <select class="form-control" id="lado" name="lado" data-extra="<?php echo $bloque_info[0]['extra_caras']; ?>" data-nicho="<?php echo $bloque_info[0]['numero_nichos']; ?>" data-fila="<?php echo $bloque_info[0]['numero_filas']; ?>">
                 <option value="">Seleccione un lado</option>
                 <?php
                 $caras = array("Norte", "Sud", "Este", "Oeste");

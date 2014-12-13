@@ -140,9 +140,32 @@
                         $('#myModalCBajoTierra').modal('hide');
 
                     }}).css("position", "absolute");
+                
 
             });
-        </script>
+            
+            function comprobar(){
+ 
+                var laedad = $('#extra_caras_input_box #extra_caras').val();  
+                    var elem = laedad.split('.');
+
+                        salto = elem[1];
+                        fila = elem[0];
+                        
+                    if(fila > 8){
+                        alert("Restringido a 8 por fila ");
+                        $('#extra_caras_input_box #extra_caras').val("");
+                        //document.getElementById('edad').value= 5;
+                    }
+                    if(salto > 20){
+                        alert("Restringido a 20 por nicho: ");
+                        $('#extra_caras_input_box #extra_caras').val("");
+                        //document.getElementById('edad').value= 5;
+                    }
+               
+            }
+     
+   </script>
     </head>
     <body>
         <div class="row">

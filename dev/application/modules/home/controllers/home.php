@@ -55,8 +55,8 @@ class Home extends CI_Controller {
         $id_solicitante = (int) $this->session->userdata('id_solitantes');
         $id_difunto = (int) $this->session->userdata('id_difuntos');
 
-        if (!empty($id_solicitante)) {
-            if (!empty($id_difunto)) {
+        if (empty($id_solicitante)) {
+            if (empty($id_difunto)) {
                 $data['bloque_info'] = $this->home_model->getInfoBloqueNicho($id);
                 $this->load->view('AddNichoBloque', $data);
             } else {
@@ -350,7 +350,7 @@ class Home extends CI_Controller {
         $data['id_users'] = (int) $this->session->userdata('id_users');
         $data['id_solicitante'] = (int) $this->session->userdata('id_solitantes');
         $data['id_difunto'] = $difunto;
-        $data['tramite'] = utf8_encode($_POST['tramite']);
+        $data['tramite'] = $_POST['tramite'];
         $data['bloque'] = "Nicho";
         $data['bloque_nombre'] = $_POST['bloque'];
         $data['piso'] = $_POST['piso'];
@@ -359,8 +359,8 @@ class Home extends CI_Controller {
         $data['nro_nicho'] = $_POST['numeroNicho'];
         $data['costo'] = $_POST['costo'];
         $data['tipo_nicho'] = $_POST['tipo'];
-
-        $data['pagado'] = 0;
+        
+        $data['pagado'] = $_POST['tiempoTrascurrido'];
         $Fecha = date("Y-m-d");
         $ca = date("Y-m-d", strtotime("$Fecha +1 year"));
             
@@ -420,7 +420,6 @@ class Home extends CI_Controller {
         $this->load->view('AddBloqueCremados');
     }
 
-    //comprobante
     public function Comprobante($id_tarmite) {
         $tramite['tramite'] = $this->home_model->getTarmite($id_tarmite);
         if($tramite['tramite'][0]['nro_nicho'] > 0)

@@ -246,6 +246,8 @@ class Admin extends CI_Controller {
         $crud->set_rules('costo_perpetuidad_2_clase', 'costo perpetuidad 2.clase', 'required|decimal');
         $crud->set_rules('costo_5_year_1_clase', 'costo 5 años 1.clase', 'required|decimal');
         $crud->set_rules('costo_5_year_2_clase', 'costo 5 años 2.clase', 'required|decimal');
+        
+         $crud->set_rules('extra_caras', 'Formato Incorrecto', 'required|decimal');
 
         $crud->set_rules('numero_filas', 'numero filas', 'required|number');
         $crud->set_rules('numero_nichos', 'numero nichos', 'required|number');
@@ -309,11 +311,17 @@ class Admin extends CI_Controller {
         //$crud->unset_delete();
         $crud->unset_read();
         $crud->unset_columns('create_date', 'position');
+        $crud->callback_add_field('extra_caras', array($this, 'add_field_callback_extra_caras'));
+        //$crud->field_type('extra_caras', 'hidden');
 
         $crud->callback_after_insert(array($this, 'log_bloque_after_insert'));
 
         $output = $crud->render();
         $this->_mostrar_crud($output);
+    }
+    
+    function add_field_callback_extra_caras() {
+         return 'Si Selecciono Numero caras = 4, puede personalizar los lados (Este ,Oeste) <br><input type="text" style="width:50px!important" onblur="comprobar()" id="extra_caras" name="extra_caras" value="" /> <br>formato: Num. filas - Num. Nichos, ejem: 4.8';
     }
 
     function edit_field_callback_nicho($value, $primary_key) {
@@ -370,34 +378,88 @@ class Admin extends CI_Controller {
             "id_bloque" => $primary_key,
             "estado" => 'Libre'
         );
+        
+        if($post_array['numero_caras'] > 3){         
+            $porciones = explode(".", $post_array['extra_caras']);
+            $numero_filas = $porciones[0]; 
+            $numero_nicho = $porciones[1]; 
+            
+                for ($p = 1; $p <= $post_array['numero_piso']; $p++) {
+                    for ($s = 1; $s <= 2; $s++) {
+                        $ulti = 1;
+                        for ($i = $post_array['numero_filas']; $i >= 1; $i--) {
 
-        if ($post_array['numero_filas'] > 0) {
-            for ($p = 1; $p <= $post_array['numero_piso']; $p++) {
+                            for ($j = 1; $j <= $post_array['numero_nichos']; $j++) {
 
-                for ($s = 1; $s <= $post_array['numero_caras']; $s++) {
-                    $ulti = 1;
-                    for ($i = $post_array['numero_filas']; $i >= 1; $i--) {
-
-                        for ($j = 1; $j <= $post_array['numero_nichos']; $j++) {
-
-                            $nichos_insert = array(
-                                "id_bloque" => $primary_key,
-                                "piso" => $p,
-                                "cara" => $s,
-                                "fila" => $i,
-                                "nicho" => $ulti,
-                                "estado" => 'Libre'
-                            );
-                            $ulti = $ulti + 1;
-
-                            $this->db->insert('nicho', $nichos_insert);
+                                $nichos_insert = array(
+                                    "id_bloque" => $primary_key,
+                                    "piso" => $p,
+                                    "cara" => $s,
+                                    "fila" => $i,
+                                    "nicho" => $ulti,
+                                    "estado" => 'Libre'
+                                );
+                                $ulti = $ulti + 1;
+                                $this->db->insert('nicho', $nichos_insert);
+                            }
                         }
-                        //$this->db->insert('nicho',$nichos_insert);
+                    }
+                }
+                
+                //edicion
+
+                    for ($p = 1; $p <= $post_array['numero_piso']; $p++) {
+                        for ($s = 3; $s <= 4; $s++) {
+                            $ulti = 1;
+                            for ($i = $numero_filas; $i >= 1; $i--) {
+
+                                for ($j = 1; $j <= $numero_nicho; $j++) {
+
+                                    $nichos_insert = array(
+                                        "id_bloque" => $primary_key,
+                                        "piso" => $p,
+                                        "cara" => $s,
+                                        "fila" => $i,
+                                        "nicho" => $ulti,
+                                        "estado" => 'Libre'
+                                    );
+                                    $ulti = $ulti + 1;
+
+                                    $this->db->insert('nicho', $nichos_insert);
+                                }
+                            }
+                        }
+                    }
+                
+            
+        }
+        else{
+            if ($post_array['numero_filas'] > 0) {
+                for ($p = 1; $p <= $post_array['numero_piso']; $p++) {
+
+                    for ($s = 1; $s <= $post_array['numero_caras']; $s++) {
+                        $ulti = 1;
+                        for ($i = $post_array['numero_filas']; $i >= 1; $i--) {
+
+                            for ($j = 1; $j <= $post_array['numero_nichos']; $j++) {
+
+                                $nichos_insert = array(
+                                    "id_bloque" => $primary_key,
+                                    "piso" => $p,
+                                    "cara" => $s,
+                                    "fila" => $i,
+                                    "nicho" => $ulti,
+                                    "estado" => 'Libre'
+                                );
+                                $ulti = $ulti + 1;
+
+                                $this->db->insert('nicho', $nichos_insert);
+                            }
+                        }
                     }
                 }
             }
         }
-
 
         return true;
     }
