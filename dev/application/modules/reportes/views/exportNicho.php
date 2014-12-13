@@ -35,7 +35,7 @@ foreach ($bloque as $row) {
                 if ($j == $rowa['piso']) {
                     if ($i == $rowa['cara']) {
                         if ($row['id_bloque_nicho'] == $rowa['id_bloque']) {
-                            if ($rowa['estado'] == "Ocupado") {
+                             if ($rowa['estado'] == "Ocupado" || $rowa['estado'] == "Renovar" || $rowa['estado'] == "Perpetuidad" || $rowa['estado'] == "Renovado") {
                                 echo $rowa['nicho'] . ", ";
                             }
                         }

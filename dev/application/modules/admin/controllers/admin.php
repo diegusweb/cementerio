@@ -125,6 +125,7 @@ class Admin extends CI_Controller {
         $fecha = date("Y-m-d");
 
          $crud->display_as('id_difunto', 'difunto / solicitante / telefono');
+         $crud->display_as('transcurrido', 'Años transcurridos');
         //$crud->basic_model->set_query_str('SELECT * FROM nicho where estado="Renovar" AND fecha_fin <="'.$fecha.'"'); //Query text here
         //$crud->set_relation('id_difunto','difunto','nombreCompletoFallecido');
         
@@ -252,6 +253,7 @@ class Admin extends CI_Controller {
         $crud->set_rules('numero_filas', 'numero filas', 'required|number');
         $crud->set_rules('numero_nichos', 'numero nichos', 'required|number');
 
+        $crud->display_as('extra_caras', '(Este-Oeste)');
         $crud->display_as('numero_piso', 'N. pisos bloque');
         $crud->field_type('numero_piso', 'dropdown', array('1' => '1', '2' => '2'));
         $crud->field_type('numero_caras', 'dropdown', array('1' => '1', '2' => '2', '3' => '3', '4' => '4'));

@@ -114,14 +114,18 @@ class Reportes_model extends CI_Model {
                 $this->db->where('id_nicho', $row['id_nicho']);
                 $this->db->update('nicho', $data);
             }
-        }if(count($results) > 0){
-            foreach ($results as $row) {
+        }
+
+        $query = "SELECT * FROM nicho where estado='Renovar'";
+        $result = $this->db->query($query)->result_array();
+        //actualizar tiempo
+        if(count($result) > 0){
+            foreach ($result as $row) {
                 $fecha1 = new DateTime($id);
                 $fecha2 = new DateTime($row['fecha_fin']);
                 $fecha = $fecha1->diff($fecha2);
 
                  $data = array(
-                    'estado' => 'Renovar',
                     'transcurrido' => $fecha->y
                 );
                  
@@ -130,11 +134,7 @@ class Reportes_model extends CI_Model {
                  
             }
         }
-
-
-        $query = "SELECT * FROM nicho where estado='Renovar'";
-        $result = $this->db->query($query)->result_array();
-
+        //----------------
         return $result;
     }
     

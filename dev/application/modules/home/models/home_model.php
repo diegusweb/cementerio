@@ -226,7 +226,23 @@ class Home_model extends CI_Model {
 
         $query = "SELECT * FROM nicho where estado='Renovar'";
         $result = $this->db->query($query)->result_array();
+                //actualizar tiempo
+        if(count($result) > 0){
+            foreach ($result as $row) {
+                $fecha1 = new DateTime($id);
+                $fecha2 = new DateTime($row['fecha_fin']);
+                $fecha = $fecha1->diff($fecha2);
 
+                 $data = array(
+                    'transcurrido' => $fecha->y
+                );
+                 
+                $this->db->where('id_nicho', $row['id_nicho']);
+                $this->db->update('nicho', $data);
+                 
+            }
+        }
+        //----------------
         return $result;
     }
     

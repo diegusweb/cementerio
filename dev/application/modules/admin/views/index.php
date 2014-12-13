@@ -162,6 +162,11 @@
                         $('#extra_caras_input_box #extra_caras').val("");
                         //document.getElementById('edad').value= 5;
                     }
+                    
+                    if(fila == 0 || salto == 0){
+                         alert("No se permite 0 ");
+                        $('#extra_caras_input_box #extra_caras').val("");
+                    }
                
             }
      
