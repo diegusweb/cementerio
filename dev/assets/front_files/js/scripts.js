@@ -1752,8 +1752,9 @@ var App = function () {
                     "sNext": "Next"
                 }
             },
+             "order": [[ 2, "asc" ]],
             "aoColumnDefs": [{
-                'bSortable': false,
+                'bSortable': true,
                 'aTargets': [0]
             }]
         });

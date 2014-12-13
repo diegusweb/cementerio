@@ -59,6 +59,7 @@
 <style>
     .titl{
         color:#ffffff;
+        cursor: pointer;
     }
 </style>
 
@@ -108,9 +109,9 @@
                             </td>
                             <td width="337" class="contT">
                                 <select style="width: 150px;" name="concepto" id="concepto">
-                                    <option value="">Concepto</option>
+                                    <option value="">Concepto Todos</option>
                                     <option value="1">Nicho Perpetuidad</option>
-                                    <option value="8">Nicho Perpetuidad</option>
+                                    <option value="8">Nicho Enterratorio</option>
                                     <option value="2">Añadir Lapida</option>
                                     <option value="3">Ingresar Sitio Tierra</option>
                                     <option value="4">Ingresar a Mausoleo</option>

@@ -19,8 +19,37 @@ class Reportes extends CI_Controller {
     }
 
     function index() {
-        $bloque['tramite'] = $this->reportes_model->infoBloqueTramites();
+        $tramite = $this->reportes_model->infoBloqueTramites();
         $bloque['alarma'] = $this->reportes_model->getAlarmaNicho();
+         //$tramite = $this->orderMultiDimensionalArray ($tramite, 'id_difunto');
+        $bloquesd = array();
+         foreach ($tramite as $row) {
+             $bloques['costo'] = $row['costo'];
+             $bloques['bloque'] = $row['bloque'];
+             $bloques['id_solicitante'] = $row['id_solicitante'];
+             $bloques['id_difunto'] = $row['id_difunto'];
+             $bloques['nombre'] = $row['nombre'];
+             $bloques['apellido'] = $row['apellido'];
+             $bloques['tramite'] = $row['tramite'];
+             $bloques['fecha_tramite'] = $row['fecha_tramite'];
+             $bloques['user_nombre'] = $row['user_nombre'];
+             $bloques['user_apellido'] = $row['user_apellido'];
+             $bloques['clase'] = $row['clase'];
+             $bloques['tipo_nicho'] = $row['tipo_nicho'];
+              if($row['nro_nicho'] > 0)
+                $bloques['nro_nicho'] = $this->reportes_model->getNichoCompro($row['nro_nicho']);
+             else
+                $bloques['nro_nicho'] = "0";
+             $bloques['bloque'] = $row['bloque'];
+             $bloques['bloque_nombre'] = $row['bloque_nombre'];
+             $bloques['lado'] = $row['lado'];
+             $bloques['costo'] = $row['costo'];
+       
+             array_push($bloquesd, $bloques);
+         }
+         
+         $bloque['tramite'] = $bloquesd;
+
 
         $total1 = 0;
         $total2 = 0;
@@ -66,8 +95,38 @@ class Reportes extends CI_Controller {
         $this->session->set_userdata('concepto', $concepto);
 
         $bloque['alarma'] = $this->reportes_model->getAlarmaNicho();
-        $bloque['tramite'] = $this->reportes_model->infoBloqueNicho($fechaInicio, $fechaFin, $funcionario, $tipo, $concepto);
-
+        $tramite = $this->reportes_model->infoBloqueNicho($fechaInicio, $fechaFin, $funcionario, $tipo, $concepto);
+        $tramite = sort($tramite);
+                //----------------
+        $bloquesd = array();
+         foreach ($tramite as $row) {
+             $bloques['costo'] = $row['costo'];
+             $bloques['bloque'] = $row['bloque'];
+             $bloques['id_solicitante'] = $row['id_solicitante'];
+             $bloques['id_difunto'] = $row['id_difunto'];
+             $bloques['nombre'] = $row['nombre'];
+             $bloques['apellido'] = $row['apellido'];
+             $bloques['tramite'] = $row['tramite'];
+             $bloques['fecha_tramite'] = $row['fecha_tramite'];
+             $bloques['user_nombre'] = $row['user_nombre'];
+             $bloques['user_apellido'] = $row['user_apellido'];
+             $bloques['clase'] = $row['clase'];
+             $bloques['tipo_nicho'] = $row['tipo_nicho'];
+             if($row['nro_nicho'] > 0)
+                $bloques['nro_nicho'] = $this->reportes_model->getNichoCompro($row['nro_nicho']);
+             else
+                $bloques['nro_nicho'] = "0";
+             
+             $bloques['bloque'] = $row['bloque'];
+             $bloques['bloque_nombre'] = $row['bloque_nombre'];
+             $bloques['lado'] = $row['lado'];
+             $bloques['costo'] = $row['costo'];
+       
+             array_push($bloquesd, $bloques);
+         }
+         
+         $bloque['tramite'] = $bloquesd;
+        
         $total1 = 0;
         $total2 = 0;
         $total3 = 0;
@@ -119,11 +178,40 @@ class Reportes extends CI_Controller {
 
         //$data['tramite'] = $this->reportes_model->infoBloqueTramites();
         if ($fechaInicio != "" || $fechaFin != "" || $funcionario != "")
-            $data['tramite'] = $this->reportes_model->infoBloqueNicho($fechaInicio, $fechaFin, $funcionario, $tipo, $concepto);
+            $tramite = $this->reportes_model->infoBloqueNicho($fechaInicio, $fechaFin, $funcionario, $tipo, $concepto);
         else
-            $data['tramite'] = $this->reportes_model->infoBloqueTramites();
+            $tramite = $this->reportes_model->infoBloqueTramites();
 
-
+        
+        //----------------
+        $bloquesd = array();
+         foreach ($tramite as $row) {
+             $bloques['costo'] = $row['costo'];
+             $bloques['bloque'] = $row['bloque'];
+             $bloques['id_solicitante'] = $row['id_solicitante'];
+             $bloques['id_difunto'] = $row['id_difunto'];
+             $bloques['nombre'] = $row['nombre'];
+             $bloques['apellido'] = $row['apellido'];
+             $bloques['tramite'] = $row['tramite'];
+             $bloques['fecha_tramite'] = $row['fecha_tramite'];
+             $bloques['user_nombre'] = $row['user_nombre'];
+             $bloques['user_apellido'] = $row['user_apellido'];
+             $bloques['clase'] = $row['clase'];
+             $bloques['tipo_nicho'] = $row['tipo_nicho'];
+             if($row['nro_nicho'] > 0)
+                $bloques['nro_nicho'] = $this->reportes_model->getNichoCompro($row['nro_nicho']);
+             else
+                $bloques['nro_nicho'] = "0";
+             $bloques['bloque'] = $row['bloque'];
+             $bloques['bloque_nombre'] = $row['bloque_nombre'];
+             $bloques['lado'] = $row['lado'];
+             $bloques['costo'] = $row['costo'];
+       
+             array_push($bloquesd, $bloques);
+         }
+         
+         $data['tramite'] = $bloquesd;
+        
         $total1 = 0;
         $total2 = 0;
         $total3 = 0;
@@ -169,6 +257,26 @@ class Reportes extends CI_Controller {
         $data['filename'] = "Reportes-nichos.xls";
 
         $this->load->view('exportNicho', $data);
+    }
+    
+    function orderMultiDimensionalArray ($toOrderArray, $field, $inverse = false) {
+        $position = array();
+        $newRow = array();
+        foreach ($toOrderArray as $key => $row) {
+                $position[$key]  = $row[$field];
+                $newRow[$key] = $row;
+        }
+        if ($inverse) {
+            arsort($position);
+        }
+        else {
+            asort($position);
+        }
+        $returnArray = array();
+        foreach ($position as $key => $pos) {     
+            $returnArray[] = $newRow[$key];
+        }
+        return $returnArray;
     }
 
 }

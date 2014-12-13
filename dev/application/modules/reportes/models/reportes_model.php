@@ -63,7 +63,7 @@ class Reportes_model extends CI_Model {
             }
             //$this->db->where('tramite.tramite = ' . $concepto);
         }
-        $this->db->order_by("id_tramite", "desc");
+        $this->db->order_by("tramite.id_tramite", "asc");
 
 
         $consulta = $this->db->get();
@@ -83,7 +83,7 @@ class Reportes_model extends CI_Model {
         $this->db->from('tramite');
         $this->db->join('solicitante', 'solicitante.id_solicitante = tramite.id_solicitante');
         $this->db->join('users', 'users.id_users = tramite.id_users');
-        $this->db->order_by("id_tramite", "desc");
+        //$this->db->order_by("tramite.id_solicitante", "desc");
         $consulta = $this->db->get();
         return $consulta->result_array();
     }
@@ -159,6 +159,12 @@ class Reportes_model extends CI_Model {
         $consulta = $this->db->get();
         return $consulta->result_array();
     
+    }
+    
+    public function getNichoCompro($id) {
+        $query = "SELECT nicho FROM nicho WHERE id_nicho=" . $id;
+        $result = $this->db->query($query)->result_array();
+        return $result[0]['nicho'];
     }
 
 }
