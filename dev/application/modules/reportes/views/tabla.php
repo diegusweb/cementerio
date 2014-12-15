@@ -118,6 +118,8 @@
                                     <option value="5">Renovacion Nichos</option>
                                     <option value="6">Exhumacion</option>
                                     <option value="7">Construccion de cripta</option>
+                                    <option value="9">Colocacion de Lapida</option>
+                                   
                                 </select>
                             </td>
                             <td><button id="buscar"  type="submit"  class="btn btn-primary btn-lg active">Mostrar Reportes</button>
