@@ -136,6 +136,7 @@
                             <thead>
                                 <tr>
                                     <th bgcolor="#32c2cd" class="hidden-phone titl"><div align="center">Nombre</div></th>
+									<th bgcolor="#32c2cd" class="hidden-phone titl"><div align="center">Difunto</div></th>
                             <th bgcolor="#32c2cd" class="hidden-phone titl"><div align="center">Concepto</div></th>
                             <th bgcolor="#32c2cd" class="hidden-phone titl"><div align="center">F. Tramite</div></th>
                             <th bgcolor="#32c2cd" class="hidden-phone titl"><div align="center">Responsable</div></th>
@@ -159,6 +160,7 @@
                                     ?>
                                     <tr class="odd gradeX">
                                         <td class="hidden-phone"><?php echo $row['nombre'] . " " . $row['apellido']; ?></td>
+										 <td class="hidden-phone"><?php echo $row['nombre_difunto'] ?></td>
                                         <td class="hidden-phone"><?php echo utf8_decode($row['tramite']); ?></td>
                                         <td class="hidden-phone"><?php echo $row['fecha_tramite']; ?></td>
                                         <td class="hidden-phone"><?php echo $row['user_nombre'] . " " . $row['user_apellido']; ?></td>

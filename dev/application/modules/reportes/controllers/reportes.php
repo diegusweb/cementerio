@@ -36,6 +36,7 @@ class Reportes extends CI_Controller {
              $bloques['user_apellido'] = $row['user_apellido'];
              $bloques['clase'] = $row['clase'];
              $bloques['tipo_nicho'] = $row['tipo_nicho'];
+			 $bloques['nombre_difunto'] = $row['nombreCompletoFallecido'];
               if($row['nro_nicho'] > 0)
                 $bloques['nro_nicho'] = $this->reportes_model->getNichoCompro($row['nro_nicho']);
              else
@@ -96,7 +97,7 @@ class Reportes extends CI_Controller {
 
         $bloque['alarma'] = $this->reportes_model->getAlarmaNicho();
         $tramite = $this->reportes_model->infoBloqueNicho($fechaInicio, $fechaFin, $funcionario, $tipo, $concepto);
-        $tramite = sort($tramite);
+       // $tramite = sort($tramite);
                 //----------------
         $bloquesd = array();
          foreach ($tramite as $row) {
@@ -112,6 +113,7 @@ class Reportes extends CI_Controller {
              $bloques['user_apellido'] = $row['user_apellido'];
              $bloques['clase'] = $row['clase'];
              $bloques['tipo_nicho'] = $row['tipo_nicho'];
+			 $bloques['nombre_difunto'] = $row['nombreCompletoFallecido'];
              if($row['nro_nicho'] > 0)
                 $bloques['nro_nicho'] = $this->reportes_model->getNichoCompro($row['nro_nicho']);
              else
@@ -198,6 +200,7 @@ class Reportes extends CI_Controller {
              $bloques['user_apellido'] = $row['user_apellido'];
              $bloques['clase'] = $row['clase'];
              $bloques['tipo_nicho'] = $row['tipo_nicho'];
+			 $bloques['nombre_difunto'] = $row['nombreCompletoFallecido'];
              if($row['nro_nicho'] > 0)
                 $bloques['nro_nicho'] = $this->reportes_model->getNichoCompro($row['nro_nicho']);
              else

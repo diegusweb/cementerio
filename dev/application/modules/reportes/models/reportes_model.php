@@ -12,10 +12,11 @@ class Reportes_model extends CI_Model {
 
     public function infoBloqueNicho($fechaInicio, $fechaFin, $funcionario, $tipo, $concepto) {
 
-        $this->db->select('tramite.id_solicitante, tramite.id_difunto,solicitante.nombre, solicitante.apellido, tramite.tramite,tramite.fecha_tramite,users.nombre as user_nombre,users.apellido as user_apellido,tramite.clase
+        $this->db->select('difunto.nombreCompletoFallecido,tramite.id_solicitante, tramite.id_difunto,solicitante.nombre, solicitante.apellido, tramite.tramite,tramite.fecha_tramite,users.nombre as user_nombre,users.apellido as user_apellido,tramite.clase
 		,tramite.tipo_nicho,tramite.nro_nicho,tramite.bloque, tramite.bloque_nombre,tramite.lado,tramite.costo');
         $this->db->from('tramite');
         $this->db->join('solicitante', 'solicitante.id_solicitante = tramite.id_solicitante');
+		$this->db->join('difunto', 'difunto.id_difunto = tramite.id_difunto');
         $this->db->join('users', 'users.id_users = tramite.id_users');
 
         if ($fechaInicio) {
@@ -81,10 +82,11 @@ class Reportes_model extends CI_Model {
     }
 
     public function infoBloqueTramites() {
-        $this->db->select('tramite.id_solicitante, tramite.id_difunto,solicitante.nombre, solicitante.apellido, tramite.tramite,tramite.fecha_tramite,users.nombre as user_nombre,users.apellido as user_apellido,tramite.clase
+        $this->db->select('difunto.nombreCompletoFallecido,tramite.id_solicitante, tramite.id_difunto,solicitante.nombre, solicitante.apellido, tramite.tramite,tramite.fecha_tramite,users.nombre as user_nombre,users.apellido as user_apellido,tramite.clase
 		,tramite.tipo_nicho,tramite.nro_nicho,tramite.bloque, tramite.bloque_nombre,tramite.lado,tramite.costo');
         $this->db->from('tramite');
         $this->db->join('solicitante', 'solicitante.id_solicitante = tramite.id_solicitante');
+		$this->db->join('difunto', 'difunto.id_difunto = tramite.id_difunto');
         $this->db->join('users', 'users.id_users = tramite.id_users');
         //$this->db->order_by("tramite.id_solicitante", "desc");
         $consulta = $this->db->get();
