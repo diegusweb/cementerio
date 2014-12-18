@@ -160,6 +160,9 @@
     $('#generarCosto').click(function () {
         $('#costo').val("");
         $('#verT').show();
+        if(parseInt(fecha) === 0){
+            fecha = 1;
+        }
         if (tipo == "Mayor") {
             if (clase == "Nuevo") {
                 $('#costo').val(160 * parseInt(fecha));

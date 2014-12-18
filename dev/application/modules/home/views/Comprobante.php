@@ -24,21 +24,21 @@
 <div id="marco" style="margin: 0 auto; width:812.5px; height:699.2px;">
     <div style="margin: 0 auto; width:604.7px;">
         <div style="text-align:left;">
-            VALLE HERMOSO
+            &nbsp; 
             <br>
-            UNIDAD CEMENTERIO
+            &nbsp; 
             <br>
-            Calle final Bolivar acera este
+            &nbsp; 
         </div>
 
-        <p><h4  style="width:604.7px;; text-align: center; padding-top:20px; padding-bottom:20px;">COMPROBANTE<h4/></p>
+        <p><h4  style="width:604.7px;; text-align: center; padding-top:20px; padding-bottom:20px;">&nbsp; <h4/></p>
     </div>
     <div id="save-form" style="margin: 0 auto; width:604.7px; height:566.9px;">
 <!-- border: 1px solid #333; -->
         <div style=" width:588px; height:125px; padding:6px;  font-size: 14px; border-radius:10px; margin-bottom: 10px;" class="cont">
             <div style="float:left;  width:150px; height:50px; border-radius:10px;">
-                <div style="font-size: 12px; text-align: center;">Nro.  CARNET</div>
-                <div><?php echo $tramite[0]['ci'] ?></div>
+                <div style="font-size: 12px; text-align: center;">&nbsp; </div>
+                <div><?php //echo $tramite[0]['ci'] ?></div>
             </div>
             <div style="float:right;  width:420px; height:50px; border-radius:10px;">
                 <div style="font-size: 12px; text-align: center;">NOMBRE Y APELLIDO O RAZON SOCIAL</div>
@@ -145,12 +145,12 @@ echo "Fecha ".strftime("%d de %B del %Y");?>
             <div style="width: 300px; float: left; text-align: center; margin-top: 5px; margin-top: 45px;">
              <?php echo strtoupper($admin)."<br>";?>
                 ENCARGADO CEMENTERIO<br>
-Responsable Cementerio
+
         </div>
              <div style="width: 300px; float: right; text-align: center; margin-top: 5px; margin-top: 45px;">
                  <?php echo strtoupper($this->session->userdata('username'))."<br>";?>
       AUX. CEMENTERIO<br>
-      Cajero(a)
+
 
         </div>
 

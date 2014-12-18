@@ -143,7 +143,7 @@
                             <li><a class="" href="<?php echo base_url() . "admin/bloque_mausoleo_management"; ?>">Bloque Mausoleos</a></li>
                             <li><a class="" href="<?php echo base_url() . "admin/bloque_cremados_management"; ?>">Bloque Cremados</a></li>
                             <li><a class="" href="<?php echo base_url() . "admin/bloque_tierra_management"; ?>">Bloque Bajo Tierra</a></li>
-
+                           <!-- <li><a class="" href="<?php echo base_url() . "admin/bloque_historial_management"; ?>">Historial Nichos</a></li>-->
                         </ul>
                     </li>
                     <?php

@@ -83,7 +83,7 @@ class Admin extends CI_Controller {
         $crud->unset_fields('create_date');
         $crud->unset_columns('create_date', 'password');
 
-        $crud->unset_delete();
+        //$crud->unset_delete();
 
         $output = $crud->render();
         $this->_mostrar_crud($output);
@@ -107,6 +107,46 @@ class Admin extends CI_Controller {
         $crud->callback_edit_field('position', function () {
             return '<input type="text" maxlength="10" class="positionSet" style="width:50px!important" value="" name="position"> <a href="#" class="infoMausoleoDiv">Situar en mapa </a>';
         });
+
+        $output = $crud->render();
+        $this->_mostrar_crud($output);
+    }
+    
+    public function bloque_historial_management() {
+
+        $this->session->set_userdata('seccion', "Administración de Nichos que expiraron");
+
+
+        $crud = new grocery_CRUD();
+        //$crud->set_model('custom_query_model');
+        $crud->set_theme('datatables');
+        $crud->set_table('nicho'); //Change to your table name
+         $crud->where('estado','Ocupado');
+        $crud->or_where('estado','Renovar');
+       //$crud->or_where('estado','Renovado');
+       //$crud->or_where('estado','Perpetuidad');
+
+        $fecha = date("Y-m-d");
+
+         $crud->display_as('id_difunto', 'difunto / solicitante / telefono');
+         $crud->display_as('transcurrido', 'Años transcurridos');
+        //$crud->basic_model->set_query_str('SELECT * FROM nicho where estado="Renovar" AND fecha_fin <="'.$fecha.'"'); //Query text here
+        //$crud->set_relation('id_difunto','difunto','nombreCompletoFallecido');
+        
+        //$crud->set_relation('id_difunto','difunto','nombreCompletoFallecido');
+        $crud->set_relation('id_bloque','tramite','bloque_nombre');
+
+        $crud->callback_column('id_difunto', array($this, '_callback_id_difunto'));
+        //$crud->callback_column('id_bloque', array($this, '_callback_id_bloque'));
+        $crud->callback_column('fecha_fin', array($this, '_callback_fecha'));
+        $crud->callback_column('fecha_inicio', array($this, '_callback_fecha_ini'));
+        $crud->callback_column('cara', array($this, '_callback_cara'));
+
+        $crud->unset_add();
+        $crud->unset_edit();
+        $crud->unset_delete();
+        $crud->unset_read();
+
 
         $output = $crud->render();
         $this->_mostrar_crud($output);
@@ -155,7 +195,14 @@ class Admin extends CI_Controller {
     
     public function _callback_fecha($value, $row) {
         
-        return "<b style='color:#ff0000;'>".date('Y-m-d',strtotime($value))."</b>";
+        $fecha = date("Y-m-d");
+        if($fecha >= date('Y-m-d',strtotime($value))){
+             return "<b style='color:#ff0000;'>".date('Y-m-d',strtotime($value))."</b>";
+        }
+        else{
+             return date('Y-m-d',strtotime($value));
+        }
+       
     }
     
      public function _callback_fecha_ini($value, $row) {
@@ -248,7 +295,7 @@ class Admin extends CI_Controller {
         $crud->set_rules('costo_5_year_1_clase', 'costo 5 años 1.clase', 'required|decimal');
         $crud->set_rules('costo_5_year_2_clase', 'costo 5 años 2.clase', 'required|decimal');
         
-         $crud->set_rules('extra_caras', 'Formato Incorrecto', 'required|decimal');
+         $crud->set_rules('extra_caras', 'Formato Incorrecto', 'decimal');
 
         $crud->set_rules('numero_filas', 'numero filas', 'required|number');
         $crud->set_rules('numero_nichos', 'numero nichos', 'required|number');
