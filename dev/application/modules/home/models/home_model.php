@@ -148,9 +148,9 @@ class Home_model extends CI_Model {
     }
     
     public function getNichoCompro($id) {
-        $query = "SELECT nicho FROM nicho WHERE id_nicho=" . $id;
+        $query = "SELECT nicho, fecha_fin,fecha_inicio FROM nicho WHERE id_nicho=" . $id;
         $result = $this->db->query($query)->result_array();
-        return $result[0]['nicho'];
+        return $result;
     }
 
     //mausoleo
@@ -171,6 +171,12 @@ class Home_model extends CI_Model {
         $this->db->where('status', 'activo');
         $this->db->update('tramite', $datas);
     }
+    
+    public function updateStatusRnocar($id, $datas) {
+
+        $this->db->where('id_tramite', $id);
+        $this->db->update('tramite', $datas);
+    }
 
     //cremados
     public function getInfoCremado($id) {
@@ -182,7 +188,15 @@ class Home_model extends CI_Model {
     public function getDifuntosCremados($id) {
         $query = "SELECT tramite.id_difunto, difunto.nombreCompletoFallecido,difunto.edadFallecido  FROM tramite as tramite 
 		LEFT JOIN difunto ON difunto.id_difunto = tramite.id_difunto
-		WHERE  tramite.bloque='Cremados' AND tramite.status = 'activo' AND tramite.tramite <> 'Exhumacion' AND tramite.id_bloque =" . $id;
+		WHERE  tramite.bloque='Cremados' AND tramite.status = 'activo' AND tramite.tramite <> 'Exhumacion Cremados' OR tramite.tramite ='Renovar Cremados' AND tramite.id_bloque =" . $id;
+        $result = $this->db->query($query)->result_array();
+        return $result;
+    }
+    
+    public function getDifuntosCremadosRen($id) {
+        $query = "SELECT tramite.id_tramite, tramite.id_difunto, difunto.nombreCompletoFallecido,difunto.edadFallecido  FROM tramite as tramite 
+		LEFT JOIN difunto ON difunto.id_difunto = tramite.id_difunto
+		WHERE  tramite.bloque='Cremados' AND tramite.status = 'activo' AND tramite.tramite = 'Exhumacion Cremados' AND tramite.tramite <> 'Renovar Cremados' AND tramite.id_bloque =" . $id;
         $result = $this->db->query($query)->result_array();
         return $result;
     }

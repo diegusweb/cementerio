@@ -113,7 +113,13 @@ class Home extends CI_Controller {
                 $estados = "Perpetuidad";
             }
             else{
-                $ca = date("Y-m-d", strtotime("$Fecha +5 year"));
+                if($_POST['tipo'] == "Menor"){
+                    $ca = date("Y-m-d", strtotime("$Fecha +3 year"));
+                }
+                else{
+                    $ca = date("Y-m-d", strtotime("$Fecha +5 year"));
+                }
+                
                 $estados = "Ocupado";
             }
 
@@ -367,7 +373,8 @@ class Home extends CI_Controller {
         //cambiar estado
         $datad = array(
             'estado' => 'Renovado',
-            'fecha_fin' => $ca
+            'fecha_fin' => $ca,
+            'fecha_inicio' => $Fecha
         );
         $this->home_model->updateNichoStatus($_POST['numeroNicho'],$datad);
         
@@ -672,7 +679,7 @@ class Home extends CI_Controller {
 
         if (!empty($id_solicitante)) {
             $data['bloque_info'] = $this->home_model->getInfoCremado($id);
-            $data['difuntos_info'] = $this->home_model->getDifuntosCremados($id);
+            $data['difuntos_info'] = $this->home_model->getDifuntosCremadosRen($id);
 
             $this->load->view('AddRenovarCremados', $data);
         } else {
@@ -682,8 +689,8 @@ class Home extends CI_Controller {
 
     public function AddTramiteCremadosRenovar() {
 
-        ///$dataa['status'] = 'inactivo';	
-        //$d = $this->home_model->updateStatusDifunto($_POST['id_bloque'], $_POST['difunto'],"Cremados", $dataa);
+        $dataa['status'] = 'inactivo';	
+        $d = $this->home_model->updateStatusRnocar($_POST['id_tramite'], $dataa);
 
         $data['id_bloque'] = $_POST['id_bloque'];
         $data['id_users'] = (int) $this->session->userdata('id_users');
@@ -695,7 +702,7 @@ class Home extends CI_Controller {
         $data['tipo_nicho'] = $_POST['tipo'];
         $data['costo'] = $_POST['costo'];
         $data['pagado'] = 0;
-
+        
         $d = $this->home_model->addTramiteNicho($data);
         if ($d > 0) {
             $this->session->set_userdata('id_solitantes', 0);

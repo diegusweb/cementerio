@@ -1,3 +1,8 @@
+<style>
+    body{
+        font-size: 11px;
+    }
+</style>
 <script>
     $(function () {
 
@@ -112,13 +117,12 @@
                                     <option value="">Concepto Todos</option>
                                     <option value="1">Nicho Perpetuidad</option>
                                     <option value="8">Nicho Enterratorio</option>
-                                    <option value="2">Añadir Lapida</option>
                                     <option value="3">Ingresar Sitio Tierra</option>
                                     <option value="4">Ingresar a Mausoleo</option>
                                     <option value="5">Renovacion Nichos</option>
                                     <option value="6">Exhumacion</option>
                                     <option value="7">Construccion de cripta</option>
-                                    <option value="9">Colocacion de Lapida</option>
+                                    <option value="9">Lapida</option>
                                    
                                 </select>
                             </td>
@@ -151,7 +155,7 @@
                             <th bgcolor="#32c2cd" class="hidden-phone titl"><div align="center">Total</div></th>
                             <th bgcolor="#32c2cd" class="hidden-phone titl"><div align="center">Ver</div></th>
                             <th bgcolor="#32c2cd" class="hidden-phone titl"><div align="center">Ver</div></th>
-
+                             <th bgcolor="#32c2cd" class="hidden-phone titl"><div align="center">Boleta</div></th>
                             </tr>
                             </thead>
                             <tbody class="">
@@ -174,10 +178,13 @@
                                             echo ($row['lado'] > 0) ? $caras[$row['lado'] - 1] : "";
                                             ?></td>
                                         <td class="hidden-phone"><?php echo $row['costo']; ?></td>
-                                        <td class="hidden-phone"><?php echo ($row['bloque'] == "Mausoleo")?"0.00":"3.00"; ?></td>
-                                        <td class="hidden-phone"><?php echo ($row['bloque'] != "Mausoleo")?($row['costo'] + 3.00):$row['costo']; ?></td>
+                                        <td class="hidden-phone"><?php echo "3.00" ?></td>
+                                        <td class="hidden-phone"><?php echo $row['costo'] + 3.00; ?></td>
+                                       <!-- <td class="hidden-phone"><?php echo ($row['bloque'] == "Mausoleo")?"0.00":"3.00"; ?></td>
+                                        <td class="hidden-phone"><?php echo ($row['bloque'] != "Mausoleo")?($row['costo'] + 3.00):$row['costo']; ?></td>-->
                                         <td class="hidden-phone"><a href="#" class="showSolicitante" onClick="showSolicitante(<?php echo $row['id_solicitante']; ?>)">Solicitud</a></td>
                                         <td class="hidden-phone"><a href="#" class="showDifunto" onClick="showDifunto(<?php echo $row['id_difunto']; ?>)">Difunto</a></td>
+                                        <td class="hidden-phone"><a href="<?php echo base_url()."home/comprobante/".$row['id_tramite']?>" >Boleta</a></td>
                                     </tr>
                                     <?php
                                 }

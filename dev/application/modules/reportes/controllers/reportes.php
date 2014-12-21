@@ -24,6 +24,7 @@ class Reportes extends CI_Controller {
          //$tramite = $this->orderMultiDimensionalArray ($tramite, 'id_difunto');
         $bloquesd = array();
          foreach ($tramite as $row) {
+             $bloques['id_tramite'] = $row['id_tramite'];
              $bloques['costo'] = $row['costo'];
              $bloques['bloque'] = $row['bloque'];
              $bloques['id_solicitante'] = $row['id_solicitante'];
@@ -101,6 +102,7 @@ class Reportes extends CI_Controller {
                 //----------------
         $bloquesd = array();
          foreach ($tramite as $row) {
+             $bloques['id_tramite'] = $row['id_tramite'];
              $bloques['costo'] = $row['costo'];
              $bloques['bloque'] = $row['bloque'];
              $bloques['id_solicitante'] = $row['id_solicitante'];
@@ -188,6 +190,7 @@ class Reportes extends CI_Controller {
         //----------------
         $bloquesd = array();
          foreach ($tramite as $row) {
+             $bloques['id_tramite'] = $row['id_tramite'];
              $bloques['costo'] = $row['costo'];
              $bloques['bloque'] = $row['bloque'];
              $bloques['id_solicitante'] = $row['id_solicitante'];

@@ -80,6 +80,7 @@ var x;
     });
 
 $('#difunto').change(function () {        
+$('#id_tramite').val($(this).find("option:selected").attr('data-id'));
             if($(this).find("option:selected").attr('data-edad') > 18){
                     $('#costo').val(160);
                     $('#tipo').val("Mayor");
@@ -104,6 +105,7 @@ $('#difunto').change(function () {
         <div class="controls">
 			<input type="hidden" id="id_bloque" name="id_bloque" value="<?php echo $bloque_info[0]['id_bloque_cremado']; ?>" >
             <input type="hidden" id="bloque" name="bloque" value="<?php echo $bloque_info[0]['nombre']; ?>" >
+            <input type="hidden" id="id_tramite" name="id_tramite" value="" >
             <?php echo $bloque_info[0]['nombre']; ?>
         </div>
     </div>
@@ -115,7 +117,7 @@ $('#difunto').change(function () {
 			 <option value="">Seleccione difunto</option>
 				<?php
 				foreach($difuntos_info as $row){
-					echo "<option data-edad='".$row['edadFallecido']."' value='".$row['id_difunto']."'>".$row['nombreCompletoFallecido']."</option>";
+					echo "<option data-id='".$row['id_tramite']."' data-edad='".$row['edadFallecido']."' value='".$row['id_difunto']."'>".$row['nombreCompletoFallecido']."</option>";
 				}
 				?>
             </select>

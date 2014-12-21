@@ -119,7 +119,7 @@ var x;
 	
 	$('#clase').change(function () {        
 			if($(this).attr('value') == "1ra Clase"){
-				$('#costo').val(63);
+				$('#costo').val(60);
 			}
 			if($(this).attr('value') == "2ra Clase"){
 				$('#costo').val(50);

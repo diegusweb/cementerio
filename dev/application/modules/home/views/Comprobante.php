@@ -27,8 +27,7 @@
             &nbsp; 
             <br>
             &nbsp; 
-            <br>
-            &nbsp; 
+     
         </div>
 
         <p><h4  style="width:604.7px;; text-align: center; padding-top:20px; padding-bottom:20px;">&nbsp; <h4/></p>
@@ -37,8 +36,8 @@
 <!-- border: 1px solid #333; -->
         <div style=" width:588px; height:125px; padding:6px;  font-size: 14px; border-radius:10px; margin-bottom: 10px;" class="cont">
             <div style="float:left;  width:150px; height:50px; border-radius:10px;">
-                <div style="font-size: 12px; text-align: center;">&nbsp; </div>
-                <div><?php //echo $tramite[0]['ci'] ?></div>
+                <div style="font-size: 12px; text-align: center;">CI</div>
+                <div><?php echo $tramite[0]['ci'] ?></div>
             </div>
             <div style="float:right;  width:420px; height:50px; border-radius:10px;">
                 <div style="font-size: 12px; text-align: center;">NOMBRE Y APELLIDO O RAZON SOCIAL</div>
@@ -84,10 +83,12 @@
                     <span align="center"><?php 
 
                     if(utf8_decode($tramite[0]['tramite']) == utf8_decode("Renovacion de 1 año para Nichos")){
+                        
                         $di = ($tramite[0]['costo']) / ($tramite[0]['pagado']);
                         
                         echo $tramite[0]['tramite']."<br>";
-                        echo "Renovacion ".$tramite[0]['pagado']." * ".$di;
+                        echo "Renovacion ".$tramite[0]['pagado']." * ".$di."<br>";
+                        echo "Fecha Renovacion del ".date("Y-m-d", strtotime($nichoReal[0]['fecha_inicio']))." al ".date("Y-m-d", strtotime($nichoReal[0]['fecha_fin']));
 
                     }
                     else{
@@ -99,7 +100,7 @@
                     <span align="center">Cuerpo: <?php echo $tramite[0]['tipo_nicho'] ?></span><br>
                     <?php
                     if ($tramite[0]['nro_nicho'] > 0) {
-                        echo " <span align='center'>Numero Nicho: " . $nichoReal."</span><br>";
+                        echo " <span align='center'>Numero Nicho: " . $nichoReal[0]['nicho']."</span><br>";
                     }
                     ?>
                     <span align="center">Bloque: <?php echo $tramite[0]['bloque_nombre'] ?></span><br>
