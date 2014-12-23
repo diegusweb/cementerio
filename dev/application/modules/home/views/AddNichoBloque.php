@@ -307,7 +307,7 @@
     }
 	
 	#navegador .Perpetuidad{
-        background-color: #FFBD5A;
+        background-color: #FB7E2A;
     }
 
     #navegador .boxX{
