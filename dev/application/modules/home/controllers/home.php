@@ -55,8 +55,8 @@ class Home extends CI_Controller {
         $id_solicitante = (int) $this->session->userdata('id_solitantes');
         $id_difunto = (int) $this->session->userdata('id_difuntos');
 
-        if (!empty($id_solicitante)) {
-            if (!empty($id_difunto)) {
+        if (empty($id_solicitante)) {
+            if (empty($id_difunto)) {
                 $data['bloque_info'] = $this->home_model->getInfoBloqueNicho($id);
                 $this->load->view('AddNichoBloque', $data);
             } else {
@@ -101,14 +101,24 @@ class Home extends CI_Controller {
         //$data['fecha_tramite'] = $_POST['fechaTramite'];
         $data['costo'] = $_POST['costo'];
         $data['pagado'] = 0;
+		
 
         $d = $this->home_model->addTramiteNicho($data);
         if ($d > 0) {
             
-            $Fecha = date("Y-m-d");
+			if(!empty($_POST['fecha_antiguo'])){
+			$porciones = explode("/", $_POST['fecha_antiguo']);
+			$f = $porciones[2]."-".$porciones[1]."-".$porciones[0];
+				$Fecha  = date("Y-m-d", strtotime($f));
+			}
+			else{
+				$Fecha = date("Y-m-d");
+			}
+            
             //$ca = date("Y-m-d", strtotime("$Fecha +1 year"));
             
             if($_POST['tiempo'] == "Perpetuidad"){
+				$Fecha = date("Y-m-d");
                 $ca = date("Y-m-d", strtotime("$Fecha +100 year"));
                 $estados = "Perpetuidad";
             }
@@ -180,6 +190,15 @@ class Home extends CI_Controller {
         $data['nicho_info'] = $this->home_model->getBloqueNichoLibres($id, $lado, $piso);
 
         echo json_encode($data);
+    }
+	
+	function getAdminCheck() {
+        $lado = $_POST['user'];
+        $piso = $_POST['pass'];
+
+        $data = $this->home_model->getAdminCheck($lado, $piso);
+
+        echo $data;
     }
 
     function getNichosOcupados() {

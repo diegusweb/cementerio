@@ -51,6 +51,17 @@ class Home_model extends CI_Model {
         $result = $this->db->query($query)->result_array();
         return $result;
 	}
+	
+	public function getAdminCheck($user, $pass){
+		 $query = "SELECT * FROM users WHERE correo='".$user."' AND password='".$pass."' AND rol='Administrador'";
+        $result = $this->db->query($query)->result_array();
+		 if(count($result) > 0){
+			 return true;
+		 }
+		 
+		 return false;
+       
+	}
 
     public function getBloqueNichoLibres($id, $lado, $piso) {
 

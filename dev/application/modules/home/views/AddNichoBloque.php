@@ -1,4 +1,10 @@
 <script type="text/javascript">
+ $.validator.addMethod("fecha", 
+            function(value, element)
+            {
+                return this.optional(element) || /^(0?[1-9]|[12][0-9]|3[01])[\/](0?[1-9]|1[012])[/\\/](19|20)\d{2}$/i.test(value);
+            }, "Formato Invalido");
+			
     $('#add-form').validate({
         rules: {
             tramite: {
@@ -24,7 +30,10 @@
             },
             numeroNichoView: {
                 required: true,
-            }
+            },
+			fecha_antiguo:{
+				fecha:true
+			}
         },
         messages: {
         },
@@ -270,6 +279,30 @@
 		}
        
     });
+	
+	$('#datetimepickerAntiguo').datetimepicker({
+            language: 'pt-BR',
+            pickTime: false
+        });
+		
+	$('.enabledInput').click(function(){
+		var person = prompt("Coloque Administrador", "");
+		var persons = prompt("Coloque password", "");
+		
+		if (person != null && persons != null) {
+			var datos = {
+                user: person,
+                pass: persons
+            };
+
+            $.post("<?php echo base_url() . "home/getAdminCheck"; ?>", datos, function (data) {
+				if(data == 1){
+					$('#fecha_antiguo').removeAttr("readonly");
+				}
+			});
+		}
+	});	
+	
 
 
 </script>
@@ -378,6 +411,19 @@
         <div class="controls">
             <input type="text" class="form-control" style="width:26px;" id="numeroNichoView" value="" name="numeroNichoView" readonly="true">
             <ul id="navegador" style="width: 30px; height: auto;"</ul>            
+        </div>
+    </div>
+	 <div class="control-group">
+        <label class="control-label" for="inputPassword">Fecha tramite antiguo</label>
+        <div class="controls">
+		 <input type="text" class="form-control" placeholder="EJ.: 25/05/1980" id="fecha_antiguo" value="" name="fecha_antiguo" readonly><a href="javascript:void(0);" class="enabledInput"> Habilitar campo</a>
+		<!--<div id="datetimepickerAntiguo" class="input-append date">
+            <input data-format="yyyy-MM-dd" type="text" id="fecha_antiguo" name="fecha_antiguo"></input>
+                <span class="add-on">
+                    <i data-time-icon="icon-time" data-date-icon="icon-calendar">
+                    </i>
+                </span>
+            </div>-->
         </div>
     </div>
     <div class="control-group">
