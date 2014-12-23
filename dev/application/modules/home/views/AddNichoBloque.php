@@ -83,7 +83,10 @@
 
         }
     });
-
+	
+	var clase;
+    var tiempo;
+    var tramite;
     var piso = 0;
 
     $('#piso').change(function () {
@@ -144,7 +147,17 @@
                 $dibujoNichoLibres.append("<li style='background-color: #f9dd34;'>1</li>");
                 $.each(nn, function (index, v) {
                     //$comboNichoLibres.append("<option value="+v['id_nicho']+">" + v['nicho'] + "</option>");
-                    var estado = (v['estado'] == "Libre") ? "libre" : "ocupado";
+					 var estado;
+					if(v['estado'] == "Libre"){
+						estado = "libre";
+					}
+					else if(v['estado'] == "Perpetuidad"){
+						estado = "Perpetuidad";
+					}
+					else{
+						estado = "ocupado";
+					}
+                    //var estado = (v['estado'] == "Libre") ? "libre" : "ocupado";
                     var box = (v['nicho'] < 10) ? "padding-left: 14px; padding-right: 13px;" : "5px;";
 
                     $dibujoNichoLibres.append("<li class=" + estado + ' ' + box + " data-id=" + v['id_nicho'] + " style='" + box + "'>" + v['nicho'] + "</li>");
@@ -174,9 +187,7 @@
 
     });
 
-    var clase;
-    var tiempo;
-    var tramite;
+
 
     $('#clase').change(function () {
         $('#costo').val("");
@@ -190,16 +201,25 @@
         $('#costo').val("");
         tramite = $(this).attr('value');
         if (tramite == "Anexion Nicho Perpetuidad") {
+			tramite = true;
             tiempo = "Perpetuidad";
+			$('#numeroNicho').val('');
+			$('#numeroNichoView').val('');
             $('#tiempo').val(tiempo);
         }
         else if (tramite == "Nicho Enterratorio") {
+			tramite = false;
             tiempo = "5 años";
+			$('#numeroNicho').val('');
+			$('#numeroNichoView').val('');
             $('#tiempo').val(tiempo);
 
         }
         else {
+			tramite = false;
             tiempo = "Perpetuidad";
+			$('#numeroNicho').val('');
+			$('#numeroNichoView').val('');
             $('#tiempo').val(tiempo);
         }
     });
@@ -237,8 +257,18 @@
 
 
     $("#navegador").on("click", "li.libre", function (event) {
-        $('#numeroNicho').val($(this).attr('data-id'));
-        $('#numeroNichoView').val($(this).text());
+		if(!tramite){
+			$('#numeroNicho').val($(this).attr('data-id'));
+			$('#numeroNichoView').val($(this).text());
+		}
+    });
+	
+	$("#navegador").on("click", "li.Perpetuidad", function (event) {
+		if(tramite){
+			 $('#numeroNicho').val($(this).attr('data-id'));
+			 $('#numeroNichoView').val($(this).text());
+		}
+       
     });
 
 
@@ -274,6 +304,10 @@
 
     #navegador .ocupado{
         background-color: #ff0000;
+    }
+	
+	#navegador .Perpetuidad{
+        background-color: #FFBD5A;
     }
 
     #navegador .boxX{
