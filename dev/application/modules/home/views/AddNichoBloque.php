@@ -1,4 +1,10 @@
 <script type="text/javascript">
+ $.validator.addMethod("fecha", 
+            function(value, element)
+            {
+                return this.optional(element) || /^(0?[1-9]|[12][0-9]|3[01])[\/](0?[1-9]|1[012])[/\\/](19|20)\d{2}$/i.test(value);
+            }, "Formato Invalido");
+			
     $('#add-form').validate({
         rules: {
             tramite: {
@@ -24,7 +30,10 @@
             },
             numeroNichoView: {
                 required: true,
-            }
+            },
+			fecha_antiguo:{
+				fecha:true
+			}
         },
         messages: {
         },
@@ -83,7 +92,10 @@
 
         }
     });
-
+	
+	var clase;
+    var tiempo;
+    var tramite;
     var piso = 0;
 
     $('#piso').change(function () {
@@ -144,7 +156,17 @@
                 $dibujoNichoLibres.append("<li style='background-color: #f9dd34;'>1</li>");
                 $.each(nn, function (index, v) {
                     //$comboNichoLibres.append("<option value="+v['id_nicho']+">" + v['nicho'] + "</option>");
-                    var estado = (v['estado'] == "Libre") ? "libre" : "ocupado";
+					 var estado;
+					if(v['estado'] == "Libre"){
+						estado = "libre";
+					}
+					else if(v['estado'] == "Perpetuidad"){
+						estado = "Perpetuidad";
+					}
+					else{
+						estado = "ocupado";
+					}
+                    //var estado = (v['estado'] == "Libre") ? "libre" : "ocupado";
                     var box = (v['nicho'] < 10) ? "padding-left: 14px; padding-right: 13px;" : "5px;";
 
                     $dibujoNichoLibres.append("<li class=" + estado + ' ' + box + " data-id=" + v['id_nicho'] + " style='" + box + "'>" + v['nicho'] + "</li>");
@@ -174,9 +196,7 @@
 
     });
 
-    var clase;
-    var tiempo;
-    var tramite;
+
 
     $('#clase').change(function () {
         $('#costo').val("");
@@ -190,16 +210,25 @@
         $('#costo').val("");
         tramite = $(this).attr('value');
         if (tramite == "Anexion Nicho Perpetuidad") {
+			tramite = true;
             tiempo = "Perpetuidad";
+			$('#numeroNicho').val('');
+			$('#numeroNichoView').val('');
             $('#tiempo').val(tiempo);
         }
         else if (tramite == "Nicho Enterratorio") {
+			tramite = false;
             tiempo = "5 años";
+			$('#numeroNicho').val('');
+			$('#numeroNichoView').val('');
             $('#tiempo').val(tiempo);
 
         }
         else {
+			tramite = false;
             tiempo = "Perpetuidad";
+			$('#numeroNicho').val('');
+			$('#numeroNichoView').val('');
             $('#tiempo').val(tiempo);
         }
     });
@@ -237,9 +266,43 @@
 
 
     $("#navegador").on("click", "li.libre", function (event) {
-        $('#numeroNicho').val($(this).attr('data-id'));
-        $('#numeroNichoView').val($(this).text());
+		if(!tramite){
+			$('#numeroNicho').val($(this).attr('data-id'));
+			$('#numeroNichoView').val($(this).text());
+		}
     });
+	
+	$("#navegador").on("click", "li.Perpetuidad", function (event) {
+		if(tramite){
+			 $('#numeroNicho').val($(this).attr('data-id'));
+			 $('#numeroNichoView').val($(this).text());
+		}
+       
+    });
+	
+	$('#datetimepickerAntiguo').datetimepicker({
+            language: 'pt-BR',
+            pickTime: false
+        });
+		
+	$('.enabledInput').click(function(){
+		var person = prompt("Coloque Administrador", "");
+		var persons = prompt("Coloque password", "");
+		
+		if (person != null && persons != null) {
+			var datos = {
+                user: person,
+                pass: persons
+            };
+
+            $.post("<?php echo base_url() . "home/getAdminCheck"; ?>", datos, function (data) {
+				if(data == 1){
+					$('#fecha_antiguo').removeAttr("readonly");
+				}
+			});
+		}
+	});	
+	
 
 
 </script>
@@ -274,6 +337,10 @@
 
     #navegador .ocupado{
         background-color: #ff0000;
+    }
+	
+	#navegador .Perpetuidad{
+        background-color: #FB7E2A;
     }
 
     #navegador .boxX{
@@ -344,6 +411,19 @@
         <div class="controls">
             <input type="text" class="form-control" style="width:26px;" id="numeroNichoView" value="" name="numeroNichoView" readonly="true">
             <ul id="navegador" style="width: 30px; height: auto;"</ul>            
+        </div>
+    </div>
+	 <div class="control-group">
+        <label class="control-label" for="inputPassword">Fecha tramite antiguo</label>
+        <div class="controls">
+		 <input type="text" class="form-control" placeholder="EJ.: 25/05/1980" id="fecha_antiguo" value="" name="fecha_antiguo" readonly><a href="javascript:void(0);" class="enabledInput"> Habilitar campo</a>
+		<!--<div id="datetimepickerAntiguo" class="input-append date">
+            <input data-format="yyyy-MM-dd" type="text" id="fecha_antiguo" name="fecha_antiguo"></input>
+                <span class="add-on">
+                    <i data-time-icon="icon-time" data-date-icon="icon-calendar">
+                    </i>
+                </span>
+            </div>-->
         </div>
     </div>
     <div class="control-group">
