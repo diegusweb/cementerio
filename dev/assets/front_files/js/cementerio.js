@@ -2,7 +2,7 @@ var time;
 var urlControllers = ["showFormAddNichoBloque", "showFormAddExhumarBloque", 
 "showFormRenovacionNicho","showFormAddLapidaBloque","showFormAddDMausoleo","showFormExhumarMausoleo","showFormLapidaMausoleo",
 "showFormCremaciones","showFormExhumarCremaciones","showFormRenovarCremaciones","showFormSitioTierra","showFormExhumarSitioTierra",
-"showFormRenovarSitioTierra","showFormCriptaSitioTierra"];
+"showFormRenovarSitioTierra","showFormCriptaSitioTierra","showFormServicioCremacion"];
 
 $(".nicho").mouseenter(function () {
     $(this).popover('show');
@@ -234,6 +234,15 @@ $('.formSolicitante').click(function(){
            
             $('#myModalAddSolicitante').modal({ show: true, keyboard: false, backdrop: 'static' });
         });
+});
+
+$('#servicio_cremacion').click(function(){
+    var urlInfo = base_url + "home/showFormServicioCremacion/" + $(this).attr('data-id')+"/"+$(this).attr('data-form');
+    $("#contentDemoadd").load(urlInfo, function () {
+        $('#myModalAddForm #myModalLabel').text('Servicio Cremacion');
+        $('#myModalAddForm').modal({ show: true, keyboard: false, backdrop: 'static' });
+        $('.loading').hide();
+    });
 });
 
 function showSolicitante(id){

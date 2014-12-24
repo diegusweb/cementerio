@@ -8,14 +8,14 @@
 
 
 
-        $('#datetimepicker1').datetimepicker();
-        $('#datetimepicker2').datetimepicker();
+        $('#datetimepicker1d').datetimepicker();
+        $('#datetimepicker2d').datetimepicker();
 
-        $("#datetimepicker1").on("dp.change", function (e) {
-            $('#datetimepicker2').data("DateTimePicker").setMinDate(e.date);
+        $("#datetimepicker1d").on("dp.change", function (e) {
+            $('#datetimepicker2d').data("DateTimePicker").setMinDate(e.date);
         });
-        $("#datetimepicker2").on("dp.change", function (e) {
-            $('#datetimepicker1').data("DateTimePicker").setMaxDate(e.date);
+        $("#datetimepicker2d").on("dp.change", function (e) {
+            $('#datetimepicker1d').data("DateTimePicker").setMaxDate(e.date);
         });
 
         var piso = 0;
@@ -82,14 +82,14 @@
                     <table width="898" style="float: left; margin-bottom: 10px;" border="0" class="cont" cellpadding="0" cellspacing="0">
 
                         <tr>
-                            <td width="218" class="contT"><div id="datetimepicker1" class='input-group date' >
+                            <td width="218" class="contT"><div id="datetimepicker1d" class='input-group date' >
                                     <input data-format="yyyy-MM-dd" style="width: 100px;" type="text" id="fechaInicio" value="<?php echo $this->session->userdata('fechaInicio'); ?>" name="fechaInicio" placeholder="Fecha Inicio"></input>
                                     <span class="add-on">
                                         <i data-time-icon="icon-time" data-date-icon="icon-calendar">
                                         </i>
                                     </span>
                                 </div></td>
-                            <td width="337" class="contT"> <div id="datetimepicker2" class='input-group date' >
+                            <td width="337" class="contT"> <div id="datetimepicker2d" class='input-group date' >
                                     <input data-format="yyyy-MM-dd" style="width: 100px;" placeholder="Fecha Fin" type="text" id="fechaFin" value="<?php echo $this->session->userdata('fechaFin'); ?>" name="fechaFin"></input>
                                     <span class="add-on">
                                         <i data-time-icon="icon-time" data-date-icon="icon-calendar">

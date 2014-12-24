@@ -160,6 +160,7 @@
                             <li><a class="" href="<?php echo base_url() . "home"; ?>">Mapa de Bloques</a></li>
 			    <li><a class="" href="<?php echo base_url() . "reportes"; ?>">Reportes Registros</a></li>
                             <li><a class="" href="<?php echo base_url() . "reportes/reporteNicho"; ?>">Reportes Nichos</a></li>
+                            <li><a id="servicio_cremacion" class="" href="javascript:void(0);" data-form="<?php echo "1";?>">Servicio Cremacion</a></li>
                         </ul>
                     </li>
 
@@ -237,6 +238,27 @@
                 <p id="contentDemoR">One fine body…</p>
             </div>
         </div>
+        
+        <div id="myModalAddForm" class="modal hide fade" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
+                <h3 id="myModalLabel">Nueva Nicho</h3>
+            </div>
+            <div class="modal-body">
+                <p id="contentDemoadd">One fine body…</p>
+            </div>
+        </div>
+
+        <div id="myModalComprobante" class="modal hide fade" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
+                <h3 id="myModalLabel">Mostrar Comprobante</h3>
+            </div>
+            <div class="modal-body">
+                <p id="contentIdComprobante"></p>
+            </div>
+        </div>
+
     </body>
     <!-- END BODY -->
 </html>

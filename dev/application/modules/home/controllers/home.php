@@ -201,7 +201,7 @@ class Home extends CI_Controller {
 
         echo json_encode($data);
     }
-
+    
     //form solicitante
     function showFormSolicitante() {
         $send['id'] = $this->uri->segment(3);
@@ -573,6 +573,52 @@ class Home extends CI_Controller {
             echo $d;
         } else
             echo 0;
+    }
+    
+    //servicio cremacion
+    function showFormServicioCremacion(){
+        $id = $this->uri->segment(3);
+        $form = $this->uri->segment(4);
+
+        $send['id'] = $id;
+        $send['form'] = $form;
+        $send['pag'] = 15;
+
+        $id_solicitante = (int) $this->session->userdata('id_solitantes');
+        $id_difunto = (int) $this->session->userdata('id_difuntos');
+        
+        if (!empty($id_solicitante)) {
+            if (!empty($id_difunto)) {
+                //$data['bloque_info'] = $this->home_model->getInfoCremado($id);
+
+                $this->load->view('ServicioCremacion');
+            } else {
+                $this->load->view('ErrorDifunto', $send);
+            }
+        } else {
+            $this->load->view('ErrorSolicitante', $send);
+        }
+    }
+    
+    function AddTramiteServicioCremacion(){
+            $data['id_bloque'] = $_POST['id_bloque'];
+            $data['id_users'] = (int) $this->session->userdata('id_users');
+            $data['id_solicitante'] = (int) $this->session->userdata('id_solitantes');
+            $data['id_difunto'] = (int) $this->session->userdata('id_difuntos');
+            $data['tramite'] = utf8_encode($_POST['tramite']);
+            $data['bloque'] = "";
+            $data['bloque_nombre'] = "";
+            $data['tipo_nicho'] = $_POST['tipo'];
+            $data['costo'] = $_POST['costo'];
+            $data['pagado'] = 0;
+
+            $d = $this->home_model->addTramiteNicho($data);
+            if ($d > 0) {
+                $this->session->set_userdata('id_solitantes', 0);
+                $this->session->set_userdata('id_difuntos', 0);
+                echo $d;
+            } else
+                echo 0;
     }
 
     //cremados
