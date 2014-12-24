@@ -82,8 +82,12 @@ class Home_model extends CI_Model {
         $this->db->where('id_bloque', $id);
         $this->db->where('cara', $lado);
         $this->db->where('piso', $piso);
-        $this->db->where('estado', "Ocupado");
-        $consulta = $this->db->get();
+		$this->db->where('estado <>', "Libre");
+        /*$this->db->where('estado', "Ocupado");
+		$this->db->where('estado', "Perpetuidad");
+        $this->db->where('estado', "Renovado");
+		$this->db->where('estado', "Renovar");*/	
+		$consulta = $this->db->get();
         return $consulta->result();
     }
     
