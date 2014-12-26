@@ -2,7 +2,8 @@ var time;
 var urlControllers = ["showFormAddNichoBloque", "showFormAddExhumarBloque", 
 "showFormRenovacionNicho","showFormAddLapidaBloque","showFormAddDMausoleo","showFormExhumarMausoleo","showFormLapidaMausoleo",
 "showFormCremaciones","showFormExhumarCremaciones","showFormRenovarCremaciones","showFormSitioTierra","showFormExhumarSitioTierra",
-"showFormRenovarSitioTierra","showFormCriptaSitioTierra","showFormServicioCremacion"];
+"showFormRenovarSitioTierra","showFormCriptaSitioTierra","showFormServicioCremacion","showFormCremacionesBloque","showFormCremarMausoleo",
+"showFormCremarSitioTierra"];
 
 $(".nicho").mouseenter(function () {
     $(this).popover('show');
@@ -42,8 +43,8 @@ $(".nicho").mouseenter(function () {
                     $('.loading').hide();
                 });
                 break;
-            case "CREMACION":
-               var urlInfo = base_url + "home/showFormCremaciones/" + $(this).attr('data-id')+"/"+$(this).attr('data-form');
+            case "CREMAR":
+               var urlInfo = base_url + "home/showFormCremacionesBloque/" + $(this).attr('data-id')+"/"+$(this).attr('data-form');
                 $("#contentDemoadd").load(urlInfo, function () {
                     $('#myModalAddForm #myModalLabel').text('Cremaciones');
                     $('#myModalAddForm').modal({ show: true, keyboard: false, backdrop: 'static' });
@@ -91,6 +92,14 @@ $(".mausoleo").mouseenter(function () {
                     $('.loading').hide();
                 });
                 break;
+            case "CREMAR":
+                var urlInfo = base_url + "home/showFormCremarMausoleo/" + $(this).attr('data-id')+"/"+$(this).attr('data-form');
+                $("#contentDemoadd").load(urlInfo, function () {
+                    $('#myModalAddForm #myModalLabel').text('Cremar Mausoleo');
+                    $('#myModalAddForm').modal({ show: true, keyboard: false, backdrop: 'static' });
+                    $('.loading').hide();
+                });
+                break;    
             case "AÑADIR LAPIDA":
                var urlInfo = base_url + "home/showFormLapidaMausoleo/" + $(this).attr('data-id')+"/"+$(this).attr('data-form');
                 $("#contentDemoadd").load(urlInfo, function () {
@@ -206,6 +215,14 @@ $(".bajoTierra").mouseenter(function () {
                     $('.loading').hide();
                 });
                 break;
+             case "CREMAR":
+               var urlInfo = base_url + "home/showFormCremarSitioTierra/" + $(this).attr('data-id')+"/"+$(this).attr('data-form');
+                $("#contentDemoadd").load(urlInfo, function () {
+                    $('#myModalAddForm #myModalLabel').text('Cremar Sitio Tierra');
+                    $('#myModalAddForm').modal({ show: true, keyboard: false, backdrop: 'static' });
+                    $('.loading').hide();
+                });
+                break;    
    
         }
         

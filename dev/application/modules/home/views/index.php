@@ -81,6 +81,7 @@
              <ul>
              <li><a href="javascript:void(0);" class="secMenu" data-form="<?php echo "1";?>" data-id="<?php echo $valor['id_bloque_nicho'] ?>">INGRESAR</a></li>
              <li><a href="javascript:void(0);" class="secMenu" data-form="<?php echo "2";?>" data-id="<?php echo $valor['id_bloque_nicho'] ?>">EXHUMAR</a></li>
+             <li><a href="javascript:void(0);" class="secMenu" data-form="<?php echo "2";?>" data-id="<?php echo $valor['id_bloque_nicho'] ?>">CREMAR</a></li>
              <li><a href="javascript:void(0);" class="secMenu" data-form="<?php echo "2";?>" data-id="<?php echo $valor['id_bloque_nicho'] ?>">RENOVAR</a></li>
              <li><a href="javascript:void(0);" class="secMenu" data-form="<?php echo "2";?>" data-id="<?php echo $valor['id_bloque_nicho'] ?>">AÑADIR LAPIDA</a></li>
              <!--<li><a href="javascript:void(0);" class="secMenu" data-id="<?php echo $valor['id_bloque_nicho'] ?>">CREMACION</a></li>-->
@@ -97,6 +98,7 @@
              <ul>
              <li><a href="javascript:void(0);" class="secMenu" data-form="<?php echo "1";?>" data-id="<?php echo $valorm['id_bloque_mausoleo'] ?>">INGRESAR</a></li>
              <li><a href="javascript:void(0);" class="secMenu" data-form="<?php echo "2";?>" data-id="<?php echo $valorm['id_bloque_mausoleo'] ?>">EXHUMAR</a></li>
+             <li><a href="javascript:void(0);" class="secMenu" data-form="<?php echo "2";?>" data-id="<?php echo $valorm['id_bloque_mausoleo'] ?>">CREMAR</a></li>
              <li><a href="javascript:void(0);" class="secMenu" data-form="<?php echo "2";?>" data-id="<?php echo $valorm['id_bloque_mausoleo'] ?>">AÑADIR LAPIDA</a></li>
 
              </ul>
@@ -127,6 +129,7 @@
              <ul>
              <li><a href="javascript:void(0);" class="secMenu" data-form="<?php echo "1";?>" data-id="<?php echo $valorc['id_bloque_bajo_tierra'] ?>">INGRESAR</a></li>
              <li><a href="javascript:void(0);" class="secMenu" data-form="<?php echo "2";?>" data-id="<?php echo $valorc['id_bloque_bajo_tierra'] ?>">EXHUMAR</a></li>
+             <li><a href="javascript:void(0);" class="secMenu" data-form="<?php echo "2";?>" data-id="<?php echo $valorc['id_bloque_bajo_tierra'] ?>">CREMAR</a></li>
              <li><a href="javascript:void(0);" class="secMenu" data-form="<?php echo "2";?>" data-id="<?php echo $valorc['id_bloque_bajo_tierra'] ?>">RENOVAR</a></li>
              <li><a href="javascript:void(0);" class="secMenu" data-form="<?php echo "2";?>" data-id="<?php echo $valorc['id_bloque_bajo_tierra'] ?>">AUTORIZACION CONST.CRIPTA</a></li>
              </ul>

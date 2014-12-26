@@ -55,8 +55,8 @@ class Home extends CI_Controller {
         $id_solicitante = (int) $this->session->userdata('id_solitantes');
         $id_difunto = (int) $this->session->userdata('id_difuntos');
 
-        if (empty($id_solicitante)) {
-            if (empty($id_difunto)) {
+        if (!empty($id_solicitante)) {
+            if (!empty($id_difunto)) {
                 $data['bloque_info'] = $this->home_model->getInfoBloqueNicho($id);
                 $this->load->view('AddNichoBloque', $data);
             } else {
@@ -82,7 +82,7 @@ class Home extends CI_Controller {
         } else {
             $this->load->view('ErrorSolicitante', $send);
         }
-    }
+    }   
 
     function AddTramiteNicho() {
         $data['id_bloque'] = $_POST['id_bloque'];
@@ -146,6 +146,23 @@ class Home extends CI_Controller {
             echo $d;
         } else
             echo 0;
+    }
+    
+    function showFormCremacionesBloque() {
+        $id = $this->uri->segment(3);
+        $form = $this->uri->segment(4);
+
+        $send['id'] = $id;
+        $send['form'] = $form;
+        $send['pag'] = 16;
+
+        $id_solicitante = (int) $this->session->userdata('id_solitantes');
+        if (!empty($id_solicitante)) {
+            $data['bloque_info'] = $this->home_model->getInfoBloqueNicho($id);
+            $this->load->view('AddCremacionNicho', $data);
+        } else {
+            $this->load->view('ErrorSolicitante', $send);
+        }
     }
 
     function AddTramiteNichoExumacion() {
@@ -525,6 +542,29 @@ class Home extends CI_Controller {
             $this->load->view('ErrorSolicitante', $send);
         }
     }
+    
+    
+    public function showFormCremarMausoleo() {
+        $id = $this->uri->segment(3);
+        $form = $this->uri->segment(4);
+
+        $send['id'] = $id;
+        $send['form'] = $form;
+        $send['pag'] = 17;
+
+        $id_solicitante = (int) $this->session->userdata('id_solitantes');
+
+        if (!empty($id_solicitante)) {
+            $data['bloque_info'] = $this->home_model->getInfoMausoleo($id);
+            $data['difuntos_info'] = $this->home_model->getDifuntosMausoleo($id);
+
+            $this->load->view('AddCremarMausoleo', $data);
+        } else {
+            $this->load->view('ErrorSolicitante', $send);
+        }
+    }
+    
+    
 
     function AddTramiteMausoleoExumacion() {
 
@@ -839,6 +879,26 @@ class Home extends CI_Controller {
             $data['difuntos_info'] = $this->home_model->getDifuntosSitioTierra($id);
 
             $this->load->view('AddExhumacionesTierra', $data);
+        } else {
+            $this->load->view('ErrorSolicitante', $send);
+        }
+    }
+    
+    public function showFormCremarSitioTierra() {
+        $id = $this->uri->segment(3);
+        $form = $this->uri->segment(4);
+
+        $send['id'] = $id;
+        $send['form'] = $form;
+        $send['pag'] = 18;
+
+        $id_solicitante = (int) $this->session->userdata('id_solitantes');
+
+        if (!empty($id_solicitante)) {
+            $data['bloque_info'] = $this->home_model->getInfoSitioTierra($id);
+            $data['difuntos_info'] = $this->home_model->getDifuntosSitioTierra($id);
+
+            $this->load->view('AddCremarTierra', $data);
         } else {
             $this->load->view('ErrorSolicitante', $send);
         }
