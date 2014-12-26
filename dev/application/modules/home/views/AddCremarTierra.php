@@ -97,7 +97,7 @@ $('#difunto').change(function () {
     <div class="control-group">
         <label class="control-label" for="inputUsuario">Tramite</label>
         <div class="controls">
-            <input type="text" id="tramite" name="tramite" value="Exhumacion Sitio Tierra" readonly="true">
+            <input type="text" id="tramite" name="tramite" value="Cremar Sitio Tierra" readonly="true">
         </div>
     </div>
     <div class="control-group">

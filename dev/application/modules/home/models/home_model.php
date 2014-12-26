@@ -173,7 +173,7 @@ class Home_model extends CI_Model {
     public function getDifuntosMausoleo($id) {
         $query = "SELECT tramite.id_difunto, difunto.nombreCompletoFallecido, difunto.edadFallecido FROM tramite as tramite 
 		LEFT JOIN difunto ON difunto.id_difunto = tramite.id_difunto
-		WHERE  tramite.bloque='Mausoleo' AND tramite.status = 'activo' AND tramite.tramite <> 'Exhumacion' AND tramite.tramite <> 'Colocacion de Lapida' AND tramite.id_bloque =" . $id;
+		WHERE  tramite.bloque='Mausoleo' AND tramite.status = 'activo' AND tramite.tramite <> 'Exhumacion' AND tramite.tramite <> 'Cremar Mausoleo' AND tramite.tramite <> 'Colocacion de Lapida' AND tramite.id_bloque =" . $id;
         $result = $this->db->query($query)->result_array();
         return $result;
     }
@@ -226,7 +226,7 @@ class Home_model extends CI_Model {
     public function getDifuntosSitioTierra($id) {
         $query = "SELECT tramite.id_difunto, difunto.nombreCompletoFallecido, difunto.edadFallecido FROM tramite as tramite 
 		LEFT JOIN difunto ON difunto.id_difunto = tramite.id_difunto
-		WHERE  tramite.bloque='Sitio Tierra' AND tramite.status = 'activo' AND tramite.tramite <> 'Exhumacion Sitio Tierra' AND tramite.tramite <> 'Construccion Cripta' AND tramite.id_bloque =" . $id;
+		WHERE  tramite.bloque='Sitio Tierra' AND tramite.status = 'activo' AND tramite.tramite <> 'Exhumacion Sitio Tierra' AND tramite.tramite <> 'Cremar Sitio Tierra' AND tramite.tramite <> 'Construccion Cripta' AND tramite.id_bloque =" . $id;
         $result = $this->db->query($query)->result_array();
         return $result;
     }
