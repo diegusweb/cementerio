@@ -79,8 +79,8 @@ var x;
         }
     });
 
-$('#difunto').change(function () {        
-            if($(this).find("option:selected").find("option:selected").attr('data-edad') > 18){
+$('#difunto').change(function () {     
+            if(parseInt($(this).find("option:selected").attr('data-edad')) > 18){
                     $('#costo').val(50);
                     $('#tipo').val("Mayor");
             }

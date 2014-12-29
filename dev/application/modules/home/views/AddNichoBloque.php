@@ -1,10 +1,10 @@
 <script type="text/javascript">
- $.validator.addMethod("fecha", 
-            function(value, element)
+    $.validator.addMethod("fecha",
+            function (value, element)
             {
                 return this.optional(element) || /^(0?[1-9]|[12][0-9]|3[01])[\/](0?[1-9]|1[012])[/\\/](19|20)\d{2}$/i.test(value);
             }, "Formato Invalido");
-			
+
     $('#add-form').validate({
         rules: {
             tramite: {
@@ -31,9 +31,9 @@
             numeroNichoView: {
                 required: true,
             },
-			fecha_antiguo:{
-				fecha:true
-			}
+            fecha_antiguo: {
+                fecha: true
+            }
         },
         messages: {
         },
@@ -92,8 +92,8 @@
 
         }
     });
-	
-	var clase;
+
+    var clase;
     var tiempo;
     var tramite;
     var tramites;
@@ -135,7 +135,7 @@
 
                 var salto = 0;
                 var fila = 0;
-                if($('#lado').val() == 3 || $('#lado').val() == 4){
+                if ($('#lado').val() == 3 || $('#lado').val() == 4) {
                     if ($('#lado').attr('data-extra') != null) {
                         var c = $('#lado').attr('data-extra');
                         var elem = c.split('.');
@@ -143,7 +143,7 @@
                         salto = elem[1];
                         fila = elem[0];
                     }
-                }             
+                }
                 else {
                     salto = (parseInt($('#lado').attr('data-nicho')));
                     fila = parseInt($('#lado').attr('data-fila'));
@@ -157,16 +157,16 @@
                 $dibujoNichoLibres.append("<li style='background-color: #f9dd34;'>1</li>");
                 $.each(nn, function (index, v) {
                     //$comboNichoLibres.append("<option value="+v['id_nicho']+">" + v['nicho'] + "</option>");
-					 var estado;
-					if(v['estado'] == "Libre"){
-						estado = "libre";
-					}
-					else if(v['estado'] == "Perpetuidad"){
-						estado = "Perpetuidad";
-					}
-					else{
-						estado = "ocupado";
-					}
+                    var estado;
+                    if (v['estado'] == "Libre") {
+                        estado = "libre";
+                    }
+                    else if (v['estado'] == "Perpetuidad") {
+                        estado = "Perpetuidad";
+                    }
+                    else {
+                        estado = "ocupado";
+                    }
                     //var estado = (v['estado'] == "Libre") ? "libre" : "ocupado";
                     var box = (v['nicho'] < 10) ? "padding-left: 14px; padding-right: 13px;" : "5px;";
 
@@ -209,28 +209,28 @@
 
     $('#tramite').change(function () {
         $('#costo').val("");
-        
+
         tramites = $(this).attr('value');
         if (tramites == "Anexion Nicho Perpetuidad") {
-			tramite = true;
+            tramite = true;
             tiempo = "Perpetuidad";
-			$('#numeroNicho').val('');
-			$('#numeroNichoView').val('');
+            $('#numeroNicho').val('');
+            $('#numeroNichoView').val('');
             $('#tiempo').val(tiempo);
         }
         else if (tramites == "Nicho Enterratorio") {
-			tramite = false;
+            tramite = false;
             tiempo = "5 años";
-			$('#numeroNicho').val('');
-			$('#numeroNichoView').val('');
+            $('#numeroNicho').val('');
+            $('#numeroNichoView').val('');
             $('#tiempo').val(tiempo);
 
         }
         else {
-			tramite = false;
+            tramite = false;
             tiempo = "Perpetuidad";
-			$('#numeroNicho').val('');
-			$('#numeroNichoView').val('');
+            $('#numeroNicho').val('');
+            $('#numeroNichoView').val('');
             $('#tiempo').val(tiempo);
         }
     });
@@ -238,7 +238,7 @@
     $('#generarCosto').click(function () {
 
         if (tramites == "Nicho Enterratorio") {
-           
+
             if (clase == "1ra Clase") {
                 if (tiempo == "Perpetuidad") {
                     $('#costo').val($('#costo_perpetuidad_1_clase').val());
@@ -256,8 +256,8 @@
                 }
             }
         }
-        else if(tramites == "Perpetuidad"){
-          if (clase == "1ra Clase") {
+        else if (tramites == "Perpetuidad") {
+            if (clase == "1ra Clase") {
                 $('#costo').val("250");
             }
             if (clase == "2ra Clase") {
@@ -277,43 +277,51 @@
 
 
     $("#navegador").on("click", "li.libre", function (event) {
-		if(!tramite){
-			$('#numeroNicho').val($(this).attr('data-id'));
-			$('#numeroNichoView').val($(this).text());
-		}
+        if (!tramite) {
+            $('#numeroNicho').val($(this).attr('data-id'));
+            $('#numeroNichoView').val($(this).text());
+        }
     });
-	
-	$("#navegador").on("click", "li.Perpetuidad", function (event) {
-		if(tramite){
-			 $('#numeroNicho').val($(this).attr('data-id'));
-			 $('#numeroNichoView').val($(this).text());
-		}
-       
+
+    $("#navegador").on("click", "li.Perpetuidad", function (event) {
+        if (tramite) {
+            $('#numeroNicho').val($(this).attr('data-id'));
+            $('#numeroNichoView').val($(this).text());
+        }
+
     });
-	
-	$('#datetimepickerAntiguo').datetimepicker({
-            language: 'pt-BR',
-            pickTime: false
-        });
-		
-	$('.enabledInput').click(function(){
-		var person = prompt("Coloque Administrador", "");
-		var persons = prompt("Coloque password", "");
-		
-		if (person != null && persons != null) {
-			var datos = {
+
+    $('#datetimepickerAntiguo').datetimepicker({
+        language: 'pt-BR',
+        pickTime: false
+    });
+
+    $('.enabledInput').click(function () {
+        var person = prompt("Coloque Administrador", "");
+        var persons = prompt("Coloque password", "");
+
+        if (person != null && persons != null) {
+            var datos = {
                 user: person,
                 pass: persons
             };
 
             $.post("<?php echo base_url() . "home/getAdminCheck"; ?>", datos, function (data) {
-				if(data == 1){
-					$('#fecha_antiguo').removeAttr("readonly");
-				}
-			});
-		}
-	});	
-	
+                if (data == 1) {
+                    $('#fecha_antiguo').removeAttr("readonly");
+                }
+            });
+        }
+    });
+
+    $('#tipo').change(function () {
+        if ($(this).attr('value') == "Mayor") {
+            $('#tiempo').val("5 años");
+        }
+        if ($(this).attr('value') == "Menor") {
+            $('#tiempo').val("3 años");
+        }
+    });
 
 
 </script>
@@ -349,8 +357,8 @@
     #navegador .ocupado{
         background-color: #ff0000;
     }
-	
-	#navegador .Perpetuidad{
+
+    #navegador .Perpetuidad{
         background-color: #FB7E2A;
     }
 
@@ -424,17 +432,17 @@
             <ul id="navegador" style="width: 30px; height: auto;"</ul>            
         </div>
     </div>
-	 <div class="control-group">
+    <div class="control-group">
         <label class="control-label" for="inputPassword">Fecha tramite antiguo</label>
         <div class="controls">
-		 <input type="text" class="form-control" placeholder="EJ.: 25/05/1980" id="fecha_antiguo" value="" name="fecha_antiguo" readonly><a href="javascript:void(0);" class="enabledInput"> Habilitar campo</a>
-		<!--<div id="datetimepickerAntiguo" class="input-append date">
-            <input data-format="yyyy-MM-dd" type="text" id="fecha_antiguo" name="fecha_antiguo"></input>
-                <span class="add-on">
-                    <i data-time-icon="icon-time" data-date-icon="icon-calendar">
-                    </i>
-                </span>
-            </div>-->
+            <input type="text" class="form-control" placeholder="EJ.: 25/05/1980" id="fecha_antiguo" value="" name="fecha_antiguo" readonly><a href="javascript:void(0);" class="enabledInput"> Habilitar campo</a>
+            <!--<div id="datetimepickerAntiguo" class="input-append date">
+        <input data-format="yyyy-MM-dd" type="text" id="fecha_antiguo" name="fecha_antiguo"></input>
+            <span class="add-on">
+                <i data-time-icon="icon-time" data-date-icon="icon-calendar">
+                </i>
+            </span>
+        </div>-->
         </div>
     </div>
     <div class="control-group">

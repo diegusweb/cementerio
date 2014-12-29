@@ -84,10 +84,17 @@
 
                     if(utf8_decode($tramite[0]['tramite']) == utf8_decode("Renovacion de 1 año para Nichos")){
                         
-                        $di = ($tramite[0]['costo']) / ($tramite[0]['pagado']);
+                       
                         
                         echo $tramite[0]['tramite']."<br>";
-                        echo "Renovacion ".$tramite[0]['pagado']." * ".$di."<br>";
+                         if((int)$tramite[0]['pagado'] > 0){
+                            $di = ($tramite[0]['costo']) / ($tramite[0]['pagado']);
+                            echo "Renovacion ".$tramite[0]['pagado']." * ".$di."<br>";
+                        }
+                        else{
+                            echo "Renovacion ".$tramite[0]['pagado']."<br>";
+                        }
+                        
                         if(!empty($nichoReal[0]['historial'])){
                             $porciones = explode(",",  $nichoReal[0]['historial']);
                             echo "Fecha Renovacion del ".date("Y-m-d", strtotime($porciones[0]))." al ".date("Y-m-d", strtotime("$porciones[0] +".$porciones[1]." year"));

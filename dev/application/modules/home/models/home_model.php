@@ -208,10 +208,18 @@ class Home_model extends CI_Model {
         return $result;
     }
     
+    public function getDifuntosCremadosExumar($id) {
+        $query = "SELECT tramite.id_difunto, difunto.nombreCompletoFallecido,difunto.edadFallecido  FROM tramite as tramite 
+		LEFT JOIN difunto ON difunto.id_difunto = tramite.id_difunto
+		WHERE  tramite.bloque='Cremados' AND tramite.status = 'activo' AND tramite.tramite <> 'Exhumacion Cremados' AND tramite.id_bloque =" . $id;
+        $result = $this->db->query($query)->result_array();
+        return $result;
+    }
+    
     public function getDifuntosCremadosRen($id) {
         $query = "SELECT tramite.id_tramite, tramite.id_difunto, difunto.nombreCompletoFallecido,difunto.edadFallecido  FROM tramite as tramite 
 		LEFT JOIN difunto ON difunto.id_difunto = tramite.id_difunto
-		WHERE  tramite.bloque='Cremados' AND tramite.status = 'activo' AND tramite.tramite = 'Exhumacion Cremados' AND tramite.tramite <> 'Renovar Cremados' AND tramite.id_bloque =" . $id;
+		WHERE  tramite.bloque='Cremados' AND tramite.status = 'inactivo' AND tramite.tramite = 'Exhumacion Cremados' AND tramite.id_bloque =" . $id;
         $result = $this->db->query($query)->result_array();
         return $result;
     }

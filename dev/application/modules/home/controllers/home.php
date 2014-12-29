@@ -752,7 +752,7 @@ class Home extends CI_Controller {
 
         if (!empty($id_solicitante)) {
             $data['bloque_info'] = $this->home_model->getInfoCremado($id);
-            $data['difuntos_info'] = $this->home_model->getDifuntosCremados($id);
+            $data['difuntos_info'] = $this->home_model->getDifuntosCremadosExumar((int)$id);
 
             $this->load->view('AddExhumacionesCremados', $data);
         } else {
@@ -780,8 +780,8 @@ class Home extends CI_Controller {
 
         $d = $this->home_model->addTramiteNicho($data);
         if ($d > 0) {
-            //$this->session->set_userdata('id_solitantes', 0);
-           // $this->session->set_userdata('id_difuntos', 0);
+            $this->session->set_userdata('id_solitantes', 0);
+            $this->session->set_userdata('id_difuntos', 0);
             echo $d;
         } else
             echo 0;
@@ -809,7 +809,7 @@ class Home extends CI_Controller {
 
     public function AddTramiteCremadosRenovar() {
 
-        $dataa['status'] = 'inactivo';
+        $dataa['status'] = 'activo';
         $d = $this->home_model->updateStatusRnocar($_POST['id_tramite'], $dataa);
 
         $data['id_bloque'] = $_POST['id_bloque'];
@@ -822,6 +822,7 @@ class Home extends CI_Controller {
         $data['tipo_nicho'] = $_POST['tipo'];
         $data['costo'] = $_POST['costo'];
         $data['pagado'] = 0;
+        $data['status'] = 'activo';
 
         $d = $this->home_model->addTramiteNicho($data);
         if ($d > 0) {
