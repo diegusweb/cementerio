@@ -100,7 +100,7 @@ var d = $(this).find("option:selected").attr('data-id');
     <div class="control-group">
         <label class="control-label" for="inputUsuario">Tramite</label>
         <div class="controls">
-            <input type="text" id="tramite" name="tramite" value="Cremar Mausoleo" readonly="true">
+            <input type="text" id="tramite" name="tramite" value="Cremar" readonly="true">
         </div>
     </div>
     <div class="control-group">

@@ -38,8 +38,10 @@ class Reportes extends CI_Controller {
              $bloques['clase'] = $row['clase'];
              $bloques['tipo_nicho'] = $row['tipo_nicho'];
 			 $bloques['nombre_difunto'] = $row['nombreCompletoFallecido'];
-              if($row['nro_nicho'] > 0)
+              if($row['nro_nicho'] > 0){
                 $bloques['nro_nicho'] = $this->reportes_model->getNichoCompro($row['nro_nicho']);
+                $bloques['fecha_tramite_nicho'] = $this->reportes_model->getNichoComproFecha($row['nro_nicho']);
+             }
              else
                 $bloques['nro_nicho'] = "0";
              $bloques['bloque'] = $row['bloque'];
@@ -116,10 +118,12 @@ class Reportes extends CI_Controller {
              $bloques['clase'] = $row['clase'];
              $bloques['tipo_nicho'] = $row['tipo_nicho'];
 			 $bloques['nombre_difunto'] = $row['nombreCompletoFallecido'];
-             if($row['nro_nicho'] > 0)
+             if($row['nro_nicho'] > 0){
                 $bloques['nro_nicho'] = $this->reportes_model->getNichoCompro($row['nro_nicho']);
+                $bloques['fecha_tramite_nicho'] = $this->reportes_model->getNichoComproFecha($row['nro_nicho']);
+             }
              else
-                $bloques['nro_nicho'] = "0";
+                $bloques['nro_nicho'] = 0;
              
              $bloques['bloque'] = $row['bloque'];
              $bloques['bloque_nombre'] = $row['bloque_nombre'];
@@ -204,8 +208,10 @@ class Reportes extends CI_Controller {
              $bloques['clase'] = $row['clase'];
              $bloques['tipo_nicho'] = $row['tipo_nicho'];
 			 $bloques['nombre_difunto'] = $row['nombreCompletoFallecido'];
-             if($row['nro_nicho'] > 0)
+             if($row['nro_nicho'] > 0){
                 $bloques['nro_nicho'] = $this->reportes_model->getNichoCompro($row['nro_nicho']);
+                $bloques['fecha_tramite_nicho'] = $this->reportes_model->getNichoComproFecha($row['nro_nicho']);
+             }
              else
                 $bloques['nro_nicho'] = "0";
              $bloques['bloque'] = $row['bloque'];

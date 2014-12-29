@@ -30,51 +30,51 @@
      
         </div>
 
-        <p><h4  style="width:604.7px;; text-align: center; padding-top:20px; padding-bottom:20px;">&nbsp; <h4/></p>
+        <p><h4  style="width:604.7px;; text-align: center; padding-top:20px; padding-bottom:20px;"> <?php echo $titulo;?><h4/></p>
     </div>
     <div id="save-form" style="margin: 0 auto; width:604.7px; height:566.9px;">
 <!-- border: 1px solid #333; -->
         <div style=" width:588px; height:125px; padding:6px;  font-size: 14px; border-radius:10px; margin-bottom: 10px;" class="cont">
             <div style="float:left;  width:150px; height:50px; border-radius:10px;">
-                <div style="font-size: 12px; text-align: center;">CI</div>
+                <div style="font-size: 12px; text-align: center;">&nbsp;</div>
                 <div><?php echo $tramite[0]['ci'] ?></div>
             </div>
             <div style="float:right;  width:420px; height:50px; border-radius:10px;">
-                <div style="font-size: 12px; text-align: center;">NOMBRE Y APELLIDO O RAZON SOCIAL</div>
+                <div style="font-size: 12px; text-align: center;">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</div>
                 <div><?php echo $tramite[0]['nombre'] . " " . $tramite[0]['apellido'] ?></div>
             </div>
             <div style="margin-bottom: 10px;  clear: both;"></div>
             <table width="590" border="0" style="font-size: 12px;"  cellpadding="0" cellspacing="0">
                 <tr>
-                    <td width="80" style="font-size: 12px;">DIRECCION</td>
+                    <td width="80" style="font-size: 12px;">&nbsp;&nbsp;</td>
                     <td width="200" class="contT"><?php echo $tramite[0]['direccion'] ?></td>
-                    <td width="70" style="font-size: 12px;">NRO. CASA</td>
+                    <td width="70" style="font-size: 12px;">&nbsp;&nbsp;</td>
                     <td width="80" class="contT"><?php echo $tramite[0]['numero_casa'] ?></td>
-                    <td width="80" style="font-size: 12px;">TELEFONO(S)</td>
+                    <td width="80" style="font-size: 12px;">&nbsp;&nbsp;</td>
                 </tr>
                 <tr>
-                    <td style="font-size: 12px;">ACTIVIDAD</td>
+                    <td style="font-size: 12px;">&nbsp;&nbsp;</td>
                     <td class="contT"><?php echo $tramite[0]['actividad'] ?></td>
-                    <td style="font-size: 12px;">MANZANA</td>
+                    <td style="font-size: 12px;">&nbsp;&nbsp;</td>
                     <td class="contT"><?php echo $tramite[0]['manzana'] ?></td>
                     <td style="font-size: 12px;"><?php echo $tramite[0]['telefono'] ?></td>
                 </tr>
                 <tr>
                     <td>&nbsp;</td>
                     <td>&nbsp;</td>
-                    <td style="font-size: 12px;">NIT/CI</td>
+                    <td style="font-size: 12px;">&nbsp;&nbsp;</td>
                     <td class="contT"><?php echo $tramite[0]['nit'] ?></td>
                     <td class="contT"><?php echo $tramite[0]['celular'] ?></td>
                 </tr>
             </table>
         </div>
 
-        <p>HA EFECTUADO EL SIGUIENTE PAGO:</p>
+        <p>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</p>
         <table width="604.7" border="0" class="cont"  cellpadding="0" cellspacing="0">
             <tr>
-                <td width="167" style="font-size: 12px; text-align: center;">CODIGO CUENTA</td>
-                <td width="461" style="font-size: 12px; text-align: center;">CONCEPTO</td>
-                <td width="254" style="font-size: 12px; text-align: center;">IMPORTE Bs.</td>
+                <td width="167" style="font-size: 12px; text-align: center;">&nbsp;&nbsp;</td>
+                <td width="461" style="font-size: 12px; text-align: center;">&nbsp;</td>
+                <td width="254" style="font-size: 12px; text-align: center;">&nbsp;&nbsp;</td>
             </tr>
             <tr>
                 <td class="contT" valign="top" style="padding: 20px;"><?php echo "15100";//$tramite[0]['id_tramite'] ?></td>
@@ -88,8 +88,14 @@
                         
                         echo $tramite[0]['tramite']."<br>";
                         echo "Renovacion ".$tramite[0]['pagado']." * ".$di."<br>";
-                        echo "Fecha Renovacion del ".date("Y-m-d", strtotime($nichoReal[0]['fecha_inicio']))." al ".date("Y-m-d", strtotime($nichoReal[0]['fecha_fin']));
-
+                        if(!empty($nichoReal[0]['historial'])){
+                            $porciones = explode(",",  $nichoReal[0]['historial']);
+                            echo "Fecha Renovacion del ".date("Y-m-d", strtotime($porciones[0]))." al ".date("Y-m-d", strtotime("$porciones[0] +".$porciones[1]." year"));
+                        }
+                        else{
+                            echo "Fecha Renovacion del ".date("Y-m-d", strtotime($nichoReal[0]['fecha_inicio']))." al ".date("Y-m-d", strtotime($nichoReal[0]['fecha_fin']));
+                        }
+                         
                     }
                     else{
                         echo $tramite[0]['tramite'];
@@ -117,17 +123,17 @@
             </tr>
             <tr>
                 <td>&nbsp;</td>
-                <td style="font-size: 12px; text-align: center;">REPOSICION DE COMPROBANTE:</td>
+                <td style="font-size: 12px; text-align: center;">&nbsp;&nbsp;&nbsp;</td>
                 <td class="contT" style="padding-left: 30px;">3.00</td>
 
             </tr>
             <tr>
                 <td>&nbsp;</td>
-                <td><div align="right" >TOTAL Bs.</div></td>
+                <td><div align="right" >&nbsp;&nbsp;</div></td>
                 <td><div class="costoTotal contT" style="padding-left: 30px;"></div></td>
             </tr>
             <tr>
-                <td class="contT">SON:</td>
+                <td class="contT">&nbsp;</td>
                 <td><div class="totalLetras contT"></div></td>
                 <td>&nbsp;</td>
             </tr>

@@ -123,7 +123,7 @@
                                     <option value="6">Exhumacion</option>
                                     <option value="7">Construccion de cripta</option>
                                     <option value="9">Lapida</option>
-                                   
+                                    <option value="10">Cremar</option>
                                 </select>
                             </td>
                             <td><button id="buscar"  type="submit"  class="btn btn-primary btn-lg active">Mostrar Reportes</button>
@@ -166,7 +166,7 @@
                                         <td class="hidden-phone"><?php echo $row['nombre'] . " " . $row['apellido']; ?></td>
 										 <td class="hidden-phone"><?php echo $row['nombre_difunto'] ?></td>
                                         <td class="hidden-phone"><?php echo utf8_decode($row['tramite']); ?></td>
-                                        <td class="hidden-phone"><?php echo $row['fecha_tramite']; ?></td>
+                                        <td class="hidden-phone"><?php echo ($row['nro_nicho'] > 0) ? $row['fecha_tramite_nicho'] : $row['fecha_tramite']; ?></td>
                                         <td class="hidden-phone"><?php echo $row['user_nombre'] . " " . $row['user_apellido']; ?></td>
                                         <td class="hidden-phone"><?php echo $row['clase']; ?></td>
                                         <td class="hidden-phone"><?php echo $row['tipo_nicho']; ?></td>
@@ -184,7 +184,7 @@
                                         <td class="hidden-phone"><?php echo ($row['bloque'] != "Mausoleo")?($row['costo'] + 3.00):$row['costo']; ?></td>-->
                                         <td class="hidden-phone"><a href="#" class="showSolicitante" onClick="showSolicitante(<?php echo $row['id_solicitante']; ?>)">Solicitud</a></td>
                                         <td class="hidden-phone"><a href="#" class="showDifunto" onClick="showDifunto(<?php echo $row['id_difunto']; ?>)">Difunto</a></td>
-                                        <td class="hidden-phone"><a href="<?php echo base_url()."home/comprobante/".$row['id_tramite']?>" >Boleta</a></td>
+                                        <td class="hidden-phone"><a href="<?php echo base_url()."home/comprobante/".$row['id_tramite']."/0";?>" >Boleta</a></td>
                                     </tr>
                                     <?php
                                 }

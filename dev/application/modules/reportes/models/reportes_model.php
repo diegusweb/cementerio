@@ -58,10 +58,12 @@ class Reportes_model extends CI_Model {
                  case 8:
                     $this->db->where('tramite.tramite', "Nicho Enterratorio");
                     break;
-                 case 8:
+                 case 9:
                     $this->db->where('tramite.tramite', "Colocacion de Lapida");
                     break;
-
+                     case 10:
+                    $this->db->where('tramite.tramite', "Cremar");
+                    break;
                 
                 
             }
@@ -131,6 +133,7 @@ class Reportes_model extends CI_Model {
                 $fecha = $fecha1->diff($fecha2);
 
                  $data = array(
+                     'historial' => $row['fecha_fin'].",".$fecha->y,
                     'transcurrido' => $fecha->y
                 );
                  
@@ -170,6 +173,12 @@ class Reportes_model extends CI_Model {
         $query = "SELECT nicho FROM nicho WHERE id_nicho=" . $id;
         $result = $this->db->query($query)->result_array();
         return $result[0]['nicho'];
+    }
+    
+    public function getNichoComproFecha($id) {
+        $query = "SELECT fecha_inicio FROM nicho WHERE id_nicho=" . $id;
+        $result = $this->db->query($query)->result_array();
+        return $result[0]['fecha_inicio'];
     }
 
 }

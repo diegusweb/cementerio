@@ -134,7 +134,7 @@
     <div class="control-group">
         <label class="control-label" for="inputUsuario">Tramite</label>
         <div class="controls">
-            <input type="text" id="tramite" name="tramite" value="Cremacion Nicho" readonly="true">
+            <input type="text" id="tramite" name="tramite" value="Cremar" readonly="true">
         </div>
     </div>
     <div class="control-group">

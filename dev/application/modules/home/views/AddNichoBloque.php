@@ -96,6 +96,7 @@
 	var clase;
     var tiempo;
     var tramite;
+    var tramites;
     var piso = 0;
 
     $('#piso').change(function () {
@@ -208,15 +209,16 @@
 
     $('#tramite').change(function () {
         $('#costo').val("");
-        tramite = $(this).attr('value');
-        if (tramite == "Anexion Nicho Perpetuidad") {
+        
+        tramites = $(this).attr('value');
+        if (tramites == "Anexion Nicho Perpetuidad") {
 			tramite = true;
             tiempo = "Perpetuidad";
 			$('#numeroNicho').val('');
 			$('#numeroNichoView').val('');
             $('#tiempo').val(tiempo);
         }
-        else if (tramite == "Nicho Enterratorio") {
+        else if (tramites == "Nicho Enterratorio") {
 			tramite = false;
             tiempo = "5 años";
 			$('#numeroNicho').val('');
@@ -235,7 +237,8 @@
 
     $('#generarCosto').click(function () {
 
-        if (tramite != "Anexion Nicho Perpetuidad") {
+        if (tramites == "Nicho Enterratorio") {
+           
             if (clase == "1ra Clase") {
                 if (tiempo == "Perpetuidad") {
                     $('#costo').val($('#costo_perpetuidad_1_clase').val());
@@ -251,6 +254,14 @@
                 if (tiempo == "5 años") {
                     $('#costo').val($('#costo_5_year_2_clase').val());
                 }
+            }
+        }
+        else if(tramites == "Perpetuidad"){
+          if (clase == "1ra Clase") {
+                $('#costo').val("250");
+            }
+            if (clase == "2ra Clase") {
+                $('#costo').val("200");
             }
         }
         else {
@@ -433,7 +444,7 @@
                 <option value="">Seleccione tipo</option>
                 <option value="Mayor">Mayor</option>
                 <option value="Menor">Menor</option>
-                <option value="Parvulo">Parvulo</option>
+                <!--<option value="Parvulo">Parvulo</option>-->
             </select>
         </div>
     </div>

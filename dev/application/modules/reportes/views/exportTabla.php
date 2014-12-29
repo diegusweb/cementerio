@@ -33,22 +33,28 @@ header("Expires: 0");
                 ?>
                 <tr class="odd gradeX">
                     <td class="hidden-phone"><?php echo $row['nombre'] . " " . $row['apellido']; ?></td>
-					<td class="hidden-phone"><?php echo $row['nombre_difunto'] ?></td>
+                                                             <td class="hidden-phone"><?php echo $row['nombre_difunto'] ?></td>
                     <td class="hidden-phone"><?php echo utf8_decode($row['tramite']); ?></td>
-                    <td class="hidden-phone"><?php echo $row['fecha_tramite']; ?></td>
+                    <td class="hidden-phone"><?php echo ($row['nro_nicho'] > 0) ? $row['fecha_tramite_nicho'] : $row['fecha_tramite']; ?></td>
                     <td class="hidden-phone"><?php echo $row['user_nombre'] . " " . $row['user_apellido']; ?></td>
                     <td class="hidden-phone"><?php echo $row['clase']; ?></td>
                     <td class="hidden-phone"><?php echo $row['tipo_nicho']; ?></td>
                     <td class="hidden-phone"><?php echo ($row['nro_nicho'] > 0) ? $row['nro_nicho'] : ""; ?></td>
                     <td class="hidden-phone"><?php echo $row['bloque']; ?></td>
                     <td class="hidden-phone"><?php echo $row['bloque_nombre']; ?></td>
-                    <td class="hidden-phone"><?php $caras = array("Norte", "Sud", "Este", "Oeste");
-            echo ($row['lado'] > 0) ? $caras[$row['lado'] - 1] : "";
-                ?></td>
+                    <td class="hidden-phone"><?php
+                        $caras = array("Norte", "Sud", "Este", "Oeste");
+                        echo ($row['lado'] > 0) ? $caras[$row['lado'] - 1] : "";
+                        ?></td>
                     <td class="hidden-phone"><?php echo $row['costo']; ?></td>
-                    <td class="hidden-phone"><?php echo "3.00"; ?></td>
-                    <td class="hidden-phone"><?php echo ($row['costo'] + 3.00); ?></td>
-                                   </tr>
+                    <td class="hidden-phone"><?php echo "3.00" ?></td>
+                    <td class="hidden-phone"><?php echo $row['costo'] + 3.00; ?></td>
+                   <!-- <td class="hidden-phone"><?php echo ($row['bloque'] == "Mausoleo")?"0.00":"3.00"; ?></td>
+                    <td class="hidden-phone"><?php echo ($row['bloque'] != "Mausoleo")?($row['costo'] + 3.00):$row['costo']; ?></td>-->
+                    <td class="hidden-phone"><a href="#" class="showSolicitante" onClick="showSolicitante(<?php echo $row['id_solicitante']; ?>)">Solicitud</a></td>
+                    <td class="hidden-phone"><a href="#" class="showDifunto" onClick="showDifunto(<?php echo $row['id_difunto']; ?>)">Difunto</a></td>
+                    <td class="hidden-phone"><a href="<?php echo base_url()."home/comprobante/".$row['id_tramite']?>" >Boleta</a></td>
+                </tr>
                 <?php
             }
             ?>

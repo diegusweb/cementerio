@@ -37,6 +37,7 @@ class Helper_model extends CI_Model {
 
                  $data = array(
                     'estado' => 'Renovar',
+                      'historial' => $row['fecha_fin'].",".$fecha->y,
                     'transcurrido' => $fecha->y
                 );
                  
@@ -57,7 +58,8 @@ class Helper_model extends CI_Model {
                 $fecha = $fecha1->diff($fecha2);
 
                  $data = array(
-                    'transcurrido' => $fecha->y
+                    'transcurrido' => $fecha->y,
+                    'historial' => $row['fecha_fin'].",".$fecha->y,
                 );
                  
                 $this->db->where('id_nicho', $row['id_nicho']);

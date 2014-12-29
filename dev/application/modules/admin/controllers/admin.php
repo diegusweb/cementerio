@@ -178,6 +178,8 @@ class Admin extends CI_Controller {
         $crud->callback_column('fecha_inicio', array($this, '_callback_fecha_ini'));
         $crud->callback_column('cara', array($this, '_callback_cara'));
 
+        $crud->unset_columns('historial');
+        
         $crud->unset_add();
         $crud->unset_edit();
         $crud->unset_delete();
