@@ -98,6 +98,7 @@
     var tramite;
     var tramites;
     var piso = 0;
+     var tipo;
 
     $('#piso').change(function () {
 
@@ -246,6 +247,9 @@
                 if (tiempo == "5 años") {
                     $('#costo').val($('#costo_5_year_1_clase').val());
                 }
+                if (tipo == "Menor") {
+                    $('#costo').val("#costo_3_year_1_clase");
+                }
             }
             if (clase == "2ra Clase") {
                 if (tiempo == "Perpetuidad") {
@@ -253,6 +257,9 @@
                 }
                 if (tiempo == "5 años") {
                     $('#costo').val($('#costo_5_year_2_clase').val());
+                }
+                if (tipo == "Menor") {
+                    $('#costo').val("#costo_3_year_2_clase");
                 }
             }
         }
@@ -317,9 +324,11 @@
     $('#tipo').change(function () {
         if ($(this).attr('value') == "Mayor") {
             $('#tiempo').val("5 años");
+            tipo = "Mayor";
         }
         if ($(this).attr('value') == "Menor") {
             $('#tiempo').val("3 años");
+            tipo = "Menor";
         }
     });
 
@@ -494,6 +503,8 @@
             <input type="hidden" class="form-control"  id="costo_perpetuidad_2_clase" value="<?php echo $bloque_info[0]['costo_perpetuidad_2_clase']; ?>">
             <input type="hidden" class="form-control"  id="costo_5_year_1_clase" value="<?php echo $bloque_info[0]['costo_5_year_1_clase']; ?>">
             <input type="hidden" class="form-control"  id="costo_5_year_2_clase" value="<?php echo $bloque_info[0]['costo_5_year_2_clase']; ?>">
+            <input type="hidden" class="form-control"  id="costo_3_year_1_clase" value="<?php echo $bloque_info[0]['costo_3_year_1_clase']; ?>">
+            <input type="hidden" class="form-control"  id="costo_3_year_2_clase" value="<?php echo $bloque_info[0]['costo_3_year_2_clase']; ?>">
             <div><input type="text" class="form-control"  style="width:60px!important" id="costo" name="costo" readonly="true"> Bs <div id="generarCosto"  style="width:92px!important; cursor: pointer; color: blue; float: left;">Generar costo</div></div>
         </div>
     </div>

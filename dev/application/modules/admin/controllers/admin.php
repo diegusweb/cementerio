@@ -296,6 +296,8 @@ class Admin extends CI_Controller {
         $crud->set_rules('costo_perpetuidad_2_clase', 'costo perpetuidad 2.clase', 'required|decimal');
         $crud->set_rules('costo_5_year_1_clase', 'costo 5 años 1.clase', 'required|decimal');
         $crud->set_rules('costo_5_year_2_clase', 'costo 5 años 2.clase', 'required|decimal');
+        $crud->set_rules('costo_3_year_1_clase', 'costo 5 años 1.clase', 'required|decimal');
+        $crud->set_rules('costo_3_year_2_clase', 'costo 5 años 2.clase', 'required|decimal');
         
          $crud->set_rules('extra_caras', 'Formato Incorrecto', 'decimal');
 
@@ -327,6 +329,8 @@ class Admin extends CI_Controller {
 
         $crud->display_as('costo_5_year_1_clase', '1.clase 5 años');
         $crud->display_as('costo_5_year_2_clase', '2.clase 5 años');
+        $crud->display_as('costo_3_year_1_clase', '1.clase 3 años');
+        $crud->display_as('costo_3_year_2_clase', '2.clase 3 años');
         $crud->display_as('costo_perpetuidad_1_clase', '1.clase perpetuidad');
         $crud->display_as('costo_perpetuidad_2_clase', '2.clase perpetuidad');
 
@@ -336,7 +340,18 @@ class Admin extends CI_Controller {
             return 'Costo <input type="text" maxlength="15" style="width:80px!important" value="" name="costo_5_year_1_clase"> Ejm: 123.51';
         });
         $crud->callback_edit_field('costo_5_year_1_clase', array($this, 'edit_costo_5_year_1_clase'));
+        
+         $crud->callback_add_field('costo_3_year_1_clase', function () {
+            return 'Costo <input type="text" maxlength="15" style="width:80px!important" value="" name="costo_3_year_1_clase"> Ejm: 123.51';
+        });
+        $crud->callback_edit_field('costo_3_year_1_clase', array($this, 'edit_costo_3_year_1_clase'));
 
+         $crud->callback_add_field('costo_3_year_2_clase', function () {
+            return 'Costo <input type="text" maxlength="15" style="width:80px!important" value="" name="costo_3_year_2_clase"> Ejm: 123.51';
+        });
+        $crud->callback_edit_field('costo_3_year_2_clase', array($this, 'edit_costo_3_year_2_clase'));
+
+        
         $crud->callback_add_field('costo_5_year_2_clase', function () {
             return 'Costo <input type="text" maxlength="15" style="width:80px!important" value="" name="costo_5_year_2_clase"> Ejm: 123.51';
         });
@@ -355,7 +370,7 @@ class Admin extends CI_Controller {
         $crud->callback_edit_field('costo_perpetuidad_2_clase', array($this, 'edit_costo_perpetuidad_2_clase'));
 
         //edit
-         $crud->edit_fields('nombre','position','costo_perpetuidad_1_clase','costo_perpetuidad_2_clase','costo_5_year_2_clase','costo_5_year_1_clase');
+         $crud->edit_fields('nombre','position','costo_perpetuidad_1_clase','costo_perpetuidad_2_clase','costo_5_year_1_clase','costo_5_year_2_clase','costo_3_year_1_clase','costo_3_year_2_clase');
 
         $crud->display_as('create_date', 'Fechas');
 
@@ -385,6 +400,14 @@ class Admin extends CI_Controller {
 
     function edit_costo_5_year_2_clase($value, $primary_key) {
         return 'Costo <input type="text" maxlength="15"  style="width:80px!important" value="' . $value . '" name="costo_5_year_2_clase"> Ejm: 123.51';
+    }
+    
+    function edit_costo_3_year_1_clase($value, $primary_key) {
+        return 'Costo <input type="text" maxlength="15"  style="width:80px!important" value="' . $value . '" name="costo_3_year_1_clase"> Ejm: 123.51';
+    }
+
+    function edit_costo_3_year_2_clase($value, $primary_key) {
+        return 'Costo <input type="text" maxlength="15"  style="width:80px!important" value="' . $value . '" name="costo_3_year_2_clase"> Ejm: 123.51';
     }
 
     function edit_costo_perpetuidad_1_clase($value, $primary_key) {
